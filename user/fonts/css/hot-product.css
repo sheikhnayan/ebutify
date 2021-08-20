@@ -1,0 +1,60 @@
+.button1 {
+  background: #fff;
+  font-weight: bold;
+  color: #000;
+  border-radius: 5px;
+  padding: 5px;
+  width: 140px;
+  border: 1.3px solid #000;
+}
+
+.lgreen {
+  background-color: #603bc8;
+  color: #fff;
+}
+
+.lgreen:hover {
+  background-color: #4c23be;
+  color: #fff;
+}
+
+.orange {
+  background-color: #ff9933;
+}
+
+.purple {
+  background-color: #9933ff;
+}
+
+.lblue {
+  background-color: #33ffcc;
+}
+
+.button1:hover {
+  background-color: #603bc8;
+  color: #fff;
+}
+.fa-video-camera {
+  color: deeppink;
+  padding: 5px;
+}
+.top_section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.ebutify-product-title h1 {
+  font-size: 2rem;
+}
+
+.text1 {
+  font-size: 1em;
+  font-weight: bold;
+  color: rgb(110, 109, 109);
+}
+
+.trend {
+  position: relative;
+  float: right;
+}

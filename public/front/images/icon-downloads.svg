@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="40px" height="43px" viewBox="0 0 40 43" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 54.1 (76490) - https://sketchapp.com -->
+    <title>Path Copy 10</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="55.7196965%" y1="0%" x2="55.7196965%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#7ED500" offset="0%"></stop>
+            <stop stop-color="#00BF8D" offset="100%"></stop>
+        </linearGradient>
+        <path d="M431.967012,4927.0871 C431.900089,4926.93133 431.743923,4926.82968 431.570624,4926.82968 L426.869758,4926.82968 L426.869758,4916.41654 C426.869758,4916.18662 426.677556,4916 426.440753,4916 L419.576889,4916 C419.340086,4916 419.147885,4916.18662 419.147885,4916.41654 L419.147885,4926.82972 L414.429,4926.82972 C414.255701,4926.82972 414.099535,4926.93137 414.032613,4927.08631 C413.966535,4927.24208 414.00257,4927.4212 414.125275,4927.54034 L422.683639,4935.87754 C422.764276,4935.95584 422.873267,4936 422.987365,4936 C423.101463,4936 423.210453,4935.95584 423.29109,4935.87836 L431.87435,4927.54116 C431.997055,4927.42198 432.033934,4927.2429 431.967012,4927.0871 Z" id="path-2"></path>
+        <filter x="-116.7%" y="-75.0%" width="333.3%" height="310.0%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="6" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0.672780797   0 0 0 0 0.244500539  0 0 0 0.443618881 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="About-Us-Page-Design---weDevs" transform="translate(-403.000000, -4910.000000)" fill-rule="nonzero">
+            <g id="Path-Copy-10">
+                <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+                <use fill="url(#linearGradient-1)" xlink:href="#path-2"></use>
+            </g>
+        </g>
+    </g>
+</svg>

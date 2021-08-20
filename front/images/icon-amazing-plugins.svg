@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="44px" height="44px" viewBox="0 0 44 44" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 54.1 (76490) - https://sketchapp.com -->
+    <title>Path</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="76.7150645%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#D7CBFF" offset="0%"></stop>
+            <stop stop-color="#5F58FF" offset="100%"></stop>
+        </linearGradient>
+        <path d="M686.564151,4797.7513 L685.073372,4797.7798 L685.152257,4793.80348 C685.17395,4792.70999 684.297232,4791.83242 683.203995,4791.85332 L679.228586,4791.92931 L679.258168,4790.43819 C679.285777,4789.04648 678.214233,4787.97389 676.82284,4788.00048 C675.431447,4788.02708 674.316516,4789.14147 674.288907,4790.53318 L674.259325,4792.0243 L670.283916,4792.10029 C669.190678,4792.12118 668.278462,4793.03295 668.256769,4794.12644 L668.181829,4797.90394 L669.672607,4797.87544 C671.163385,4797.84695 672.332343,4799.01705 672.302761,4800.50817 C672.273179,4801.99928 671.056891,4803.21498 669.566113,4803.24347 L668.075334,4803.27197 L668.000394,4807.04947 C667.978701,4808.14296 668.855419,4809.02053 669.948656,4808.99963 L673.725295,4808.92744 L673.754876,4807.43632 C673.784458,4805.94521 675.000746,4804.72951 676.491525,4804.70102 C677.982303,4804.67252 679.15126,4805.84262 679.121678,4807.33374 L679.092097,4808.82486 L682.868735,4808.75267 C683.961973,4808.73177 684.874189,4807.82 684.895882,4806.72651 L684.974767,4802.75019 L686.465545,4802.7217 C687.856938,4802.6951 688.971869,4801.58072 688.999478,4800.18901 C689.027088,4798.79729 687.955544,4797.7247 686.564151,4797.7513 Z" id="path-2"></path>
+        <filter x="-100.0%" y="-71.4%" width="300.0%" height="300.0%" filterUnits="objectBoundingBox" id="filter-3">
+            <feOffset dx="0" dy="6" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="6" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.126881518   0 0 0 0 0   0 0 0 0 0.672780797  0 0 0 0.3 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="About-Us-Page-Design---weDevs" transform="translate(-656.000000, -4783.000000)" fill-rule="nonzero">
+            <g id="Path">
+                <use fill="black" fill-opacity="1" filter="url(#filter-3)" xlink:href="#path-2"></use>
+                <use fill="url(#linearGradient-1)" xlink:href="#path-2"></use>
+            </g>
+        </g>
+    </g>
+</svg>

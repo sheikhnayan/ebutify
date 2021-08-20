@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="97px" height="39px" viewBox="0 0 97 39" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 61 (89581) - https://sketch.com -->
+    <title>ha-pin</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="95.206%" y1="50%" x2="0%" y2="50%" id="linearGradient-1">
+            <stop stop-color="#A35656" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#F1634C" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="ha-pin" transform="translate(50.615487, 19.716255) rotate(180.000000) translate(-50.615487, -19.716255) translate(0.615487, 0.716255)" fill-rule="nonzero">
+            <polygon id="Path" fill="url(#linearGradient-1)" opacity="0.09" transform="translate(40.500000, 20.000000) scale(-1, 1) translate(-40.500000, -20.000000) " points="0 2 81 2 81 38 0 38"></polygon>
+            <g id="c-link" transform="translate(63.000000, 1.000000)" fill="#000000">
+                <circle id="c" cx="18" cy="18" r="18"></circle>
+            </g>
+            <g id="c-link" transform="translate(62.000000, 0.000000)" fill="#FFFFFF">
+                <circle id="c" cx="19" cy="19" r="19"></circle>
+            </g>
+            <circle id="Oval" fill="#E24989" cx="81" cy="19" r="6"></circle>
+        </g>
+    </g>
+</svg>
