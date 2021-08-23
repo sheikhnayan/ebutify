@@ -50,7 +50,7 @@
                 <?php $i=1 ?>
                 <?php $__currentLoopData = $productDetails; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $productDetail): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <tr>
-                  <td><?php echo e($productDetail->id); ?></td>
+                  <td><?php echo e($i); ?></td>
                   <?php $__currentLoopData = $productDetail->productImage; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $productImage): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                   <td><img class="tbl-img" src="<?php echo e($productImage->image_link_1); ?>"></td>
                   <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -71,12 +71,14 @@
               </tbody>
             </table>  
 
-            <nav aria-label="Page navigation">
-              <ul class="pagination justify-content-center">
-                <?php echo e($productDetails->links()); ?>
 
-              </ul>
-            </nav>
+
+                
+               
+
+
+
+
       
           </div>
           <!-- /.col -->

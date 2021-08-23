@@ -3,11 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <?php if(Route::currentRouteName() == 'freelancer-dashboard'): ?>
   <title>eButify | Freelancer Dashboard</title>
-  <?php elseif(Route::currentRouteName() == 'product-research'): ?>
-  <title>eButify | Freelancer Product Research</title>
-  <?php endif; ?>
+
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome Icons -->
@@ -20,10 +17,6 @@
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css">
   <!-- My style -->
   <link rel="stylesheet" href="<?php echo e(asset('assets/css/style.css')); ?>">
-
-  <link href="https://unpkg.com/filepond@^4/dist/filepond.css" rel="stylesheet"/>
-
-  <link rel="stylesheet" href="<?php echo e(asset('assets/css/emojionearea.min.css')); ?>">
 
 </head>
 
@@ -138,7 +131,7 @@
         <a class="" data-toggle="dropdown" href="#">
           <div class="user-panel d-flex mr-3">
             <div class="image">
-              <img src="<?php echo e(asset('storage/app/'.Auth::user()->profile_photo_path) ?? 'assets/img/avatar5.png'); ?>" class="img-circle " alt="Jone Due">
+              <img src="assets/img/user1-128x128.jpg" class="img-circle " alt="Jone Due">
             </div>
           </div>
         </a>
@@ -146,8 +139,11 @@
           <span class="dropdown-item dropdown-header"><?php echo e(Auth::user()->name); ?></span>
           <div class="dropdown-divider"></div>
           <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-item">
+            <i class="fas fa-key mr-2"></i> Change password
+          </a>
           <div class="dropdown-divider"></div>
-          <a href="<?php echo e(route('freelancer-profile')); ?>" class="dropdown-item">
+          <a href="#" class="dropdown-item">
             <i class="fas fa-user mr-2"></i> Update Profile
           </a>
           <div class="dropdown-divider"></div>
@@ -217,12 +213,12 @@
             </ul>
           </li>
           <li class="nav-item pl-4 ml-2">
-            <a href="/freelancer-project" class="nav-link">
+            <a href="freelancer-project.html" class="nav-link">
               <p>Project</p>
             </a>
           </li>
           <li class="nav-item pl-4 ml-2">
-            <a href="/freelancer-project-detail" class="nav-link">
+            <a href="freelancer-project -detail-1.html" class="nav-link">
               <p>Message</p>
             </a>
           </li>
@@ -257,19 +253,7 @@
 
 <script src="<?php echo e(asset('assets/js/script.js')); ?>"></script>
 
-<script src="https://unpkg.com/filepond@^4/dist/filepond.js"></script>
-
-<script type="text/javascript" src="<?php echo e(asset('assets/js/emojionearea.min.js')); ?>"></script>
-
   <?php echo $__env->yieldContent('js'); ?>
-
-  <script type="text/javascript">
-    $(document).ready(function() {
-      $("#example1").emojioneArea({
-        pickerPosition: "bottom"
-      });
-    });
-  </script>
 
 </body>
 </html><?php /**PATH C:\wamp64\www\ebutify\ebutify_freelancer\resources\views/layouts/freelancer-layout.blade.php ENDPATH**/ ?>
