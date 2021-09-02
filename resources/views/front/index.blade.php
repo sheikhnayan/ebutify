@@ -84,7 +84,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12 col-lg-7 left-large-content mt-3">
-                            <img src="{{ asset('storage/'.$image[0]->image) }}" alt="" class="left-large-section-img shadow">
+                            <!-- <img src="" alt="" class="left-large-section-img shadow"> -->
                             <span class="left-large-section-icon-one animation-wave_one">
                                 <i class="fas fa-users"></i>
                             </span>
@@ -215,7 +215,7 @@
                         <div class="col-md-12 col-lg-7 mt-3 eb_main_img_section_2">
                             <div class="row ">
                                 <div class="col-12 right-large-section-image pl-5">
-                                    <img src="{{ asset('storage/'.$image[1]->image) }}" alt="" class="right-large-section-img shadow">
+                                    <img src="" alt="" class="right-large-section-img shadow">
                                     <span class="right-large-section-icon-two animation-wave_two">
                                         <i class="fas fa-handshake"></i>
                                     </span>
@@ -231,7 +231,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12 col-lg-7 mt-3">
-                            <img src="{{ asset('storage/'.$image[2]->image) }}" alt="" class="left-large-section-img shadow">
+                            <img src="" alt="" class="left-large-section-img shadow">
                             <span class="left-large-section-icon-three animation-wave_three">
                                 <i class="fas fa-mobile-alt"></i>
                             </span>
@@ -366,7 +366,7 @@
                         <div class="col-md-12 col-lg-7 mt-3 eb_main_img_section_4">
                             <div class="row">
                                 <div class="col-12 right-large-section-image pl-5">
-                                    <img src="{{ asset('storage/'.$image[3]->image) }}" alt="" class="right-large-section-img shadow">
+                                    <img src="" alt="" class="right-large-section-img shadow">
                                     <span class="right-large-section-icon-four animation-wave_four">
                                         <i class="fab fa-accusoft"></i>
                                     </span>
