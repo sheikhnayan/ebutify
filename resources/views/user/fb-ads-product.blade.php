@@ -251,7 +251,7 @@
                                        <div class="row pt-2">
                                           <div class="col-lg-4">
                                              <div class="row mx-1 mb-4">
-                                                @foreach ($trendingProduct->productImage as $productImage)
+                                                <!-- @foreach ($trendingProduct->productImage as $productImage)
                                                 <div class="col-12">
                                                    <div class="slickslider">
                                                       <div>
@@ -288,7 +288,48 @@
                                                       <img src="{{$productImage->image_link_5}}" alt="">
                                                    </div>
                                                 </div>
-                                                @endforeach
+                                                @endforeach -->
+                                                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                                                  <ol class="carousel-indicators">
+                                                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                                                    <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                                                    <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+                                                    <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
+                                                  </ol>
+                                                  <div class="carousel-inner">
+                                                   @foreach ($trendingProduct->productImage as $productImage)
+                                                    <div class="carousel-item active">
+                                                      <button class="active">play</button>
+                                                      <video class="carousel-video d-block w-100" autoplay loop onclick="this.paused ? this.play() : this.pause();" src="{{$productImage->video_link}}" alt="First slide" >
+                                                    </div>
+                                                    <div class="carousel-item">
+                                                      <img class="d-block w-100" src="{{$productImage->image_link_1}}" alt="Second slide">
+                                                    </div>
+                                                    <div class="carousel-item">
+                                                      <img class="d-block w-100" src="{{$productImage->image_link_2}}" alt="Third slide">
+                                                    </div>
+                                                    <div class="carousel-item">
+                                                      <img class="d-block w-100" src="{{$productImage->image_link_3}}" alt="Fourth slide">
+                                                    </div>
+                                                    <div class="carousel-item">
+                                                      <img class="d-block w-100" src="{{$productImage->image_link_4}}" alt="Fifth slide">
+                                                    </div>
+                                                    <div class="carousel-item">
+                                                      <img class="d-block w-100" src="{{$productImage->image_link_5}}" alt="Sixth slide">
+                                                    </div>
+                                                   @endforeach
+                                                  </div>
+                                                  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Previous</span>
+                                                  </a>
+                                                  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Next</span>
+                                                  </a>
+                                                </div>
                                              </div>
                                           </div>
                                           <div class="col-lg-8">
@@ -489,8 +530,7 @@
                                @endphp
                               @if(!empty($video))
                               <div class="mb-2 float-right">
-                                 <p class="d-inline-block" style="font-size: 13px;">Download Video</p>
-                                 <button class="btn far-download-btn" value="download">
+                                 <button class="btn btn-dark" value="download">
                                  <a href="{{route('downloadVid',[$video])}}">Download</a></button>
                               </div>
                               @endif
@@ -498,8 +538,8 @@
                             <div class="product-video-container embed-responsive embed-responsive-16by9">
                               <i class="fas fa-play-circle video2-icon-play"></i>
                               <i class="fas fa-pause-circle video2-icon-pause" style="display: none;"></i>
-                              <video id="video-control-2">
-                                <source src="{{asset('storage/app/public/'.$trendingProduct->video_name)}}" type="video/mp4">
+                              <video id="video-control-2" controls="">
+                                <source src="{{asset('storage/'.$trendingProduct->video_name)}}" type="video/mp4">
                               </video>
                             </div>
                           </div>
@@ -594,6 +634,9 @@
 @endsection
 
 @section('js')
+<script type="text/javascript">
+   $('.carousel').carousel()
+</script>
 <script>
 initiateSlick('yes');
     var ENDPOINT = "{{ url('/') }}";
