@@ -39,7 +39,7 @@ class ProductController extends Controller
     {
         $productDetails = ProductDetail::all();
 
-        return view('freelancer.practice-upload-new',compact('productDetails'));
+        return view('freelancer.freelancer-upload-new',compact('productDetails'));
     }
 
     public function uploadProduct(Request $request)
@@ -272,7 +272,7 @@ class ProductController extends Controller
         $containsAv = Str::contains($productStatus, 'Available');
         $containsUnav = Str::contains($productStatus, 'Unavailable');
 
-        return view('freelancer.practice-edit-product', compact('id', 'productDetails', 'productLinks', 'productImages','containsT','containsF','containsU','containsUnder18','containsUnder1824','containsUnder2534','containsUnder3444','containsUnder4554','containsUnder5564','containsUnder65','containsMen','containsWomen','containsBaby','containsUnisex','containsSa','containsUn','containsAv','containsUnav','containsHB','containsBK','containsFIT','containsCA','containsHG','containsPA','containsBAC','containsMAC','containsBS','containsOD','containsBH','containsJW','containsKH','containsCUC','containsELE','containsGIM','containsMFA','containsWf'));
+        return view('freelancer.freelancer-edit-product', compact('id', 'productDetails', 'productLinks', 'productImages','containsT','containsF','containsU','containsUnder18','containsUnder1824','containsUnder2534','containsUnder3444','containsUnder4554','containsUnder5564','containsUnder65','containsMen','containsWomen','containsBaby','containsUnisex','containsSa','containsUn','containsAv','containsUnav','containsHB','containsBK','containsFIT','containsCA','containsHG','containsPA','containsBAC','containsMAC','containsBS','containsOD','containsBH','containsJW','containsKH','containsCUC','containsELE','containsGIM','containsMFA','containsWf'));
     }
 
 

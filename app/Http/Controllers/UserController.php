@@ -1216,11 +1216,11 @@ class UserController extends Controller
 
 			if (empty($country)) {
 
-				return view('user.practice-fb-ads-product',compact('trendingProducts','sortSelected','filterSelected','categorySelected'));
+				return view('user.fb-ads-product',compact('trendingProducts','sortSelected','filterSelected','categorySelected'));
 
 			}else{
 
-				return view('user.practice-fb-ads-product',compact('trendingProducts','country','sortSelected','filterSelected','categorySelected'));
+				return view('user.fb-ads-product',compact('trendingProducts','country','sortSelected','filterSelected','categorySelected'));
 
 			}
 		
@@ -1852,15 +1852,15 @@ class UserController extends Controller
 				// dd($country);
 			}
 			if (empty($country)) {
-				return view('user.practice-untapped-product',compact('trendingProducts','sortSelected','filterSelected','categorySelected'));
+				return view('user.untapped-product',compact('trendingProducts','sortSelected','filterSelected','categorySelected'));
 			}else{
-				return view('user.practice-untapped-product',compact('trendingProducts','country','sortSelected','filterSelected','categorySelected'));
+				return view('user.untapped-product',compact('trendingProducts','country','sortSelected','filterSelected','categorySelected'));
 			}
 			
 
 		}else{
 
-			return view('user.practice-untapped-product',compact('trendingProducts','country','sortSelected','filterSelected','categorySelected'));
+			return view('user.untapped-product',compact('trendingProducts','country','sortSelected','filterSelected','categorySelected'));
 
 		}
 
@@ -1951,10 +1951,11 @@ class UserController extends Controller
 
   public function downloadVid($video)
 	{
-		$file = asset('/storage/app/public/'.$video);
-
+		
+		$file = public_path().'/storage/'.$video;
+		// dd($file);
     $headers = [
-      'Content-Type' => 'application/octet-stream',
+      'Content-Type' => 'video/mp4',
     ];
 
 		
