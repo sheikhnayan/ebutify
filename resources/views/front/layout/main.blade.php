@@ -1,45 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>eButify User</title>
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
-    <!-- Fonts -->
-    <!-- <link rel="dns-prefetch" href="//fonts.gstatic.com"> -->
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
-    <!-- <link
-      rel="stylesheet"
-      href="{{asset('vendors/bootstrap/dist/css/bootstrap.min.css')}}"
-    /> -->
-<!--     <link
-      rel="stylesheet"
-      href="{{asset('vendors/font-awesome/css/font-awesome.min.css')}}"
-    /> -->
-    <link rel="stylesheet" href="{{asset('vendors/themify-icons/css/themify-icons.css')}}" />
-    <link rel="stylesheet" href="{{asset('vendors/flag-icon-css/css/flag-icon.min.css')}}" />
-    <link rel="stylesheet" href="{{asset('vendors/selectFX/css/cs-skin-elastic.css')}}" />
-    <link rel="stylesheet" href="{{asset('vendors/jqvmap/dist/jqvmap.min.css')}}" />
-
-    <!-- <link rel="stylesheet" href="{{asset('css/style.css')}}" /> -->
-
-    <!-- <link
-      href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800"
-      rel="stylesheet"
-      type="text/css"
-    /> -->
-    <!-- <meta charset="UTF-8"> -->
+    <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <link rel="canonical" href="https://ebutify.com/">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -65,12 +27,8 @@
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ asset('front/css/style.css') }}">
+    <script src='https://www.google.com/recaptcha/api.js'></script>
     <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="870bb0db-1c1d-4fcc-bda0-d87cb20d073f";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
-</head>
-
-
-       @yield('head')
-
 </head>
 <body>
     <header id="header">
@@ -259,6 +217,6 @@
 
     });
 </script>
-@yield('js')
+
 </body>
 </html>
