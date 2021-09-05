@@ -30,6 +30,7 @@
          z-index: 10000;
          }
       </style>
+      <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="870bb0db-1c1d-4fcc-bda0-d87cb20d073f";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
    </head>
    <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
       <div class="wrapper">
@@ -136,7 +137,7 @@
                <a class="" data-toggle="dropdown" href="#">
                   <div class="user-panel d-flex mr-3">
                      <div class="image">
-                        <img src="{{asset('storage/app/'.Auth::user()->profile_photo_path) ?? 'assets/img/avatar5.png'}}" class="img-circle " alt="Jone Due">
+                        <img src="{{asset('storage/'.Auth::user()->profile_photo_path) ?? 'assets/img/avatar5.png'}}" class="img-circle " alt="Jone Due">
                      </div>
                   </div>
                </a>

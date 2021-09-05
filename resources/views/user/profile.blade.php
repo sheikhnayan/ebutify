@@ -27,7 +27,7 @@
             <form action="/user-profile-update" method="POST" enctype="multipart/form-data">
                 @csrf
             <div class="img-fluid img-circle mx-auto d-block" style="width: 160px; height: 160px; overflow: hidden; position: relative;">
-              <img id="profile_upload_img" src="{{asset('storage/app/'.Auth::user()->profile_photo_path) ?? 'assets/img/avatar5.png'}}" style="width: 100%; height: 100%;"  alt="">
+              <img id="profile_upload_img" src="{{asset('storage/'.Auth::user()->profile_photo_path) ?? 'assets/img/avatar5.png'}}" style="width: 100%; height: 100%;"  alt="">
               <input style="display: none;" accept=".png, .jpg, .jpeg, .gif" type="file" id="profile_upload" name="profile_upload">
               <div onclick="profile_upload()" style="cursor:pointer; width: 100%; height: 30px; text-align: center; font-size: 20px; background-color: rgba(1,1, 1, .6); position: absolute; bottom: 0; color: white;">
                 <i class="fa fa-camera"></i>

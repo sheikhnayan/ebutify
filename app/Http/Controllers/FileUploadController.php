@@ -14,6 +14,8 @@ class FileUploadController extends Controller
     {
         //  VIDEO UPLOAD METHOD
         if(!empty($request->videoSelect)){
+            
+            Log::info($request->videoSelect);
 
             fileName::whereNotNull('id')->delete();
 

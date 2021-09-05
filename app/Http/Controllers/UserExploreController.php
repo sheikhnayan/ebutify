@@ -368,7 +368,7 @@ class UserExploreController extends Controller
     {
         if(Auth::check()){
             
-        $trendingProducts = ShopifyProduct::paginate(3);
+        $trendingProducts = ShopifyProduct::orderBy('created_at','DESC')->paginate(3);
 
         // dd( $trendingProducts );
         

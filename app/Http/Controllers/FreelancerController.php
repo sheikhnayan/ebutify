@@ -28,8 +28,8 @@ class FreelancerController extends Controller
                 if(!Auth::user()->subscribed('main')){
 
                     //  FETCH AVAILABLE PLANS
-                    $availablePlans = [ 'price_1JPqeZCzBVgP4kKNPA6XL5mX' => 'Monthly',
-                    'price_1JPqopCzBVgP4kKNdvtju0GZ' => 'Yearly',
+                    $availablePlans = [ 'price_1If8QdEgl2c23BzjE4HCoJc3' => 'Monthly',
+                    'price_1If8VPEgl2c23Bzjq8LUvao7' => 'Yearly',
                     
                     ];
 

@@ -89,9 +89,9 @@
 
                                                     <div class="custom-control custom-radio">
                                                         <input type="radio"
-                                                            class="custom-control-input payment-radio d-none" value="price_1JPqopCzBVgP4kKNdvtju0GZ" name="plan" id="subscription-plan">
+                                                            class="custom-control-input payment-radio d-none" value="price_1If8VPEgl2c23Bzjq8LUvao7" name="plan" id="subscription-plan">
                                                         <label class="custom-control-label" for="subscription-plan">
-                                                            <p><span class="from-yr">{{$plans['price_1JPqopCzBVgP4kKNdvtju0GZ']}}</span>
+                                                            <p><span class="from-yr">{{$plans['price_1If8VPEgl2c23Bzjq8LUvao7']}}</span>
                                                                 <span class="pricing-num">$420.00 USD<span class="pr-per">/year</span> </span>
                                                             </p>
                                                             <p><span class="pricing-num">To Pay Today: $420.00 </span></p>
@@ -109,7 +109,7 @@
                                                         <input type="radio" name="plan" id="subscription-plan" value="price_1If8QdEgl2c23BzjE4HCoJc3"
                                                             class="custom-control-input payment-radio d-none">
                                                         <label class="custom-control-label" for="radioYearly">
-                                                            <p><span class="from-yr">{{$plans['price_1JPqeZCzBVgP4kKNPA6XL5mX']}}</span>
+                                                            <p><span class="from-yr">{{$plans['price_1If8QdEgl2c23BzjE4HCoJc3']}}</span>
                                                                 <span class="pricing-num">$35.00 USD<span class="pr-per">/month</span> </span>
                                                             </p>
                                                             <p><span class="pricing-num">To Pay Today: $35.00 </span></p>
@@ -294,7 +294,7 @@
                 } else {
                     // The card has been verified successfully...
                     console.log('handling success', setupIntent.payment_method);
-                     axios.post('https://ebutify.com/subscribe',{
+                     axios.post('http://127.0.0.1:8000/subscribe',{
                         payment_method: setupIntent.payment_method,
                         plan : plan
                     }).then((data)=>{
