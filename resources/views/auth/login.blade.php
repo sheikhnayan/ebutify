@@ -29,11 +29,13 @@
             </div>
         @endif
 
-        <form method="POST" action="{{ route('login') }}">
+        <form class="login" method="POST" action="{{ route('login') }}">
             @csrf
-
             <div class="mb-3">
                 <h2>Login to Your <span>Account</span></h2>
+                <div class="mb-4 font-medium text-sm text-green-600"  style="background:red;color:#fff; border-radius:10px; text-align:center;">
+                    {{ session('error') }}
+                </div>
                 <x-jet-label class="form-label" for="email" value="{{ __('Email') }}" />
                 <x-jet-input class="form-control" id="email" type="email" name="email" :value="old('email')" required autofocus />
             </div>
@@ -44,21 +46,9 @@
             </div>
 
             <div class="block mt-4">
-                <div class="row from-check-re_captch">
-                    <div class="col-7">
-                        <div class="form-check">
-                            <input class="form-check-input robot-input" type="checkbox" value="" id="Check-reCaptcha">
-                            <label class="form-check-label" for="Check-reCaptcha">
-                                I'm not a robot
-                            </label>
-                        </div>
+                    <div class="col-12 form-group">
+                        <div class="g-recaptcha" data-sitekey="6LfZa0kcAAAAAF_dT1qolY5zdbjIcFyQ9dD7auW4"></div>
                     </div>
-                    <div class="col-5 text-center re-captcha-content">
-                        <img src="{{ asset('front/images/logo_48.png') }}" width="30" height="30">
-                        <p class="re-captcha-text">reCAPTCHA</p>
-                        <p class="re-captcha-policy"><a href="">Privacy</a>-<a href="">Terms</a></p>
-                    </div>
-                </div>
                 <div class="row">
                     <div class="col-6">
                         <div class="form-check">
@@ -102,4 +92,24 @@
             </div>
         </div>
     </main>
+    <script>
+        (function ($) {
+        'use strict';
+    
+        var form = $('.login'),
+            form_data;
+        
+        form.submit(function (e) {
+            e.preventDefault();
+            form_data = $(this).serialize();
+            $.ajax({
+                type: 'POST',
+                url: form.attr('action'),
+                data: form_data
+            })
+            .done(done_func)
+            .fail(fail_func);
+        });
+    })(jQuery);
+    </script>
     @endsection

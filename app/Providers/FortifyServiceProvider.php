@@ -37,7 +37,23 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
 
         RateLimiter::for('login', function (Request $request) {
+            // access
+            $secretKey = '6LfZa0kcAAAAAA1LliyaVu_kcBOTyNAVgez_Rtjs';
+            $captcha = $_POST['g-recaptcha-response'];
+
+            if(!$captcha){
+            $error = '<p class="alert alert-warning">Please check the the captcha form.</p>';
+            return back()->with('error','Please check the the captcha form.');
+            }
+
+            $response=file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=".$secretKey."&response=".$captcha);
+            $responseKeys = json_decode($response,true);
+            if(intval($responseKeys["success"]) !== 1) {
+                echo '<p class="alert alert-warning">Please check the the captcha form.</p>';
+              } else {
+
             return Limit::perMinute(5)->by($request->email.$request->ip());
+              }
         });
 
         RateLimiter::for('two-factor', function (Request $request) {
