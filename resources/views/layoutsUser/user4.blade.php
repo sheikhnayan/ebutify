@@ -30,7 +30,7 @@
          z-index: 10000;
          }
 
-         button {
+         #butttttton {
     background-color: #666;
     border: medium none;
     color: #fff;

@@ -50,11 +50,11 @@ class ExploreController extends Controller
         $validatedData = $request->validate([
         'pname' => 'required|unique:product_details,product_name|max:255',
         'ali_express_link' => 'required',
-        'amz_link' => 'required',
         'img_link' => 'required',
         'price' => 'required',
         'star_rating' => 'required',
         't_review' => 'required',
+        't_order' => 'required',
         'category' => 'required'
         ]);
 
@@ -62,6 +62,7 @@ class ExploreController extends Controller
         $productDetails->product_name = $request->input('pname');
         $productDetails->price = $request->input('price');
         $productDetails->explore_t_review = $request->input('t_review');
+        $productDetails->total_order = $request->input('t_order');
         $productDetails->explore_star_rating = $request->input('star_rating');
         $productDetails->explore_pro_type = "ali_express";
         $productDetails->category = $category;
