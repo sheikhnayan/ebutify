@@ -132,7 +132,7 @@ class SuperAdminController extends Controller
         $path = $request->image->store('site', 'public');
 
         $update = Logo::where('id','1')->update([
-            'url' => $path
+            'favicon' => $path
         ]);
 
         return redirect()->back()->with('status','Site Logo Changed Successfully');
