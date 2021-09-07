@@ -120,13 +120,9 @@ class SuperAdminController extends Controller
     {
         $path = $request->image->store('site', 'public');
 
-        $test = new Logo;
-        $test->url = $path;
-        $test->save();
-
-        // $update = Logo::where('id',$id)->update([
-        //     'url' => $path
-        // ]);
+        $update = Logo::where('id','1')->update([
+            'url' => $path
+        ]);
 
         return redirect()->back()->with('status','Site Logo Changed Successfully');
     }
