@@ -16,7 +16,7 @@ use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\UserServiceController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\FrontendControllerController;
-
+use App\Http\Controllers\SubscriptionController;
 
 
 
@@ -68,6 +68,12 @@ Route::middleware(['auth:sanctum', 'verified'])->post('/user-password-cahnge',[U
 //  PROFILE FREELANCER
 Route::middleware(['auth:sanctum', 'verified'])->get('/freelancer-profile', [UserController::class, 'freelancerProfile'])->name('freelancer-profile');
 
+
+
+
+
+//  SUBCRIPTION PAGE
+Route::get('/subscription', [SubscriptionController::class,'CustomerSubscriptions'])->name('subscription');
 
 //  SUBSRIBE FOR USER
 Route::post('/subscribe', [FreelancerController::class,'subscribe'])->name('subscribe');

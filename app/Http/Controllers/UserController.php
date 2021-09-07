@@ -994,40 +994,56 @@ class UserController extends Controller
                                           <div class="col-lg-4">
                                              <div class="row mx-1 mb-4">
                                                 <div class="col-12">
-                                                   <div class="slickslider">
-                                                      <div>
-                                                         <div class="product-video-container embed-responsive embed-responsive-16by9">
-                                                            <i class="fas fa-play-circle video-icon-play"></i>
-                                                            <i class="fas fa-pause-circle video-icon-pause" style="display: none;"></i>
-                                                            <video id="video-control" controls>
-                                                               <source src="'.$result->productImage[0]->video_link.'" type="video/mp4">
-                                                            </video>
-                                                         </div>
-                                                      </div>
-                                                      <div>
-                                                         <img src="'.$result->productImage[0]->image_link_1.'" class="img-fluid" alt="">
-                                                      </div>
-                                                      <div>
-                                                         <img src="'.$result->productImage[0]->image_link_2.'" class="img-fluid" alt="">
-                                                      </div>
-                                                      <div>
-                                                         <img src="'.$result->productImage[0]->image_link_3.'" class="img-fluid" alt="">
-                                                      </div>
-                                                      <div>
-                                                         <img src="'.$result->productImage[0]->image_link_4.'" class="img-fluid" alt="">
-                                                      </div>
-                                                      <div>
-                                                         <img src="'.$result->productImage[0]->image_link_5.'" class="img-fluid" alt="">
-                                                      </div>
+
+
+								                                <div id="carouselExampleIndicators'.$result->id.'" class="carousel slide" data-ride="carousel">
+                                                  <ol class="carousel-indicators">
+                                                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                                                    <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                                                    <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+                                                    <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
+                                                  </ol>
+                                                   <div class="carousel-inner">
+                                                    <div class="carousel-item active">
+   
+                                                      <video class="carousel-video d-block w-100" onclick="this.paused ? this.play() : this.pause();" src="'.$result->productImage[0]->video_link.'" alt="First slide" >
+                                                     <div class="carousel-video carousel-caption d-none d-md-block">
+                                                       <h5>...</h5>
+                                                       <p>...</p>
+                                                     </div>
+
+                                                    </div>
+                                                    <div class="carousel-item">
+                                                      <img class="d-block w-100" src="'.$result->productImage[0]->image_link_1.'">
+                                                    </div>
+                                                    <div class="carousel-item">
+                                                      <img class="d-block w-100" src="'.$result->productImage[0]->image_link_2.'">
+                                                    </div>
+                                                    <div class="carousel-item">
+                                                      <img class="d-block w-100" src="'.$result->productImage[0]->image_link_3.'">
+                                                    </div>
+                                                    <div class="carousel-item">
+                                                      <img class="d-block w-100" src="'.$result->productImage[0]->image_link_4.'" >
+                                                    </div>
+                                                    <div class="carousel-item">
+                                                      <img class="d-block w-100" src="'.$result->productImage[0]->image_link_5.'">
+                                                    </div>
+
                                                    </div>
-                                                   <div class="slider-nav my-3">
-                                                      <img src="'.$result->productImage[0]->video_link.'" alt="">
-                                                      <img src="'.$result->productImage[0]->image_link_1.'" alt="">
-                                                      <img src="'.$result->productImage[0]->image_link_2.'" alt="">
-                                                      <img src="'.$result->productImage[0]->image_link_3.'" alt="">
-                                                      <img src="'.$result->productImage[0]->image_link_4.'" alt="">
-                                                      <img src="'.$result->productImage[0]->image_link_5.'" alt="">
-                                                   </div>
+                                                  <a class="carousel-control-prev" href="#carouselExampleIndicators'.$result->id.'" role="button" data-slide="prev">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Previous</span>
+                                                  </a>
+                                                  <a class="carousel-control-next" href="#carouselExampleIndicators'.$result->id.'" role="button" data-slide="next">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Next</span>
+                                                  </a>
+                                                </div>
+
+
+    
                                                 </div>
                                              </div>
                                           </div>
@@ -1098,19 +1114,19 @@ class UserController extends Controller
                                                    </ul>
                                                    <div class="slider2">
                                                       <div>
-                                                         <img src="https://ecomfia.com/storage/app/public/'.$result->productImage[0]->gif_1.'" class="img-fluid" alt="">
+                                                         <img src="https://ebutify.com/storage/'.$result->productImage[0]->gif_1.'" class="img-fluid" alt="">
                                                       </div>
                                                       <div>
-                                                         <img src="https://ecomfia.com/storage/app/public/'.$result->productImage[0]->gif_2.'" class="img-fluid" alt="">
+                                                         <img src="https://ebutify.com/storage/'.$result->productImage[0]->gif_2.'" class="img-fluid" alt="">
                                                       </div>
                                                       <div>
-                                                         <img src="https://ecomfia.com/storage/app/public/'.$result->productImage[0]->gif_3.'" class="img-fluid" alt="">
+                                                         <img src="https://ebutify.com/storage/'.$result->productImage[0]->gif_3.'" class="img-fluid" alt="">
                                                       </div>
                                                    </div>
                                                    <div class="slider-nav2 my-2 justify-content-between">
-                                                      <img src="https://ecomfia.com/storage/app/public/'.$result->productImage[0]->gif_1.'" class="img-fluid" alt="">
-                                                      <img src="https://ecomfia.com/storage/app/public/'.$result->productImage[0]->gif_2.'" class="img-fluid" alt="">
-                                                      <img src="https://ecomfia.com/storage/app/public/'.$result->productImage[0]->gif_3.'" class="img-fluid" alt="">
+                                                      <img src="https://ebutify.com/storage/'.$result->productImage[0]->gif_1.'" class="img-fluid" alt="">
+                                                      <img src="https://ebutify.com/storage/'.$result->productImage[0]->gif_2.'" class="img-fluid" alt="">
+                                                      <img src="https://ebutify.com/storage/'.$result->productImage[0]->gif_3.'" class="img-fluid" alt="">
                                                    </div>
                                                    '.$downloadButton.'
                                                 </div>
@@ -1139,12 +1155,12 @@ class UserController extends Controller
                           <div class="col-md-6">
                             <div class="far-video-hedear">
                               <h3>Facebook video ads</h3>
-                              <button type="button" class="btn far-download-btn">Download</button>
+                              <button type="button" class="btn far-download-btn"><a class="btn far-download-btn"href="https://ebutify.com/downloadVid/'.$result->video_name.'">Download</a></button>
                             </div>
                             <div class="product-video-container embed-responsive embed-responsive-16by9">
                               
                               <video id="video-control-2" controls>
-                                <source src="https://ecomfia.com/storage/app/public/'.$result->video_name.'" type="video/mp4">
+                                <source src="https://ebutify.com/storage/'.$result->video_name.'" type="video/mp4">
                               </video>
                             </div>
                           </div>
@@ -1629,40 +1645,54 @@ class UserController extends Controller
                                           <div class="col-lg-4">
                                              <div class="row mx-1 mb-4">
                                                 <div class="col-12">
-                                                   <div class="slickslider">
-                                                      <div>
-                                                         <div class="product-video-container embed-responsive embed-responsive-16by9">
-                                                            <i class="fas fa-play-circle video-icon-play"></i>
-                                                            <i class="fas fa-pause-circle video-icon-pause" style="display: none;"></i>
-                                                            <video id="video-control" controls>
-                                                               <source src="'.$result->productImage[0]->video_link.'" type="video/mp4">
-                                                            </video>
-                                                         </div>
-                                                      </div>
-                                                      <div>
-                                                         <img src="'.$result->productImage[0]->image_link_1.'" class="img-fluid" alt="">
-                                                      </div>
-                                                      <div>
-                                                         <img src="'.$result->productImage[0]->image_link_2.'" class="img-fluid" alt="">
-                                                      </div>
-                                                      <div>
-                                                         <img src="'.$result->productImage[0]->image_link_3.'" class="img-fluid" alt="">
-                                                      </div>
-                                                      <div>
-                                                         <img src="'.$result->productImage[0]->image_link_4.'" class="img-fluid" alt="">
-                                                      </div>
-                                                      <div>
-                                                         <img src="'.$result->productImage[0]->image_link_5.'" class="img-fluid" alt="">
-                                                      </div>
+
+                                                <div id="carouselExampleIndicators'.$result->id.'" class="carousel slide" data-ride="carousel">
+                                                  <ol class="carousel-indicators">
+                                                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                                                    <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                                                    <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+                                                    <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
+                                                  </ol>
+                                                   <div class="carousel-inner">
+                                                    <div class="carousel-item active">
+   
+                                                      <video class="carousel-video d-block w-100" onclick="this.paused ? this.play() : this.pause();" src="'.$result->productImage[0]->video_link.'" alt="First slide" >
+                                                     <div class="carousel-video carousel-caption d-none d-md-block">
+                                                       <h5>...</h5>
+                                                       <p>...</p>
+                                                     </div>
+
+                                                    </div>
+                                                    <div class="carousel-item">
+                                                      <img class="d-block w-100" src="'.$result->productImage[0]->image_link_1.'">
+                                                    </div>
+                                                    <div class="carousel-item">
+                                                      <img class="d-block w-100" src="'.$result->productImage[0]->image_link_2.'">
+                                                    </div>
+                                                    <div class="carousel-item">
+                                                      <img class="d-block w-100" src="'.$result->productImage[0]->image_link_3.'">
+                                                    </div>
+                                                    <div class="carousel-item">
+                                                      <img class="d-block w-100" src="'.$result->productImage[0]->image_link_4.'" >
+                                                    </div>
+                                                    <div class="carousel-item">
+                                                      <img class="d-block w-100" src="'.$result->productImage[0]->image_link_5.'">
+                                                    </div>
+
                                                    </div>
-                                                   <div class="slider-nav my-3">
-                                                      <img src="'.$result->productImage[0]->video_link.'" alt="">
-                                                      <img src="'.$result->productImage[0]->image_link_1.'" alt="">
-                                                      <img src="'.$result->productImage[0]->image_link_2.'" alt="">
-                                                      <img src="'.$result->productImage[0]->image_link_3.'" alt="">
-                                                      <img src="'.$result->productImage[0]->image_link_4.'" alt="">
-                                                      <img src="'.$result->productImage[0]->image_link_5.'" alt="">
-                                                   </div>
+                                                  <a class="carousel-control-prev" href="#carouselExampleIndicators'.$result->id.'" role="button" data-slide="prev">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Previous</span>
+                                                  </a>
+                                                  <a class="carousel-control-next" href="#carouselExampleIndicators'.$result->id.'" role="button" data-slide="next">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Next</span>
+                                                  </a>
+                                                </div>
+                                                   
+
                                                 </div>
                                              </div>
                                           </div>
@@ -1733,19 +1763,19 @@ class UserController extends Controller
                                                    </ul>
                                                    <div class="slider2">
                                                       <div>
-                                                         <img src="https://ecomfia.com/storage/app/public/'.$result->productImage[0]->gif_1.'" class="img-fluid" alt="">
+                                                         <img src="https://ebutify.com/storage/'.$result->productImage[0]->gif_1.'" class="img-fluid" alt="">
                                                       </div>
                                                       <div>
-                                                         <img src="https://ecomfia.com/storage/app/public/'.$result->productImage[0]->gif_2.'" class="img-fluid" alt="">
+                                                         <img src="https://ebutify.com/storage/'.$result->productImage[0]->gif_2.'" class="img-fluid" alt="">
                                                       </div>
                                                       <div>
-                                                         <img src="https://ecomfia.com/storage/app/public/'.$result->productImage[0]->gif_3.'" class="img-fluid" alt="">
+                                                         <img src="https://ebutify.com/storage/'.$result->productImage[0]->gif_3.'" class="img-fluid" alt="">
                                                       </div>
                                                    </div>
                                                    <div class="slider-nav2 my-2 justify-content-between">
-                                                      <img src="https://ecomfia.com/storage/app/public/'.$result->productImage[0]->gif_1.'" class="img-fluid" alt="gif 1">
-                                                      <img src="https://ecomfia.com/storage/app/public/'.$result->productImage[0]->gif_2.'" class="img-fluid" alt="">
-                                                      <img src="https://ecomfia.com/storage/app/public/'.$result->productImage[0]->gif_3.'" class="img-fluid" alt="">
+                                                      <img src="https://ebutify.com/storage/'.$result->productImage[0]->gif_1.'" class="img-fluid" alt="gif 1">
+                                                      <img src="https://ebutify.com/storage/'.$result->productImage[0]->gif_2.'" class="img-fluid" alt="">
+                                                      <img src="https://ebutify.com/storage/'.$result->productImage[0]->gif_3.'" class="img-fluid" alt="">
                                                    </div>
                                                    '.$downloadButton.'
                                                 </div>
@@ -1774,12 +1804,12 @@ class UserController extends Controller
                           <div class="col-md-6">
                             <div class="far-video-hedear">
                               <h3>Facebook video ads</h3>
-                              <button type="button" class="btn far-download-btn">Download</button>
+                              <button type="button" class="btn far-download-btn"><a class="btn far-download-btn"href="https://ebutify.com/downloadVid/'.$result->video_name.'">Download</a></button>
                             </div>
                             <div class="product-video-container embed-responsive embed-responsive-16by9">
                               
                               <video id="video-control-2" controls>
-                                <source src="https://ecomfia.com/storage/app/public/'.$result->video_name.'" type="video/mp4">
+                                <source src="https://ebutify.com/storage/'.$result->video_name.'" type="video/mp4">
                               </video>
                             </div>
                           </div>
@@ -1930,9 +1960,9 @@ class UserController extends Controller
 		$zip_name = "ebutify_gif_".time().".zip"; // Zip name
 	    touch($zip_name);
 		
-		$zip->open($zip_name,  ZipArchive::CREATE);
+		$zip->open($zip_name,ZipArchive::CREATE);
 		foreach ($files as $file) {
-		  $path = asset('/storage/app/public/'.$file);
+		  $path = asset('/storage/'.$file);
 		  //if(file_exists($path)){
 		  $zip->addFromString(basename($path),  file_get_contents($path));
 		  //}

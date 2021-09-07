@@ -163,7 +163,7 @@
                   <i class="far fa-user mr-2"></i> My Profile
                   </a>
                   <div class="dropdown-divider"></div>
-                  <a href="customer-subscriptions-billing.html" class="dropdown-item">
+                  <a href="{{url('/subscription')}}" class="dropdown-item">
                   <i class="far fa-bell mr-2"></i> Subcription
                   </a>
                   <div class="dropdown-divider"></div>
