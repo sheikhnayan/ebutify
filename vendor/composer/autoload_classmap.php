@@ -51,6 +51,7 @@ return array(
     'App\\Models\\GifName2' => $baseDir . '/app/Models/GifName2.php',
     'App\\Models\\GifName3' => $baseDir . '/app/Models/GifName3.php',
     'App\\Models\\Homepage' => $baseDir . '/app/Models/Homepage.php',
+    'App\\Models\\Logo' => $baseDir . '/app/Models/Logo.php',
     'App\\Models\\PrivacyAndPolicy' => $baseDir . '/app/Models/PrivacyAndPolicy.php',
     'App\\Models\\ProductDetail' => $baseDir . '/app/Models/ProductDetail.php',
     'App\\Models\\ProductImage' => $baseDir . '/app/Models/ProductImage.php',

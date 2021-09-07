@@ -654,6 +654,7 @@ class ComposerStaticInit495d48bf7755b140d851d0f7ac052e0c
         'App\\Models\\GifName2' => __DIR__ . '/../..' . '/app/Models/GifName2.php',
         'App\\Models\\GifName3' => __DIR__ . '/../..' . '/app/Models/GifName3.php',
         'App\\Models\\Homepage' => __DIR__ . '/../..' . '/app/Models/Homepage.php',
+        'App\\Models\\Logo' => __DIR__ . '/../..' . '/app/Models/Logo.php',
         'App\\Models\\PrivacyAndPolicy' => __DIR__ . '/../..' . '/app/Models/PrivacyAndPolicy.php',
         'App\\Models\\ProductDetail' => __DIR__ . '/../..' . '/app/Models/ProductDetail.php',
         'App\\Models\\ProductImage' => __DIR__ . '/../..' . '/app/Models/ProductImage.php',

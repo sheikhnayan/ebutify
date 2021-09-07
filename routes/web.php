@@ -323,6 +323,9 @@ Route::post('/super/review/update/{id}', [SuperAdminController::class, 'review_u
 Route::get('/super/review/delete/{id}', [SuperAdminController::class, 'review_delete']);
 Route::get('/super/homepage', [SuperAdminController::class, 'homepage']);
 Route::post('/super/homepage/{id}', [SuperAdminController::class, 'homepage_update']);
+Route::get('/super/logos', [SuperAdminController::class, 'logos']);
+Route::post('/super/logo', [SuperAdminController::class, 'logo_update']);
+Route::post('/super/favicon', [SuperAdminController::class, 'favicon_update']);
 Route::get('/super/terms-condition', [SuperAdminController::class, 'terms_conditions']);
 Route::post('/super/terms-condition/update', [SuperAdminController::class, 'terms_conditions_update']);
 Route::get('/super/privacy-policy', [SuperAdminController::class, 'privacy_policy']);

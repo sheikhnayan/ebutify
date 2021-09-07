@@ -241,6 +241,11 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a href="/super/logos" class="nav-link">
+                  <p>Logo & Favicon</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="/super/blog" class="nav-link">
                   <p>Blog</p>
                 </a>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Blog;
 use App\Models\Homepage;
+use App\Models\Logo;
 use App\Models\FAQ;
 use App\Models\Review;
 use App\Models\TermsAndCondition;
@@ -101,9 +102,11 @@ class SuperAdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function logos()
     {
-        //
+        $data = Logo::all();
+
+        return view('admin.logos',compact('data'));
     }
 
     /**
@@ -113,9 +116,30 @@ class SuperAdminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function logo_update(Request $request)
     {
-        //
+        $path = $request->image->store('site', 'public');
+
+        $test = new Logo;
+        $test->url = $path;
+        $test->save();
+
+        // $update = Logo::where('id',$id)->update([
+        //     'url' => $path
+        // ]);
+
+        return redirect()->back()->with('status','Site Logo Changed Successfully');
+    }
+
+    public function favicon_update(Request $request)
+    {
+        $path = $request->image->store('site', 'public');
+
+        $update = Logo::where('id','1')->update([
+            'url' => $path
+        ]);
+
+        return redirect()->back()->with('status','Site Logo Changed Successfully');
     }
 
     /**
