@@ -414,20 +414,20 @@
                                                 <div class="slider2">
                                                 @foreach ($trendingProduct->productImage as $productImage)
                                                    <div>
-                                                      <img src="{{asset('storage/app/public/'.$productImage->gif_1)}}" class="img-fluid" alt="">
+                                                      <img src="{{asset('storage/'.$productImage->gif_1)}}" class="img-fluid" alt="">
                                                    </div>
                                                    <div>
-                                                      <img src="{{asset('storage/app/public/'.$productImage->gif_2)}}" class="img-fluid" alt="">
+                                                      <img src="{{asset('storage/'.$productImage->gif_2)}}" class="img-fluid" alt="">
                                                    </div>
                                                    <div>
-                                                      <img src="{{asset('storage/app/public/'.$productImage->gif_3)}}" class="img-fluid" alt="">
+                                                      <img src="{{asset('storage/'.$productImage->gif_3)}}" class="img-fluid" alt="">
                                                    </div>
                                                 
                                                 </div>
                                                 <div class="slider-nav2 my-2 justify-content-between">
-                                                   <img src="{{asset('storage/app/public/'.$productImage->gif_1)}}" class="img-fluid" alt="gif">
-                                                   <img src="{{asset('storage/app/public/'.$productImage->gif_2)}}" class="img-fluid" alt="gif">
-                                                   <img src="{{asset('storage/app/public/'.$productImage->gif_3)}}" class="img-fluid" alt="gif">
+                                                   <img src="{{asset('storage/'.$productImage->gif_1)}}" class="img-fluid" alt="gif">
+                                                   <img src="{{asset('storage/'.$productImage->gif_2)}}" class="img-fluid" alt="gif">
+                                                   <img src="{{asset('storage/'.$productImage->gif_3)}}" class="img-fluid" alt="gif">
                                                 </div>
                                                 @endforeach
                                                 @php
@@ -503,7 +503,7 @@
                               <i class="fas fa-play-circle video2-icon-play"></i>
                               <i class="fas fa-pause-circle video2-icon-pause" style="display: none;"></i>
                               <video id="video-control-2">
-                                <source src="{{asset('storage/app/public/'.$trendingProduct->video_name)}}" type="video/mp4">
+                                <source src="{{asset('storage/'.$trendingProduct->video_name)}}" type="video/mp4">
                               </video>
                             </div>
                           </div>

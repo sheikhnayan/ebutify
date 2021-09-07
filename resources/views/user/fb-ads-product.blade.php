@@ -289,7 +289,7 @@
                                                    </div>
                                                 </div>
                                                 @endforeach -->
-                                                <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                                                <div id="carouselExampleIndicators{{$j}}" class="carousel slide" data-ride="carousel">
                                                   <ol class="carousel-indicators">
                                                     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                                                     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -298,11 +298,16 @@
                                                     <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
                                                     <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
                                                   </ol>
-                                                  <div class="carousel-inner">
-                                                   @foreach ($trendingProduct->productImage as $productImage)
+                                                   <div class="carousel-inner">
+                                                      @foreach ($trendingProduct->productImage as $productImage)
                                                     <div class="carousel-item active">
-                                                      <button class="active">play</button>
-                                                      <video class="carousel-video d-block w-100" autoplay loop onclick="this.paused ? this.play() : this.pause();" src="{{$productImage->video_link}}" alt="First slide" >
+                                                      <!-- <iframe class="carousel-video d-block w-100" onclick="this.paused ? this.play() : this.pause();" src="{{$productImage->video_link}}"></iframe> -->
+                                                      <video class="carousel-video d-block w-100" onclick="this.paused ? this.play() : this.pause();" src="{{$productImage->video_link}}" alt="First slide" >
+                                                     <div class="carousel-video carousel-caption d-none d-md-block">
+                                                       <h5>...</h5>
+                                                       <p>...</p>
+                                                     </div>
+
                                                     </div>
                                                     <div class="carousel-item">
                                                       <img class="d-block w-100" src="{{$productImage->image_link_1}}" alt="Second slide">
@@ -319,17 +324,19 @@
                                                     <div class="carousel-item">
                                                       <img class="d-block w-100" src="{{$productImage->image_link_5}}" alt="Sixth slide">
                                                     </div>
-                                                   @endforeach
-                                                  </div>
-                                                  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                                                      @endforeach
+                                                   </div>
+                                                  <a class="carousel-control-prev" href="#carouselExampleIndicators{{$j}}" role="button" data-slide="prev">
                                                     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                                                     <span class="sr-only">Previous</span>
                                                   </a>
-                                                  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                                                  <a class="carousel-control-next" href="#carouselExampleIndicators{{$j}}" role="button" data-slide="next">
                                                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                                                     <span class="sr-only">Next</span>
                                                   </a>
                                                 </div>
+
+
                                              </div>
                                           </div>
                                           <div class="col-lg-8">
@@ -452,19 +459,19 @@
                                                    <div class="slider2">
                                                       @foreach ($trendingProduct->productImage as $productImage)
                                                       <div>
-                                                         <img src="{{asset('storage/app/public/'.$productImage->gif_1)}}" class="img-fluid" alt="">
+                                                         <img src="{{asset('storage/'.$productImage->gif_1)}}" class="img-fluid" alt="">
                                                       </div>
                                                       <div>
-                                                         <img src="{{asset('storage/app/public/'.$productImage->gif_2)}}" class="img-fluid" alt="">
+                                                         <img src="{{asset('storage/'.$productImage->gif_2)}}" class="img-fluid" alt="">
                                                       </div>
                                                       <div>
-                                                         <img src="{{asset('storage/app/public/'.$productImage->gif_3)}}" class="img-fluid" alt="">
+                                                         <img src="{{asset('storage/'.$productImage->gif_3)}}" class="img-fluid" alt="">
                                                       </div>
                                                    </div>
                                                    <div class="slider-nav2 my-2 justify-content-between">
-                                                      <img src="{{asset('storage/app/public/'.$productImage->gif_1)}}" class="img-fluid" alt="gif">
-                                                      <img src="{{asset('storage/app/public/'.$productImage->gif_2)}}" class="img-fluid" alt="gif">
-                                                      <img src="{{asset('storage/app/public/'.$productImage->gif_3)}}" class="img-fluid" alt="gif">
+                                                      <img src="{{asset('storage/'.$productImage->gif_1)}}" class="img-fluid" alt="gif">
+                                                      <img src="{{asset('storage/'.$productImage->gif_2)}}" class="img-fluid" alt="gif">
+                                                      <img src="{{asset('storage/'.$productImage->gif_3)}}" class="img-fluid" alt="gif">
                                                    </div>
                                                    @endforeach
                                                    @php
@@ -634,8 +641,14 @@
 @endsection
 
 @section('js')
+
 <script type="text/javascript">
    $('.carousel').carousel()
+
+   function hidePlayButton(){
+      console.log('hello');
+   }
+
 </script>
 <script>
 initiateSlick('yes');

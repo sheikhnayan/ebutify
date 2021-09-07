@@ -72,6 +72,10 @@
                                 <input type="number" name="t_review" class="form-control" id="inputTotalReviews">
                               </div>
                               <div class="form-group col-md-6 col-lg-2">
+                                <label for="inputTotalReviews">Total Order</label>
+                                <input type="number" name="t_order" class="form-control" id="inputTotalReviews">
+                              </div>
+                              <div class="form-group col-md-6 col-lg-2">
                                 <label for="inputProtectionProduct">Product Type</label>
                                 <select class="custom-select" size="2" required="" name="type" id="inputProtectionProduct" required="">
                                   <option value="1">Saturated</option>
@@ -79,6 +83,7 @@
                                 </select>
                               </div>
                               <div class="form-group col-md-6 col-lg-2">
+                                <label for="inputSelectCategory">Product Category</label>
                                 <select class="custom-select" multiple id="inputSelectCategory" size="6" name="category[]" required="">
                                   <option>Women's Fashion</option>
                                   <option>Man's Fashion</option>
@@ -101,8 +106,8 @@
                                 </select>
                               </div>
                             </div>
-                        <button type="submit" class="btn btn-primary float-right">Submit Product</button>
-                      </form>
+                            <button type="submit" class="btn btn-primary float-right">Submit Product</button>
+                          </form>
                         </div>
                       </div>
                     </div>
