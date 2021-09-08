@@ -28,7 +28,7 @@
                 <tr>
                   <td>Site Logo</td>
                   <td> 
-                    {{-- <img  src="{{ asset('storage/'.$data->url) }}" alt="" class="img-fluid" style='height: auto; width: 200px; object-fit: contain'> --}}
+                    <img  src="{{ asset('storage/'.$data['0']->url) }}" alt="" class="img-fluid" style='height: auto; width: 200px; object-fit: contain'>
                   </td>
                   <form action="/super/logo" method="POST" enctype='multipart/form-data'>
                     @csrf
@@ -42,7 +42,7 @@
                 <tr>
                   <td>Site Favicon</td>
                   <td> 
-                    {{-- <img  src="{{ asset('storage/'.$data->url) }}" alt="" class="img-fluid" style='height: auto; width: 200px; object-fit: contain'> --}}
+                    <img  src="{{ asset('storage/'.$data['0']->favicon) }}" alt="" class="img-fluid" style='height: auto; width: 200px; object-fit: contain'>
                   </td>
                   <form action="/super/favicon" method="POST" enctype='multipart/form-data'>
                     @csrf

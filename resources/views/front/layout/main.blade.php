@@ -9,6 +9,14 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="author" content="eButify">
     <meta name="google-site-verification" content="d9IRp33pr75pL73aVc0a6FDTx17zY-JvQpPB2J1hsug" />
+    @php
+        $data = DB::table('logos')->where('id','1')->first();
+        $favicon = $data->favicon;
+        $logo = $data->url;
+    @endphp
+    <link rel="icon" 
+      type="image/png" 
+      href="{{ asset('storage/'.$favicon) }}">
     <title>The World&#039;s #1 Product Research Tool | eButify</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,7 +44,7 @@
             <div class="container">
                 <nav class="navbar navbar-expand-lg navbar-light navigation-menu">
                     <div class="container-fluid">
-                        <a class="navbar-brand" href="/"><img src="{{ asset('front/images/eButify.png') }}" alt=""></a>
+                        <a class="navbar-brand" href="/"><img class="img-fluid" src="{{ asset('storage/'.$logo) }}" alt=""></a>
                         <button class="navbar-toggler" type="button" >
                             <span class="navbar-toggler-icon"></span>
                         </button>

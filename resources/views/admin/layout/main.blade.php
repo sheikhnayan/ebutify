@@ -129,7 +129,7 @@
         <a class="" data-toggle="dropdown" href="#">
           <div class="user-panel d-flex mr-3">
             <div class="image">
-              <img src="assets/img/user1-128x128.jpg" class="img-circle " alt="Jone Due">
+              <img src="{{ ('/storage'.'/'.Auth::user()->profile_photo_path) }}" class="img-circle " alt="Jone Due">
             </div>
           </div>
         </a>
