@@ -618,7 +618,7 @@ class ProductController extends Controller
         $validatedData = $request->validate([
         'pname' => 'required|max:255',
         'ali_express_link' => 'required',
-        'amz_link' => 'required',
+        't_order' => 'required',
         'img_link' => 'required',
         'price' => 'required',
         'star_rating' => 'required',

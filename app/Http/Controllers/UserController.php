@@ -877,21 +877,22 @@ class UserController extends Controller
 
 								$desc = $result->description;
 
-									$gifs = '';
+								$gifs = '';
 								
 								if (!empty($result->productImage[0]->gif_1)){
 								   $gifs .= $result->productImage[0]->gif_1;
 								 }
 								if(!empty($result->productImage[0]->gif_2)){
 								 if(!empty($gifs)){
-								   $gifs .= $gifs.",".$result->productImage[0]->gif_2;
+								   $gifs .= ",".$result->productImage[0]->gif_2;
 								 }else{
-								   $gifs .= $result->productImage[0]->gif_2;
+								   $gifs = $result->productImage[0]->gif_2;
 								 }
 								}
 								if (!empty($result->productImage[0]->gif_3)){
 								 if(!empty($gifs)){
-								   $gifs .= $gifs.",".$result->productImage[0]->gif_3;
+								   $gifs .= ",".$result->productImage[0]->gif_3;
+								   
 								 }else{
 								   $gifs .= $result->productImage[0]->gif_3;
 								 }
