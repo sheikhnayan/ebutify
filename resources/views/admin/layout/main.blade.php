@@ -292,6 +292,14 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="/super/tutorials" class="nav-link">
+              <i class="nav-icon fa fa-user"></i>
+              <p>
+                Tutorials
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="/super/freelancers-list" class="nav-link">
               <i class="nav-icon fa fa-user"></i>
               <p>
