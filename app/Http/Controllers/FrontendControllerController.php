@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\FrontendController;
-use Illuminate\Http\Request;
+use Request;
 use App\Models\Blog;
 use App\Models\User;
 use App\Models\Homepage;
 use App\Models\Review;
 use App\Models\BlogCategory;
+use App\Models\IP;
 use App\Mail\ContactMail;
 use Mail;
 
@@ -32,8 +33,18 @@ class FrontendControllerController extends Controller
     }
 
 
-    public function index()
+    public function index(Request $request)
     {
+        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+            $ip = $_SERVER['HTTP_CLIENT_IP'];
+            $user = IP::firstOrCreate(['ip' => $ip ]);
+        } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+            $user = IP::firstOrCreate(['ip' => $ip]);
+        } else {
+            $ip = $_SERVER['REMOTE_ADDR'];
+            $user = IP::firstOrCreate(['ip' => $ip]);
+        }
         $data = Blog::join('users','users.id','=','blogs.created_by')
         ->select('blogs.*','users.name')
         ->latest()
