@@ -383,12 +383,10 @@
            //centerMode: true,
            focusOnSelect: true
          });
-
-
-         $(document).on("change", ".filter-item", function(){
+ $(document).on("change", ".filter-item", function(){
            // console.log("sorting updated...");
            $('#filterForm').submit();
-         });
+    });
 
          // $(document).on("scroll", function(){
          //   console.log("you scrolled...");

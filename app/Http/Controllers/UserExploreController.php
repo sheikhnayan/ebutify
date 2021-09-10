@@ -60,11 +60,11 @@ class UserExploreController extends Controller
             $categorySelected = $request->category;
           switch($request->filter){
             case 1:
-                $trendingProducts = ProductDetail::where('explore_pro_type', 'LIKE' ,'%ali_express%')->where('price', '<=' ,'30')->orderBy($orderColumn,'DESC')->paginate(3);
+                $trendingProducts = ProductDetail::where('explore_pro_type', 'LIKE' ,'%ali_express%')->where('price', '>=' ,'30')->orderBy($orderColumn,'DESC')->paginate(3);
                 // dd($trendingProducts);
             break;
             case 2:
-                $trendingProducts = ProductDetail::where('explore_pro_type', 'LIKE' ,'%ali_express%')->where('price', '>=' , '30')->orderBy($orderColumn,'DESC')->paginate(3);
+                $trendingProducts = ProductDetail::where('explore_pro_type', 'LIKE' ,'%ali_express%')->where('price', '<=' , '30')->orderBy($orderColumn,'DESC')->paginate(3);
             break;
             case 3:
                 $trendingProducts = ProductDetail::where('explore_pro_type', 'LIKE' ,'%ali_express%')->where('profit', '>=' , '15')->orderBy($orderColumn,'DESC')->paginate(3);
@@ -139,7 +139,7 @@ class UserExploreController extends Controller
                           </div>
                           <div class="col-12 text-center px-3">
                             <span class="cae-cart-icon"><i class="fas fa-shopping-basket"></i> Total Order</span>
-                            <span>'.$result->total_order.' Not Uploaded</span>
+                            <span>'.$result->total_order.'</span>
                           </div>
 
                           <div class="col-12 text-center px-3">

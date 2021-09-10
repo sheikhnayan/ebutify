@@ -362,6 +362,10 @@
 <script src="{{asset('assets/js/script.js')}}"></script>
 
 <script>
+$(document).on("change", ".filter-item", function(){
+           console.log("sorting updated...");
+           $('#filterForm').submit();
+         });
 
 function initiateSlick(ajax){
    $(document) .ready(function(){
@@ -371,10 +375,8 @@ function initiateSlick(ajax){
   });
 
 
-   $(document).on("change", ".filter-item", function(){
-           console.log("sorting updated...");
-           $('#filterForm').submit();
-         });
+
+
 
          // $(document).on("scroll", function(){
          //   console.log("you scrolled...");

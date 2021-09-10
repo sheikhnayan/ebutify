@@ -1,4 +1,4 @@
-@extends('layoutsUser.user3')
+@extends('layoutsUser.user4')
 @section('content')
 
   <!-- Content Wrapper. Contains page content -->
@@ -33,31 +33,31 @@
         <!-- /.row -->
 
         <form id="filterForm" method="get" action="{{ route('ali-product') }}">
-        <div class="row mx-2">
-          <div class="col-lg-6"></div>
-            <div class="col-sm-12 col-md-6 col-lg-3 my-1">
-                <select class="form-control select2-no-search filter-item" name="filter" style="width: 100%;">
-                   <option value="">Filter Products</option>
-                   <option @if ($filterSelected == 1)
-                                    selected="selected"
-                                @endif value="1">By Price under $30</option>
-                   <option @if ($filterSelected == 2)
-                                    selected="selected"
-                                @endif value="2">By Price Over $30</option>
-                </select>
-             </div>
-             <div class="col-sm-12 col-md-6 col-lg-3 my-1">
-                <select class="form-control select2-no-search filter-item" name="sort" style="width: 100%;">
-                   <option>Sort Produtcs</option>
-                   <option @if ($sortSelected == 2)
-                                    selected="selected"
-                                @endif value="2">By Total Orders</option>
-                   <option @if ($sortSelected == 3)
-                                    selected="selected"
-                                @endif value="3">By Last added Date</option>
-                </select>
-             </div>
-        </div>
+            <div class="row mx-2">
+              <div class="col-lg-6"></div>
+                <div class="col-sm-12 col-md-6 col-lg-3 my-1">
+                    <select class="form-control select2-no-search filter-item" name="filter" style="width: 100%;">
+                       <option value="">Filter Products</option>
+                       <option @if ($filterSelected == 1)
+                                        selected="selected"
+                                    @endif value="1">By Price under $30</option>
+                       <option @if ($filterSelected == 2)
+                                        selected="selected"
+                                    @endif value="2">By Price Over $30</option>
+                    </select>
+                 </div>
+                 <div class="col-sm-12 col-md-6 col-lg-3 my-1">
+                    <select class="form-control select2-no-search filter-item" name="sort" style="width: 100%;">
+                       <option>Sort Produtcs</option>
+                       <option @if ($sortSelected == 2)
+                                        selected="selected"
+                                    @endif value="2">By Total Orders</option>
+                       <option @if ($sortSelected == 3)
+                                        selected="selected"
+                                    @endif value="3">By Last added Date</option>
+                    </select>
+                 </div>
+            </div>
         </form>
 
         <!-- /.row -->

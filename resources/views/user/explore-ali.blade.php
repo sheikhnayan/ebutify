@@ -1,4 +1,4 @@
-@extends('layoutsUser.user3')
+@extends('layoutsUser.user4')
 @section('content')
 
   <!-- Content Wrapper. Contains page content -->
@@ -137,6 +137,10 @@
                 console.log('Server error occured');
             });
     }
+    $(document).on("change", ".filter-item", function(){
+           // console.log("sorting updated...");
+           $('#filterForm').submit();
+    });
 
 </script>
 @endsection

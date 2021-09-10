@@ -35,7 +35,7 @@
                   <div class="row mx-2">
                      <div class="col-sm-12 col-md-6 col-lg-3 my-1">
                         <select class="form-control select2 filter-item" name="category">
-                           <option value="">All Categories</option>
+                           <option value="">All fucking Categories</option>
                            <option @if ($categorySelected == 1)
                                             selected="selected"
                                         @endif value="1">Women's Fashion</option>
