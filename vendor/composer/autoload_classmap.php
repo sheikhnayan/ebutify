@@ -59,6 +59,7 @@ return array(
     'App\\Models\\ProductImage' => $baseDir . '/app/Models/ProductImage.php',
     'App\\Models\\ProductLink' => $baseDir . '/app/Models/ProductLink.php',
     'App\\Models\\ProductType' => $baseDir . '/app/Models/ProductType.php',
+    'App\\Models\\QuickStart' => $baseDir . '/app/Models/QuickStart.php',
     'App\\Models\\RefundPolicy' => $baseDir . '/app/Models/RefundPolicy.php',
     'App\\Models\\Review' => $baseDir . '/app/Models/Review.php',
     'App\\Models\\ShopifyProduct' => $baseDir . '/app/Models/ShopifyProduct.php',

@@ -28,13 +28,19 @@
           <div class="col-12">
             <div class="row shadow">
               <div class="col-lg-7  py-3 tab-content">
-                <div class=" tutorial-video-container tab-pane fade show active" id="video1" role="tabpanel">
-                  <i onclick="videoPlay(1, true)" class="fas fa-play-circle video-icon-play-1"></i>
-                  <video onplay="videoPlay(1)" controls id="video-control-1" style="width: 100%;">
-                  <source src="assets/videos/TAKI TAKI  DJ.mp4" type="video/mp4">
-                  </video>
-                </div>
-                <div class=" tutorial-video-container tab-pane fade" id="video2" role="tabpanel">
+                @foreach ($customer as $item)
+                  <div class=" tutorial-video-container tab-pane fade 
+                  @if($loop->index == 0)
+                    show active
+                  @endif
+                  " id="video{{ $loop->index + 1}}" role="tabpanel">
+                    <i onclick="videoPlay(1, true)" class="fas fa-play-circle video-icon-play-1"></i>
+                    <video onplay="videoPlay(1)" controls id="video-control-1" style="width: 100%;">
+                    <source src="{{ asset('storage/'.$item->url) }}" type="video/mp4">
+                    </video>
+                  </div>
+                @endforeach
+                {{-- <div class=" tutorial-video-container tab-pane fade" id="video2" role="tabpanel">
                   <i onclick="videoPlay(2, true)" class="fas fa-play-circle video-icon-play-2"></i>
                   <video onplay="videoPlay(2)" controls id="video-control-2" style="width: 100%;">
                   <source src="assets/videos/Eli Worthless.mp4" type="video/mp4">
@@ -75,18 +81,25 @@
                   <video onplay="videoPlay(8)" controls id="video-control-8" style="width: 100%;">
                   <source src="assets/videos/Eli Worthless.mp4" type="video/mp4">
                   </video>
-                </div>
+                </div> --}}
               </div>
               <div class="col-lg-5 tab-list-item shadow p-0">
                 <ul class="list-group list-group-flush py-3 list-unstyled video-tab" role="tablist">
-                  <li><a class="list-group-item active rounded" data-toggle="tab" href="#video1" role="tab">1. Welcome to eButify Product research tool</a></li>
+                  @foreach ($customer as $item)
+                   <li><a class="list-group-item 
+                    @if($loop->index == 0)
+                    active rounded
+                    @endif
+                    " data-toggle="tab" href="#video{{ $loop->index + 1}}" role="tab">{{ $loop->index + 1}}. {{ $item->title }}</a></li>
+                  @endforeach
+                  {{-- <li><a class="list-group-item active rounded" data-toggle="tab" href="#video1" role="tab">1. Welcome to eButify Product research tool</a></li>
                   <li><a class="list-group-item rounded" data-toggle="tab" href="#video2" role="tab">2. Welcome to eButify Product research tool</a></li>
                   <li><a class="list-group-item rounded" data-toggle="tab" href="#video3" role="tab">3. Welcome to eButify Product research tool</a></li>
                   <li><a class="list-group-item rounded" data-toggle="tab" href="#video4" role="tab">4. Welcome to eButify Product research tool</a></li>
                   <li><a class="list-group-item rounded" data-toggle="tab" href="#video5" role="tab">5. Welcome to eButify Product research tool</a></li>
                   <li><a class="list-group-item rounded" data-toggle="tab" href="#video6" role="tab">6. Welcome to eButify Product research tool</a></li>
                   <li><a class="list-group-item rounded" data-toggle="tab" href="#video7" role="tab">7. Welcome to eButify Product research tool</a></li>
-                  <li><a class="list-group-item rounded" data-toggle="tab" href="#video8" role="tab">8. Welcome to eButify Product research tool</a></li>
+                  <li><a class="list-group-item rounded" data-toggle="tab" href="#video8" role="tab">8. Welcome to eButify Product research tool</a></li> --}}
                 </ul>
               </div>
             </div>
@@ -97,13 +110,19 @@
           <div class="col-12">
             <div class="row shadow">
               <div class="col-lg-7  py-3 tab-content">
-                <div class=" tutorial-video-container tab-pane fade show active" id="video1" role="tabpanel"">
-                  <i onclick="videoPlay(1, true)" class="fas fa-play-circle video-icon-play-1"></i>
-                  <video onplay="videoPlay(1)" controls id="video-control-1" style="width: 100%;">
-                  <source src="assets/videos/TAKI TAKI  DJ.mp4" type="video/mp4">
-                  </video>
-                </div>
-                <div class=" tutorial-video-container tab-pane fade" id="video2" role="tabpanel">
+                @foreach ($researcher as $item)
+                  <div class=" tutorial-video-container tab-pane fade 
+                  @if($loop->index == 0)
+                    show active
+                  @endif
+                  " id="researchervideo{{ $loop->index + 1 }}" role="tabpanel"">
+                    <i onclick="videoPlay(1, true)" class="fas fa-play-circle video-icon-play-1"></i>
+                    <video onplay="videoPlay(1)" controls id="video-control-1" style="width: 100%;">
+                    <source src="{{ asset('storage/'.$item->url) }}" type="video/mp4">
+                    </video>
+                  </div>
+                @endforeach
+                {{-- <div class=" tutorial-video-container tab-pane fade" id="video2" role="tabpanel">
                   <i onclick="videoPlay(2, true)" class="fas fa-play-circle video-icon-play-2"></i>
                   <video onplay="videoPlay(2)" controls id="video-control-2" style="width: 100%;">
                   <source src="assets/videos/Eli Worthless.mp4" type="video/mp4">
@@ -144,18 +163,25 @@
                   <video onplay="videoPlay(8)" controls id="video-control-8" style="width: 100%;">
                   <source src="assets/videos/Eli Worthless.mp4" type="video/mp4">
                   </video>
-                </div>
+                </div> --}}
               </div>
               <div class="col-lg-5 tab-list-item shadow p-0">
                 <ul class="list-group list-group-flush py-3 list-unstyled video-tab" role="tablist">
-                  <li><a class="list-group-item active rounded" data-toggle="tab" href="#video1" role="tab">1. Welcome to eButify Product research tool</a></li>
+                  @foreach ($researcher as $item)
+                   <li><a class="list-group-item 
+                    @if($loop->index == 0)
+                    active rounded
+                    @endif
+                    " data-toggle="tab" href="#researchervideo{{ $loop->index + 1}}" role="tab">{{ $loop->index + 1}}. {{ $item->title }}</a></li>
+                  @endforeach
+                  {{-- <li><a class="list-group-item active rounded" data-toggle="tab" href="#video1" role="tab">1. Welcome to eButify Product research tool</a></li>
                   <li><a class="list-group-item rounded" data-toggle="tab" href="#video2" role="tab">2. Welcome to eButify Product research tool</a></li>
                   <li><a class="list-group-item rounded" data-toggle="tab" href="#video3" role="tab">3. Welcome to eButify Product research tool</a></li>
                   <li><a class="list-group-item rounded" data-toggle="tab" href="#video4" role="tab">4. Welcome to eButify Product research tool</a></li>
                   <li><a class="list-group-item rounded" data-toggle="tab" href="#video5" role="tab">5. Welcome to eButify Product research tool</a></li>
                   <li><a class="list-group-item rounded" data-toggle="tab" href="#video6" role="tab">6. Welcome to eButify Product research tool</a></li>
                   <li><a class="list-group-item rounded" data-toggle="tab" href="#video7" role="tab">7. Welcome to eButify Product research tool</a></li>
-                  <li><a class="list-group-item rounded" data-toggle="tab" href="#video8" role="tab">8. Welcome to eButify Product research tool</a></li>
+                  <li><a class="list-group-item rounded" data-toggle="tab" href="#video8" role="tab">8. Welcome to eButify Product research tool</a></li> --}}
                 </ul>
               </div>
             </div>
