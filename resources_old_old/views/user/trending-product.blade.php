@@ -1,4 +1,4 @@
-@extends('layoutsUser.user3')
+@extends('layoutsUser.user4')
 @section('content')
 
   <!-- Content Wrapper. Contains page content -->
@@ -31,7 +31,7 @@
                </form>
                </div>
                <!-- /.row -->
-               <form id="filterForm" method="get" action="{{ route('trending-products') }}">
+               <form id="filterForm" method="get" action="{{ route('fb-ad-products') }}">
                   <div class="row mx-2">
                      <div class="col-sm-12 col-md-6 col-lg-3 my-1">
                         <select class="form-control select2 filter-item" name="category">
@@ -143,7 +143,7 @@
                      </div>
                   </div>
                </form>
-        <!-- /.row -->
+               <!-- /.row -->
 
         <div class="row mx-3 mt-3">
           <div class="card-deck">
@@ -358,6 +358,8 @@
                 console.log('Server error occured');
             });
     }
+          
+
 
 </script>
 @endsection

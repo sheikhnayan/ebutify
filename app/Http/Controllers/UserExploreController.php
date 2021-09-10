@@ -14,6 +14,13 @@ use App\Models\Country;
 use App\Models\ShopifyProduct;
 use ZipArchive;
 use File;
+use App\Models\User;
+use Illuminate\Support\Facades\Storage;
+use Hash;
+use Validator;
+use DateTime;
+use Response;
+
 
 class UserExploreController extends Controller
 {
@@ -22,12 +29,12 @@ class UserExploreController extends Controller
         if(Auth::check()){
             $sortSelected = 0;
             $filterSelected = 0;
-            $categorySelected = 0;
+
         //-- HANDLE SORTING
         if($request->sort) {
             $sortSelected = $request->sort;
             $filterSelected = $request->filter;
-            $categorySelected = $request->category;
+
           switch($request->sort){
             case 1:
                 $orderColumn = 'profit';
@@ -45,19 +52,19 @@ class UserExploreController extends Controller
                 $orderColumn = 'total_order';
             break;
             default:
-                $orderColumn = 'id';
+                $orderColumn = 'product_name';
             break;        
             }
             
         }else{
             $orderColumn = 'created_at';
         }
-        
+    
+      
         //-- HANDLE FILTER
         if($request->filter) {
             $sortSelected = $request->sort;
             $filterSelected = $request->filter;
-            $categorySelected = $request->category;
           switch($request->filter){
             case 1:
                 $trendingProducts = ProductDetail::where('explore_pro_type', 'LIKE' ,'%ali_express%')->where('price', '<=' ,'30')->orderBy($orderColumn,'DESC')->paginate(3);
@@ -70,7 +77,7 @@ class UserExploreController extends Controller
                 $trendingProducts = ProductDetail::where('explore_pro_type', 'LIKE' ,'%ali_express%')->where('profit', '>=' , '15')->orderBy($orderColumn,'DESC')->paginate(3);
             break;
             case 4:
-                $trendingProducts = ProductDetail::where('explore_pro_type', 'LIKE' ,'%ali_express%')->where('profit', '<=' , '15')->orderBy($orderColumn,'DESC')->paginate(3);
+                $trendingProducts = ProductDetail::where('explore_pro_type', 'LIKE' ,'%ali_express%')->where('cost', '<=' , '20')->orderBy($orderColumn,'DESC')->paginate(3);
             break;
             default:
                 $filterBy = 'product_name';
@@ -85,12 +92,14 @@ class UserExploreController extends Controller
             $trendingProducts = ProductDetail::where('explore_pro_type', 'LIKE' ,'%ali_express%')->where('product_name', 'LIKE', '%'.$request->search.'%')->orderBy($orderColumn,'DESC')->paginate(3);
         }
         if (empty($trendingProducts)) {
-            $trendingProducts = ProductDetail::where('explore_pro_type', 'LIKE' ,'%ali_express%')->orderBy($orderColumn,'DESC')->paginate(3);
+            $trendingProducts = ProductDetail::where('explore_pro_type', 'LIKE' ,'%ali_express%')->orderBy($orderColumn,'DESC')->paginate(13);
         }
+            
+        // $trendingProducts = ProductDetail::where('explore_pro_type', 'LIKE' ,'%ali_express%')->get();
+        
 
-        // $results = ProductDetail::orderBy('id')->paginate(9);
         $artilces = '';
-        if ($request->ajax()) {
+            if ($request->ajax()) {
 
             // dd($trendingProducts);
             foreach ($trendingProducts as $result) {
@@ -139,7 +148,7 @@ class UserExploreController extends Controller
                           </div>
                           <div class="col-12 text-center px-3">
                             <span class="cae-cart-icon"><i class="fas fa-shopping-basket"></i> Total Order</span>
-                            <span>'.$result->total_order.' Not Uploaded</span>
+                            <span>'.$result->total_order.'</span>
                           </div>
 
                           <div class="col-12 text-center px-3">
@@ -166,25 +175,27 @@ class UserExploreController extends Controller
             }
             return $artilces;
         }
-
-
             
-        // $trendingProducts = ProductDetail::where('explore_pro_type', 'LIKE' ,'%ali_express%')->get();
+                            
 
-        // dd( $trendingProducts );
 
         foreach ($trendingProducts as $trendingproduct) {
+            
             $country = $trendingproduct->country.",";
+
         }
+
 
             if (empty($country)) {
 
                 return view('user.explore-ali',compact('trendingProducts','sortSelected','filterSelected'));
 
             }else{
-                // dd($sortSelected);
+
                 return view('user.explore-ali',compact('trendingProducts','country','sortSelected','filterSelected'));
+
             }
+        
 
         }else{
 
