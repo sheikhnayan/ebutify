@@ -8,6 +8,7 @@ use App\Models\Homepage;
 use App\Models\Logo;
 use App\Models\FAQ;
 use App\Models\Review;
+use App\Models\Tutorial;
 use App\Models\TermsAndCondition;
 use App\Models\PrivacyAndPolicy;
 use App\Models\RefundPolicy;
@@ -405,5 +406,64 @@ class SuperAdminController extends Controller
         ]);
 
         return redirect()->back()->with('status', 'Blog Category updated successfully');
+    }
+
+    public function tutorials()
+    {
+        $data = Tutorial::all();
+        return view('admin.tutorials-index',compact('data'));
+    }
+
+    public function  tutorial_create()
+    {
+        return view('admin.tutorials-create');
+    }
+
+    public function tutorial_store(Request $request)
+    {   
+        if(isset($request->url)){
+            $path = $request->url->store('tutorials/uploads', 'public');
+        }
+
+        $add = new Tutorial;
+        $add->title = $request->title;
+        $add->type = $request->type;
+        $add->url = $path;
+        $add->save();
+
+        return redirect()->back()->with('status', 'Tutorial created successfully');
+    }
+
+    public function tutorial_edit($id){
+
+        $data = Tutorial::where('id', $id)->first();
+
+        return view('admin.tutorials-create',compact('data'));
+    }
+
+    public function tutorial_update(Request $request,$id){
+
+        $old = Tutorial::where('id', $id)->first();
+
+        if(isset($request->url)){
+            $path = $request->url->store('tutorials/uploads', 'public');
+        }else{
+            $path = $old->url;
+        }
+
+        $update = Tutorial::where('id', $id)->update([
+            'title' => $request->title,
+            'type' => $request->type,
+            'url' => $path
+
+            ]);
+
+        return redirect()->back()->with('status', 'Tutorial updated successfully');
+    }
+
+    public function tutorial_delete($id){
+        $delete = Tutorial::where('id', $id)->delete();
+
+        return redirect()->back()->with('errors', 'Tutorial Deleted Successfully!');
     }
 }
