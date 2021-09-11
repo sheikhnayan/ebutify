@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\ProductDetail;
+use App\Models\QuickStart;
 
 class FreelancerController extends Controller
 {
@@ -47,9 +48,11 @@ class FreelancerController extends Controller
 
                     //  SHOW DASHBOARD IF SUBSCRIBED
 
+
                     $products = ProductDetail::all();
 
                     return view('user.customer-dashboard',compact('products'));
+
 
 
 
@@ -57,12 +60,20 @@ class FreelancerController extends Controller
                         $products = ProductDetail::all();
                         $data = QuickStart::all();
 
-                        $invoices = Auth()->user()->invoices();
-                        dd(Auth::user()->subscriptions[0]->stripe_plan);
-
                     return view('user.customer-dashboard',compact('products','data'));
 
                     }else{
+
+
+                    }
+                    Auth::logout();
+
+                    $request->session()->invalidate();
+            
+                    $request->session()->regenerateToken();
+            
+                    return view('auth.login');
+                }
 
 
                     }

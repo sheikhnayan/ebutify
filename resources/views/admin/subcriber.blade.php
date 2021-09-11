@@ -29,7 +29,6 @@
                   <th>ID</th>
                   <th width="200">Customer Name</th>
                   <th>Status</th>
-                  <th>Subscription</th>
                   <th>Card Number</th>
                   <th width="150">Date</th>
                   <th width="200">Email</th>
@@ -42,13 +41,6 @@
                   <td>{{ $loop->index + 1 }}</td>
                   <td>{{ $item->name }}</td>
                   <td>Active</td>
-                  <td>
-                    @if(Auth::user()->subscriptions->stripe_plan == 'price_1If8QdEgl2c23BzjE4HCoJc3')
-                    Monthly
-                    @elseif(Auth::user()->subscriptions->stripe_plan == 'price_1JO5DGCzBVgP4kKNhlY2s2QD')
-                    Yearly
-                    @endif
-                  </td>
                   <td>****************{{ $item->card_last_four }}</td>
                   <td>{{ \Carbon\Carbon::parse($item->updated_at)->format('d-m-Y')}}</td>
                   <td>{{ $item->email }}</td>
