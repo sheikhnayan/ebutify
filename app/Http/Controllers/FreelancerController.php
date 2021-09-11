@@ -71,7 +71,6 @@ class FreelancerController extends Controller
 
     public function subscribe(Request $request)
     {
-
         $paymentMethod = $request->payment_method;
 
         $planId = $request->plan;

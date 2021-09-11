@@ -184,7 +184,7 @@
             </a>
             <ul class="nav nav-treeview pl-4 ml-2">
               <li class="nav-item">
-                <a href="/sup-all-products" class="nav-link">
+                <a href="{{route('sup-all-products')}}" class="nav-link">
                   <p>All Products</p>
                 </a>
               </li>
@@ -201,7 +201,7 @@
             </ul>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link">
+            <a href="{{route('super/exlore-products')}}" class="nav-link">
               <i class="nav-icon fas fa-tree"></i>
               <p>
                 Explores
