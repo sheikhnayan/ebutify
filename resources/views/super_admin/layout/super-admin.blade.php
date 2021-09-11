@@ -18,6 +18,10 @@
       $favicon = $data->favicon;
       $logo = $data->url;
   @endphp
+
+  <link rel="icon" 
+      type="image/png" 
+      href="{{ asset('storage/'.$favicon ?? '') }}">
   
   <!--Select2 from-->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
@@ -34,7 +38,7 @@
 
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__wobble" src="{{asset('assets/img/eButify.png')}}" alt="eButifyLogo">
+    <img class="animation__wobble" src="{{ asset('storage/'.$logo) }}" alt="eButifyLogo">
   </div>
 
   <!-- Navbar -->
@@ -168,7 +172,7 @@
   <aside class="main-sidebar sidebar-light-primary">
     <!-- Brand Logo -->
     <a href="" class="brand-link">
-      <img src="assets/img/eButify.png" alt="e/Butify Logo" class="brand-image" style="opacity: .8">
+      <img src="{{ asset('storage/'.$logo) }}" alt="e/Butify Logo" class="brand-image" style="opacity: .8">
     </a>
 
     <!-- Sidebar -->

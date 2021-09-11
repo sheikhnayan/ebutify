@@ -17,6 +17,14 @@
       <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
       <!-- My style -->
       <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
+      @php
+        $data = DB::table('logos')->where('id','1')->first();
+        $favicon = $data->favicon;
+        $logo = $data->url;
+    @endphp
+    <link rel="icon" 
+      type="image/png" 
+      href="{{ asset('storage/'.$favicon ?? '') }}">
       <style type="text/css">
          #modal_demo {
          left: 0px;
@@ -50,7 +58,7 @@
       <div class="wrapper">
       <!-- Preloader -->
       <div class="preloader flex-column justify-content-center align-items-center">
-         <img class="animation__wobble" src="{{asset('assets/img/eButify.png')}}" alt="eButifyLogo">
+         <img class="animation__wobble" src="{{ asset('storage/'.$logo) }}" alt="eButifyLogo">
       </div>
       <!-- Navbar -->
       <nav class="main-header navbar navbar-expand navbar-white">
@@ -177,7 +185,7 @@
       <aside class="main-sidebar sidebar-light-primary">
          <!-- Brand Logo -->
          <a href="" class="brand-link">
-         <img src="{{asset('assets/img/eButify.png')}}" alt="e/Butify Logo" class="brand-image" style="opacity: .8">
+         <img src="{{ asset('storage/'.$logo) }}" alt="e/Butify Logo" class="brand-image" style="opacity: .8">
          </a>
          <!-- Sidebar -->
          <div class="sidebar">

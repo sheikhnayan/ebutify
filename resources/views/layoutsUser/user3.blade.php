@@ -40,6 +40,14 @@
 }
 </style>
 <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="870bb0db-1c1d-4fcc-bda0-d87cb20d073f";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script> 
+    @php
+        $data = DB::table('logos')->where('id','1')->first();
+        $favicon = $data->favicon;
+        $logo = $data->url;
+    @endphp
+    <link rel="icon" 
+      type="image/png" 
+      href="{{ asset('storage/'.$favicon ?? '') }}">
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
@@ -47,7 +55,7 @@
 
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__wobble" src="{{asset('assets/img/eButify.png')}}" alt="eButifyLogo">
+    <img class="animation__wobble" src="{{ asset('storage/'.$logo) }}" alt="eButifyLogo">
   </div>
 
   <!-- Navbar -->
@@ -181,7 +189,7 @@
   <aside class="main-sidebar sidebar-light-primary">
     <!-- Brand Logo -->
     <a href="" class="brand-link">
-      <img src="{{asset('assets/img/eButify.png')}}" alt="e/Butify Logo" class="brand-image" style="opacity: .8">
+      <img src="{{ asset('storage/'.$logo) }}" alt="e/Butify Logo" class="brand-image" style="opacity: .8">
     </a>
 
     <!-- Sidebar -->

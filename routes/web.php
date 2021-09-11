@@ -367,6 +367,8 @@ Route::post('/super/category/update/{id}', [SuperAdminController::class, 'catego
 
 
 
+//  USER VIEW ALL PRODUCTS
+Route::middleware(['auth:sanctum', 'verified'])->get('product-delete-explo/{id}', [SuperAdminController::class, 'DeleteProductExplo'])->name('product-delete-explo');
 
 //  USER VIEW ALL PRODUCTS
 Route::middleware(['auth:sanctum', 'verified'])->get('/super/all-products', [SuperAdminController::class, 'AllProduct'])->name('super/all-products');
@@ -375,7 +377,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/super/all-products', [Sup
 Route::middleware(['auth:sanctum', 'verified'])->get('super/upload-page', [SuperAdminController::class, 'UploadProduct'])->name('super/upload-page');
 
 //  USER VIEW ALL PRODUCTS
-Route::middleware(['auth:sanctum', 'verified'])->get('product-delete/{id}', [SuperAdminController::class, 'DeleteProduct'])->name('product-delete');
+Route::middleware(['auth:sanctum', 'verified'])->get('product-delete/{id}', [SuperAdminController::class, 'DeleteProductExplo'])->name('product-delete');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/super/exlore-products', [SuperAdminController::class, 'ExploreProduct'])->name('super/exlore-products');
 

@@ -1,8 +1,8 @@
-@if(Auth::user()->user_type == "freelancer")
-@extends('layouts.freelancer-layout')
-@elseif(Auth::user()->user_type == "admin")
-@extends('super_admin.layout.super-admin')
-@endif
+<?php if(Auth::user()->user_type == "admin"){ ?>
+  @extends('super_admin.layout.super-admin')
+<?php }elseif (Auth::user()->user_type == "freelancer") { ?>
+  @extends('layouts.freelancer-layout')
+<?php } ?>
 @section('content')
 
   <!-- Content Wrapper. Contains page content -->

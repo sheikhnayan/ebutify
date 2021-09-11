@@ -42,7 +42,15 @@
 
 
        @yield('head')
+@php
+$data = DB::table('logos')->where('id','1')->first();
+$favicon = $data->favicon;
+$logo = $data->url;
+@endphp
 
+<link rel="icon" 
+type="image/png" 
+href="{{ asset('storage/'.$favicon ?? '') }}">
 </head>
 <body>
     <div id="app">

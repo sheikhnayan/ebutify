@@ -42,7 +42,15 @@
 
 
     <script src="https://js.stripe.com/v3/"></script>
-    
+    @php
+$data = DB::table('logos')->where('id','1')->first();
+$favicon = $data->favicon;
+$logo = $data->url;
+@endphp
+
+<link rel="icon" 
+type="image/png" 
+href="{{ asset('storage/'.$favicon ?? '') }}">
   </head>
 
   <body>
@@ -65,7 +73,7 @@
           <a class="navbar-brand" href="./"
             > <span class="logo">eButify Freelancer Panel</span> </a>
           <a class="navbar-brand hidden" href="./"
-            ><img src="{{asset('images/logo2.png')}}" alt="Logo"
+            ><img src="{{ asset('storage/'.$logo) }}" alt="Logo"
           /></a>
         </div>
 

@@ -20,10 +20,10 @@ class FreelancerController extends Controller
     {   
 
         //  IF USER'S REGISTERED
-    	if(Auth::check()){
+        if(Auth::check()){
 
             //  IF USER TYPE MATCHES
-    		if(Auth::user()->user_type == "user"){
+            if(Auth::user()->user_type == "user"){
                 $user_id = auth()->id();
                 //  IF USER'S NOT SUBSCRIBED
                 if(!Auth::user()->subscribed('main')){
@@ -43,19 +43,12 @@ class FreelancerController extends Controller
                     
                     //  VIEW PAYMENT PAGE WITH DATA
                     return view('payment')->with($data);
-    		
-		        }else{
+            
+                }else{
 
                     //  SHOW DASHBOARD IF SUBSCRIBED
-
-
-                    $products = ProductDetail::all();
-
-                    return view('user.customer-dashboard',compact('products'));
-
-
-
-
+                    $invoices = Auth()->user()->invoices();
+                    dd($invoices);
                     if(Auth::user()->status == 1){
                         $products = ProductDetail::all();
                         $data = QuickStart::all();
@@ -63,7 +56,6 @@ class FreelancerController extends Controller
                     return view('user.customer-dashboard',compact('products','data'));
 
                     }else{
-
 
                     }
                     Auth::logout();
@@ -75,8 +67,6 @@ class FreelancerController extends Controller
                     return view('auth.login');
                 }
 
-
-                    }
 
             }elseif (Auth::user()->user_type == "freelancer") {
 
@@ -111,15 +101,15 @@ class FreelancerController extends Controller
     }
 
     public function logoutFreelancer(Request $request)
-	{
-	    Auth::logout();
+    {
+        Auth::logout();
 
-	    $request->session()->invalidate();
+        $request->session()->invalidate();
 
-	    $request->session()->regenerateToken();
+        $request->session()->regenerateToken();
 
-	    return view('auth.login');
-	}
+        return view('auth.login');
+    }
 
     public function workReportFreelancer()
     {

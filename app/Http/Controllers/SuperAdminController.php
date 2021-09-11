@@ -515,6 +515,15 @@ class SuperAdminController extends Controller
 
     }
 
+    public function DeleteProductExplo($id)
+    {
+        // dd('tor mayre chudi');
+        ProductDetail::where('id', $id)->delete();
+
+        return redirect('/super/exlore-products');
+
+    }
+
     public function ExploreProduct(Request $request)
     {
         if($request->search) {
