@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Blog;
 use App\Models\Homepage;
 use App\Models\Logo;
+use App\Models\User;
 use App\Models\FAQ;
 use App\Models\Review;
 use App\Models\Tutorial;
@@ -529,5 +530,19 @@ class SuperAdminController extends Controller
         $delete = QuickStart::where('id', $id)->delete();
 
         return redirect()->back()->with('errors', 'Quick Start Deleted Successfully!');
+    }
+
+    public function customer()
+    {
+        $data = User::where('user_type','user')->latest()->paginate(15);
+
+        return view('admin.subcriber',compact('data'));
+    }
+
+    public function customer_edit($id)
+    {
+        $data = User::where('id',$id)->first();
+
+        return view('admin.profile',compact('data'));
     }
 }
