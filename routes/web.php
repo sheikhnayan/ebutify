@@ -303,6 +303,12 @@ Route::get('/sign-up_1', function(){
 
 Route::get('/super', [SuperAdminController::class, 'index']);
 
+
+Route::get('/super/customer', [SuperAdminController::class, 'customer']);
+Route::get('/super/customer/edit/{id}', [SuperAdminController::class, 'customer_edit']);
+Route::post('/super/customer/update/{id}', [SuperAdminController::class, 'customer_update']);
+Route::post('/super/customer/password-change/{id}', [SuperAdminController::class, 'customer_password_update']);
+Route::get('/super/customer/delete/{id}', [SuperAdminController::class, 'customer_delete']);
 Route::get('/super/blog/create', [SuperAdminController::class, 'blog']);
 Route::post('/super/blog', [SuperAdminController::class, 'store']);
 Route::get('/super/blog', [SuperAdminController::class, 'blog_index']);

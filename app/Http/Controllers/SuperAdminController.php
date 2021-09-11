@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Blog;
 use App\Models\Homepage;
 use App\Models\Logo;
+use App\Models\User;
 use App\Models\FAQ;
 use App\Models\Review;
 use App\Models\Tutorial;
@@ -588,5 +589,56 @@ class SuperAdminController extends Controller
 
         return redirect()->back()->with('errors', 'Quick Start Deleted Successfully!');
 
+    }
+
+    public function customer()
+    {
+        $data = User::where('user_type','user')->latest()->paginate(15);
+
+        return view('admin.subcriber',compact('data'));
+    }
+
+    public function customer_edit($id)
+    {
+        $data = User::where('id',$id)->first();
+
+        return view('admin.profile',compact('data'));
+    }
+
+    public function customer_update(Request $request,$id)
+    {
+        if($request->profile_upload != null){    
+            $path = $request->profile_upload->store('public/userimages/profile');
+        $path = $request->profile_upload->store('userimages/profile');
+            $update = User::where('id',$id)->update([
+                'name' => $request->name,
+                'address' => $request->address,
+                'email' =>$request->email,
+                'status' =>$request->status,
+                'profile_photo_path' => $path
+            ]);
+            }else{
+                $update = User::where('id',$id)->update([
+                'name' => $request->name,
+                'address' => $request->address,
+                'email' =>$request->email,
+                'status' =>$request->status,
+            ]);
+            }
+            return back();
+    }
+
+    public function customer_password_update(Request $request,$id)
+    {
+        $validator = Validator::make($request->all(), [
+			'new_password' => 'required_with:confirm_password|same:confirm_password',
+			'confirm_password' => ['required'],
+		])->validate();
+		$password = Hash::make($request->new_password);
+		$update = User::where('id',$id)->update([
+			'password' => $password
+		]);
+
+		return back();
     }
 }

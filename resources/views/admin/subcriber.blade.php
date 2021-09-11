@@ -11,7 +11,7 @@
             <div class="col-md-12">
                 <form class="row mb-3 mt-1">
                     <div class="col-12 col-sm pr-sm-0">
-                        <input type="text" name="search" id="search" value="Search Listed Product Here" placeholder="Search accounts, contracts and transactions" class="form-control">
+                        <input type="text" name="search" id="search" value="" placeholder="Search accounts, contracts and transactions" class="form-control">
                     </div>
                     <div class="col-12 col-sm-auto pl-sm-0">
                         <input type="button" name="commit" value="Search" class="btn btn-primary btn-block">
@@ -37,251 +37,32 @@
                 </tr>
               </thead>
               <tbody>
+                @foreach ($data as $item)
                 <tr>
-                  <td>15</td>
-                  <td>Mike Blom</td>
+                  <td>{{ $loop->index + 1 }}</td>
+                  <td>{{ $item->name }}</td>
                   <td>Active</td>
                   <td>Monthly</td>
-                  <td>****************4595</td>
-                  <td>04-04-2021</td>
-                  <td>info@example.com</td>
+                  <td>****************{{ $item->card_last_four }}</td>
+                  <td>{{ \Carbon\Carbon::parse($item->updated_at)->format('d-m-Y')}}</td>
+                  <td>{{ $item->email }}</td>
                   
                   <td class="d-none">
                     <a href="" class="btn btn-primary">Edit</a>
                   </td>
                   <td>
-                    <a href="" onclick="return confirm('Are you sure to delete?');" class="btn btn-primary">Delete</a>
+                    <a href="/super/customer/edit/{{ $item->id }}" class="btn btn-primary">Edit</a> <br>
+                    <br>
+                    <a href="/super/customer/delete/{{ $item->id }}" onclick="return confirm('Are you sure to delete?');" class="btn btn-primary">Delete</a>
                   </td>
-                </tr>
-                <tr>
-                  <td>14</td>
-                  <td>https://example.com</td>
-                  <td>12,235</td>
-                  <td>5</td>
-                  <td>$4320</td>
-                  <td>04-04-2021</td>
-                  <td>info@example.com</td>
-                  
-                  <td>
-                    <a href="" class="btn btn-primary">Edit</a>
-                  </td>
-                  <td class="d-none">
-                    <a href="" onclick="return confirm('Are you sure to delete?');" class="btn btn-primary">Delete</a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>13</td>
-                  <td>https://example.com</td>
-                  <td>12,235</td>
-                  <td>5</td>
-                  <td>$4320</td>
-                  <td>04-04-2021</td>
-                  <td>info@example.com</td>
-                  
-                  <td>
-                    <a href="" class="btn btn-primary">Edit</a>
-                  </td>
-                  <td class="d-none">
-                    <a href="" onclick="return confirm('Are you sure to delete?');" class="btn btn-primary">Delete</a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>12</td>
-                  <td>https://example.com</td>
-                  <td>12,235</td>
-                  <td>5</td>
-                  <td>$4320</td>
-                  <td>04-04-2021</td>
-                  <td>info@example.com</td>
-                  
-                  <td>
-                    <a href="" class="btn btn-primary">Edit</a>
-                  </td>
-                  <td class="d-none">
-                    <a href="" onclick="return confirm('Are you sure to delete?');" class="btn btn-primary">Delete</a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>11</td>
-                  <td>https://example.com</td>
-                  <td>12,235</td>
-                  <td>5</td>
-                  <td>$4320</td>
-                  <td>04-04-2021</td>
-                  <td>info@example.com</td>
-                  
-                  <td>
-                    <a href="" class="btn btn-primary">Edit</a>
-                  </td>
-                  <td class="d-none">
-                    <a href="" onclick="return confirm('Are you sure to delete?');" class="btn btn-primary">Delete</a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>10</td>
-                  <td>https://example.com</td>
-                  <td>12,235</td>
-                  <td>5</td>
-                  <td>$4320</td>
-                  <td>04-04-2021</td>
-                  <td>info@example.com</td>
-                  
-                  <td>
-                    <a href="" class="btn btn-primary">Edit</a>
-                  </td>
-                  <td class="d-none">
-                    <a href="" onclick="return confirm('Are you sure to delete?');" class="btn btn-primary">Delete</a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>09</td>
-                  <td>https://example.com</td>
-                  <td>12,235</td>
-                  <td>5</td>
-                  <td>$4320</td>
-                  <td>04-04-2021</td>
-                  <td>info@example.com</td>
-                  
-                  <td>
-                    <a href="" class="btn btn-primary">Edit</a>
-                  </td>
-                  <td class="d-none">
-                    <a href="" onclick="return confirm('Are you sure to delete?');" class="btn btn-primary">Delete</a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>08</td>
-                  <td>https://example.com</td>
-                  <td>12,235</td>
-                  <td>5</td>
-                  <td>$4320</td>
-                  <td>04-04-2021</td>
-                  <td>info@example.com</td>
-                  
-                  <td>
-                    <a href="" class="btn btn-primary">Edit</a>
-                  </td>
-                  <td class="d-none">
-                    <a href="" onclick="return confirm('Are you sure to delete?');" class="btn btn-primary">Delete</a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>07</td>
-                  <td>https://example.com</td>
-                  <td>12,235</td>
-                  <td>5</td>
-                  <td>$4320</td>
-                  <td>04-04-2021</td>
-                  <td>info@example.com</td>
-                  
-                  <td>
-                    <a href="" class="btn btn-primary">Edit</a>
-                  </td>
-                  <td class="d-none">
-                    <a href="" onclick="return confirm('Are you sure to delete?');" class="btn btn-primary">Delete</a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>06</td>
-                  <td>https://example.com</td>
-                  <td>12,235</td>
-                  <td>5</td>
-                  <td>$4320</td>
-                  <td>04-04-2021</td>
-                  <td>info@example.com</td>
-                  
-                  <td>
-                    <a href="" class="btn btn-primary">Edit</a>
-                  </td>
-                  <td class="d-none">
-                    <a href="" onclick="return confirm('Are you sure to delete?');" class="btn btn-primary">Delete</a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>05</td>
-                  <td>https://example.com</td>
-                  <td>12,235</td>
-                  <td>5</td>
-                  <td>$4320</td>
-                  <td>04-04-2021</td>
-                  <td>info@example.com</td>
-                  
-                  <td>
-                    <a href="" class="btn btn-primary">Edit</a>
-                  </td>
-                  <td class="d-none">
-                    <a href="" onclick="return confirm('Are you sure to delete?');" class="btn btn-primary">Delete</a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>04</td>
-                  <td>https://example.com</td>
-                  <td>12,235</td>
-                  <td>5</td>
-                  <td>$4320</td>
-                  <td>04-04-2021</td>
-                  <td>info@example.com</td>
-                  
-                  <td>
-                    <a href="" class="btn btn-primary">Edit</a>
-                  </td>
-                  <td class="d-none">
-                    <a href="" onclick="return confirm('Are you sure to delete?');" class="btn btn-primary">Delete</a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>03</td>
-                  <td>https://example.com</td>
-                  <td>12,235</td>
-                  <td>5</td>
-                  <td>$4320</td>
-                  <td>04-04-2021</td>
-                  <td>info@example.com</td>
-                  
-                  <td>
-                    <a href="" class="btn btn-primary">Edit</a>
-                  </td>
-                  <td class="d-none">
-                    <a href="" onclick="return confirm('Are you sure to delete?');" class="btn btn-primary">Delete</a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>02</td>
-                  <td>https://example.com</td>
-                  <td>12,235</td>
-                  <td>5</td>
-                  <td>$4320</td>
-                  <td>04-04-2021</td>
-                  <td>info@example.com</td>
-                  
-                  <td>
-                    <a href="" class="btn btn-primary">Edit</a>
-                  </td>
-                  <td class="d-none">
-                    <a href="" onclick="return confirm('Are you sure to delete?');" class="btn btn-primary">Delete</a>
-                  </td>
-                </tr>
-                <tr>
-                  <td>01</td>
-                  <td>https://example.com</td>
-                  <td>12,235</td>
-                  <td>5</td>
-                  <td>$4320</td>
-                  <td>04-04-2021</td>
-                  <td>info@example.com</td>
-                  
-                  <td>
-                    <a href="" class="btn btn-primary">Edit</a>
-                  </td>
-                  <td class="d-none">
-                    <a href="" onclick="return confirm('Are you sure to delete?');" class="btn btn-primary">Delete</a>
-                  </td>
-                </tr>
-                
+                </tr>  
+                @endforeach             
               </tbody>
             </table>  
 
-            <nav aria-label="Page navigation">
+            {{ $data->links() }}
+
+            {{-- <nav aria-label="Page navigation">
               <ul class="pagination justify-content-center">
                 <li class="page-item disabled">
                   <a class="page-link" href="#" tabindex="-1" aria-disabled="true"><i class="fas fa-caret-left"></i></a>
@@ -293,7 +74,7 @@
                   <a class="page-link" href="#"><i class="fas fa-caret-right"></i></a>
                 </li>
               </ul>
-            </nav>
+            </nav> --}}
 
       
           </div>
