@@ -9,6 +9,7 @@ use App\Models\Logo;
 use App\Models\FAQ;
 use App\Models\Review;
 use App\Models\Tutorial;
+use App\Models\QuickStart;
 use App\Models\TermsAndCondition;
 use App\Models\PrivacyAndPolicy;
 use App\Models\RefundPolicy;
@@ -469,6 +470,7 @@ class SuperAdminController extends Controller
         return redirect()->back()->with('errors', 'Tutorial Deleted Successfully!');
     }
 
+
     // SHOVON WORKING HERE
     public function AllProduct(Request $request)
     {
@@ -522,5 +524,68 @@ class SuperAdminController extends Controller
             $trendingProducts = ProductDetail::whereNotNull('explore_pro_type')->paginate(13);
         }
         return view('super_admin.super-admin-explore',compact('trendingProducts'));
+
+    public function quickstart()
+    {
+        $data = QuickStart::all();
+        return view('admin.quickstart-index',compact('data'));
+    }
+
+    public function  quickstart_create()
+    {
+        return view('admin.quickstart-create');
+    }
+
+    public function quickstart_store(Request $request)
+    {   
+        if(isset($request->url)){
+            $path = $request->url->store('quickstart/uploads', 'public');
+        }
+
+        $add = new QuickStart;
+        $add->title = $request->title;
+        $add->des = $request->des;
+        $add->link = $request->link;
+        $add->link_title = $request->link_title;
+        $add->url = $path;
+        $add->save();
+
+        return redirect()->back()->with('status', 'Quick Start created successfully');
+    }
+
+    public function quickstart_edit($id){
+
+        $data = QuickStart::where('id', $id)->first();
+
+        return view('admin.quickstart-create',compact('data'));
+    }
+
+    public function quickstart_update(Request $request,$id){
+
+        $old = QuickStart::where('id', $id)->first();
+
+        if(isset($request->url)){
+            $path = $request->url->store('quickstart/uploads', 'public');
+        }else{
+            $path = $old->url;
+        }
+
+        $update = QuickStart::where('id', $id)->update([
+            'title' => $request->title,
+            'des' => $request->des,
+            'link' => $request->link,
+            'link_title' => $request->link_title,
+            'url' => $path
+
+            ]);
+
+        return redirect()->back()->with('status', 'Quick Start updated successfully');
+    }
+
+    public function quickstart_delete($id){
+        $delete = QuickStart::where('id', $id)->delete();
+
+        return redirect()->back()->with('errors', 'Quick Start Deleted Successfully!');
+
     }
 }

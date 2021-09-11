@@ -12,6 +12,7 @@ use App\Models\Category;
 use App\Models\Gender;
 use App\Models\Country;
 use App\Models\User;
+use App\Models\Tutorial;
 use Illuminate\Support\Facades\Storage;
 use Hash;
 use Validator;
@@ -1934,9 +1935,13 @@ class UserController extends Controller
 		}
 	}
 
-	public function viewTutorial($value='')
+	public function viewTutorial()
 	{
-		return view('user.tutorial');
+		$customer = Tutorial::where('type', 'customer')->get();
+
+		$researcher = Tutorial::where('type', 'researcher')->get();
+
+		return view('user.tutorial',compact('customer','researcher'));
 	}
 
 	public function viewFAQ($value='')

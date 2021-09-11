@@ -331,6 +331,14 @@ Route::post('/super/tutorials', [SuperAdminController::class, 'tutorial_store'])
 Route::get('/super/tutorials/edit/{id}', [SuperAdminController::class, 'tutorial_edit']);
 Route::post('/super/tutorials/update/{id}', [SuperAdminController::class, 'tutorial_update']);
 Route::get('/super/tutorials/delete/{id}', [SuperAdminController::class, 'tutorial_delete']);
+
+Route::get('/super/quickstart', [SuperAdminController::class, 'quickstart']);
+Route::get('/super/quickstart/create', [SuperAdminController::class, 'quickstart_create']);
+Route::post('/super/quickstart', [SuperAdminController::class, 'quickstart_store']);
+Route::get('/super/quickstart/edit/{id}', [SuperAdminController::class, 'quickstart_edit']);
+Route::post('/super/quickstart/update/{id}', [SuperAdminController::class, 'quickstart_update']);
+Route::get('/super/quickstart/delete/{id}', [SuperAdminController::class, 'quickstart_delete']);
+
 // Route::post('/super/logo', [SuperAdminController::class, 'logo_update']);
 Route::post('/super/favicon', [SuperAdminController::class, 'favicon_update']);
 Route::get('/super/terms-condition', [SuperAdminController::class, 'terms_conditions']);

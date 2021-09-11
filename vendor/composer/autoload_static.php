@@ -662,6 +662,7 @@ class ComposerStaticInit495d48bf7755b140d851d0f7ac052e0c
         'App\\Models\\ProductImage' => __DIR__ . '/../..' . '/app/Models/ProductImage.php',
         'App\\Models\\ProductLink' => __DIR__ . '/../..' . '/app/Models/ProductLink.php',
         'App\\Models\\ProductType' => __DIR__ . '/../..' . '/app/Models/ProductType.php',
+        'App\\Models\\QuickStart' => __DIR__ . '/../..' . '/app/Models/QuickStart.php',
         'App\\Models\\RefundPolicy' => __DIR__ . '/../..' . '/app/Models/RefundPolicy.php',
         'App\\Models\\Review' => __DIR__ . '/../..' . '/app/Models/Review.php',
         'App\\Models\\ShopifyProduct' => __DIR__ . '/../..' . '/app/Models/ShopifyProduct.php',

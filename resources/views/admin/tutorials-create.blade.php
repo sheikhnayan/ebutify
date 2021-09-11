@@ -40,7 +40,7 @@
                             @endif
                             @csrf
                             <label for="">Tutorial Title</label>
-                            <input type="text" class="form-control" name="title" id="" value="{{ $data->title ?? ''}}" placeholder="Enter the FAQ question"> <br>
+                            <input type="text" class="form-control" name="title" id="" value="{{ $data->title ?? ''}}" placeholder="Enter the Title"> <br>
 
                             <label for="">Tutorial Type</label>
                             <select class="form-control" name="type">

@@ -300,6 +300,14 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="/super/quickstart" class="nav-link">
+              <i class="nav-icon fa fa-user"></i>
+              <p>
+                Quick Starts
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="/super/freelancers-list" class="nav-link">
               <i class="nav-icon fa fa-user"></i>
               <p>
