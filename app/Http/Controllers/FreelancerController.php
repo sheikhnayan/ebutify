@@ -6,7 +6,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\ProductDetail;
-use App\Models\QuickStart;
 
 class FreelancerController extends Controller
 {
@@ -48,6 +47,11 @@ class FreelancerController extends Controller
 
                     //  SHOW DASHBOARD IF SUBSCRIBED
 
+
+                    $products = ProductDetail::all();
+
+                    return view('user.customer-dashboard',compact('products'));
+
                     if(Auth::user()->status == 1){
                         $products = ProductDetail::all();
                         $data = QuickStart::all();
@@ -67,7 +71,7 @@ class FreelancerController extends Controller
                     $request->session()->regenerateToken();
             
                     return view('auth.login');
-                    }
+
 
             }elseif (Auth::user()->user_type == "freelancer") {
 
@@ -88,6 +92,7 @@ class FreelancerController extends Controller
 
     public function subscribe(Request $request)
     {
+
         $paymentMethod = $request->payment_method;
 
         $planId = $request->plan;
