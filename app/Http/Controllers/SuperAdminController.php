@@ -524,7 +524,8 @@ class SuperAdminController extends Controller
             $trendingProducts = ProductDetail::whereNotNull('explore_pro_type')->paginate(13);
         }
         return view('super_admin.super-admin-explore',compact('trendingProducts'));
-
+    }
+    
     public function quickstart()
     {
         $data = QuickStart::all();
