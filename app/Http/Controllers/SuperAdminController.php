@@ -604,4 +604,41 @@ class SuperAdminController extends Controller
 
         return view('admin.profile',compact('data'));
     }
+
+    public function customer_update(Request $request,$id)
+    {
+        if($request->profile_upload != null){    
+            $path = $request->profile_upload->store('public/userimages/profile');
+        $path = $request->profile_upload->store('userimages/profile');
+            $update = User::where('id',$id)->update([
+                'name' => $request->name,
+                'address' => $request->address,
+                'email' =>$request->email,
+                'status' =>$request->status,
+                'profile_photo_path' => $path
+            ]);
+            }else{
+                $update = User::where('id',$id)->update([
+                'name' => $request->name,
+                'address' => $request->address,
+                'email' =>$request->email,
+                'status' =>$request->status,
+            ]);
+            }
+            return back();
+    }
+
+    public function customer_password_update(Request $request,$id)
+    {
+        $validator = Validator::make($request->all(), [
+			'new_password' => 'required_with:confirm_password|same:confirm_password',
+			'confirm_password' => ['required'],
+		])->validate();
+		$password = Hash::make($request->new_password);
+		$update = User::where('id',$id)->update([
+			'password' => $password
+		]);
+
+		return back();
+    }
 }

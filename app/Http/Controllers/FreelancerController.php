@@ -48,10 +48,25 @@ class FreelancerController extends Controller
 
                     //  SHOW DASHBOARD IF SUBSCRIBED
 
-                    $products = ProductDetail::all();
-                    $data = QuickStart::all();
+                    if(Auth::user()->status == 1){
+                        $products = ProductDetail::all();
+                        $data = QuickStart::all();
+
+                        $invoices = Auth()->user()->invoices();
+                        dd($invoices);
 
                     return view('user.customer-dashboard',compact('products','data'));
+
+                    }else{
+
+                    }
+                    Auth::logout();
+
+                    $request->session()->invalidate();
+            
+                    $request->session()->regenerateToken();
+            
+                    return view('auth.login');
                     }
 
             }elseif (Auth::user()->user_type == "freelancer") {
