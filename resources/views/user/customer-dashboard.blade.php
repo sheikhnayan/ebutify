@@ -22,7 +22,11 @@
               <div class="info-box-content">
                 <span class="info-box-text cpr-1">Available Products</span>
                 <span class="info-box-number  cpr-2">
-                  669
+                  @php
+                    $prods = DB::table('product_details')->where('status','Available')->get();
+                    $prod_count = $prods->count();
+                  @endphp
+                  {{ $prod_count + 10000 }}
                 </span>
               </div>
               <!-- /.info-box-content -->
@@ -37,7 +41,7 @@
               <div class="info-box-content">
                 <span class="info-box-text  cpr-1">Total View Product</span>
                 <span class="info-box-number  cpr-2">
-                  120
+                  {{ Auth::user()->prod_count }}
                 </span>
               </div>
               <!-- /.info-box-content -->
