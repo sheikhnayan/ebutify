@@ -53,7 +53,7 @@ class FreelancerController extends Controller
                         $data = QuickStart::all();
 
                         $invoices = Auth()->user()->invoices();
-                        dd($invoices);
+                        dd(Auth::user()->subscriptions[0]->stripe_plan);
 
                     return view('user.customer-dashboard',compact('products','data'));
 

@@ -42,7 +42,13 @@
                   <td>{{ $loop->index + 1 }}</td>
                   <td>{{ $item->name }}</td>
                   <td>Active</td>
-                  <td>Monthly</td>
+                  <td>
+                    @if(Auth::user()->subscriptions->stripe_plan == 'price_1If8QdEgl2c23BzjE4HCoJc3')
+                    Monthly
+                    @elseif(Auth::user()->subscriptions->stripe_plan == 'price_1JO5DGCzBVgP4kKNhlY2s2QD')
+                    Yearly
+                    @endif
+                  </td>
                   <td>****************{{ $item->card_last_four }}</td>
                   <td>{{ \Carbon\Carbon::parse($item->updated_at)->format('d-m-Y')}}</td>
                   <td>{{ $item->email }}</td>
