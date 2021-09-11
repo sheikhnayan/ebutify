@@ -17,6 +17,8 @@ use App\Models\RefundPolicy;
 use App\Models\BlogCategory;
 use Illuminate\Support\Facades\Storage;
 use Auth;
+use App\Models\ProductDetail;
+
 
 class SuperAdminController extends Controller
 {
@@ -469,6 +471,62 @@ class SuperAdminController extends Controller
         return redirect()->back()->with('errors', 'Tutorial Deleted Successfully!');
     }
 
+
+    // SHOVON WORKING HERE
+    public function AllProduct(Request $request)
+    {
+        if($request->search) {
+            $trendingProducts = ProductDetail::where('product_name', 'LIKE', '%'.$request->search.'%')->whereNull('explore_pro_type')->paginate(3);
+        }
+        if (empty($trendingProducts)) {
+            $trendingProducts = ProductDetail::whereNull('explore_pro_type')->paginate(3);
+        }
+  
+        foreach ($trendingProducts as $trendingproduct) {
+
+            $country = $trendingproduct->country.",";
+
+        }
+
+        if (empty($country)) {
+            return view('super_admin.sup-all-product',compact('trendingProducts'));
+
+        }else{
+
+            return view('super_admin.sup-all-product',compact('trendingProducts','country'));
+        }
+
+            return view('super_admin.sup-all-product',compact('trendingProducts','country'));
+
+    }
+
+    public function UploadProduct(Request $request)
+    {
+        $productDetails = ProductDetail::all();
+
+        return view('super_admin.super-admin-add-products',compact('productDetails'));
+    }
+
+    public function DeleteProduct($id)
+    {
+        ProductDetail::where('id', $id)->delete();
+        $trendingProducts = ProductDetail::whereNull('explore_pro_type')->paginate(3);
+        return view('super_admin.sup-all-product',compact('trendingProducts'));
+
+    }
+
+    public function ExploreProduct(Request $request)
+    {
+        if($request->search) {
+            // dd($request->search);
+            $trendingProducts = ProductDetail::whereNotNull('explore_pro_type')->where('product_name', 'LIKE', '%'.$request->search.'%')->paginate(3);
+        }
+        if (empty($trendingProducts)) {
+            $trendingProducts = ProductDetail::whereNotNull('explore_pro_type')->paginate(13);
+        }
+        return view('super_admin.super-admin-explore',compact('trendingProducts'));
+    }
+    
     public function quickstart()
     {
         $data = QuickStart::all();
@@ -530,6 +588,7 @@ class SuperAdminController extends Controller
         $delete = QuickStart::where('id', $id)->delete();
 
         return redirect()->back()->with('errors', 'Quick Start Deleted Successfully!');
+
     }
 
     public function customer()
