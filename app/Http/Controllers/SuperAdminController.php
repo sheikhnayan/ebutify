@@ -641,4 +641,11 @@ class SuperAdminController extends Controller
 
 		return back();
     }
+
+    public function customer_delete($id){
+        $delete = User::where('id', $id)->delete();
+
+        return redirect()->back()->with('errors', 'Subscriber Deleted Successfully!');
+
+    }
 }

@@ -322,7 +322,7 @@ class UserController extends Controller
 	{
 
 		if(Auth::check()){
-			
+
 		$trendingProducts = ProductDetail::where('id', $product_id)
 		->get();
 		// dd($trendingProducts);
@@ -351,6 +351,7 @@ class UserController extends Controller
     public function trendingProducts(Request $request)
 	{
 	 	if(Auth::check()){
+
 	 		$sortSelected = 0;
             $filterSelected = 0;
             $categorySelected = 0;
@@ -592,6 +593,10 @@ class UserController extends Controller
 	{
 
 		if(Auth::check()){
+
+			$update = User::where('id',Auth::user()->id)->update([
+				'prod_count' => Auth::user()->prod_count + 1
+			]);
 			
 		$trendingProducts = ProductDetail::where('id', $product_id)
 		->get();
