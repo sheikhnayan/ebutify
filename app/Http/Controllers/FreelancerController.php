@@ -50,6 +50,21 @@ class FreelancerController extends Controller
                     $products = ProductDetail::all();
 
                     return view('user.customer-dashboard',compact('products'));
+
+
+
+                    if(Auth::user()->status == 1){
+                        $products = ProductDetail::all();
+                        $data = QuickStart::all();
+
+                        $invoices = Auth()->user()->invoices();
+                        dd(Auth::user()->subscriptions[0]->stripe_plan);
+
+                    return view('user.customer-dashboard',compact('products','data'));
+
+                    }else{
+
+
                     }
 
             }elseif (Auth::user()->user_type == "freelancer") {
