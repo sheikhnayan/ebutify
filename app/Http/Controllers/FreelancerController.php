@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\ProductDetail;
 use App\Models\QuickStart;
-use App\Models\Cashier\Subscription;
+use Stripe\Subscription;
 
 class FreelancerController extends Controller
 {
@@ -51,14 +51,25 @@ class FreelancerController extends Controller
                     $invoices = Auth()->user()->invoices();
                     // dd($subscriptions);
 
-                    // $user->subscription('main')->stripe_plan;
-                    $user = User::find(1);
+                    $subscriptions = Auth()->user()->subscription('main')->stripe_plan;
+                    // dd($subscriptions);
+
+                    $subscriptionItem = Auth()->user()->subscription('main')->items->first();
+                    // dd($subscriptionItem);
+                    // Retrieve the Stripe price and quantity for a specific item...
+                    $cardName = Auth()->user()->card_brand;
+                    $cardLastFour = Auth()->user()->card_last_four;
+
+                    $user = Auth()->user()->created_at;
+                    $stripePrice = $subscriptionItem->stripe;
+                    $quantity = $subscriptionItem->quantity;
+                    dd($payment->amount(), 'Price = '.$stripePrice, 'Quantity = '.$quantity, 'Card Name = '.$cardName, 'Subsription Plan Id = '.$subscriptions, 'Card Last Four ='.$cardLastFour);
 
                     if (Auth::user()->subscribed('main')) {
                         //
-                        echo "Hello Fucker";
-                        $subscriptions = Subscription()->active()->get();
-                        exit();
+                        // echo "Hello Fucker";
+                        // $subscriptions = Subscription()->active()->get();
+                        // exit();
                     }
                     // dd($subscriptions);
                     if(Auth::user()->status == 1){
