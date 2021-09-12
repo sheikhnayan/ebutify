@@ -476,10 +476,10 @@ class SuperAdminController extends Controller
     public function AllProduct(Request $request)
     {
         if($request->search) {
-            $trendingProducts = ProductDetail::where('product_name', 'LIKE', '%'.$request->search.'%')->whereNull('explore_pro_type')->paginate(3);
+            $trendingProducts = ProductDetail::where('product_name', 'LIKE', '%'.$request->search.'%')->whereNull('explore_pro_type')->paginate(50);
         }
         if (empty($trendingProducts)) {
-            $trendingProducts = ProductDetail::whereNull('explore_pro_type')->paginate(3);
+            $trendingProducts = ProductDetail::whereNull('explore_pro_type')->paginate(50);
         }
   
         foreach ($trendingProducts as $trendingproduct) {
@@ -510,7 +510,7 @@ class SuperAdminController extends Controller
     public function DeleteProduct($id)
     {
         ProductDetail::where('id', $id)->delete();
-        $trendingProducts = ProductDetail::whereNull('explore_pro_type')->paginate(3);
+        $trendingProducts = ProductDetail::whereNull('explore_pro_type')->paginate(50);
         return view('super_admin.sup-all-product',compact('trendingProducts'));
 
     }
@@ -528,10 +528,10 @@ class SuperAdminController extends Controller
     {
         if($request->search) {
             // dd($request->search);
-            $trendingProducts = ProductDetail::whereNotNull('explore_pro_type')->where('product_name', 'LIKE', '%'.$request->search.'%')->paginate(3);
+            $trendingProducts = ProductDetail::whereNotNull('explore_pro_type')->where('product_name', 'LIKE', '%'.$request->search.'%')->paginate(50);
         }
         if (empty($trendingProducts)) {
-            $trendingProducts = ProductDetail::whereNotNull('explore_pro_type')->paginate(13);
+            $trendingProducts = ProductDetail::whereNotNull('explore_pro_type')->paginate(50);
         }
         return view('super_admin.super-admin-explore',compact('trendingProducts'));
     }

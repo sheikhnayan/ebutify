@@ -2002,7 +2002,12 @@ class UserController extends Controller
 		
 		return Response::download($file, $video, $headers);
 
-    }
+  }
+
+  public function SubscriptionsBilling(Request $request)
+  {
+  	return view('user.subscriptions-billing');
+  }
 
 
 }

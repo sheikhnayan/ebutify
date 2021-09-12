@@ -16,6 +16,7 @@ use App\Http\Controllers\SuperAdminController;
 use App\Http\Controllers\UserServiceController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\FrontendControllerController;
+use App\Http\Controllers\SubscriptionController;
 
 
 
@@ -123,6 +124,16 @@ Route::middleware(['auth:sanctum', 'verified'])->post('/send-email', [ContactCon
 
 //  USER SEARCH
 Route::middleware(['auth:sanctum', 'verified'])->post('/search-all-product', [UserController::class, 'allProduct'])->name('search');
+
+//  USER SUBSCIPTION PAGE
+Route::middleware(['auth:sanctum', 'verified'])->get('/subscriptions-billing', [UserController::class, 'SubscriptionsBilling'])->name('subscriptions-billing');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/cancel-subscription', [SubscriptionController::class, 'CancelSubscription'])->name('cancel-subscription');
+
+
+
+
+
 
 //  # USER SERVICES START #
 
@@ -367,19 +378,22 @@ Route::post('/super/category/update/{id}', [SuperAdminController::class, 'catego
 
 
 
-//  USER VIEW ALL PRODUCTS
+//  SUPER ADMIN DELETE EXPLORE PRODUCTS
 Route::middleware(['auth:sanctum', 'verified'])->get('product-delete-explo/{id}', [SuperAdminController::class, 'DeleteProductExplo'])->name('product-delete-explo');
 
-//  USER VIEW ALL PRODUCTS
+//  SUPER ADMIN  VIEW ALL PRODUCTS
 Route::middleware(['auth:sanctum', 'verified'])->get('/super/all-products', [SuperAdminController::class, 'AllProduct'])->name('super/all-products');
 
-//  USER VIEW ALL PRODUCTS
+//  SUPER ADMIN UPLOAD PRODUCTS
 Route::middleware(['auth:sanctum', 'verified'])->get('super/upload-page', [SuperAdminController::class, 'UploadProduct'])->name('super/upload-page');
 
-//  USER VIEW ALL PRODUCTS
+//  SUPER ADMIN DELETE PRODUCTS
 Route::middleware(['auth:sanctum', 'verified'])->get('product-delete/{id}', [SuperAdminController::class, 'DeleteProductExplo'])->name('product-delete');
 
+//  SUPER ADMIN EXPLORE PRODUCTS
 Route::middleware(['auth:sanctum', 'verified'])->get('/super/exlore-products', [SuperAdminController::class, 'ExploreProduct'])->name('super/exlore-products');
 
+//  SUPER ADMIN SUBSCRIPTION PAGE
+Route::middleware(['auth:sanctum', 'verified'])->get('/super/exlore-products', [SuperAdminController::class, 'ExploreProduct'])->name('super/subscriber');
 
 // SUPER ADMIN END

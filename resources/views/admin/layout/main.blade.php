@@ -207,7 +207,7 @@ href="{{ asset('storage/'.$favicon ?? '') }}">
             </ul>
           </li>
           <li class="nav-item">
-            <a href="{{route('super/exlore-products')}}" class="nav-link">
+            <a href="{{url('/super/exlore-products')}}" class="nav-link">
               <i class="nav-icon fas fa-tree"></i>
               <p>
                 Explores

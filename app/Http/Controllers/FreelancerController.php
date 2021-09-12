@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\ProductDetail;
 use App\Models\QuickStart;
+use App\Models\Cashier\Subscription;
 
 class FreelancerController extends Controller
 {
@@ -48,7 +49,18 @@ class FreelancerController extends Controller
 
                     //  SHOW DASHBOARD IF SUBSCRIBED
                     $invoices = Auth()->user()->invoices();
-                    dd($invoices);
+                    // dd($subscriptions);
+
+                    // $user->subscription('main')->stripe_plan;
+                    $user = User::find(1);
+
+                    if (Auth::user()->subscribed('main')) {
+                        //
+                        echo "Hello Fucker";
+                        $subscriptions = Subscription()->active()->get();
+                        exit();
+                    }
+                    // dd($subscriptions);
                     if(Auth::user()->status == 1){
                         $products = ProductDetail::all();
                         $data = QuickStart::all();

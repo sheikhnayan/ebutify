@@ -171,7 +171,7 @@
                   <i class="far fa-user mr-2"></i> My Profile
                   </a>
                   <div class="dropdown-divider"></div>
-                  <a href="{{url('/subscription')}}" class="dropdown-item">
+                  <a href="{{url('/subscriptions-billing')}}" class="dropdown-item">
                   <i class="far fa-bell mr-2"></i> Subcription
                   </a>
                   <div class="dropdown-divider"></div>
@@ -202,8 +202,8 @@
                         </p>
                      </a>
                   </li>
-                  <li class="nav-item menu-open">
-                     <a href="#" class="nav-link active">
+                  <li class="nav-item">
+                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-chart-pie"></i>
                         <p>
                            Product Research
