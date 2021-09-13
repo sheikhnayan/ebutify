@@ -27,15 +27,15 @@
           </div>
           <div class="col-12">
             <div class="row shadow">
-              <div class="col-lg-7  py-3 tab-content">
+              <div class="col-lg-5  py-3 tab-content">
                 @foreach ($customer as $item)
-                  <div class=" tutorial-video-container tab-pane fade 
+                  <div style="max-width:670px; max-height:325px;" class=" tutorial-video-container embed-responsive embed-responsive-16by9 tab-pane fade 
                   @if($loop->index == 0)
                     show active
                   @endif
                   " id="video{{ $loop->index + 1}}" role="tabpanel">
                     <i onclick="videoPlay(1, true)" class="fas fa-play-circle video-icon-play-1"></i>
-                    <video onplay="videoPlay(1)" controls id="video-control-1" style="width: 100%;">
+                    <video onplay="videoPlay(1)" controls id="video-control-1">
                     <source src="{{ asset('storage/'.$item->url) }}" type="video/mp4">
                     </video>
                   </div>
@@ -83,7 +83,7 @@
                   </video>
                 </div> --}}
               </div>
-              <div class="col-lg-5 tab-list-item shadow p-0">
+              <div class="col-lg-7 tab-list-item shadow p-0">
                 <ul class="list-group list-group-flush py-3 list-unstyled video-tab" role="tablist">
                   @foreach ($customer as $item)
                    <li><a class="list-group-item 
@@ -109,15 +109,15 @@
           </div>
           <div class="col-12">
             <div class="row shadow">
-              <div class="col-lg-7  py-3 tab-content">
+              <div class="col-lg-5  py-3 tab-content">
                 @foreach ($researcher as $item)
-                  <div class=" tutorial-video-container tab-pane fade 
+                  <div  class=" tutorial-video-container tab-pane fade embed-responsive embed-responsive-16by9 
                   @if($loop->index == 0)
                     show active
                   @endif
-                  " id="researchervideo{{ $loop->index + 1 }}" role="tabpanel"">
+                  " id="researchervideo{{ $loop->index + 1 }}" role="tabpanel" style="max-width: 670px;max-height:325px;">
                     <i onclick="videoPlay(1, true)" class="fas fa-play-circle video-icon-play-1"></i>
-                    <video onplay="videoPlay(1)" controls id="video-control-1" style="width: 100%;">
+                    <video onplay="videoPlay(1)" controls id="video-control-1">
                     <source src="{{ asset('storage/'.$item->url) }}" type="video/mp4">
                     </video>
                   </div>
@@ -165,7 +165,7 @@
                   </video>
                 </div> --}}
               </div>
-              <div class="col-lg-5 tab-list-item shadow p-0">
+              <div class="col-lg-7 tab-list-item shadow p-0">
                 <ul class="list-group list-group-flush py-3 list-unstyled video-tab" role="tablist">
                   @foreach ($researcher as $item)
                    <li><a class="list-group-item 

@@ -15,7 +15,11 @@
               <div class="info-box-content">
                 <span class="info-box-text">Today Visit</span>
                 <span class="info-box-number">
-                  10K
+                  @php
+                    $ip = DB::table('i_p_s')->get();
+                    $ips = count($ip);
+                  @endphp
+                  {{ $ips }}
                 </span>
               </div>
               <!-- /.info-box-content -->
@@ -30,7 +34,17 @@
               <div class="info-box-content">
                 <span class="info-box-text">Total Sales</span>
                 <span class="info-box-number">
-                  10K
+                  @php
+                    $month = DB::table('subscription_items')->where('stripe_plan','price_1If8QdEgl2c23BzjE4HCoJc3')->get();
+                    $year = DB::table('subscription_items')->where('stripe_plan','price_1If8VPEgl2c23Bzjq8LUvao7')->get();
+
+                    $monthly = $month->count();
+                    $yearly = $year->count();
+
+                    $monthly_cost = $monthly * 12.50;
+                    $yearly_cost = $yearly * 90;
+                  @endphp
+                  ${{ $monthly_cost + $yearly_cost }}
                 </span>
               </div>
               <!-- /.info-box-content -->
@@ -49,7 +63,11 @@
               <div class="info-box-content">
                 <span class="info-box-text">Total Users</span>
                 <span class="info-box-number">
-                  10K
+                  @php
+                      $customer = DB::table('users')->where('user_type','user')->where('stripe_id','!=', null)->get();
+                      $total_customers = $customer->count();
+                  @endphp
+                  {{ $total_customers }}
                 </span>
               </div>
               <!-- /.info-box-content -->
@@ -63,7 +81,14 @@
 
               <div class="info-box-content">
                 <span class="info-box-text">New Users</span>
-                <span class="info-box-number">120</span>
+                <span class="info-box-number">
+                  @php
+                      $now = \Carbon\Carbon::now()->toDateTimeString(); 
+                      $today_customer = DB::table('users')->where('created_at',$now)->get();
+                      $total_today_customers = $today_customer->count();
+                  @endphp
+                  {{ $total_today_customers }}
+                </span>
               </div>
               <!-- /.info-box-content -->
             </div>

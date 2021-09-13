@@ -26,9 +26,37 @@
             <img src="assets/img/recycle.png" class="img-fluid img-circle mx-auto d-block" alt="">
           </div>
           <div class="col-md-3 col-lg-3">
-            <h5>Bronze Plan</h5>
-            <p style="margin: 0;">$39.97 Per Month</p>
-            <p style="margin: 0;">Started: Mar 09, 2021</p>
+            <h5>
+              @php
+                  $sub = DB::table('subscriptions')->where('user_id',Auth::user()->id)->latest()->first();
+              @endphp
+              @if ($sub->stripe_plan == 'price_1If8QdEgl2c23BzjE4HCoJc3')
+                  Monthly
+              @elseif($sub->stripe_plan == 'price_1If8VPEgl2c23Bzjq8LUvao7')
+                  Yearly
+              @else
+                  Trial
+              @endif
+              Plan
+            </h5>
+            <p style="margin: 0;">
+              @if ($sub->stripe_plan == 'price_1If8QdEgl2c23BzjE4HCoJc3')
+                  $12.50
+              @elseif($sub->stripe_plan == 'price_1If8VPEgl2c23Bzjq8LUvao7')
+                  $90
+              @else
+                  $2
+              @endif
+               
+              @if ($sub->stripe_plan == 'price_1If8QdEgl2c23BzjE4HCoJc3')
+                  Per Monthly
+              @elseif($sub->stripe_plan == 'price_1If8VPEgl2c23Bzjq8LUvao7')
+                  Per Yearly
+              @else
+                  Only One Time Purchase
+              @endif
+            </p>
+            <p style="margin: 0;">Started: {{ Carbon\Carbon::parse($sub->created_at)->format('M d, Y') }}</p>
           </div>
           <div class="col-md-3 col-lg-3 text-center mt-1">
             <button type="button" class="btn active-btn">SUBSCRIPTION ACTIVE</button>
@@ -55,7 +83,7 @@
           <div class="col-sm-12 col-md-2 col-lg-2 my-2">
             <img src="assets/img/credit-card.png" class="img-fluid mx-auto d-block" alt="">
           </div>
-          <div class="col-sm-12 col-md-7 col-lg-7">
+          <div class="col-sm-12 col-md-10 col-lg-10">
             <div class="row card-info">
               <div class="col-4 text-center">
                 <h6>Card Number</h6>
@@ -69,19 +97,27 @@
             </div>
             <div class="row mx-3">
               <div class="col-4 text-center">
-                <p>***9241</p>
+                <p>***{{ Auth::user()->card_last_four }}</p>
               </div>
               <div class="col-4 text-center">
-                <p>MasterCard</p>
+                <p>{{ Auth::user()->card_brand }}</p>
               </div>
               <div class="col-4 text-center">
-                <p>6/2023</p>
+                <p>
+                  @if ($sub->stripe_plan == 'price_1If8QdEgl2c23BzjE4HCoJc3')
+                  {{ Carbon\Carbon::parse($sub->created_at)->addMonth()->format('M d, Y') }}
+                  @elseif($sub->stripe_plan == 'price_1If8VPEgl2c23Bzjq8LUvao7')
+                  {{ Carbon\Carbon::parse($sub->created_at)->addYear()->format('M d, Y') }}
+                  @else
+                  {{ Carbon\Carbon::parse($sub->created_at)->addDay()->format('M d, Y') }}
+                  @endif
+                </p>
               </div>
             </div>
           </div>
-          <div class="col-sm-12 col-md-3 col-md-3 text-center">
+          {{-- <div class="col-sm-12 col-md-3 col-md-3 text-center">
             <button type="button" class="btn card-info-btn">Update card info</button>
-          </div>
+          </div> --}}
           <div class="col-12 billing-card-bottom">
             <div class="row">
               <div class="col-12 mt-3">
@@ -106,24 +142,52 @@
                     <h6>Amount</h6>
                   </div>
                 </div>
-                <div class="row bc-detail-2 ml-4">
-                  <div class="col-2 text-center">
-                    <span class="paid">PAID</span>
-                  </div>
-                  <div class="col-2 text-center">
-                    <span>Bronze Plan</span>
-                  </div>
-                  <div class="col-4 text-center">
-                    <img src="assets/img/credit-card.png" class="img-fluid" style="width: 18px;" alt="">
-                    <span>xxxx xxxx xxxx 9241</span>
-                  </div>
-                  <div class="col-2 text-center">
-                    <span>09-Mar-2021</span>
-                  </div>
-                  <div class="col-2 text-center">
-                    <span>$39.97 USD</span>
-                  </div>
-                </div>
+                @php
+                    $subs = DB::table('subscriptions')->where('user_id',Auth::user()->id)->get();
+                @endphp
+
+                @foreach ($subs as $item)
+                    <div class="row bc-detail-2 ml-4">
+                      <div class="col-2 text-center">
+                        <span class="paid">PAID</span>
+                      </div>
+                      <div class="col-2 text-center">
+                        <span>
+                          @if ($item->stripe_plan == 'price_1If8QdEgl2c23BzjE4HCoJc3')
+                            Monthly Plan
+                          @elseif($item->stripe_plan == 'price_1If8VPEgl2c23Bzjq8LUvao7')
+                            Yearly Plan
+                          @else
+                            Trial Plan
+                          @endif
+                        </span>
+                      </div>
+                      <div class="col-4 text-center">
+                        @if (Auth::user()->card_brand == 'visa')
+                          <i class="fab fa-cc-visa"></i>
+                        @elseif (Auth::user()->card_brand == 'master')
+                          <i class="fab fa-cc-mastercard"></i>
+                        @else
+                          <img src="assets/img/credit-card.png" class="img-fluid" style="width: 18px;" alt="">
+                        @endif
+                        <span>xxxx xxxx xxxx {{ Auth::user()->card_last_four }}</span>
+                      </div>
+                      <div class="col-2 text-center">
+                        <span>{{ Carbon\Carbon::parse($item->created_at)->format('M d, Y') }}</span>
+                      </div>
+                      <div class="col-2 text-center">
+                        <span>
+                          @if ($item->stripe_plan == 'price_1If8QdEgl2c23BzjE4HCoJc3')
+                            $12.50 USD
+                          @elseif($item->stripe_plan == 'price_1If8VPEgl2c23Bzjq8LUvao7')
+                            $90 USD
+                          @else
+                            $2 USD
+                          @endif
+                        </span>
+                      </div>
+                    </div>
+                @endforeach
               </div>
             </div>
           </div>

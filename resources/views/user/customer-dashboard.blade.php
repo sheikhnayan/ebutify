@@ -60,7 +60,25 @@
               <div class="info-box-content">
                 <span class="info-box-text cpr-1">Renew Remining</span>
                 <span class="info-box-number cpr-2">
-                  15 days 6 Hours 32 Minutes
+                  @php
+                      $create = DB::table('subscriptions')->where('user_id', Auth::user()->id)->latest()->first();
+                      $date = $create->created_at;
+                      if($create->stripe_plan == 'price_1If8VPEgl2c23Bzjq8LUvao7')
+                      {
+                        $type = 'yearly';
+                        $remaining = Carbon\Carbon::parse($create->created_at)->addYear();
+                      }elseif($create->stripe_plan == 'price_1If8QdEgl2c23BzjE4HCoJc3')
+                      {
+                        $type = 'monthly';
+                        $remaining = Carbon\Carbon::parse($create->created_at)->addMonth();
+                      }else
+                      {
+                        $type = 'trial';
+                        $remaining = Carbon\Carbon::parse($create->created_at)->addMonth();
+                      }
+                      $now = \Carbon\Carbon::now();
+                  @endphp
+                  {{  $now->diffInDays($remaining)}} Days
                 </span>
               </div>
               <!-- /.info-box-content -->
