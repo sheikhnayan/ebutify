@@ -114,7 +114,7 @@
         <a class="" data-toggle="dropdown" href="#">
           <div class="user-panel d-flex mr-3">
             <div class="image">
-              <img src="assets/img/user1-128x128.jpg" class="img-circle " alt="Jone Due">
+              <img src="assets/img/user1-128x128.jpg" class="img-circle " alt="{{Auth::user()->name}}">
             </div>
           </div>
         </a>

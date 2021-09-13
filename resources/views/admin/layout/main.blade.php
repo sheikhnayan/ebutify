@@ -137,12 +137,12 @@ href="{{ asset('storage/'.$favicon ?? '') }}">
         <a class="" data-toggle="dropdown" href="#">
           <div class="user-panel d-flex mr-3">
             <div class="image">
-              <img src="{{ ('/storage'.'/'.Auth::user()->profile_photo_path) }}" class="img-circle " alt="Jone Due">
+              <img src="{{ ('/storage'.'/'.Auth::user()->profile_photo_path) }}" class="img-circle " alt="{{Auth::user()->name}}">
             </div>
           </div>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-item dropdown-header">Jone Due</span>
+          <span class="dropdown-item dropdown-header">{{Auth::user()->name}}</span>
           <div class="dropdown-divider"></div>
           <div class="dropdown-divider"></div>
           <a href="{{route('freelancer-profile')}}" class="dropdown-item">
