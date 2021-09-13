@@ -183,7 +183,7 @@
           <!-- Add icons to the links using the .nav-icon class
           with font-awesome or any other icon font library -->
           <li class="nav-item">
-            <a href="super-admin-panel.html" class="nav-link">
+            <a href="/super" class="nav-link">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
@@ -191,8 +191,8 @@
             </a>
           </li>
          
-          <li class="nav-item menu-open">
-            <a href="#" class="nav-link active">
+          <li class="nav-item menu">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-chart-pie"></i>
               <p>
                 Product Research
@@ -201,40 +201,57 @@
             </a>
             <ul class="nav nav-treeview pl-4 ml-2">
               <li class="nav-item">
-                <a href="all-products.html" class="nav-link active">
+                <a href="/super/all-products" class="nav-link active">
                   <p>All Products</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="categories-niches.html" class="nav-link">
+                <a href="/super/categories-niches" class="nav-link">
                   <p>Categories & Niches</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="/super/category" class="nav-link">
                   <p>Categories</p>
                 </a>
               </li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a href="{{url('/super/exlore-products')}}" class="nav-link">
+          <li class="nav-item menu">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tree"></i>
               <p>
                 Explores
                 <i class="fas fa-angle-right right"></i>
               </p>
             </a>
+            <ul class="nav nav-treeview pl-4 ml-2">
+              <li class="nav-item">
+                <a href="{{url('/super/exlore-products')}}" class="nav-link">
+                  <p>Explore Products</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{url('/super/amazon-products')}}" class="nav-link">
+                  <p>Ali Express Products</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{url('/super/store-products')}}" class="nav-link">
+                  <p>Store Products</p>
+                </a>
+              </li>
+            </ul>
           </li>
-          <li class="nav-item">
-            <a href="subcriber.html" class="nav-link">
+          <!-- <li class="nav-item">
+            <a href="/super/subscriber" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
                 Subscriber
                 <i class="fas fa-angle-right right"></i>
               </p>
             </a>
-          </li>
+          </li> -->
           <br>
           <li class="nav-item">
             <a href="#" class="nav-link">
@@ -247,6 +264,62 @@
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-chart-pie"></i>
+              <p>
+                Front Manage
+                <i class="right fas fa-angle-right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview pl-4 ml-2">
+              <li class="nav-item">
+                <a href="/super/homepage" class="nav-link">
+                  <p>Homepage</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/super/logos" class="nav-link">
+                  <p>Logo & Favicon</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/super/blog" class="nav-link">
+                  <p>Blog</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/super/category" class="nav-link">
+                  <p>Blog Category</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/super/faq" class="nav-link">
+                  <p>FAQ</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/super/review" class="nav-link">
+                  <p>Review</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/super/terms-condition" class="nav-link">
+                  <p>Terms of Services</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/super/privacy-policy" class="nav-link">
+                  <p>Privacy & Policy</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="/super/return-policy" class="nav-link">
+                  <p>Return Policy</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link">
               <i class="nav-icon fa fa-comments"></i>
               <p>
                 Messages
@@ -255,7 +328,23 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="freelancers-list.html" class="nav-link">
+            <a href="/super/tutorials" class="nav-link">
+              <i class="nav-icon fa fa-user"></i>
+              <p>
+                Tutorials
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/super/quickstart" class="nav-link">
+              <i class="nav-icon fa fa-user"></i>
+              <p>
+                Quick Starts
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/super/freelancers-list" class="nav-link">
               <i class="nav-icon fa fa-user"></i>
               <p>
                 Freelancers
@@ -263,7 +352,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="customer.html" class="nav-link">
+            <a href="/super/customer" class="nav-link">
               <i class="nav-icon fa fa-user-plus"></i>
               <p>
                 Customers

@@ -207,15 +207,14 @@ class UserExploreController extends Controller
     public function exploreAmz(Request $request)
     {
         if(Auth::check()){
-        $sortSelected = 0;
-        $filterSelected = 0;
-        $categorySelected = 0;
-        
+            $sortSelected = 0;
+            $filterSelected = 0;
+
         //-- HANDLE SORTING
         if($request->sort) {
             $sortSelected = $request->sort;
             $filterSelected = $request->filter;
-            $categorySelected = $request->category;
+
           switch($request->sort){
             case 1:
                 $orderColumn = 'profit';
@@ -233,19 +232,19 @@ class UserExploreController extends Controller
                 $orderColumn = 'total_order';
             break;
             default:
-                $orderColumn = 'id';
+                $orderColumn = 'product_name';
             break;        
             }
             
         }else{
             $orderColumn = 'created_at';
         }
+    
       
         //-- HANDLE FILTER
         if($request->filter) {
             $sortSelected = $request->sort;
             $filterSelected = $request->filter;
-            $categorySelected = $request->category;
           switch($request->filter){
             case 1:
                 $trendingProducts = ProductDetail::where('explore_pro_type', 'LIKE' ,'%amazon%')->where('price', '<=' ,'30')->orderBy($orderColumn,'DESC')->paginate(3);
@@ -254,8 +253,14 @@ class UserExploreController extends Controller
             case 2:
                 $trendingProducts = ProductDetail::where('explore_pro_type', 'LIKE' ,'%amazon%')->where('price', '>=' , '30')->orderBy($orderColumn,'DESC')->paginate(3);
             break;
+            case 3:
+                $trendingProducts = ProductDetail::where('explore_pro_type', 'LIKE' ,'%amazon%')->where('profit', '>=' , '15')->orderBy($orderColumn,'DESC')->paginate(3);
+            break;
+            case 4:
+                $trendingProducts = ProductDetail::where('explore_pro_type', 'LIKE' ,'%amazon%')->where('cost', '<=' , '20')->orderBy($orderColumn,'DESC')->paginate(3);
+            break;
             default:
-                $filterBy = 'id';
+                $filterBy = 'product_name';
             break;        
             }
         }else{
@@ -267,12 +272,16 @@ class UserExploreController extends Controller
             $trendingProducts = ProductDetail::where('explore_pro_type', 'LIKE' ,'%amazon%')->where('product_name', 'LIKE', '%'.$request->search.'%')->orderBy($orderColumn,'DESC')->paginate(3);
         }
         if (empty($trendingProducts)) {
-            $trendingProducts = ProductDetail::where('explore_pro_type', 'LIKE' ,'%amazon%')->orderBy($orderColumn,'DESC')->paginate(3);
+            $trendingProducts = ProductDetail::where('explore_pro_type', 'LIKE' ,'%amazon%')->orderBy($orderColumn,'DESC')->paginate(13);
         }
-        // dd($trendingProducts);
+            
+        // $trendingProducts = ProductDetail::where('explore_pro_type', 'LIKE' ,'%amazon%')->get();
         
+
         $artilces = '';
-        if ($request->ajax()) {
+            if ($request->ajax()) {
+
+            // dd($trendingProducts);
             foreach ($trendingProducts as $result) {
                 if($result->explore_star_rating >= 1){
                     $star1 = '<span class="fa fa-star checked"></span>';
@@ -300,73 +309,76 @@ class UserExploreController extends Controller
                     $star5 = '<span class="fa fa-star"></span>';
                 }
                 $artilces.=
-'                            <div class="col-md-4 mt-4" style="box-sizing: border-box; margin: auto;">
-              <div class="card shadow">
-                
-                <img src="'.$result->productImage[0]->image_link_1.'" class="card-img-top img-fluid" alt="...">
-                
-                <div class="row card-body px-2">
-                  <div class="col-12 pb-1 px-3" style="border-bottom: 2px solid #DCDCDC;">
-                    <h5 class="card-title">'.$result->product_name.'</h5>
-                  </div> 
-                  <div class="row mt-3">
-                    <div class="col-12 text-center px-3">
-                        '.$star1.'
-                        '.$star2.'
-                        '.$star3.'
-                        '.$star4.'
-                        '.$star5.'
+                '<div class="col-md-4 mt-4" style="box-sizing: border-box; flex-flow: row wrap; margin: auto;">
+                    <div class="card shadow">
+                      <img src="'.$result->productImage[0]->image_link_1.'" class="card-img-top img-fluid" alt="...">
+                      <div class="row card-body px-2">
+                        <div class="col-12 pb-1 px-3" style="border-bottom: 2px solid #DCDCDC;">
+                          <h5 class="card-title">'.$result->product_name.'</h5>
+                        </div> 
+                        <div class="row mt-3">
+                          <div class="col-12 text-center px-3">
+                            '.$star1.'
+                            '.$star2.'
+                            '.$star3.'
+                            '.$star4.'
+                            '.$star5.'
+                            
+                            <span>'.$result->explore_star_rating.'</span>
+                          </div>
+                          <div class="col-12 text-center px-3">
+                            <span class="cae-cart-icon"><i class="fas fa-shopping-basket"></i> Total Order</span>
+                            <span>'.$result->total_order.'</span>
+                          </div>
 
-                        <span>'.$result->explore_star_rating.'</span>
-                    </div>
-                    <div class="col-12 text-center px-3">
-                      <span class="cae-cart-icon"><i class="fas fa-atom"></i> Selling Price</span>
-                      <span>'.$result->price.'</span>
-                    </div>
-                    <div class="col-12 text-center px-3">
-                      <span class="cae-cart-icon"><i class="fas fa-atom"></i> Total Review</span>
-                      <span>'.$result->explore_t_review.'</span>
-                    </div>
+                          <div class="col-12 text-center px-3">
+                            <span class="cae-cart-icon"><i class="fas fa-shopping-basket"></i> Total Review</span>
+                            <span>'.$result->explore_t_review.'</span>
+                          </div>
 
-                  </div>
-                </div>
-
-                <div class="row mb-3 mx-1">
-                  <div class="col-6 text-center p-0">
+                          <div class="col-12 text-center px-3">
+                            <span class="cae-cart-icon"><i class="fas fa-shopping-basket"></i> Total Price</span>
+                            <span>'.$result->price.'</span>
+                          </div>
+                          
+                          <div class="col-12 text-center px-3">
+                            <span class="cae-cart-icon"><i class="fas fa-atom"></i> Total Revenue</span>
+                            <span>'.$result->explore_t_review.'</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-6 text-center p-0">
                     <a href="'.$result->productLink[0]->amazon.'" class="cae-view rounded px-2 py-1" style="color: #918C9B;"><i class="fab fa-amazon" style="background: #191919; color: #fff; font-size: 12px; padding: 2px; line-height: 13px;"></i> View Amazon</a>
                   </div>
-                  <div class="col-6 text-center p-0">
-                    <a href="'.$result->productLink[0]->aliexpress.'" class="cae-view rounded px-2 py-1" style="color: #918C9B;"><img src="https://ebutify.com/assets/img/ali.png" style="width: 16px; padding-bottom: 5px;" alt=""> View AliExpress</a>
-                  </div>
-                </div>
-
-              </div>
-            </div>';
+                      <div class="row px-2 mb-2 rounded justify-content-center">
+                        <a href="'.$result->productLink[0]->aliexpress.'" class="cae-view"><img src="https://ebutify.com/assets/img/ali.png" class="img-fluid" style="width: 16px; margin: 5px;" alt=""> View on AliExpress</a>
+                      </div>
+                    </div>
+                </div>';
             }
             return $artilces;
         }
+            
+                            
 
-
-
-        
-
-
-        // $trendingProducts = ProductDetail::where('explore_pro_type', 'LIKE' ,'%amazon%')->get();
-
-        // dd( $trendingProducts );
 
         foreach ($trendingProducts as $trendingproduct) {
+            
             $country = $trendingproduct->country.",";
+
         }
+
 
             if (empty($country)) {
 
-                return view('user.explore-amazon',compact('trendingProducts','sortSelected','filterSelected'));
+                return view('user.explore-ali',compact('trendingProducts','sortSelected','filterSelected'));
 
             }else{
 
-                return view('user.explore-amazon',compact('trendingProducts','country','sortSelected','filterSelected'));
+                return view('user.explore-ali',compact('trendingProducts','country','sortSelected','filterSelected'));
+
             }
+        
 
         }else{
 

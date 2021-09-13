@@ -12,32 +12,34 @@
             <h6>Our Creative Freelancer List</h6>
           </div>
           <div class="col-md-6 col-lg-6 freelancer-card-header">
-            <a href="add-new-freelancer.html" class="btn my-2 my-sm-0 btn-primary float-right">Create New Freelancer</a>
+            <a href="{{route('super/add-new-freelancer')}}" class="btn my-2 my-sm-0 btn-primary float-right">Create New Freelancer</a>
           </div>
+          @foreach($freelancers as $freelancer)
           <div class="col-md-6 col-lg-6 freelancer-card">
             <div class="card-deck">
               <div class="card">
                 <div class="top-part text-center">
-                  <img class="card-img-top" src="assets/img/card-bg.jpg" alt="Card image cap">
-                  <img src="assets/img/avatar2.png" alt="User Avatar" class="img-circle freelancer-profile">
-                  <h3 class="f-title">Engr. Md. Rezaul Islam</h3>
-                  <h3 class="f-title">CEO & Founder</h3>
+                  <img class="card-img-top" src="{{asset('assets/img/card-bg.jpg')}}" alt="Card image cap">
+                  <img src="{{asset('storage/'.$freelancer->profile_photo_path) ?? 'assets/img/avatar5.png'}}" alt="User Avatar" class="img-circle freelancer-profile">
+                  <h3 class="f-title">{{$freelancer->name}}</h3>
+                  <!-- <h3 class="f-title">CEO & Founder</h3> -->
                 </div>
                 <div class="bottom-part">
                   <div class="card-body card-founder">
-                    <dt>Education</dt>
-                    <dd>B.Sc in Computer Science and Engineering from the Dhaka international University.</dd>
+                    <!-- <dt>Education</dt>
+                    <dd>B.Sc in Computer Science and Engineering from the Dhaka international University.</dd> -->
                     <dt>Location</dt>
-                    <dd>Boalerdara, Nageswari, Kurigram- 5660.</dd>
-                    <dt>Skills</dt>
-                    <dd>Web Design & Development, Android Development and the eCom King</dd>
+                    <dd>{{$freelancer->address}}</dd>
+<!--                     <dt>Skills</dt>
+                    <dd>Web Design & Development, Android Development and the eCom King</dd> -->
                   </div>
                 </div>
               </div>
             </div>
           </div>
+          @endforeach
 
-          <div class="col-md-6 col-lg-6 freelancer-card">
+<!--           <div class="col-md-6 col-lg-6 freelancer-card">
             <div class="card-deck">
               <div class="card">
                 <div class="top-part text-center">
@@ -119,7 +121,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
           
         </div>
         <!-- /.row -->
