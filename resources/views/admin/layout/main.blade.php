@@ -200,22 +200,39 @@ href="{{ asset('storage/'.$favicon ?? '') }}">
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="/super/category" class="nav-link">
                   <p>Categories</p>
                 </a>
               </li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a href="{{url('/super/exlore-products')}}" class="nav-link">
+          <li class="nav-item menu">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tree"></i>
               <p>
                 Explores
                 <i class="fas fa-angle-right right"></i>
               </p>
             </a>
+            <ul class="nav nav-treeview pl-4 ml-2">
+              <li class="nav-item">
+                <a href="{{url('/super/exlore-products')}}" class="nav-link">
+                  <p>Explore Products</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{url('/super/amazon-products')}}" class="nav-link">
+                  <p>Ali Express Products</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{url('/super/store-products')}}" class="nav-link">
+                  <p>Store Products</p>
+                </a>
+              </li>
+            </ul>
           </li>
-          <li class="nav-item">
+<!--           <li class="nav-item">
             <a href="/super/subcriber" class="nav-link">
               <i class="nav-icon fas fa-edit"></i>
               <p>
@@ -223,7 +240,7 @@ href="{{ asset('storage/'.$favicon ?? '') }}">
                 <i class="fas fa-angle-right right"></i>
               </p>
             </a>
-          </li>
+          </li> -->
           <br>
           <li class="nav-item">
             <a href="#" class="nav-link">
@@ -356,5 +373,6 @@ href="{{ asset('storage/'.$favicon ?? '') }}">
 <script src="{{ asset('admin/assets/js/script.js') }}"></script>
 
 
+@yield('js')
 </body>
 </html>

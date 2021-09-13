@@ -654,7 +654,7 @@ class ProductController extends Controller
     
     public function shopifyProductUpdate(Request $request){
         
-        
+        // dd($request->all());
         $validatedData = $request->validate([
 
         ]);
@@ -694,11 +694,9 @@ class ProductController extends Controller
         $shopify_products->product_link4 = $request->input('competitor14');
         $shopify_products->ali_express_link4 = $request->input('aliexpress4');
         $shopify_products->product_type4 = $request->input('type4');
-        
         $shopify_products->uploader_name = $request->input('uploadername');
-        $shopify_products->user_id = $request->input('id');
         $shopify_products->save();
-        
+
         return back()->with('status', 'Product Updated Successfully!');
         
     }

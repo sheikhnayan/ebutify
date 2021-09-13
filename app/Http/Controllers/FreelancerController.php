@@ -63,7 +63,7 @@ class FreelancerController extends Controller
                     $user = Auth()->user()->created_at;
                     $stripePrice = $subscriptionItem->stripe;
                     $quantity = $subscriptionItem->quantity;
-                    dd($payment->amount(), 'Price = '.$stripePrice, 'Quantity = '.$quantity, 'Card Name = '.$cardName, 'Subsription Plan Id = '.$subscriptions, 'Card Last Four ='.$cardLastFour);
+                    // dd('Price = '.$stripePrice, 'Quantity = '.$quantity, 'Card Name = '.$cardName, 'Subsription Plan Id = '.$subscriptions, 'Card Last Four ='.$cardLastFour);
 
                     if (Auth::user()->subscribed('main')) {
                         //

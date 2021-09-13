@@ -12,12 +12,17 @@ use App\Models\Review;
 use App\Models\Tutorial;
 use App\Models\QuickStart;
 use App\Models\TermsAndCondition;
+use App\Models\ShopifyProduct;
 use App\Models\PrivacyAndPolicy;
 use App\Models\RefundPolicy;
 use App\Models\BlogCategory;
+use App\Models\Category;
 use Illuminate\Support\Facades\Storage;
 use Auth;
 use App\Models\ProductDetail;
+use Illuminate\Support\Collection;
+use Illuminate\Support\Str;
+use Hash;
 
 
 class SuperAdminController extends Controller
@@ -520,7 +525,7 @@ class SuperAdminController extends Controller
         // dd('tor mayre chudi');
         ProductDetail::where('id', $id)->delete();
 
-        return redirect('/super/exlore-products');
+        return redirect()->back()->with('message','DELETED');
 
     }
 
@@ -528,12 +533,52 @@ class SuperAdminController extends Controller
     {
         if($request->search) {
             // dd($request->search);
-            $trendingProducts = ProductDetail::whereNotNull('explore_pro_type')->where('product_name', 'LIKE', '%'.$request->search.'%')->paginate(50);
+            $trendingProducts = ProductDetail::where('explore_pro_type', 'LIKE','%ali_express%')->where('product_name', 'LIKE', '%'.$request->search.'%')->paginate(50);
         }
         if (empty($trendingProducts)) {
             $trendingProducts = ProductDetail::whereNotNull('explore_pro_type')->paginate(50);
         }
         return view('super_admin.super-admin-explore',compact('trendingProducts'));
+    }
+
+    public function AmazonProduct(Request $request)
+    {
+        if($request->search) {
+            // dd($request->search);
+            $trendingProducts = ProductDetail::where('explore_pro_type', 'LIKE','%amazon%')->where('product_name', 'LIKE', '%'.$request->search.'%')->paginate(50);
+        }
+        if (empty($trendingProducts)) {
+            $trendingProducts = ProductDetail::where('explore_pro_type', 'LIKE','%ali_express%')
+                                            ->orderBy('created_at','DESC')
+                                            ->paginate(50);
+        }
+        return view('super_admin.super-admin-explore',compact('trendingProducts'));
+    }
+
+    public function exploreShopifyProduct()
+    {
+        $trendingProducts = ShopifyProduct::whereNotNull('shopify_link')
+                                            ->orderBy('created_at','DESC')
+                                            ->paginate(50);
+
+        return view('super_admin.super-admin-store',compact('trendingProducts'));
+    }
+
+    public function shopifyEdit($id)
+    {
+        //  FETCH PRODUCT DETAILS BY ID
+        $productDetails = ShopifyProduct::find($id);
+
+        //  FETCH SELECTED TYPE DATA
+        $productType = $productDetails->product_type;
+
+        //  FETCH SELECTED STATUS
+        $productStatus = $productDetails->status;
+        
+        $containsAv = Str::contains($productStatus, 'Available');
+        $containsUnav = Str::contains($productStatus, 'Unavailable');
+
+        return view('super_admin.super-admin-store-edit', compact('id', 'productDetails','containsAv','containsUnav','productType'));
     }
     
     public function quickstart()
@@ -657,4 +702,68 @@ class SuperAdminController extends Controller
         return redirect()->back()->with('errors', 'Subscriber Deleted Successfully!');
 
     }
+
+    public function SupCategory(Request $request)
+    {
+
+        $data = Category::all();
+
+        return view('super_admin.sup-categories',compact('data'));
+    }
+
+    public function AddSupCategory(Request $request)
+    {
+        return view('admin.sup-category-add');
+    }
+    public function SupCategoryAdd(Request $request)
+    {
+        $add = new Category;
+        $add->category = $request->name;
+        $add->save();
+
+        return redirect()->back()->with('status', 'Category created successfully');
+    }
+
+    public function SupCategoryEdit($id){
+
+        $data = Category::where('id', $id)->first();
+
+        return view('admin.sup-category-add',compact('data'));
+    }
+
+    public function CategoryUpdate(Request $request,$id){
+
+        $update = Category::where('id', $id)->update([
+            'category' => $request->name,
+        ]);
+
+        return redirect()->back()->with('status', 'Category updated successfully');
+    }
+
+    public function SupFreelancerList()
+    {
+        $freelancers = User::where('user_type',"freelancer")->get();
+        // dd($freelancers);
+        return view('admin.freelancers-list',compact('freelancers'));
+    }
+
+    public function AddNewFreelancer($value='')
+    {
+        return view('admin.add-new-freelancer');
+    }
+
+    public function AddNewFreelancerForReal(Request $request)
+    {
+        $add = new User;
+        $add->name = $request->name;
+        $add->email = $request->plan_name;
+        $add->user_type = 'freelancer';
+        $add->plan_name = $request->plan_name;
+        $add->password = Hash::make($request->password);
+        $add->address = $request->address;
+        $add->save();
+
+        return redirect()->back()->with('status', 'Freelancer updated successfully');
+    }
+
 }

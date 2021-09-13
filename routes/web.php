@@ -393,7 +393,37 @@ Route::middleware(['auth:sanctum', 'verified'])->get('product-delete/{id}', [Sup
 //  SUPER ADMIN EXPLORE PRODUCTS
 Route::middleware(['auth:sanctum', 'verified'])->get('/super/exlore-products', [SuperAdminController::class, 'ExploreProduct'])->name('super/exlore-products');
 
+//  SUPER ADMIN EXPLORE AMAZON PRODUCTS
+Route::middleware(['auth:sanctum', 'verified'])->get('/super/amazon-products', [SuperAdminController::class, 'AmazonProduct'])->name('super/amazon-products');
+
+//  SUPER ADMIN STORE PRODUCTS
+Route::middleware(['auth:sanctum', 'verified'])->get('/super/store-products', [SuperAdminController::class, 'exploreShopifyProduct'])->name('super/store-products');
+
 //  SUPER ADMIN SUBSCRIPTION PAGE
-Route::middleware(['auth:sanctum', 'verified'])->get('/super/exlore-products', [SuperAdminController::class, 'ExploreProduct'])->name('super/subscriber');
+Route::middleware(['auth:sanctum', 'verified'])->get('/super/subscriber', [SuperAdminController::class, 'Subscriber'])->name('super/subscriber');
+
+//  SUPER ADMIN SUBSCRIPTION PAGE
+Route::middleware(['auth:sanctum', 'verified'])->get('/super/category', [SuperAdminController::class, 'SupCategory'])->name('super/category');
+
+// SUPER ADMIN VIEW SHOPIFY EDIT PRODUCT
+Route::middleware(['auth:sanctum', 'verified'])->get('/shopify-edit/{id}', [SuperAdminController::class, 'shopifyEdit'])->name('shopify-edit');
+
+// SUPER ADMIN ADD CATEGORY
+Route::middleware(['auth:sanctum', 'verified'])->get('/sup-add-category', [SuperAdminController::class, 'AddSupCategory'])->name('sup-add-category');
+
+// SUPER ADMIN VIEW SHOPIFY EDIT PRODUCT
+Route::middleware(['auth:sanctum', 'verified'])->get('/super/category-add', [SuperAdminController::class, 'SupCategoryAdd'])->name('super/category-add');
+
+Route::post('/sup/category', [SuperAdminController::class, 'SupCategoryAdd']);
+Route::get('/sup/category/edit/{id}', [SuperAdminController::class, 'SupCategoryEdit'])->name('edit-sup-category');
+Route::post('/sup/category/update/{id}', [SuperAdminController::class, 'CategoryUpdate'])->name('update-sup-category');
+
+// SUPER ADMIN VIEW SHOPIFY EDIT PRODUCT
+Route::middleware(['auth:sanctum', 'verified'])->get('/super/freelancers-list', [SuperAdminController::class, 'SupFreelancerList'])->name('super/freelancers-list');
+
+// SUPER ADMIN VIEW SHOPIFY EDIT PRODUCT
+Route::middleware(['auth:sanctum', 'verified'])->get('/super/add-new-freelancer', [SuperAdminController::class, 'AddNewFreelancer'])->name('super/add-new-freelancer');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/super/add-new-freelancer-for-real', [SuperAdminController::class, 'AddNewFreelancerForReal'])->name('super/add-new-freelancer-for-real');
 
 // SUPER ADMIN END

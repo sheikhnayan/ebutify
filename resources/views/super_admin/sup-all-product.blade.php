@@ -6,6 +6,13 @@
     <!-- Main content -->
     <section id="main-content" class="content">
       <div class="container-fluid">
+        @if (\Session::has('message'))
+            <div class="alert alert-success">
+                <ul>
+                    <li>{!! \Session::get('message') !!}</li>
+                </ul>
+            </div>
+        @endif
         <div class="row">
             <div class="col-md-12">
 <!--                 <form class="row mb-3 mt-1">
