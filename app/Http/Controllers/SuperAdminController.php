@@ -754,14 +754,30 @@ class SuperAdminController extends Controller
 
     public function AddNewFreelancerForReal(Request $request)
     {
-        $add = new User;
-        $add->name = $request->name;
-        $add->email = $request->plan_name;
-        $add->user_type = 'freelancer';
-        $add->plan_name = $request->plan_name;
-        $add->password = Hash::make($request->password);
-        $add->address = $request->address;
-        $add->save();
+
+        if($request->profile_upload != null){    
+                $path = $request->profile_upload->store('public/userimages/profile');
+                $path = $request->profile_upload->store('userimages/profile');
+
+                $add = new User;
+                $add->name = $request->name;
+                $add->email = $request->email;
+                $add->user_type = 'freelancer';
+                $add->plan_name = $request->plan_name;
+                $add->password = Hash::make($request->password);
+                $add->address = $request->address;
+                $add->profile_photo_path = $path;
+                $add->save();
+            }else{
+                $add = new User;
+                $add->name = $request->name;
+                $add->email = $request->email;
+                $add->user_type = 'freelancer';
+                $add->plan_name = $request->plan_name;
+                $add->password = Hash::make($request->password);
+                $add->address = $request->address;
+                $add->save();
+            }
 
         return redirect()->back()->with('status', 'Freelancer updated successfully');
     }

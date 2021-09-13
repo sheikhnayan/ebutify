@@ -10,6 +10,7 @@
           <div class="col-12">
             <div class="bg-white m-3 p-4 freelancer-form">
           <form action="{{route('super/add-new-freelancer-for-real')}}" method="POST" enctype="multipart/form-data">
+            @csrf
               <div class="row">
                 <div class="col-lg-7">
                 <!-- <form class="pr-2"> -->
@@ -89,11 +90,11 @@
      });
    });
  
-   function profile_upload(){
+   function profileSelect(){
      $('#profile_upload').trigger('click');
    }
    $(function () {
-       $("#profile_upload").change(function () {
+       $("#profileSelect").change(function () {
          var reader = new FileReader();
          reader.onload = function (e) {
              $("#profile_upload_img").attr("src", e.target.result);
