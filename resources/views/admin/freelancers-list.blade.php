@@ -28,8 +28,24 @@
                   <div class="card-body card-founder">
                     <!-- <dt>Education</dt>
                     <dd>B.Sc in Computer Science and Engineering from the Dhaka international University.</dd> -->
-                    <dt>Location</dt>
-                    <dd>{{$freelancer->address}}</dd>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <dt>Location</dt>
+                        <dd>{{$freelancer->address}}</dd>
+                      </div>
+                      <div class="col-md-6">
+                        <dt>Status</dt>
+                        @if ($freelancer->status == 1)
+                          <dd>
+                            <a class="btn btn-danger" href="/super/freelancer/status/{{ $freelancer->id }}/deactivate">Deactivate</a>
+                          </dd>
+                        @else
+                          <dd>
+                            <a class="btn btn-success" href="/super/freelancer/status/{{ $freelancer->id }}/activate">Activate</a>
+                          </dd>
+                        @endif
+                      </div>
+                    </div>
 <!--                     <dt>Skills</dt>
                     <dd>Web Design & Development, Android Development and the eCom King</dd> -->
                   </div>
