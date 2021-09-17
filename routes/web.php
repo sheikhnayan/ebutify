@@ -426,4 +426,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/super/add-new-freelancer'
 
 Route::middleware(['auth:sanctum', 'verified'])->post('/super/add-new-freelancer-for-real', [SuperAdminController::class, 'AddNewFreelancerForReal'])->name('super/add-new-freelancer-for-real');
 
+Route::middleware(['auth:sanctum', 'verified'])->get('/sup-product-edit/{id}', [SuperAdminController::class, 'SupEditAll'])->name('sup-product-edit');
+
 // SUPER ADMIN END

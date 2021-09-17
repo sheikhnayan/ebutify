@@ -81,7 +81,7 @@
                   <td>{{$productDetail->created_at}}</td>
                   <td>{{$productDetail->uploader_name}}</td>
                   <td>
-                    <a href="{{ route ('product-edit', ['id' => $productDetail->id]) }}" class="btn btn-primary">Edit</a>
+                    <a href="{{ route ('sup-product-edit', ['id' => $productDetail->id]) }}" class="btn btn-primary">Edit</a>
                   </td>
                   <td>
                     <a href="{{ route ('product-delete', ['id' => $productDetail->id]) }}" onclick="return confirm('Are you sure to delete?');" class="btn btn-danger">Delete</a>
