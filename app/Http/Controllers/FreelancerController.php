@@ -8,6 +8,8 @@ use App\Models\User;
 use App\Models\ProductDetail;
 use App\Models\QuickStart;
 use Stripe\Subscription;
+use DB;
+use Carbon\Carbon;
 
 class FreelancerController extends Controller
 {
@@ -47,7 +49,19 @@ class FreelancerController extends Controller
             
                 }else{
 
-                    //  SHOW DASHBOARD IF SUBSCRIBED
+                    $plan = DB::table('subscriptions')->where('user_id', Auth::user()->id)->latest()->first();
+
+                    if($plan->stripe_plan == 'price_1If8QdEgl2c23BzjE4HCoJc3'){
+
+                        $enddate = Carbon::parse(Auth::user()->updated_at)->addMonth()->format('d.m.Y');
+
+                    }elseif($plan->stripe_plan == 'price_1If8VPEgl2c23Bzjq8LUvao7'){
+
+                        $enddate = Carbon::parse(Auth::user()->updated_at)->addYear()->format('d.m.Y');
+
+                    }
+                    if($enddate <= Carbon::now()){
+                        //  SHOW DASHBOARD IF SUBSCRIBED
                     $invoices = Auth()->user()->invoices();
                     // dd($subscriptions);
 
@@ -86,24 +100,47 @@ class FreelancerController extends Controller
                     return view('user.customer-dashboard',compact('products','data'));
 
                     }else{
-
+                        return redirect('/logout');
                     }
-                    Auth::logout();
+                    }else{
+                        //  FETCH AVAILABLE PLANS
+                    $availablePlans = [ 'price_1If8QdEgl2c23BzjE4HCoJc3' => 'Monthly',
+                    'price_1If8VPEgl2c23Bzjq8LUvao7' => 'Yearly',
+                    
+                    ];
 
-                    $request->session()->invalidate();
-            
-                    $request->session()->regenerateToken();
-            
-                    return view('auth.login');
+
+                    //  FETCH SUBSCRIPTION REQUIRED DATA
+                    $data = [
+                        'intent' => Auth::user()->createSetupIntent(),
+                        'plans' => $availablePlans,
+                    ];
+                    
+                    //  VIEW PAYMENT PAGE WITH DATA
+                    return view('payment')->with($data);
+                    }
+
+                    
                 }
 
 
             }elseif (Auth::user()->user_type == "freelancer") {
+                if(Auth::user()->status ==1)
+                {
+                    $user_id = auth()->id();
+                    $products = ProductDetail::where('user_id', $user_id)->get();
+                    $productAdded = count($products);
+                    return view('freelancer.freelancer-dashboard', compact('productAdded'));
+                }else
+                {
+                    // Auth::logout();
 
-                $user_id = auth()->id();
-                $products = ProductDetail::where('user_id', $user_id)->get();
-                $productAdded = count($products);
-                return view('freelancer.freelancer-dashboard', compact('productAdded'));
+                    // $request->session()->invalidate();
+
+                    // $request->session()->regenerateToken();
+
+                    return redirect('/logout')->with('error','Your Account is Deactivated!');
+                }
             }elseif(Auth::user()->user_type == "admin"){
 
                 $user_id = auth()->id();
@@ -138,7 +175,7 @@ class FreelancerController extends Controller
 
         $request->session()->regenerateToken();
 
-        return view('auth.login');
+        return redirect('/login');
     }
 
     public function workReportFreelancer()

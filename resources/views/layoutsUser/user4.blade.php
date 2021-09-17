@@ -159,7 +159,7 @@
                <a class="" data-toggle="dropdown" href="#">
                   <div class="user-panel d-flex mr-3">
                      <div class="image">
-                        <img src="{{asset('storage/'.Auth::user()->profile_photo_path) ?? 'assets/img/avatar5.png'}}" class="img-circle " alt="Jone Due">
+                        <img src="{{asset('storage/'.Auth::user()->profile_photo_path) ?? 'assets/img/avatar5.png'}}" class="img-circle " alt="{{Auth::user()->name}}">
                      </div>
                   </div>
                </a>

@@ -32,6 +32,10 @@ use App\Models\FileName;
 use App\Models\GifName;
 use App\Models\GifName2;
 use App\Models\GifName3;
+<<<<<<< HEAD
+=======
+use Validator;
+>>>>>>> a33c84f6db8232637aaa31273ca636b388f5f051
 
 
 class SuperAdminController extends Controller
@@ -761,8 +765,91 @@ class SuperAdminController extends Controller
         return view('admin.add-new-freelancer');
     }
 
+    public function SupEditAll($id)
+    {
+        //  FETCH PRODUCT DETAILS BY ID
+        $productDetails = ProductDetail::find($id);
+        
+        $productImages = ProductImage::firstWhere('product_detail_id', $id);
+         
+        $productLinks = ProductLink::firstWhere('product_detail_id', $id);
+        
+
+
+        //  FETCH SELECTED OPPORTUNITY DATA
+        $opportunitys = $productDetails->opportunity_level;
+
+        $containsT = Str::contains($opportunitys, 'trending_product');
+        $containsF = Str::contains($opportunitys, 'facebook_ads');
+        $containsU = Str::contains($opportunitys, 'untapped_product');
+
+
+        //  FETCH SELECTED GENDER DATA
+        $gender = $productDetails->gender;
+        
+        $containsMen = Str::contains($gender, 'Men');
+        $containsWomen = Str::contains($gender, 'Women');
+        $containsBaby = Str::contains($gender, 'Baby');
+        $containsUnisex = Str::contains($gender, 'Unisex');
+
+
+        //  FETCH SELECTED AGE DATA
+        $customerAge = $productDetails->age;
+
+        $containsUnder18   = Str::contains($customerAge, 'Under 18');
+        $containsUnder1824 = Str::contains($customerAge, '18-24');
+        $containsUnder2534 = Str::contains($customerAge, '25-34');
+        $containsUnder3444 = Str::contains($customerAge, '34-44');
+        $containsUnder4554 = Str::contains($customerAge, '45-54');
+        $containsUnder5564 = Str::contains($customerAge, '55-64');
+        $containsUnder65   = Str::contains($customerAge, '65+');
+
+        //  FETCH SELECTED CATEGORY DATA
+        $category = $productDetails->category;
+
+        $containsBAC = Str::contains($category, 'Bike Accessories');
+        $containsMAC = Str::contains($category, 'Mobile Accessories');
+        $containsBS = Str::contains($category, 'Bag\'s & Shoes');
+        $containsOD = Str::contains($category, 'Outdoor');
+        $containsBH = Str::contains($category, 'Beauty Hair');
+
+        $containsJW = Str::contains($category, 'Jewellery');
+        $containsKH = Str::contains($category, 'Kitchen & household');
+        $containsCUC = Str::contains($category, 'Computer Accessories');
+        $containsELE = Str::contains($category, 'Electronics');
+        $containsGIM = Str::contains($category, 'Garden Improvement');
+        $containsMFA = Str::contains($category, 'Man\'s Fashion');
+
+        $containsWf = Str::contains($category, ' Women\'s Fashion');
+        $containsHB = Str::contains($category, 'Health & Beauty');
+        $containsBK = Str::contains($category, 'Baby & Kids');
+        $containsFIT = Str::contains($category, 'Fitness');
+        $containsCA = Str::contains($category, 'Car Accessories');
+        $containsHG = Str::contains($category, 'Home & Gerden');
+        $containsPA = Str::contains($category, 'Pet Accessories');
+
+        //  FETCH SELECTED TYPE DATA
+        $productType = $productDetails->product_type_id;
+
+        $containsSa = Str::contains($productType, 1);
+        $containsUn = Str::contains($productType, 2);
+
+
+        //  FETCH SELECTED STATUS
+        $productStatus = $productDetails->status;
+        
+        $containsAv = Str::contains($productStatus, 'Available');
+        $containsUnav = Str::contains($productStatus, 'Unavailable');
+
+        return view('super_admin.sup-admin-edit-products', compact('id', 'productDetails', 'productLinks', 'productImages','containsT','containsF','containsU','containsUnder18','containsUnder1824','containsUnder2534','containsUnder3444','containsUnder4554','containsUnder5564','containsUnder65','containsMen','containsWomen','containsBaby','containsUnisex','containsSa','containsUn','containsAv','containsUnav','containsHB','containsBK','containsFIT','containsCA','containsHG','containsPA','containsBAC','containsMAC','containsBS','containsOD','containsBH','containsJW','containsKH','containsCUC','containsELE','containsGIM','containsMFA','containsWf'));
+    }  
+    
     public function AddNewFreelancerForReal(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+			'password' => 'required_with:confirm_password|same:confirm_password',
+			'confirm_password' => ['required'],
+		])->validate();
 
         if($request->profile_upload != null){    
                 $path = $request->profile_upload->store('public/userimages/profile');
@@ -791,6 +878,7 @@ class SuperAdminController extends Controller
         return redirect()->back()->with('status', 'Freelancer updated successfully');
     }
 
+<<<<<<< HEAD
     public function SupEditAll($id)
     {
         //  FETCH PRODUCT DETAILS BY ID
@@ -869,5 +957,24 @@ class SuperAdminController extends Controller
 
         return view('super_admin.sup-admin-edit-products', compact('id', 'productDetails', 'productLinks', 'productImages','containsT','containsF','containsU','containsUnder18','containsUnder1824','containsUnder2534','containsUnder3444','containsUnder4554','containsUnder5564','containsUnder65','containsMen','containsWomen','containsBaby','containsUnisex','containsSa','containsUn','containsAv','containsUnav','containsHB','containsBK','containsFIT','containsCA','containsHG','containsPA','containsBAC','containsMAC','containsBS','containsOD','containsBH','containsJW','containsKH','containsCUC','containsELE','containsGIM','containsMFA','containsWf'));
     }    
+=======
+    public function FreelancerDeactive($id)
+    {
+        $update = User::where('id',$id)->update([
+            'status' => 0
+        ]);
+
+        return back();
+    }
+
+    public function FreelancerActive($id)
+    {
+        $update = User::where('id',$id)->update([
+            'status' => 1
+        ]);
+
+        return back();
+    }
+>>>>>>> a33c84f6db8232637aaa31273ca636b388f5f051
 
 }

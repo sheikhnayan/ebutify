@@ -10,6 +10,15 @@
           <div class="col-12">
             <div class="bg-white m-3 p-4 freelancer-form">
           <form action="{{route('super/add-new-freelancer-for-real')}}" method="POST" enctype="multipart/form-data">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             @csrf
               <div class="row">
                 <div class="col-lg-7">
@@ -35,20 +44,30 @@
                         <input type="number" class="form-control" id="inputPhone" name="plan_name">
                     </div>
                 <!-- </form> -->
-                <button type="submit" class="btn-outline-dark"></button>
+                {{-- <button type="submit" class="btn-outline-dark"></button> --}}
                 </div>
               </div>
 
           
               <!-- <div class="row"> -->
+                <div class="row">
                   <div class="col-lg-5 pr-2 mt-3 mb-3">
-                      <div class="profile-box">
-                        <img id="dvPreview" src="assets/img/avatar.png" class="img-circle d-block" style="width: 150px;" alt="Client Image">
-                        <input accept=".png, .jpg, .jpeg, .gif" type="file" id="profile_upload" name="profile_upload" style="display: none;">
-                        <button type="button" onclick="profileSelect()" class="btn btn-outline-dark btn-transparent profile-upload-btn"><img src="assets/img/Group-315.png">Upload Profile Image</button>
-                      </div>
-                  </div>
-                <button type="submit" class="btn-outline-dark"></button>  
+                    <div class="profile-box">
+                      <img id="dvPreview" src="{{ asset('assets/img/avatar.png') }}" class="img-circle d-block" style="width: 150px;" alt="Client Image">
+                      <input accept=".png, .jpg, .jpeg, .gif" type="file" id="profile_upload" name="profile_upload" style="display: none;">
+                      <button type="button" onclick="profileSelect()" class="btn btn-outline-dark btn-transparent profile-upload-btn"><img src="{{ asset('assets/img/Group-315.png') }}">Upload Profile Image</button>
+                    </div>
+                </div>
+                <div class="col-lg-5 pr-2 mt-3 mb-3">
+                  <label for="inputPhone">Create Password</label>
+                  <input type="password" class="form-control" name="password" id=""> <br>
+                  <label for="inputPhone">Confirm Password</label>
+                  <input type="password" class="form-control" name="confirm_password" id="">
+                </div>
+                </div>
+                  <div class="col-md-12">
+                    <button style="width:100%;" type="submit" class="btn-success btn">Create</button> 
+                  </div> 
           </form>
 <!--                   <div class="col-lg-7">
                     <form>
@@ -94,10 +113,10 @@
      $('#profile_upload').trigger('click');
    }
    $(function () {
-       $("#profileSelect").change(function () {
+       $("#profile_upload").change(function () {
          var reader = new FileReader();
          reader.onload = function (e) {
-             $("#profile_upload_img").attr("src", e.target.result);
+             $("#dvPreview").attr("src", e.target.result);
          }
          reader.readAsDataURL($(this)[0].files[0]);
        });
