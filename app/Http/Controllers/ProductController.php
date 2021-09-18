@@ -455,6 +455,7 @@ class ProductController extends Controller
     public function productUpdate(Request $request)
     {
         $videoName = $request->session()->pull('video', 'default');
+        
         if ($request->type == 'Saturated' ) {
             $type_id = 1;
         }else{
@@ -508,9 +509,12 @@ class ProductController extends Controller
         $productDetails->content = $request->input('content');
         $productDetails->uploader_name = $request->input('uploadername');
         if(!empty($fileName)){
+
+            if($videoName != 'default'){
             $productDetails->video_name = $fileName;
 
             FileName::where('video_name', $fileName)->delete();
+            }
         }
         $productDetails->save();
 
