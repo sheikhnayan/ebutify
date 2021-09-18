@@ -32,10 +32,10 @@ use App\Models\FileName;
 use App\Models\GifName;
 use App\Models\GifName2;
 use App\Models\GifName3;
-<<<<<<< HEAD
-=======
+
+
 use Validator;
->>>>>>> a33c84f6db8232637aaa31273ca636b388f5f051
+
 
 
 class SuperAdminController extends Controller
@@ -878,7 +878,6 @@ class SuperAdminController extends Controller
         return redirect()->back()->with('status', 'Freelancer updated successfully');
     }
 
-<<<<<<< HEAD
     public function SupEditAll($id)
     {
         //  FETCH PRODUCT DETAILS BY ID
@@ -957,7 +956,7 @@ class SuperAdminController extends Controller
 
         return view('super_admin.sup-admin-edit-products', compact('id', 'productDetails', 'productLinks', 'productImages','containsT','containsF','containsU','containsUnder18','containsUnder1824','containsUnder2534','containsUnder3444','containsUnder4554','containsUnder5564','containsUnder65','containsMen','containsWomen','containsBaby','containsUnisex','containsSa','containsUn','containsAv','containsUnav','containsHB','containsBK','containsFIT','containsCA','containsHG','containsPA','containsBAC','containsMAC','containsBS','containsOD','containsBH','containsJW','containsKH','containsCUC','containsELE','containsGIM','containsMFA','containsWf'));
     }    
-=======
+
     public function FreelancerDeactive($id)
     {
         $update = User::where('id',$id)->update([
@@ -975,6 +974,6 @@ class SuperAdminController extends Controller
 
         return back();
     }
->>>>>>> a33c84f6db8232637aaa31273ca636b388f5f051
+
 
 }
