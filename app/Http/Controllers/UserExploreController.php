@@ -92,7 +92,7 @@ class UserExploreController extends Controller
             $trendingProducts = ProductDetail::where('explore_pro_type', 'LIKE' ,'%ali_express%')->where('product_name', 'LIKE', '%'.$request->search.'%')->orderBy($orderColumn,'DESC')->paginate(3);
         }
         if (empty($trendingProducts)) {
-            $trendingProducts = ProductDetail::where('explore_pro_type', 'LIKE' ,'%ali_express%')->orderBy($orderColumn,'DESC')->paginate(13);
+            $trendingProducts = ProductDetail::where('explore_pro_type', 'LIKE' ,'%ali_express%')->orderBy($orderColumn,'DESC')->paginate(3);
         }
             
         // $trendingProducts = ProductDetail::where('explore_pro_type', 'LIKE' ,'%ali_express%')->get();
@@ -272,7 +272,7 @@ class UserExploreController extends Controller
             $trendingProducts = ProductDetail::where('explore_pro_type', 'LIKE' ,'%amazon%')->where('product_name', 'LIKE', '%'.$request->search.'%')->orderBy($orderColumn,'DESC')->paginate(3);
         }
         if (empty($trendingProducts)) {
-            $trendingProducts = ProductDetail::where('explore_pro_type', 'LIKE' ,'%amazon%')->orderBy($orderColumn,'DESC')->paginate(13);
+            $trendingProducts = ProductDetail::where('explore_pro_type', 'LIKE' ,'%amazon%')->orderBy($orderColumn,'DESC')->paginate(3);
         }
             
         // $trendingProducts = ProductDetail::where('explore_pro_type', 'LIKE' ,'%amazon%')->get();
@@ -347,18 +347,24 @@ class UserExploreController extends Controller
                           </div>
                         </div>
                       </div>
-                      <div class="col-6 text-center p-0">
-                    <a href="'.$result->productLink[0]->amazon.'" class="cae-view rounded px-2 py-1" style="color: #918C9B;"><i class="fab fa-amazon" style="background: #191919; color: #fff; font-size: 12px; padding: 2px; line-height: 13px;"></i> View Amazon</a>
-                  </div>
-                      <div class="row px-2 mb-2 rounded justify-content-center">
-                        <a href="'.$result->productLink[0]->aliexpress.'" class="cae-view"><img src="https://ebutify.com/assets/img/ali.png" class="img-fluid" style="width: 16px; margin: 5px;" alt=""> View on AliExpress</a>
-                      </div>
+                      <div class="row mb-3 mx-1">
+                        <div class="col-6 text-center p-0">
+                          <a href="'.$result->productLink[0]->amazon.'" class="cae-view rounded px-2 py-1" style="color: #918C9B;"><i class="fab fa-amazon" style="background: #191919; color: #fff; font-size: 12px; padding: 2px; line-height: 13px;"></i> Amazon</a>
+                        </div>
+                        <div class="col-6 text-center p-0">
+                          <a href="'.$result->productLink[0]->aliexpress.'" class="cae-view rounded px-2 py-1" style="color: #918C9B;"><img src="https://ebutify.com/assets/img/ali.png" style="width: 16px; padding-bottom: 5px;" alt=""> AliExpress</a>
+                        </div>
+                    </div>
+
+                      
+
+
                     </div>
                 </div>';
             }
             return $artilces;
         }
-            
+                            
                             
 
 
@@ -371,11 +377,11 @@ class UserExploreController extends Controller
 
             if (empty($country)) {
 
-                return view('user.explore-ali',compact('trendingProducts','sortSelected','filterSelected'));
+                return view('user.explore-amazon',compact('trendingProducts','sortSelected','filterSelected'));
 
             }else{
 
-                return view('user.explore-ali',compact('trendingProducts','country','sortSelected','filterSelected'));
+                return view('user.explore-amazon',compact('trendingProducts','country','sortSelected','filterSelected'));
 
             }
         

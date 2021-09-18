@@ -217,17 +217,17 @@ href="{{ asset('storage/'.$favicon ?? '') }}">
             <ul class="nav nav-treeview pl-4 ml-2">
               <li class="nav-item">
                 <a href="{{url('/super/exlore-products')}}" class="nav-link">
-                  <p>Explore Products</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{url('/super/amazon-products')}}" class="nav-link">
                   <p>Ali Express Products</p>
                 </a>
               </li>
               <li class="nav-item">
+                <a href="{{url('/super/amazon-products')}}" class="nav-link">
+                  <p>Amazon Products</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="{{url('/super/store-products')}}" class="nav-link">
-                  <p>Store Products</p>
+                  <p>Shopify Products</p>
                 </a>
               </li>
             </ul>

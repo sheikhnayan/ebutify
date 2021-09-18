@@ -108,7 +108,7 @@
                             </div>
                           </div>
                           <div class="row px-2 mb-2 rounded justify-content-center">
-                            <a href="" class="cae-view"><img src="{{$trendingProduct->productLink[0]->aliexpress}}" class="img-fluid" style="width: 16px; margin: 5px;" alt="" target="_blank"> View on a AliExpress</a>
+                            <a href="{{$trendingProduct->productLink[0]->aliexpress}}" class="cae-view"><img src="https://ebutify.com/assets/img/ali.png" class="img-fluid" style="width: 16px; margin: 5px;" alt="" target="_blank"> View on a AliExpress</a>
                           </div>
                             </div>
                         </div>

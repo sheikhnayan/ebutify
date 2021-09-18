@@ -209,14 +209,31 @@
               </li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a href="{{route('super/exlore-products')}}" class="nav-link">
+          <li class="nav-item menu">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tree"></i>
               <p>
                 Explores
                 <i class="fas fa-angle-right right"></i>
               </p>
             </a>
+            <ul class="nav nav-treeview pl-4 ml-2">
+              <li class="nav-item">
+                <a href="{{url('/super/exlore-products')}}" class="nav-link">
+                  <p>Ali Express Products</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{url('/super/amazon-products')}}" class="nav-link">
+                  <p>Amazon Products</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{url('/super/store-products')}}" class="nav-link">
+                  <p>Shopify Products</p>
+                </a>
+              </li>
+            </ul>
           </li>
           <li class="nav-item">
             <a href="/subscriber" class="nav-link">

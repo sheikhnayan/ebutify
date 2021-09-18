@@ -65,7 +65,62 @@
           <div class="card-deck">
             <!-- SHOW PRODUCT DETAILS -->
             <!-- FOREACH STARTS -->
+            <div class="row mx-3 mt-3">
+                      <div class="card-deck">
+                        @foreach($trendingProducts as $trendingProduct)
+                        <div class="col-md-4 mt-4">
+                            <div class="card shadow">
+                          <img src="{{$trendingProduct->productImage[0]->image_link_1}}" class="card-img-top img-fluid" alt="...">
+                          <div class="row card-body px-2">
+                            <div class="col-12 pb-1 px-3" style="border-bottom: 2px solid #DCDCDC;">
+                              <h5 class="card-title">{{$trendingProduct->product_name}}</h5>
+                            </div> 
+                            <div class="row mt-3">
+                              <div class="col-12 text-center px-3">
+                                <span class="fa fa-star <?php if ($trendingProduct->star_rating >= 1) ?>
+                                    checked"></span>
+                                <span class="fa fa-star <?php if ($trendingProduct->star_rating >= 2) ?>
+                                    checked"></span>
+                                <span class="fa fa-star <?php if ($trendingProduct->star_rating >= 3) ?>
+                                    checked"></span>
+                                <span class="fa fa-star <?php if ($trendingProduct->star_rating >= 4) ?>
+                                    checked"></span>
+                                <span class="fa fa-star <?php if ($trendingProduct->star_rating = 5) ?>
+                                    checked"></span>
+                                <span>{{$trendingProduct->star_rating}}</span>
+                              </div>
+                              <div class="col-12 text-center px-3">
+                                <span class="cae-cart-icon"><i class="fas fa-shopping-basket"></i> Total Order</span>
+                                <span>{{$trendingProduct->total_order}}</span>
+                              </div>
+                              <div class="col-12 text-center px-3">
+                                <span class="cae-cart-icon"><i class="fas fa-atom"></i> Total Review</span>
+                                <span>{{$trendingProduct->explore_t_review}}</span>
+                              </div>
+                              <div class="col-12 text-center px-3">
+                                <span class="cae-cart-icon"><i class="fas fa-atom"></i> Total Price</span>
+                                <span>{{$trendingProduct->price}}</span>
+                              </div>
+                              <div class="col-12 text-center px-3">
+                                <span class="cae-cart-icon"><i class="fas fa-atom"></i> Total Revenue</span>
+                                <span>{{$trendingProduct->total_revenue}}</span>
+                              </div>
+                            </div>
+                          </div>
+                              <div class="row mb-3 mx-1">
+                                <div class="col-6 text-center p-0">
+                                  <a href="" class="cae-view rounded px-2 py-1" style="color: #918C9B;"><i class="fab fa-amazon" style="background: #191919; color: #fff; font-size: 12px; padding: 2px; line-height: 13px;"></i> Amazon</a>
+                                </div>
+                                <div class="col-6 text-center p-0">
+                                  <a href="{{$trendingProduct->productLink[0]->aliexpress}}" class="cae-view rounded px-2 py-1" style="color: #918C9B;"><img src="https://ebutify.com/assets/img/ali.png" style="width: 16px; padding-bottom: 5px;" alt=""> AliExpress</a>
+                                </div>
+                              </div>
 
+                            </div>
+                        </div>
+                        @endforeach
+                      </div>
+                    </div>
             <!-- PRODUCT DETAILS END -->
             <!-- FOREACH END -->
 
@@ -102,9 +157,10 @@
 
 @section('js')
 <script>
+initiateSlick('yes');
     var ENDPOINT = "{{ url('/') }}";
     var page = 1;
-    infinteLoadMore(page);
+    //infinteLoadMore(page);
 
     $(window).scroll(function () {
         if ($(window).scrollTop() + $(window).height() >= $(document).height()) {
@@ -118,8 +174,22 @@
     });
 
     function infinteLoadMore(page) {
+        let urlWithoutQueryString = "{{ url()->current() }}";
+        console.log(`urlWithoutQueryString: ${urlWithoutQueryString}`);
+        
+        let urlWithQueryString = "{{ url()->full() }}";
+        console.log(`urlWithQueryString: ${urlWithQueryString}`);
+        
+        let actualQueryString = urlWithQueryString.replace(urlWithoutQueryString, "");
+        if(actualQueryString != ""){
+            actualQueryString = actualQueryString.replace(/&amp;/g, '&') + "&";
+        }else{
+            actualQueryString = "?";
+        }
+        console.log(`actualQueryString: ${actualQueryString}`);
+        
         $.ajax({
-                url: ENDPOINT + "/amz-product?page=" + page,
+                url: urlWithoutQueryString + actualQueryString + "page=" + page,
                 datatype: "html",
                 type: "get",
                 beforeSend: function () {
@@ -133,6 +203,9 @@
                 }
                 $('.auto-load').hide();
                 $("#data-wrapper").append(response);
+                
+                //-- INITIATE SLICK ON DYNAMICALLY ADDED CONTENTS
+                initiateSlick('yes');
             })
             .fail(function (jqXHR, ajaxOptions, thrownError) {
                 console.log('Server error occured');

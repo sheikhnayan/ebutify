@@ -429,7 +429,13 @@ Route::middleware(['auth:sanctum', 'verified'])->post('/super/add-new-freelancer
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/sup-product-edit/{id}', [SuperAdminController::class, 'SupEditAll'])->name('sup-product-edit');
 
+
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/sup-product-edit/{id}', [SuperAdminController::class, 'SupEditAll'])->name('sup-product-edit');
+
 Route::get('/super/freelancer/status/{id}/deactivate', [SuperAdminController::class, 'FreelancerDeactive']);
 Route::get('/super/freelancer/status/{id}/activate', [SuperAdminController::class, 'FreelancerActive']);
+
+
 
 // SUPER ADMIN END

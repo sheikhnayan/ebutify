@@ -139,12 +139,14 @@
           <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
         </div>
       </li> 
-
       <li class="nav-item dropdown">
         <a class="" data-toggle="dropdown" href="#">
           <div class="user-panel d-flex mr-3">
             <div class="image">
-              <img src="assets/img/user1-128x128.jpg" class="img-circle " alt="{{Auth::user()->name}}">
+              <img src="{{ ('/storage'.'/'.Auth::user()->profile_photo_path) }}" class="img-circle " alt="Jone Due">
+
+              <!-- <img src="assets/img/user1-128x128.jpg" class="img-circle " alt="{{Auth::user()->name}}"> -->
+
             </div>
           </div>
         </a>
@@ -152,15 +154,11 @@
           <span class="dropdown-item dropdown-header">{{Auth::user()->name}}</span>
           <div class="dropdown-divider"></div>
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-key mr-2"></i> Change password
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
+          <a href="{{route('freelancer-profile')}}" class="dropdown-item">
             <i class="fas fa-user mr-2"></i> Update Profile
           </a>
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">Logout</a>
+          <a href="{{ route('logout') }}" class="dropdown-item dropdown-footer">Logout</a>
         </div>
       </li>
       
@@ -228,17 +226,17 @@
             <ul class="nav nav-treeview pl-4 ml-2">
               <li class="nav-item">
                 <a href="{{url('/super/exlore-products')}}" class="nav-link">
-                  <p>Explore Products</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{url('/super/amazon-products')}}" class="nav-link">
                   <p>Ali Express Products</p>
                 </a>
               </li>
               <li class="nav-item">
+                <a href="{{url('/super/amazon-products')}}" class="nav-link">
+                  <p>Amazon Products</p>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a href="{{url('/super/store-products')}}" class="nav-link">
-                  <p>Store Products</p>
+                  <p>Shopify Products</p>
                 </a>
               </li>
             </ul>
@@ -394,6 +392,13 @@
 
 <script type="text/javascript" src="{{asset('assets/js/emojionearea.min.js')}}"></script>
 @yield('js')
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $("#example1").emojioneArea({
+        pickerPosition: "bottom"
+      });
+    });
+  </script>
 
 </body>
 </html>
