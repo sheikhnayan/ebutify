@@ -1,5 +1,8 @@
-@extends('layouts.freelancer-layout')
-
+<?php if(Auth::user()->user_type == "admin"){ ?>
+  @extends('super_admin.layout.super-admin')
+<?php }elseif (Auth::user()->user_type == "freelancer") { ?>
+  @extends('layouts.freelancer-layout')
+<?php } ?>
 @section('content')
 
   <!-- Content Wrapper. Contains page content -->
@@ -24,7 +27,7 @@
                         {{ session('status') }}
                     </div>
                 @endif
-              <form action="{{ route('productUpdate') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('productUpdate') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" id="id" name="id" value="{{$id}}">
 

@@ -26,6 +26,8 @@ class FileUploadController extends Controller
             $fileName = new FileName;
             $fileName->video_name = $videoFileName;
             $fileName->save();
+
+            $request->session()->put('video', $fileName->video_name);
         }
 
         //  GIF UPLOAD METHOD START

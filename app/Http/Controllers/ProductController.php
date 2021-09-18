@@ -454,6 +454,7 @@ class ProductController extends Controller
 
     public function productUpdate(Request $request)
     {
+        $videoName = $request->session()->pull('video', 'default');
         if ($request->type == 'Saturated' ) {
             $type_id = 1;
         }else{
@@ -477,7 +478,7 @@ class ProductController extends Controller
 
         // }
 
-        $fileName = FileName::value('video_name');     
+        $fileName = $videoName;     
         $gifName = GifName::value('name');
         $gifName2 = GifName2::value('name');
         $gifName3 = GifName3::value('name');
