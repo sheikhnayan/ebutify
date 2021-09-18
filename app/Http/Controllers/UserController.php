@@ -323,6 +323,10 @@ class UserController extends Controller
 
 		if(Auth::check()){
 
+			$update = User::where('id',Auth::user()->id)->update([
+				'prod_count' => Auth::user()->prod_count + 1
+			]);
+
 		$trendingProducts = ProductDetail::where('id', $product_id)
 		->get();
 		// dd($trendingProducts);
@@ -1259,6 +1263,10 @@ class UserController extends Controller
 	{
 
 		if(Auth::check()){
+
+			$update = User::where('id',Auth::user()->id)->update([
+				'prod_count' => Auth::user()->prod_count + 1
+			]);
 			
 		$trendingProducts = ProductDetail::where('opportunity_level', 'LIKE' ,'%facebook_ads%')
 		->where('id', $product_id)
@@ -1912,6 +1920,10 @@ class UserController extends Controller
 	{
 
 		if(Auth::check()){
+
+			$update = User::where('id',Auth::user()->id)->update([
+				'prod_count' => Auth::user()->prod_count + 1
+			]);
 			
 		$trendingProducts = ProductDetail::where('opportunity_level', 'LIKE' ,'%untapped_product%')
 		->where('id', $product_id)
