@@ -153,7 +153,7 @@ class UserExploreController extends Controller
 
                           <div class="col-12 text-center px-3">
                             <span class="cae-cart-icon"><i class="fas fa-shopping-basket"></i> Total Review</span>
-                            <span>'.$result->explore_t_review.'</span>
+                            <span>'.$result->total_revenue.'</span>
                           </div>
 
                           <div class="col-12 text-center px-3">
@@ -326,10 +326,7 @@ class UserExploreController extends Controller
                             
                             <span>'.$result->explore_star_rating.'</span>
                           </div>
-                          <div class="col-12 text-center px-3">
-                            <span class="cae-cart-icon"><i class="fas fa-shopping-basket"></i> Total Order</span>
-                            <span>'.$result->total_order.'</span>
-                          </div>
+
 
                           <div class="col-12 text-center px-3">
                             <span class="cae-cart-icon"><i class="fas fa-shopping-basket"></i> Total Review</span>
@@ -337,14 +334,10 @@ class UserExploreController extends Controller
                           </div>
 
                           <div class="col-12 text-center px-3">
-                            <span class="cae-cart-icon"><i class="fas fa-shopping-basket"></i> Total Price</span>
+                            <span class="cae-cart-icon"><i class="fas fa-shopping-basket"></i> Selling Price</span>
                             <span>'.$result->price.'</span>
                           </div>
                           
-                          <div class="col-12 text-center px-3">
-                            <span class="cae-cart-icon"><i class="fas fa-atom"></i> Total Revenue</span>
-                            <span>'.$result->explore_t_review.'</span>
-                          </div>
                         </div>
                       </div>
                       <div class="row mb-3 mx-1">
@@ -430,12 +423,7 @@ class UserExploreController extends Controller
               <div class="col-lg-2 col-md-2 cse-hide">
                 <span>Tracking '.$trendingProduct->running_ads.' <i class="fab fa-facebook-f" style="color: #3B5998;"></i> </span>
               </div>
-              <div class="col-lg-2 col-md-2 cse-social-media-icon cse-hide">
-                <i class="fab fa-twitter"></i>
-                <i class="fab fa-instagram"></i>
-                <i class="fab fa-facebook-f"></i>
-                <i class="fab fa-youtube"></i>
-              </div>
+
               <div class="col-lg-2 col-md-2 col-sm-6 show-right">
                 <a target="_blank" href="'.$trendingProduct->shopify_link.'" class="cse-see-link-1" style="color: #17a2b8;">See all <i class="fas fa-chevron-right"></i></a>
               </div>

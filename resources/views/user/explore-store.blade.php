@@ -53,12 +53,7 @@
                 <span>Tracking {{$trendingProduct->running_ads}} <i class="fab fa-facebook-f" style="color: #3B5998;"></i> </span>
               </div>
               
-              <div class="col-lg-2 col-md-2 cse-social-media-icon cse-hide">
-                <i class="fab fa-twitter"></i>
-                <i class="fab fa-instagram"></i>
-                <i class="fab fa-facebook-f"></i>
-                <i class="fab fa-youtube"></i>
-              </div>
+
               <div class="col-lg-2 col-md-2 col-sm-6 show-right">
                 <a target="_blank" href="{{$trendingProduct->shopify_link}}" class="cse-see-link-1" style="color: #17a2b8;">See all <i class="fas fa-chevron-right"></i></a>
               </div>

@@ -77,17 +77,18 @@
                             </div> 
                             <div class="row mt-3">
                               <div class="col-12 text-center px-3">
-                                <span class="fa fa-star <?php if ($trendingProduct->star_rating >= 1) ?>
-                                    checked"></span>
-                                <span class="fa fa-star <?php if ($trendingProduct->star_rating >= 2) ?>
-                                    checked"></span>
-                                <span class="fa fa-star <?php if ($trendingProduct->star_rating >= 3) ?>
-                                    checked"></span>
-                                <span class="fa fa-star <?php if ($trendingProduct->star_rating >= 4) ?>
-                                    checked"></span>
-                                <span class="fa fa-star <?php if ($trendingProduct->star_rating = 5) ?>
-                                    checked"></span>
-                                <span>{{$trendingProduct->star_rating}}</span>
+                                <span class="fa fa-star @if($trendingProduct->explore_star_rating >= 1)
+                                    checked @endif"></span>
+
+                                <span class="fa fa-star @if($trendingProduct->explore_star_rating >= 2)
+                                    checked @endif"></span>
+                                <span class="fa fa-star @if($trendingProduct->explore_star_rating >= 3)
+                                    checked @endif"></span>
+                                <span class="fa fa-star @if($trendingProduct->explore_star_rating >= 4)
+                                    checked @endif"></span>
+                                <span class="fa fa-star @if($trendingProduct->explore_star_rating >= 5)
+                                    checked @endif"></span>
+                                <span>{{$trendingProduct->explore_star_rating}}</span>
                               </div>
                               <div class="col-12 text-center px-3">
                                 <span class="cae-cart-icon"><i class="fas fa-shopping-basket"></i> Total Order</span>
@@ -98,7 +99,7 @@
                                 <span>{{$trendingProduct->explore_t_review}}</span>
                               </div>
                               <div class="col-12 text-center px-3">
-                                <span class="cae-cart-icon"><i class="fas fa-atom"></i> Total Price</span>
+                                <span class="cae-cart-icon"><i class="fas fa-atom"></i> Product Price</span>
                                 <span>{{$trendingProduct->price}}</span>
                               </div>
                               <div class="col-12 text-center px-3">

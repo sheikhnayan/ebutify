@@ -525,7 +525,7 @@
                       <div class="tab-pane pb-3 fade" id="far{{$j}}" role="tabpanel">
                         <div class="row mx-3 pt-3 plan-header">
                           <div class="col-md-6">
-                            <div class="far-video-hedear">
+                           <div class="far-video-hedear">
                               <h3>Facebook video ads</h3>
                                @php
 

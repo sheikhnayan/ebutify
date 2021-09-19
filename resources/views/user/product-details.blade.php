@@ -273,13 +273,26 @@
                           <div class="col-md-6">
                             <div class="far-video-hedear">
                               <h3>Facebook video ads</h3>
-                              <button type="button" class="btn far-download-btn">Download</button>
+                               @php
+
+                               $video = '';
+                                if (!empty($trendingProduct->video_name)){
+                                    $video = $trendingProduct->video_name;
+                                }
+
+                               @endphp
+                              @if(!empty($video))
+                              <div class="mb-2 float-right">
+                                 <button class="btn btn-dark" value="download">
+                                 <a href="{{route('downloadVid',[$video])}}">Download</a></button>
+                              </div>
+                              @endif
                             </div>
                             <div class="product-video-container embed-responsive embed-responsive-16by9">
                               <i class="fas fa-play-circle video2-icon-play"></i>
                               <i class="fas fa-pause-circle video2-icon-pause" style="display: none;"></i>
-                              <video id="video-control-2">
-                                <source src="{{asset('storage/app/public/'.$trendingProduct->video_name)}}" type="video/mp4">
+                              <video id="video-control-2" controls="">
+                                <source src="{{asset('storage/'.$trendingProduct->video_name)}}" type="video/mp4">
                               </video>
                             </div>
                           </div>
