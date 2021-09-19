@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\FrontendController;
 use Request;
+use Illuminate\Http\Request as Req;
 use App\Models\Blog;
 use App\Models\User;
 use App\Models\Homepage;
@@ -144,8 +145,8 @@ class FrontendControllerController extends Controller
      * @param  \App\Models\FrontendController  $frontendController
      * @return \Illuminate\Http\Response
      */
-    public function contact(Request $request)
-    {
+    public function contact(Req $request)
+    { 
         $details = [
             'subject' => 'Customer Query',
             'name' => $request->name,
