@@ -63,11 +63,11 @@
                   @php
                       $create = DB::table('subscriptions')->where('user_id', Auth::user()->id)->latest()->first();
                       $date = $create->created_at;
-                      if($create->stripe_plan == 'price_1If8VPEgl2c23Bzjq8LUvao7')
+                      if($create->stripe_plan == 'price_1JPqopCzBVgP4kKNdvtju0GZ')
                       {
                         $type = 'yearly';
                         $remaining = Carbon\Carbon::parse($create->created_at)->addYear();
-                      }elseif($create->stripe_plan == 'price_1If8QdEgl2c23BzjE4HCoJc3')
+                      }elseif($create->stripe_plan == 'price_1JPqeZCzBVgP4kKNPA6XL5mX')
                       {
                         $type = 'monthly';
                         $remaining = Carbon\Carbon::parse($create->created_at)->addMonth();

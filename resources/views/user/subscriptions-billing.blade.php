@@ -30,9 +30,9 @@
               @php
                   $sub = DB::table('subscriptions')->where('user_id',Auth::user()->id)->latest()->first();
               @endphp
-              @if ($sub->stripe_plan == 'price_1If8QdEgl2c23BzjE4HCoJc3')
+              @if ($sub->stripe_plan == 'price_1JPqeZCzBVgP4kKNPA6XL5mX')
                   Monthly
-              @elseif($sub->stripe_plan == 'price_1If8VPEgl2c23Bzjq8LUvao7')
+              @elseif($sub->stripe_plan == 'price_1JPqopCzBVgP4kKNdvtju0GZ')
                   Yearly
               @else
                   Trial
@@ -40,17 +40,17 @@
               Plan
             </h5>
             <p style="margin: 0;">
-              @if ($sub->stripe_plan == 'price_1If8QdEgl2c23BzjE4HCoJc3')
+              @if ($sub->stripe_plan == 'price_1JPqeZCzBVgP4kKNPA6XL5mX')
                   $12.50
-              @elseif($sub->stripe_plan == 'price_1If8VPEgl2c23Bzjq8LUvao7')
+              @elseif($sub->stripe_plan == 'price_1JPqopCzBVgP4kKNdvtju0GZ')
                   $90
               @else
                   $2
               @endif
                
-              @if ($sub->stripe_plan == 'price_1If8QdEgl2c23BzjE4HCoJc3')
+              @if ($sub->stripe_plan == 'price_1JPqeZCzBVgP4kKNPA6XL5mX')
                   Per Monthly
-              @elseif($sub->stripe_plan == 'price_1If8VPEgl2c23Bzjq8LUvao7')
+              @elseif($sub->stripe_plan == 'price_1JPqopCzBVgP4kKNdvtju0GZ')
                   Per Yearly
               @else
                   Only One Time Purchase
@@ -104,9 +104,9 @@
               </div>
               <div class="col-4 text-center">
                 <p>
-                  @if ($sub->stripe_plan == 'price_1If8QdEgl2c23BzjE4HCoJc3')
+                  @if ($sub->stripe_plan == 'price_1JPqeZCzBVgP4kKNPA6XL5mX')
                   {{ Carbon\Carbon::parse($sub->created_at)->addMonth()->format('M d, Y') }}
-                  @elseif($sub->stripe_plan == 'price_1If8VPEgl2c23Bzjq8LUvao7')
+                  @elseif($sub->stripe_plan == 'price_1JPqopCzBVgP4kKNdvtju0GZ')
                   {{ Carbon\Carbon::parse($sub->created_at)->addYear()->format('M d, Y') }}
                   @else
                   {{ Carbon\Carbon::parse($sub->created_at)->addDay()->format('M d, Y') }}
@@ -153,9 +153,9 @@
                       </div>
                       <div class="col-2 text-center">
                         <span>
-                          @if ($item->stripe_plan == 'price_1If8QdEgl2c23BzjE4HCoJc3')
+                          @if ($item->stripe_plan == 'price_1JPqeZCzBVgP4kKNPA6XL5mX')
                             Monthly Plan
-                          @elseif($item->stripe_plan == 'price_1If8VPEgl2c23Bzjq8LUvao7')
+                          @elseif($item->stripe_plan == 'price_1JPqopCzBVgP4kKNdvtju0GZ')
                             Yearly Plan
                           @else
                             Trial Plan
@@ -177,9 +177,9 @@
                       </div>
                       <div class="col-2 text-center">
                         <span>
-                          @if ($item->stripe_plan == 'price_1If8QdEgl2c23BzjE4HCoJc3')
+                          @if ($item->stripe_plan == 'price_1JPqeZCzBVgP4kKNPA6XL5mX')
                             $12.50 USD
-                          @elseif($item->stripe_plan == 'price_1If8VPEgl2c23Bzjq8LUvao7')
+                          @elseif($item->stripe_plan == 'price_1JPqopCzBVgP4kKNdvtju0GZ')
                             $90 USD
                           @else
                             $2 USD

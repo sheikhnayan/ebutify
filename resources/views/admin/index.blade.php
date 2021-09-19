@@ -35,8 +35,8 @@
                 <span class="info-box-text">Total Sales</span>
                 <span class="info-box-number">
                   @php
-                    $month = DB::table('subscription_items')->where('stripe_plan','price_1If8QdEgl2c23BzjE4HCoJc3')->get();
-                    $year = DB::table('subscription_items')->where('stripe_plan','price_1If8VPEgl2c23Bzjq8LUvao7')->get();
+                    $month = DB::table('subscription_items')->where('stripe_plan','price_1JPqeZCzBVgP4kKNPA6XL5mX')->get();
+                    $year = DB::table('subscription_items')->where('stripe_plan','price_1JPqopCzBVgP4kKNdvtju0GZ')->get();
 
                     $monthly = $month->count();
                     $yearly = $year->count();

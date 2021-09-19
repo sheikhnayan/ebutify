@@ -89,7 +89,7 @@
 
                                                     <div class="custom-control custom-radio">
                                                         <input type="radio"
-                                                            class="custom-control-input payment-radio d-none" value="price_1If8VPEgl2c23Bzjq8LUvao7" name="plan" id="subscription-plan">
+                                                            class="custom-control-input payment-radio d-none" value="price_1JPqopCzBVgP4kKNdvtju0GZ" name="plan" id="subscription-plan">
                                                         <label class="custom-control-label" for="subscription-plan">
                                                             <p><span class="from-yr">{{reset($plans)}}</span>
                                                                 <span class="pricing-num">$Unknown<span class="pr-per">/month</span> </span>
@@ -106,10 +106,10 @@
                                             <div class="col-sm-12 m-b-10 col-md-6">
                                                 <div class="plan--payment_system sm-pading-point">
                                                     <div class="custom-control custom-radio">
-                                                        <input type="radio" name="plan" id="subscription-plan" value="price_1If8QdEgl2c23BzjE4HCoJc3"
+                                                        <input type="radio" name="plan" id="subscription-plan" value="price_1JPqeZCzBVgP4kKNPA6XL5mX"
                                                             class="custom-control-input payment-radio d-none">
                                                         <label class="custom-control-label" for="radioYearly">
-                                                            <p><span class="from-yr">{{$plans['price_1If8QdEgl2c23BzjE4HCoJc3']}}</span>
+                                                            <p><span class="from-yr">{{$plans['price_1JPqeZCzBVgP4kKNPA6XL5mX']}}</span>
                                                                 <span class="pricing-num">$29.00<span class="pr-per">/month</span> </span>
                                                             </p>
                                                             <p><span class="pricing-num">To Pay Today: $29.00 </span></p>
