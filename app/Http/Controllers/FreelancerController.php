@@ -53,11 +53,11 @@ class FreelancerController extends Controller
 
                     if($plan->stripe_plan == 'price_1If8QdEgl2c23BzjE4HCoJc3'){
 
-                        $enddate = Carbon::parse(Auth::user()->updated_at)->addMonth()->format('d.m.Y');
+                        $enddate = Carbon::parse($plan->created_at)->addMonth()->format('d.m.Y');
 
                     }elseif($plan->stripe_plan == 'price_1If8VPEgl2c23Bzjq8LUvao7'){
 
-                        $enddate = Carbon::parse(Auth::user()->updated_at)->addYear()->format('d.m.Y');
+                        $enddate = Carbon::parse($plan->created_at)->addYear()->format('d.m.Y');
 
                     }
                     if($enddate <= Carbon::now()){
