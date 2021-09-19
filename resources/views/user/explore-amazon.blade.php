@@ -19,7 +19,7 @@
             <h3>Amazon Explorer</h3>
             <a type="button" class="btn btn-facebook-ads" target="_blank" href="{{url('tutorial')}}"><i class="fas fa-video"></i> Tutorials</a>
           </div>
-         <form class="col-12" method="get" action="{{ route('amz-product') }}">
+          <form class="col-12" method="get" action="{{ route('amz-product') }}">
             <div class="col-12">
                <div class="input-group my-3">
                   <input type="text" class="form-control fb-ads-input" placeholder="Type Product name or niche" name="search">

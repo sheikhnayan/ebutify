@@ -493,6 +493,8 @@ class SuperAdminController extends Controller
     // SHOVON WORKING HERE
     public function AllProduct(Request $request)
     {
+        $realCategory = Category::whereNotNull('id');
+
         if($request->search) {
             $trendingProducts = ProductDetail::where('product_name', 'LIKE', '%'.$request->search.'%')->whereNull('explore_pro_type')->paginate(50);
         }
@@ -507,29 +509,33 @@ class SuperAdminController extends Controller
         }
 
         if (empty($country)) {
-            return view('super_admin.sup-all-product',compact('trendingProducts'));
+            return view('super_admin.sup-all-product',compact('trendingProducts','realCategory'));
 
         }else{
 
-            return view('super_admin.sup-all-product',compact('trendingProducts','country'));
+            return view('super_admin.sup-all-product',compact('trendingProducts','country','realCategory'));
         }
 
-            return view('super_admin.sup-all-product',compact('trendingProducts','country'));
+            return view('super_admin.sup-all-product',compact('trendingProducts','country','realCategory'));
 
     }
 
     public function UploadProduct(Request $request)
     {
+        $realCategory = Category::whereNotNull('id');
+
         $productDetails = ProductDetail::all();
 
-        return view('super_admin.super-admin-add-products',compact('productDetails'));
+        return view('super_admin.super-admin-add-products',compact('productDetails','realCategory'));
     }
 
     public function DeleteProduct($id)
     {
+        $realCategory = Category::whereNotNull('id');
+
         ProductDetail::where('id', $id)->delete();
         $trendingProducts = ProductDetail::whereNull('explore_pro_type')->paginate(50);
-        return view('super_admin.sup-all-product',compact('trendingProducts'));
+        return view('super_admin.sup-all-product',compact('trendingProducts','realCategory'));
 
     }
 
@@ -544,6 +550,8 @@ class SuperAdminController extends Controller
 
     public function ExploreProduct(Request $request)
     {
+        $realCategory = Category::whereNotNull('id');
+
         if($request->search) {
             // dd($request->search);
             $trendingProducts = ProductDetail::where('explore_pro_type', 'LIKE','%ali_express%')->where('product_name', 'LIKE', '%'.$request->search.'%')->paginate(50);
@@ -551,11 +559,13 @@ class SuperAdminController extends Controller
         if (empty($trendingProducts)) {
             $trendingProducts = ProductDetail::where('explore_pro_type', 'LIKE','%ali_express%')->paginate(50);
         }
-        return view('super_admin.super-admin-explore',compact('trendingProducts'));
+        return view('super_admin.super-admin-explore',compact('trendingProducts','realCategory'));
     }
 
     public function AmazonProduct(Request $request)
     {
+        $realCategory = Category::whereNotNull('id');
+
         if($request->search) {
             // dd($request->search);
             $trendingProducts = ProductDetail::where('explore_pro_type', 'LIKE','%amazon%')->where('product_name', 'LIKE', '%'.$request->search.'%')->paginate(50);
@@ -565,20 +575,24 @@ class SuperAdminController extends Controller
                                             ->orderBy('created_at','DESC')
                                             ->paginate(50);
         }
-        return view('super_admin.super-admin-explore',compact('trendingProducts'));
+        return view('super_admin.super-admin-explore',compact('trendingProducts','realCategory'));
     }
 
     public function exploreShopifyProduct()
     {
+        $realCategory = Category::whereNotNull('id');
+
         $trendingProducts = ShopifyProduct::whereNotNull('shopify_link')
                                             ->orderBy('created_at','DESC')
                                             ->paginate(50);
 
-        return view('super_admin.super-admin-store',compact('trendingProducts'));
+        return view('super_admin.super-admin-store',compact('trendingProducts','realCategory'));
     }
 
     public function shopifyEdit($id)
     {
+        $realCategory = Category::whereNotNull('id');
+
         //  FETCH PRODUCT DETAILS BY ID
         $productDetails = ShopifyProduct::find($id);
 
@@ -591,7 +605,7 @@ class SuperAdminController extends Controller
         $containsAv = Str::contains($productStatus, 'Available');
         $containsUnav = Str::contains($productStatus, 'Unavailable');
 
-        return view('super_admin.super-admin-store-edit', compact('id', 'productDetails','containsAv','containsUnav','productType'));
+        return view('super_admin.super-admin-store-edit', compact('id', 'productDetails','containsAv','containsUnav','productType','realCategory'));
     }
     
     public function quickstart()

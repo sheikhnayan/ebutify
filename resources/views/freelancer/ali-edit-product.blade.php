@@ -94,7 +94,11 @@
                               </div>
                               <div class="form-group col-md-6 col-lg-2">
                                 <select class="custom-select" multiple id="inputSelectCategory" size="6" name="category[]" >
-                                        <option @if ($containsWf == true)
+                                @foreach($realCategory as $key => $realcat)
+                                <option>{{$realcat->category}}
+                                </option>
+                                @endforeach
+                                        <!-- <option @if ($containsWf == true)
                                         selected="selected"
                                     @endif>Women's Fashion</option>
                                         <option @if ($containsMFA == true)
@@ -147,7 +151,7 @@
                                     @endif>Home & Garden</option>
                                         <option @if ($containsPA == true)
                                         selected="selected"
-                                    @endif>Pet Accessories</option>
+                                    @endif>Pet Accessories</option> -->
                                       </select>
                               </div>
                             </div>

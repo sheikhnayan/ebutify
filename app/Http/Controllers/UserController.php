@@ -74,6 +74,8 @@ class UserController extends Controller
 
 	public function allProduct(Request $request)
 	{
+    $realCategory = Category::whereNotNull('id');
+
 		if(Auth::check()){
 			$sortSelected = 0;
 	        $filterSelected = 0;
@@ -303,14 +305,14 @@ class UserController extends Controller
 
 		if (empty($country)) {
 
-			return view('user.all-product',compact('trendingProducts','sortSelected','filterSelected','categorySelected'));
+			return view('user.all-product',compact('realCategory','trendingProducts','sortSelected','filterSelected','categorySelected'));
 
 		}else{
 
-			return view('user.all-product',compact('trendingProducts','country','sortSelected','filterSelected','categorySelected'));
+			return view('user.all-product',compact('realCategory','trendingProducts','country','sortSelected','filterSelected','categorySelected'));
 		}
 
-		return view('user.all-product',compact('trendingProducts','country','sortSelected','filterSelected','categorySelected'));
+		return view('user.all-product',compact('realCategory','trendingProducts','country','sortSelected','filterSelected','categorySelected'));
 
 		}else{
 
@@ -321,6 +323,7 @@ class UserController extends Controller
 
 	public function allProductDetails($product_id)
 	{
+    $realCategory = Category::whereNotNull('id');
 
 		if(Auth::check()){
 
@@ -340,11 +343,11 @@ class UserController extends Controller
 			
 			if (empty($country)) {
 
-				return view('user.product-details',compact('trendingProducts'));
+				return view('user.product-details',compact('trendingProducts','realCategory'));
 
 			}else{
 
-				return view('user.product-details',compact('trendingProducts','country'));
+				return view('user.product-details',compact('trendingProducts','country','realCategory'));
 			}
 
 		}else{
@@ -353,8 +356,10 @@ class UserController extends Controller
 		}
 	}
 
-    public function trendingProducts(Request $request)
+  public function trendingProducts(Request $request)
 	{
+		$realCategory = Category::whereNotNull('id');
+
 	 	if(Auth::check()){
 
 	 		$sortSelected = 0;
@@ -580,11 +585,11 @@ class UserController extends Controller
 
 			if (empty($country)) {
 
-				return view('user.trending-product',compact('trendingProducts','sortSelected','filterSelected','categorySelected'));
+				return view('user.trending-product',compact('trendingProducts','sortSelected','filterSelected','categorySelected','realCategory'));
 
 			}else{
 
-				return view('user.trending-product',compact('trendingProducts','country','sortSelected','filterSelected','categorySelected'));
+				return view('user.trending-product',compact('trendingProducts','country','sortSelected','filterSelected','categorySelected','realCategory'));
 			}
 
 		}else{
@@ -596,6 +601,7 @@ class UserController extends Controller
 
 	public function trendingProductDetails($product_id)
 	{
+		$realCategory = Category::whereNotNull('id');
 
 		if(Auth::check()){
 
@@ -614,11 +620,11 @@ class UserController extends Controller
 
 		if (empty($country)) {
 
-			return view('user.product-details',compact('trendingProducts'));
+			return view('user.product-details',compact('trendingProducts','realCategory'));
 
 		}else{
 
-			return view('user.product-details',compact('trendingProducts','country'));
+			return view('user.product-details',compact('trendingProducts','country','realCategory'));
 
 		}
 		
@@ -631,6 +637,8 @@ class UserController extends Controller
 
 	public function fbAdProducts(Request $request)
 	{
+		$realCategory = Category::whereNotNull('id');
+
 		if(Auth::check()){
 			$sortSelected = 0;
             $filterSelected = 0;
@@ -1244,11 +1252,11 @@ class UserController extends Controller
 
 			if (empty($country)) {
 
-				return view('user.fb-ads-product',compact('trendingProducts','sortSelected','filterSelected','categorySelected'));
+				return view('user.fb-ads-product',compact('trendingProducts','sortSelected','filterSelected','categorySelected','realCategory'));
 
 			}else{
 
-				return view('user.fb-ads-product',compact('trendingProducts','country','sortSelected','filterSelected','categorySelected'));
+				return view('user.fb-ads-product',compact('trendingProducts','country','sortSelected','filterSelected','categorySelected','realCategory'));
 
 			}
 		
@@ -1262,6 +1270,7 @@ class UserController extends Controller
 
 	public function fbAdProductsDetails($product_id)
 	{
+    $realCategory = Category::whereNotNull('id');
 
 		if(Auth::check()){
 
@@ -1278,7 +1287,7 @@ class UserController extends Controller
 
 		}
 
-		return view('user.product-details',compact('trendingProducts','country'));
+		return view('user.product-details',compact('trendingProducts','country','realCategory'));
 
 		}else{
 
@@ -1288,6 +1297,8 @@ class UserController extends Controller
 
 	public function untappedProducts(Request $request)
 	{
+    $realCategory = Category::whereNotNull('id');
+
 		if(Auth::check()){
 			$sortSelected = 0;
             $filterSelected = 0;
@@ -1898,15 +1909,15 @@ class UserController extends Controller
 				// dd($country);
 			}
 			if (empty($country)) {
-				return view('user.untapped-product',compact('trendingProducts','sortSelected','filterSelected','categorySelected'));
+				return view('user.untapped-product',compact('trendingProducts','sortSelected','filterSelected','categorySelected','realCategory'));
 			}else{
-				return view('user.untapped-product',compact('trendingProducts','country','sortSelected','filterSelected','categorySelected'));
+				return view('user.untapped-product',compact('trendingProducts','country','sortSelected','filterSelected','categorySelected','realCategory'));
 			}
 			
 
 		}else{
 
-			return view('user.untapped-product',compact('trendingProducts','country','sortSelected','filterSelected','categorySelected'));
+			return view('user.untapped-product',compact('trendingProducts','country','sortSelected','filterSelected','categorySelected','realCategory'));
 
 		}
 
@@ -1919,6 +1930,7 @@ class UserController extends Controller
 
 	public function untappedProductsDetails($product_id)
 	{
+    $realCategory = Category::whereNotNull('id');
 
 		if(Auth::check()){
 
@@ -1939,11 +1951,11 @@ class UserController extends Controller
 		}
 			if (empty($country)) {
 
-				return view('user.product-details',compact('trendingProducts'));
+				return view('user.product-details',compact('trendingProducts','realCategory'));
 
 			}else{
 
-				return view('user.product-details',compact('trendingProducts','country'));
+				return view('user.product-details',compact('trendingProducts','country','realCategory'));
 
 			}
 		}else{
