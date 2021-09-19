@@ -17,7 +17,7 @@
         <div class="row mx-2 my-3">
           <div class="col-12 facebook-ads-header d-flex justify-content-between">
             <h3>AliExpress Explorer</h3>
-            <a type="button" class="btn btn-facebook-ads" href="{{url('tutorial')}}"><i class="fas fa-video"></i> Tutorials</a>
+            <a type="button" class="btn btn-facebook-ads" target="_blank" href="{{url('tutorial')}}"><i class="fas fa-video"></i> Tutorials</a>
           </div>
           <form class="col-12" method="get" action="{{ route('ali-product') }}">
             <div class="col-12">
@@ -77,17 +77,18 @@
                             </div> 
                             <div class="row mt-3">
                               <div class="col-12 text-center px-3">
-                                <span class="fa fa-star <?php if ($trendingProduct->star_rating >= 1) ?>
-                                    checked"></span>
-                                <span class="fa fa-star <?php if ($trendingProduct->star_rating >= 2) ?>
-                                    checked"></span>
-                                <span class="fa fa-star <?php if ($trendingProduct->star_rating >= 3) ?>
-                                    checked"></span>
-                                <span class="fa fa-star <?php if ($trendingProduct->star_rating >= 4) ?>
-                                    checked"></span>
-                                <span class="fa fa-star <?php if ($trendingProduct->star_rating = 5) ?>
-                                    checked"></span>
-                                <span>{{$trendingProduct->star_rating}}</span>
+                                <span class="fa fa-star @if($trendingProduct->explore_star_rating >= 1)
+                                    checked @endif"></span>
+
+                                <span class="fa fa-star @if($trendingProduct->explore_star_rating >= 2)
+                                    checked @endif"></span>
+                                <span class="fa fa-star @if($trendingProduct->explore_star_rating >= 3)
+                                    checked @endif"></span>
+                                <span class="fa fa-star @if($trendingProduct->explore_star_rating >= 4)
+                                    checked @endif"></span>
+                                <span class="fa fa-star @if($trendingProduct->explore_star_rating >= 5)
+                                    checked @endif"></span>
+                                <span>{{$trendingProduct->explore_star_rating}}</span>
                               </div>
                               <div class="col-12 text-center px-3">
                                 <span class="cae-cart-icon"><i class="fas fa-shopping-basket"></i> Total Order</span>
@@ -98,7 +99,7 @@
                                 <span>{{$trendingProduct->explore_t_review}}</span>
                               </div>
                               <div class="col-12 text-center px-3">
-                                <span class="cae-cart-icon"><i class="fas fa-atom"></i> Total Price</span>
+                                <span class="cae-cart-icon"><i class="fas fa-atom"></i> Product Price</span>
                                 <span>{{$trendingProduct->price}}</span>
                               </div>
                               <div class="col-12 text-center px-3">
@@ -108,7 +109,7 @@
                             </div>
                           </div>
                           <div class="row px-2 mb-2 rounded justify-content-center">
-                            <a href="{{$trendingProduct->productLink[0]->aliexpress}}" class="cae-view"><img src="https://ebutify.com/assets/img/ali.png" class="img-fluid" style="width: 16px; margin: 5px;" alt="" target="_blank"> View on a AliExpress</a>
+                            <a target="_blank" href="{{$trendingProduct->productLink[0]->aliexpress}}" class="cae-view"><img src="https://ebutify.com/assets/img/ali.png" class="img-fluid" style="width: 16px; margin: 5px;" alt="" target="_blank"> View on a AliExpress</a>
                           </div>
                             </div>
                         </div>

@@ -44,7 +44,7 @@ class ProductController extends Controller
 
     public function uploadProduct(Request $request)
     {
-
+        $videoName = $request->session()->pull('video', 'default');
         // if(!empty($request->gif1)){
         //     $request->file('gif1')->store('public');  
         //     $gifFileName1 = $request->gif1->hashName();
@@ -99,7 +99,7 @@ class ProductController extends Controller
         $tag = implode(',', $tag);
         }
 
-        $fileName = FileName::value('video_name');     
+        $fileName = $videoName;     
         $gifName = GifName::value('name');
         $gifName2 = GifName2::value('name');
         $gifName3 = GifName3::value('name');
@@ -590,6 +590,7 @@ class ProductController extends Controller
         $productDetails->product_name = $request->input('pname');
         $productDetails->price = $request->input('price');
         $productDetails->explore_t_review = $request->input('t_review');
+        $productDetails->total_revenue = $request->input('t_sales');
         $productDetails->explore_star_rating = $request->input('star_rating');
         $productDetails->explore_pro_type = "amazon";
         $productDetails->category = $category;
@@ -602,7 +603,7 @@ class ProductController extends Controller
         $productLinks->aliexpress = $request->input('ali_express_link');
         $productLinks->amazon = $request->input('amz_link');
 
-        $productLink->save();
+        $productLinks->save();
 
         $productImage = ProductImage::find($request->productImagesId);
         $productImage->image_link_1 = $request->input('img_link');
@@ -635,13 +636,14 @@ class ProductController extends Controller
         $productDetails->product_name = $request->input('pname');
         $productDetails->price = $request->input('price');
         $productDetails->explore_t_review = $request->input('t_review');
+        $productDetails->total_revenue = $request->input('t_sales');
         $productDetails->explore_star_rating = $request->input('star_rating');
         $productDetails->explore_pro_type = "ali_express";
         $productDetails->category = $category;
         $productDetails->product_type_id = $request->input('type');
         $productDetails->user_id  = auth()->id();
         $productDetails->uploader_name = $request->input('uploadername');
-        $productDetails->total_revenue = $request->input('amz_link');
+        // $productDetails->total_revenue = $request->input('amz_link');
         $productDetails->save();
 
         $productLinks = ProductLink::find($request->productLinksId);

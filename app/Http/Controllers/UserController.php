@@ -13,6 +13,7 @@ use App\Models\Gender;
 use App\Models\Country;
 use App\Models\User;
 use App\Models\Tutorial;
+use App\Models\FAQ;
 use Illuminate\Support\Facades\Storage;
 use Hash;
 use Validator;
@@ -1963,7 +1964,9 @@ class UserController extends Controller
 
 	public function viewFAQ($value='')
 	{
-		return view('user.FAQ');
+		$data = FAQ::latest()->get();
+
+		return view('user.FAQ',compact('data'));
 	}
 
 	public function viewContactUs($value='')
