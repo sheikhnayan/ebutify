@@ -306,25 +306,25 @@
             <p>QUICK LINKS</p>
           </li>
           <li class="nav-item">
-            <a href="https://www.facebook.com/ebutify" class="nav-link">
+            <a target="_blank" href="https://www.facebook.com/ebutify" class="nav-link">
               <i class="nav-icon fab fa-facebook-square"></i>
               <p>Facebook</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="https://www.instagram.com/ebutify" class="nav-link">
+            <a target="_blank" href="https://www.instagram.com/ebutify" class="nav-link">
               <i class="nav-icon fab fa-instagram-square"></i>
               <p>Instagram</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="https://twitter.com/eButify" class="nav-link">
+            <a target="_blank" href="https://twitter.com/eButify" class="nav-link">
               <i class="nav-icon fab fa-twitter-square"></i>
               <p>Twitter</p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="https://www.pinterest.com/ebutify" class="nav-link">
+            <a target="_blank" href="https://www.pinterest.com/ebutify" class="nav-link">
               <i class="nav-icon fab fa-pinterest-square"></i>
               <p>Pinterest</p>
             </a>

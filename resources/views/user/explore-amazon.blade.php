@@ -17,7 +17,7 @@
         <div class="row mx-2 my-3">
           <div class="col-12 facebook-ads-header d-flex justify-content-between">
             <h3>Amazon Explorer</h3>
-            <a type="button" class="btn btn-facebook-ads" href="{{url('tutorial')}}"><i class="fas fa-video"></i> Tutorials</a>
+            <a type="button" class="btn btn-facebook-ads" target="_blank" href="{{url('tutorial')}}"><i class="fas fa-video"></i> Tutorials</a>
           </div>
                     <form class="col-12" method="get" action="{{ route('amz-product') }}">
             <div class="col-12">
@@ -103,10 +103,10 @@
                           </div>
                               <div class="row mb-3 mx-1">
                                 <div class="col-6 text-center p-0">
-                                  <a href="{{$trendingProduct->productLink[0]->amazon}}" class="cae-view rounded px-2 py-1" style="color: #918C9B;"><i class="fab fa-amazon" style="background: #191919; color: #fff; font-size: 12px; padding: 2px; line-height: 13px;"></i> Amazon</a>
+                                  <a target="_blank" href="{{$trendingProduct->productLink[0]->amazon}}" class="cae-view rounded px-2 py-1" style="color: #918C9B;"><i class="fab fa-amazon" style="background: #191919; color: #fff; font-size: 12px; padding: 2px; line-height: 13px;"></i> Amazon</a>
                                 </div>
                                 <div class="col-6 text-center p-0">
-                                  <a href="{{$trendingProduct->productLink[0]->aliexpress}}" class="cae-view rounded px-2 py-1" style="color: #918C9B;"><img src="https://ebutify.com/assets/img/ali.png" style="width: 16px; padding-bottom: 5px;" alt=""> AliExpress</a>
+                                  <a target="_blank" href="{{$trendingProduct->productLink[0]->aliexpress}}" class="cae-view rounded px-2 py-1" style="color: #918C9B;"><img src="https://ebutify.com/assets/img/ali.png" style="width: 16px; padding-bottom: 5px;" alt=""> AliExpress</a>
                                 </div>
                               </div>
 

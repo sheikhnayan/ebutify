@@ -17,7 +17,7 @@
         <div class="row mx-2 my-3">
           <div class="col-12 facebook-ads-header d-flex justify-content-between">
             <h3>AliExpress Explorer</h3>
-            <a type="button" class="btn btn-facebook-ads" href="{{url('tutorial')}}"><i class="fas fa-video"></i> Tutorials</a>
+            <a type="button" class="btn btn-facebook-ads" target="_blank" href="{{url('tutorial')}}"><i class="fas fa-video"></i> Tutorials</a>
           </div>
           <form class="col-12" method="get" action="{{ route('ali-product') }}">
             <div class="col-12">
@@ -109,7 +109,7 @@
                             </div>
                           </div>
                           <div class="row px-2 mb-2 rounded justify-content-center">
-                            <a href="{{$trendingProduct->productLink[0]->aliexpress}}" class="cae-view"><img src="https://ebutify.com/assets/img/ali.png" class="img-fluid" style="width: 16px; margin: 5px;" alt="" target="_blank"> View on a AliExpress</a>
+                            <a target="_blank" href="{{$trendingProduct->productLink[0]->aliexpress}}" class="cae-view"><img src="https://ebutify.com/assets/img/ali.png" class="img-fluid" style="width: 16px; margin: 5px;" alt="" target="_blank"> View on a AliExpress</a>
                           </div>
                             </div>
                         </div>

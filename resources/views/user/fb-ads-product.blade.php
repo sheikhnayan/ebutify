@@ -17,7 +17,7 @@
                <div class="row mx-2 my-3">
                   <div class="col-12 facebook-ads-header d-flex justify-content-between">
                      <h3>Facebook Ad Products</h3>
-                     <a type="button" class="btn btn-facebook-ads" href="{{url('tutorial')}}"><i class="fas fa-video"></i> Tutorials</a>
+                     <a type="button" class="btn btn-facebook-ads" target="_blank" href="{{url('tutorial')}}"><i class="fas fa-video"></i> Tutorials</a>
                   </div>
                   <form class="col-12" method="get" action="{{ route('fb-ad-products') }}">
                      <div class="col-12">
@@ -216,11 +216,11 @@
                            </div>
                            @foreach ($trendingProduct->ProductLink as $productLink)
                            <div class="row mx-4 px-2 mb-2 rounded justify-content-between icon-btn">
-                              <a href="{{$productLink->facebook_ad}}" class="fb-ads-card-footer"><img src="{{asset('assets/img/fb-2.png')}}" style="width: 20px; margin: 0 5px 2px 5px;" alt=""></a>
-                              <a href="{{$productLink->aliexpress}}" class="fb-ads-card-footer"><img src="{{asset('assets/img/ali.png')}}" style="width: 20px; margin: 0 5px 2px 5px;" alt=""></a>
-                              <a href="{{$productLink->amazon}}" class="fb-ads-card-footer"><img src="{{asset('assets/img/amz.png')}}" style="width: 20px; margin: 0 5px 2px 5px;" alt=""></a>
-                              <a href="{{$productLink->competitor_link_1}}" class="fb-ads-card-footer"><img src="{{asset('assets/img/shp.png')}}" style="width: 20px; margin: 0 5px 2px 5px;" alt=""></a>
-                              <a href="{{$productLink->youtube}}" class="fb-ads-card-footer"><i class="fab fa-youtube" style="color: #FF0000; font-size: 26px;margin: 0 5px;"></i></a>
+                              <a target="_blank" href="{{$productLink->facebook_ad}}" class="fb-ads-card-footer"><img src="{{asset('assets/img/fb-2.png')}}" style="width: 20px; margin: 0 5px 2px 5px;" alt=""></a>
+                              <a target="_blank" href="{{$productLink->aliexpress}}" class="fb-ads-card-footer"><img src="{{asset('assets/img/ali.png')}}" style="width: 20px; margin: 0 5px 2px 5px;" alt=""></a>
+                              <a target="_blank" href="{{$productLink->amazon}}" class="fb-ads-card-footer"><img src="{{asset('assets/img/amz.png')}}" style="width: 20px; margin: 0 5px 2px 5px;" alt=""></a>
+                              <a target="_blank" href="{{$productLink->competitor_link_1}}" class="fb-ads-card-footer"><img src="{{asset('assets/img/shp.png')}}" style="width: 20px; margin: 0 5px 2px 5px;" alt=""></a>
+                              <a target="_blank" href="{{$productLink->youtube}}" class="fb-ads-card-footer"><i class="fab fa-youtube" style="color: #FF0000; font-size: 26px;margin: 0 5px;"></i></a>
                            </div>
                            @endforeach
                            <div class="modal fade" id="modal_demo{{$trendingProduct->id}}" tabindex="-1" role="dialog" aria-labelledby="modal_demo{{$trendingProduct->id}}" aria-hidden="true">
@@ -414,7 +414,7 @@
                                                                       <?php if (!empty($links)) {
                                                                         foreach ($links as $link) {
                                                                           $split1 = explode("com",$link);
-                                                                          ?><a href="{{$link}}" target="_blank"><p><img src="{{asset('assets/img/web-icon.png')}}" style="width: 20px; margin-top: -6px;" alt="">  {{$split1[0]}}com...</p></a><?php
+                                                                          ?><a target="_blank" href="{{$link}}" target="_blank"><p><img src="{{asset('assets/img/web-icon.png')}}" style="width: 20px; margin-top: -6px;" alt="">  {{$split1[0]}}com...</p></a><?php
                                                                         }
                                                                       } ?>
                                                                   </div>
@@ -449,12 +449,12 @@
                                                 @foreach ($trendingProduct->ProductLink as $productLink)
                                                 <div class="col-12 shadow bg-white border-rounded mb-4">
                                                    <ul class="list-group list-group-flush py-3 list-unstyled prm-list">
-                                                      <li><a class="list-group-item rounded my-1" href="{{$productLink->competitor_link_1}}" role="tab"><i class="fas fa-store-alt"></i> Visit Competitor Store</a></li>
-                                                      <li><a class="list-group-item rounded my-1" href="{{$productLink->aliexpress}}" role="tab"><img src="{{asset('assets/img/ali.png')}}" style="width: 12px; margin-bottom: 2px;" alt=""> Visit AliExpress Source</a></li>
-                                                      <li><a class="list-group-item rounded my-1" href="{{$productLink->amazon}}" role="tab"><i class="fab fa-amazon"></i> View Product On Amazon</a></li>
-                                                      <li><a class="list-group-item rounded my-1" href="{{$productLink->ebay}}" role="tab"><i class="fab fa-ebay"></i> View Product On eBay</a></li>
-                                                      <li><a class="list-group-item rounded my-1" href="{{$productLink->facebook_ad}}" role="tab"><i class="fab fa-facebook"></i> View Facebook Ads</a></li>
-                                                      <li><a class="list-group-item rounded my-1" href="{{$productLink->youtube}}" role="tab"><i class="fab fa-youtube"></i> View YouTube Review</a></li>
+                                                      <li><a class="list-group-item rounded my-1" target="_blank" href="{{$productLink->competitor_link_1}}" role="tab"><i class="fas fa-store-alt"></i> Visit Competitor Store</a></li>
+                                                      <li><a class="list-group-item rounded my-1" target="_blank" href="{{$productLink->aliexpress}}" role="tab"><img src="{{asset('assets/img/ali.png')}}" style="width: 12px; margin-bottom: 2px;" alt=""> Visit AliExpress Source</a></li>
+                                                      <li><a class="list-group-item rounded my-1" target="_blank" href="{{$productLink->amazon}}" role="tab"><i class="fab fa-amazon"></i> View Product On Amazon</a></li>
+                                                      <li><a class="list-group-item rounded my-1" target="_blank" href="{{$productLink->ebay}}" role="tab"><i class="fab fa-ebay"></i> View Product On eBay</a></li>
+                                                      <li><a class="list-group-item rounded my-1" target="_blank" href="{{$productLink->facebook_ad}}" role="tab"><i class="fab fa-facebook"></i> View Facebook Ads</a></li>
+                                                      <li><a class="list-group-item rounded my-1" target="_blank" href="{{$productLink->youtube}}" role="tab"><i class="fab fa-youtube"></i> View YouTube Review</a></li>
                                                    </ul>
                                                    <div class="slider2">
                                                       @foreach ($trendingProduct->productImage as $productImage)
@@ -498,7 +498,7 @@
                                                    <div class="mb-2 float-right">
                                                       <p class="d-inline-block" style="font-size: 13px;">Download Gif Images</p>
                                                       <button class="btn-download" value="download">
-                                                      <a href="{{route('downloadGIF',[$gifs])}}">Download</a></button>
+                                                      <a target="_blank" href="{{route('downloadGIF',[$gifs])}}">Download</a></button>
                                                    </div>
                                                    @endif
                                                 </div>
@@ -538,7 +538,7 @@
                               @if(!empty($video))
                               <div class="mb-2 float-right">
                                  <button class="btn btn-dark" value="download">
-                                 <a href="{{route('downloadVid',[$video])}}">Download</a></button>
+                                 <a target="_blank" href="{{route('downloadVid',[$video])}}">Download</a></button>
                               </div>
                               @endif
                             </div>
@@ -600,7 +600,7 @@
                                           <?php $product_id = $trendingProduct->id ?>
                                           <div class="col-12 modal-footer px-0 mt-2">
                                              <button type="button" class="btn btn-modal-cancel" data-dismiss="modal">Cancel</button>
-                                             <a href="{{route('product-details',[$product_id])}}" target="_blank" type="button" class="btn btn-modal-product">View Product</a>
+                                             <a target="_blank" href="{{route('product-details',[$product_id])}}" target="_blank" type="button" class="btn btn-modal-product">View Product</a>
                                           </div>
                                        </div>
                                     </div>

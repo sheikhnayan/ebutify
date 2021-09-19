@@ -17,7 +17,7 @@
         <div class="row mx-2 my-3">
           <div class="col-12 facebook-ads-header d-flex justify-content-between">
             <h3>All Product Research</h3>
-            <a type="button" class="btn btn-facebook-ads" href="{{url('tutorial')}}"><i class="fas fa-video"></i> Tutorials</a>
+            <a type="button" class="btn btn-facebook-ads" target="_blank" href="{{url('tutorial')}}"><i class="fas fa-video"></i> Tutorials</a>
           </div>
           <form class="col-12" method="get" action="{{ route('all-product') }}">
             <div class="col-12">
@@ -209,7 +209,7 @@
                 </div>
 <?php $product_id = $trendingProduct->id ?>
                 <div class="row mx-4 px-2 mb-2 justify-content-center rounded icon-btn">
-                  <a href="{{route('all-product-details',[$product_id])}}" type="button" class="btn fb-ads-card-btn">View Product Details</a>
+                  <a target="_blank" href="{{route('all-product-details',[$product_id])}}" type="button" class="btn fb-ads-card-btn">View Product Details</a>
                 </div>
               </div>
 </div>

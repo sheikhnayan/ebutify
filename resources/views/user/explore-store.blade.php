@@ -17,7 +17,7 @@
         <div class="row mx-2 my-3">
           <div class="col-12 facebook-ads-header d-flex justify-content-between">
             <h3>Shopify Store Explorer</h3>
-            <a type="button" class="btn btn-facebook-ads" href="{{url('tutorial')}}"><i class="fas fa-video"></i> Tutorials</a>
+            <a type="button" class="btn btn-facebook-ads" target="_blank" href="{{url('tutorial')}}"><i class="fas fa-video"></i> Tutorials</a>
           </div>
         </div>
         <!-- /.row -->
@@ -31,14 +31,14 @@
               
               
               <div class="col-lg-2 col-md-2 col-sm-6">
-                <a target="_blank" href="{{$trendingProduct->shopify_link}}" style="color: #17a2b8;"><i class="fas fa-shopping-bag" style="color: #DC143C;"></i>
+                <a target="_blank" target="_blank" href="{{$trendingProduct->shopify_link}}" style="color: #17a2b8;"><i class="fas fa-shopping-bag" style="color: #DC143C;"></i>
                       @php
                       $address = $trendingProduct->shopify_link;
                       $split = explode("com",$address);
                       @endphp
                       {{$split[0]}}com...
                       </a>
-                <a target="_blank" href="{{$trendingProduct->shopify_link}}" class="cse-see-link-2 float-right" style="color: #17a2b8;">See all <i class="fas fa-chevron-right"></i></a>
+                <a target="_blank" target="_blank" href="{{$trendingProduct->shopify_link}}" class="cse-see-link-2 float-right" style="color: #17a2b8;">See all <i class="fas fa-chevron-right"></i></a>
               </div>
 
               <div class="col-lg-2 col-md-2 cse-hide">
@@ -55,7 +55,7 @@
               
 
               <div class="col-lg-2 col-md-2 col-sm-6 show-right">
-                <a target="_blank" href="{{$trendingProduct->shopify_link}}" class="cse-see-link-1" style="color: #17a2b8;">See all <i class="fas fa-chevron-right"></i></a>
+                <a target="_blank" target="_blank" href="{{$trendingProduct->shopify_link}}" class="cse-see-link-1" style="color: #17a2b8;">See all <i class="fas fa-chevron-right"></i></a>
               </div>
             </div>
 
@@ -71,10 +71,10 @@
                   
                   
                   <div class="col-6 my-2">
-                    <a target="_blank" href="{{$trendingProduct->product_link}}" style="font-size: 14px; color: #B1B1B1;">{{$trendingProduct->product_name}}</a>
+                    <a target="_blank" target="_blank" href="{{$trendingProduct->product_link}}" style="font-size: 14px; color: #B1B1B1;">{{$trendingProduct->product_name}}</a>
                     
                     <p style="font-size: 13px;">Price: ${{$trendingProduct->price}}</p>
-                    <a target="_blank" href="{{$trendingProduct->ali_express_link}}" class="cse-link"><img src="{{asset('assets/img/ali.png')}}" style="width: 14px; margin: 0 0 5px 0;" alt=""> AliExpress</a>
+                    <a target="_blank" target="_blank" href="{{$trendingProduct->ali_express_link}}" class="cse-link"><img src="{{asset('assets/img/ali.png')}}" style="width: 14px; margin: 0 0 5px 0;" alt=""> AliExpress</a>
                   </div>
                 </div>
               </div>
@@ -88,10 +88,10 @@
                   
                   
                   <div class="col-6 my-2">
-                    <a target="_blank" href="{{$trendingProduct->product_link2}}" style="font-size: 14px; color: #B1B1B1;">{{$trendingProduct->product_name2}}</a>
+                    <a target="_blank" target="_blank" href="{{$trendingProduct->product_link2}}" style="font-size: 14px; color: #B1B1B1;">{{$trendingProduct->product_name2}}</a>
                     
                     <p style="font-size: 13px;">Price: ${{$trendingProduct->price2}}</p>
-                    <a target="_blank" href="{{$trendingProduct->ali_express_link2}}" class="cse-link"><img src="{{asset('assets/img/ali.png')}}" style="width: 14px; margin: 0 0 5px 0;" alt=""> AliExpress</a>
+                    <a target="_blank" target="_blank" href="{{$trendingProduct->ali_express_link2}}" class="cse-link"><img src="{{asset('assets/img/ali.png')}}" style="width: 14px; margin: 0 0 5px 0;" alt=""> AliExpress</a>
                   </div>
                 </div>
               </div>
@@ -105,10 +105,10 @@
                   
                   
                   <div class="col-6 my-2">
-                    <a target="_blank" href="{{$trendingProduct->product_link3}}" style="font-size: 14px; color: #B1B1B1;">{{$trendingProduct->product_name3}}</a>
+                    <a target="_blank" target="_blank" href="{{$trendingProduct->product_link3}}" style="font-size: 14px; color: #B1B1B1;">{{$trendingProduct->product_name3}}</a>
                     
                     <p style="font-size: 13px;">Price: ${{$trendingProduct->price3}}</p>
-                    <a target="_blank" href="{{$trendingProduct->ali_express_link3}}" class="cse-link"><img src="{{asset('assets/img/ali.png')}}" style="width: 14px; margin: 0 0 5px 0;" alt=""> AliExpress</a>
+                    <a target="_blank" target="_blank" href="{{$trendingProduct->ali_express_link3}}" class="cse-link"><img src="{{asset('assets/img/ali.png')}}" style="width: 14px; margin: 0 0 5px 0;" alt=""> AliExpress</a>
                   </div>
                 </div>
               </div>
@@ -122,10 +122,10 @@
                   
                   
                   <div class="col-6 my-2">
-                    <a target="_blank" href="{{$trendingProduct->product_link4}}" style="font-size: 14px; color: #B1B1B1;">{{$trendingProduct->product_name4}}</a>
+                    <a target="_blank" target="_blank" href="{{$trendingProduct->product_link4}}" style="font-size: 14px; color: #B1B1B1;">{{$trendingProduct->product_name4}}</a>
                     
                     <p style="font-size: 13px;">Price: ${{$trendingProduct->price4}}</p>
-                    <a target="_blank" href="{{$trendingProduct->ali_express_link4}}" class="cse-link"><img src="{{asset('assets/img/ali.png')}}" style="width: 14px; margin: 0 0 5px 0;" alt=""> AliExpress</a>
+                    <a target="_blank" target="_blank" href="{{$trendingProduct->ali_express_link4}}" class="cse-link"><img src="{{asset('assets/img/ali.png')}}" style="width: 14px; margin: 0 0 5px 0;" alt=""> AliExpress</a>
                   </div>
                 </div>
               </div>
