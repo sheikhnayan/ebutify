@@ -331,7 +331,7 @@ class SuperAdminController extends Controller
             'name' => $request->name,
             'designation' => $request->designation,
             'review' => $request->review,
-            'image' => $request->image,
+            'image' => $path,
             ]);
 
         return redirect()->back()->with('status', 'Review updated successfully');

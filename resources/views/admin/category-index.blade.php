@@ -16,7 +16,7 @@
                     <div class="col-12 col-sm-auto pl-sm-0">
                     </div>
                     <div class="col-12 col-sm-auto pl-sm-0">
-                        <a href="/super/category/create" class="btn my-2 my-sm-0 btn-primary">Add New Blog Category</a>
+                        <a href="/super/blog/category/create" class="btn my-2 my-sm-0 btn-primary">Add New Blog Category</a>
                     </div>
                 </form>
             </div>
@@ -51,7 +51,7 @@
                   <td>{{ $item->id }}</td>
                   <td> {{ $item->category_name }}</td>
                   <td>
-                    <a href="/super/category/edit/{{ $item->id }}" class="btn btn-primary">Edit</a>
+                    <a href="/super/blog/category/edit/{{ $item->id }}" class="btn btn-primary">Edit</a>
                   </td>
                 </tr>
                 @endforeach

@@ -34,9 +34,9 @@
                               </div>
                           @endif
                           @if(isset($data))
-                          <form action="/super/category/update/{{ $data->id }}" method="post" enctype='multipart/form-data'> 
+                          <form action="/super/blog/category/update/{{ $data->id }}" method="post" enctype='multipart/form-data'> 
                             @else
-                          <form action="/super/category" method="post" enctype='multipart/form-data'>
+                          <form action="/super/blog/category" method="post" enctype='multipart/form-data'>
                             @endif
                             @csrf
                             <label for="">Name</label>

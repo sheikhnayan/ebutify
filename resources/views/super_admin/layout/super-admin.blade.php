@@ -285,7 +285,7 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="/super/category" class="nav-link">
+                <a href="/super/blog/category" class="nav-link">
                   <p>Blog Category</p>
                 </a>
               </li>
