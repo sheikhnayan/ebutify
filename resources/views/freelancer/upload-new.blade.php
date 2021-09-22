@@ -203,12 +203,11 @@
                                     <h4 class="text-center">Select Category</h4>
                                     <div class="input-group mb-3">
                                       <select class="custom-select" multiple id="inputSelectCategory" size="6">
-                                        <option selected>Health & Beauty</option>
-                                        <option>Baby & Kids</option>
-                                        <option>Fitness</option>
-                                        <option>Car Accessories</option>
-                                        <option>Home & Gerden</option>
-                                        <option>Pet Accessories</option>
+                                      @foreach($realCategory as $key => $realcat)
+                                      <option 
+                                        value="{{$key}}">{{$realcat->category}}
+                                      </option>
+                                      @endforeach
                                       </select>
                                     </div>
                                   </div>

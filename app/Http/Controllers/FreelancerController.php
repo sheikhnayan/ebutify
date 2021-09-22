@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Models\ProductDetail;
 use App\Models\QuickStart;
 use Stripe\Subscription;
+use App\Models\Category;
 use DB;
 use Carbon\Carbon;
 
@@ -21,6 +22,7 @@ class FreelancerController extends Controller
 
     public function dashboard()
     {   
+        $realCategory = Category::whereNotNull('id');
 
         //  IF USER'S REGISTERED
         if(Auth::check()){
@@ -97,7 +99,7 @@ class FreelancerController extends Controller
                         $products = ProductDetail::all();
                         $data = QuickStart::all();
 
-                    return view('user.customer-dashboard',compact('products','data'));
+                    return view('user.customer-dashboard',compact('products','data','realCategory'));
 
                     }else{
                         return redirect('/logout');
@@ -130,7 +132,7 @@ class FreelancerController extends Controller
                     $user_id = auth()->id();
                     $products = ProductDetail::where('user_id', $user_id)->get();
                     $productAdded = count($products);
-                    return view('freelancer.freelancer-dashboard', compact('productAdded'));
+                    return view('freelancer.freelancer-dashboard', compact('productAdded','realCategory'));
                 }else
                 {
                     // Auth::logout();
@@ -146,7 +148,7 @@ class FreelancerController extends Controller
                 $user_id = auth()->id();
                 $products = ProductDetail::where('user_id', $user_id)->get();
                 $productAdded = count($products);
-                return view('admin.index', compact('productAdded'));
+                return view('admin.index', compact('productAdded','realCategory'));
             }
 
         }

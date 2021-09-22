@@ -22,6 +22,8 @@ class ExploreController extends Controller
     {
         $user_id = auth()->id();
 
+        $realCategory = Category::whereNotNull('id');
+
         $productDetails = ProductDetail::where('user_id', $user_id)
                                             ->where('explore_pro_type', 'LIKE','%ali_express%')
                                             ->orderBy('created_at','DESC')
@@ -32,7 +34,7 @@ class ExploreController extends Controller
 
         // $productDetails = $collections->orderBy('created_at','DESC')->paginate('10');
 
-        return view('freelancer.explorer-ali-express', compact('productDetails'));
+        return view('freelancer.explorer-ali-express', compact('productDetails','realCategory'));
     }
     public function uploadAliPage()
     {
@@ -41,6 +43,8 @@ class ExploreController extends Controller
 
     public function uploadAli(Request $request)
     {
+        $realCategory = Category::whereNotNull('id');
+
         $category = $request->category;
 
         if (is_array($category)) {
@@ -90,23 +94,28 @@ class ExploreController extends Controller
     {
         $user_id = auth()->id();
 
+        $realCategory = Category::whereNotNull('id');
+
         $productDetails = ProductDetail::where('user_id', $user_id)
                                             ->where('explore_pro_type', 'LIKE' ,'%amazon%')
                                             ->orderBy('created_at','DESC')
                                             ->paginate(50);
 
-        return view('freelancer.explorer-amazon', compact('productDetails'));
+        return view('freelancer.explorer-amazon', compact('productDetails','realCategory'));
     }
     
     public function uploadAmazonPage()
     {
+        $realCategory = Category::whereNotNull('id');
+
         $productDetails = ProductDetail::all();
 
-        return view('freelancer.add-new-amz',compact('productDetails'));
+        return view('freelancer.add-new-amz',compact('productDetails','realCategory'));
     }
 
     public function uploadAmazon(Request $request)
     {
+        $realCategory = Category::whereNotNull('id');
 
         $category = $request->category;
 
@@ -155,18 +164,22 @@ class ExploreController extends Controller
     {
         $user_id = auth()->id();
 
+        $realCategory = Category::whereNotNull('id');
+
         $productDetails = ShopifyProduct::where('user_id', $user_id)
                                             ->orderBy('created_at','DESC')
                                             ->paginate(50);
 
-        return view('freelancer.explorer-shopify', compact('productDetails'));
+        return view('freelancer.explorer-shopify', compact('productDetails','realCategory'));
     }
 
     public function uploadShopifyPage()
     {
         $productDetails = ShopifyProduct::all();
 
-        return view('freelancer.add-new-shopify',compact('productDetails'));
+        $realCategory = Category::whereNotNull('id');
+
+        return view('freelancer.add-new-shopify',compact('productDetails','realCategory'));
     }
 
     public function uploadShopify(Request $request)

@@ -80,7 +80,7 @@
                               </div>
                               <div class="form-group col-md-6 col-lg-2">
                                 <select class="custom-select" multiple id="inputSelectCategory" size="6" name="category[]" required="">
-                                  <option>Women's Fashion</option>
+                                  <!-- <option>Women's Fashion</option>
                                   <option>Man's Fashion</option>
                                   <option>Health & Beauty</option>
                                   <option>Home Improvement</option>
@@ -97,7 +97,11 @@
                                   <option>Fitness</option>
                                   <option>Bag's & Shoes</option>
                                   <option>Outdoor</option>
-                                  <option>Beauty Hair</option>
+                                  <option>Beauty Hair</option> -->
+                                  @foreach($realCategory as $key => $realcat)
+                                  <option 
+                                      value="{{$key}}">{{$realcat->category}}</option>
+                                  @endforeach
                                 </select>
                               </div>
                             </div>

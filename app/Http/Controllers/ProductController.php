@@ -25,6 +25,8 @@ class ProductController extends Controller
     public function productResearch()
     {
         $user_id = auth()->id();
+        
+        $realCategory = Category::whereNotNull('id');
 
         $productDetails = ProductDetail::where('user_id', $user_id)
         ->whereNull('explore_pro_type')
@@ -32,14 +34,16 @@ class ProductController extends Controller
         // dd($productDetails);
         // $productDetails = $collections->sortBy('created_at','DESC');
 
-        return view('freelancer.product-research-new', compact('productDetails'));
+        return view('freelancer.product-research-new', compact('productDetails','realCategory'));
     }
     
     public function uploadPage()
     {
         $productDetails = ProductDetail::all();
+        
+        $realCategory = Category::whereNotNull('id');
 
-        return view('freelancer.freelancer-upload-new',compact('productDetails'));
+        return view('freelancer.freelancer-upload-new',compact('productDetails','realCategory'));
     }
 
     public function uploadProduct(Request $request)
@@ -198,6 +202,8 @@ class ProductController extends Controller
 
     public function productEdit($id)
     {
+        $realCategory = Category::whereNotNull('id');
+
         //  FETCH PRODUCT DETAILS BY ID
         $productDetails = ProductDetail::find($id);
         
@@ -272,12 +278,14 @@ class ProductController extends Controller
         $containsAv = Str::contains($productStatus, 'Available');
         $containsUnav = Str::contains($productStatus, 'Unavailable');
 
-        return view('freelancer.freelancer-edit-product', compact('id', 'productDetails', 'productLinks', 'productImages','containsT','containsF','containsU','containsUnder18','containsUnder1824','containsUnder2534','containsUnder3444','containsUnder4554','containsUnder5564','containsUnder65','containsMen','containsWomen','containsBaby','containsUnisex','containsSa','containsUn','containsAv','containsUnav','containsHB','containsBK','containsFIT','containsCA','containsHG','containsPA','containsBAC','containsMAC','containsBS','containsOD','containsBH','containsJW','containsKH','containsCUC','containsELE','containsGIM','containsMFA','containsWf'));
+        return view('freelancer.freelancer-edit-product', compact('id', 'productDetails', 'productLinks', 'productImages','containsT','containsF','containsU','containsUnder18','containsUnder1824','containsUnder2534','containsUnder3444','containsUnder4554','containsUnder5564','containsUnder65','containsMen','containsWomen','containsBaby','containsUnisex','containsSa','containsUn','containsAv','containsUnav','containsHB','containsBK','containsFIT','containsCA','containsHG','containsPA','containsBAC','containsMAC','containsBS','containsOD','containsBH','containsJW','containsKH','containsCUC','containsELE','containsGIM','containsMFA','containsWf','realCategory'));
     }
 
 
     public function amazonProductEdit($id)
     {
+        $realCategory = Category::whereNotNull('id');
+
         //  FETCH PRODUCT DETAILS BY ID
         $productDetails = ProductDetail::find($id);
         
@@ -352,11 +360,13 @@ class ProductController extends Controller
         $containsAv = Str::contains($productStatus, 'Available');
         $containsUnav = Str::contains($productStatus, 'Unavailable');
 
-        return view('freelancer.amazon-edit-product', compact('id', 'productDetails', 'productLinks', 'productImages','containsT','containsF','containsU','containsUnder18','containsUnder1824','containsUnder2534','containsUnder3444','containsUnder4554','containsUnder5564','containsUnder65','containsMen','containsWomen','containsBaby','containsUnisex','containsSa','containsUn','containsAv','containsUnav','containsHB','containsBK','containsFIT','containsCA','containsHG','containsPA','containsBAC','containsMAC','containsBS','containsOD','containsBH','containsJW','containsKH','containsCUC','containsELE','containsGIM','containsMFA','containsWf'));
+        return view('freelancer.amazon-edit-product', compact('id', 'productDetails', 'productLinks', 'productImages','containsT','containsF','containsU','containsUnder18','containsUnder1824','containsUnder2534','containsUnder3444','containsUnder4554','containsUnder5564','containsUnder65','containsMen','containsWomen','containsBaby','containsUnisex','containsSa','containsUn','containsAv','containsUnav','containsHB','containsBK','containsFIT','containsCA','containsHG','containsPA','containsBAC','containsMAC','containsBS','containsOD','containsBH','containsJW','containsKH','containsCUC','containsELE','containsGIM','containsMFA','containsWf','realCategory'));
     }
 
     public function aliProductEdit($id)
     {
+        $realCategory = Category::whereNotNull('id');
+
         //  FETCH PRODUCT DETAILS BY ID
         $productDetails = ProductDetail::find($id);
         
@@ -431,11 +441,13 @@ class ProductController extends Controller
         $containsAv = Str::contains($productStatus, 'Available');
         $containsUnav = Str::contains($productStatus, 'Unavailable');
 
-        return view('freelancer.ali-edit-product', compact('id', 'productDetails', 'productLinks', 'productImages','containsT','containsF','containsU','containsUnder18','containsUnder1824','containsUnder2534','containsUnder3444','containsUnder4554','containsUnder5564','containsUnder65','containsMen','containsWomen','containsBaby','containsUnisex','containsSa','containsUn','containsAv','containsUnav','containsHB','containsBK','containsFIT','containsCA','containsHG','containsPA','containsBAC','containsMAC','containsBS','containsOD','containsBH','containsJW','containsKH','containsCUC','containsELE','containsGIM','containsMFA','containsWf'));
+        return view('freelancer.ali-edit-product', compact('id', 'productDetails', 'productLinks', 'productImages','containsT','containsF','containsU','containsUnder18','containsUnder1824','containsUnder2534','containsUnder3444','containsUnder4554','containsUnder5564','containsUnder65','containsMen','containsWomen','containsBaby','containsUnisex','containsSa','containsUn','containsAv','containsUnav','containsHB','containsBK','containsFIT','containsCA','containsHG','containsPA','containsBAC','containsMAC','containsBS','containsOD','containsBH','containsJW','containsKH','containsCUC','containsELE','containsGIM','containsMFA','containsWf','realCategory'));
     }
     
     public function shopifyProductEdit($id)
     {
+        $realCategory = Category::whereNotNull('id');
+
         //  FETCH PRODUCT DETAILS BY ID
         $productDetails = ShopifyProduct::find($id);
 
@@ -448,12 +460,14 @@ class ProductController extends Controller
         $containsAv = Str::contains($productStatus, 'Available');
         $containsUnav = Str::contains($productStatus, 'Unavailable');
 
-        return view('freelancer.shopify-edit-product', compact('id', 'productDetails','containsAv','containsUnav','productType'));
+        return view('freelancer.shopify-edit-product', compact('id', 'productDetails','containsAv','containsUnav','productType','realCategory'));
     }
 
 
     public function productUpdate(Request $request)
     {
+        $realCategory = Category::whereNotNull('id');
+        
         $videoName = $request->session()->pull('video', 'default');
         
         if ($request->type == 'Saturated' ) {

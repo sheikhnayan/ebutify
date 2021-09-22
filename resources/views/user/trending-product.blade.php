@@ -36,7 +36,11 @@
                      <div class="col-sm-12 col-md-6 col-lg-3 my-1">
                         <select class="form-control select2 filter-item" name="category">
                            <option value="">All Categories</option>
-                           <option @if ($categorySelected == 1)
+                          @foreach($realCategory as $key => $realcat)
+                          <option 
+                            value="{{$key}}">{{$realcat->category}}</option>
+                          @endforeach
+                           <!-- <option @if ($categorySelected == 1)
                                             selected="selected"
                                         @endif value="1">Women's Fashion</option>
                            <option @if ($categorySelected == 2)
@@ -89,7 +93,7 @@
                                         @endif value="17">Outdoor</option>
                            <option @if ($categorySelected == 18)
                                             selected="selected"
-                                        @endif value="18">Beauty Hair</option>
+                                        @endif value="18">Beauty Hair</option> -->
                         </select>
                      </div>
                      <div class="col-sm-12 col-md-6 col-lg-3 my-1">

@@ -26,6 +26,8 @@ class UserExploreController extends Controller
 {
     public function exploreAli(Request $request)
     {
+        $realCategory = Category::whereNotNull('id');
+
         if(Auth::check()){
             $sortSelected = 0;
             $filterSelected = 0;
@@ -188,11 +190,11 @@ class UserExploreController extends Controller
 
             if (empty($country)) {
 
-                return view('user.explore-ali',compact('trendingProducts','sortSelected','filterSelected'));
+                return view('user.explore-ali',compact('trendingProducts','sortSelected','filterSelected','realCategory'));
 
             }else{
 
-                return view('user.explore-ali',compact('trendingProducts','country','sortSelected','filterSelected'));
+                return view('user.explore-ali',compact('trendingProducts','country','sortSelected','filterSelected','realCategory'));
 
             }
         
@@ -206,6 +208,8 @@ class UserExploreController extends Controller
 
     public function exploreAmz(Request $request)
     {
+        $realCategory = Category::whereNotNull('id');
+
         if(Auth::check()){
             $sortSelected = 0;
             $filterSelected = 0;
@@ -370,11 +374,11 @@ class UserExploreController extends Controller
 
             if (empty($country)) {
 
-                return view('user.explore-amazon',compact('trendingProducts','sortSelected','filterSelected'));
+                return view('user.explore-amazon',compact('trendingProducts','sortSelected','filterSelected','realCategory'));
 
             }else{
 
-                return view('user.explore-amazon',compact('trendingProducts','country','sortSelected','filterSelected'));
+                return view('user.explore-amazon',compact('trendingProducts','country','sortSelected','filterSelected','realCategory'));
 
             }
         
@@ -388,6 +392,8 @@ class UserExploreController extends Controller
 
     public function exploreStore(Request $request)
     {
+        $realCategory = Category::whereNotNull('id');
+
         if(Auth::check()){
             
         $trendingProducts = ShopifyProduct::orderBy('created_at','DESC')->paginate(3);
@@ -498,11 +504,11 @@ class UserExploreController extends Controller
 
             if (empty($country)) {
 
-                return view('user.explore-store',compact('trendingProducts'));
+                return view('user.explore-store',compact('trendingProducts','realCategory'));
 
             }else{
 
-                return view('user.explore-store',compact('trendingProducts','country'));
+                return view('user.explore-store',compact('trendingProducts','country','realCategory'));
             }
 
         }else{
