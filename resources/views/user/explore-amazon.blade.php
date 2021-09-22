@@ -66,7 +66,7 @@
             <!-- SHOW PRODUCT DETAILS -->
             <!-- FOREACH STARTS -->
             <div class="row mx-3 mt-3">
-                      <div class="card-deck">
+                      <div class="card-deck" id="data-wrapper">
                         @foreach($trendingProducts as $trendingProduct)
                         <div class="col-md-4 mt-4">
                             <div class="card shadow">
@@ -120,11 +120,11 @@
 
             <!-- LOAD MORE DATA SHOW -->
  
-                <div class="card-deck" id="data-wrapper">
+                {{-- <div class="card-deck" > --}}
                 
                   <!-- RESULTS -->
                   
-                </div>
+                {{-- </div> --}}
 
             <!-- LOAD MORE DATA END -->
 
