@@ -364,11 +364,11 @@ Route::get('/super/privacy-policy', [SuperAdminController::class, 'privacy_polic
 Route::post('/super/privacy-policy/update', [SuperAdminController::class, 'privacy_policy_update']);
 Route::get('/super/return-policy', [SuperAdminController::class, 'refund_policy']);
 Route::post('/super/return-policy/update', [SuperAdminController::class, 'refund_policy_update']);
-Route::get('/super/category/create', [SuperAdminController::class, 'category']);
-Route::post('/super/category', [SuperAdminController::class, 'category_store']);
-Route::get('/super/category', [SuperAdminController::class, 'category_index']);
-Route::get('/super/category/edit/{id}', [SuperAdminController::class, 'category_edit']);
-Route::post('/super/category/update/{id}', [SuperAdminController::class, 'category_update']);
+Route::get('/super/blog/category/create', [SuperAdminController::class, 'category']);
+Route::post('/super/blog/category', [SuperAdminController::class, 'category_store']);
+Route::get('/super/blog/category', [SuperAdminController::class, 'category_index']);
+Route::get('/super/blog/category/edit/{id}', [SuperAdminController::class, 'category_edit']);
+Route::post('/super/blog/category/update/{id}', [SuperAdminController::class, 'category_update']);
 
 
 
