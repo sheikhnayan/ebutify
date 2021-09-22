@@ -53,6 +53,8 @@ class FreelancerController extends Controller
 
                     $plan = DB::table('subscriptions')->where('user_id', Auth::user()->id)->latest()->first();
 
+                    dd($plan);
+
                     if($plan->stripe_plan == 'price_1JPqeZCzBVgP4kKNPA6XL5mX'){
 
                         $enddate = Carbon::parse($plan->created_at)->addMonth()->format('d.m.Y');
