@@ -38,9 +38,7 @@ class ExploreController extends Controller
     }
     public function uploadAliPage()
     {
-        $realCategory = Category::whereNotNull('id')->get();
-
-        return view('freelancer.add-new-ali-ex',compact('realCategory'));
+        return view('freelancer.add-new-ali-ex');
     }
 
     public function uploadAli(Request $request)

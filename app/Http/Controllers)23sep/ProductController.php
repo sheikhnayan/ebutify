@@ -26,8 +26,9 @@ class ProductController extends Controller
     {
         $user_id = auth()->id();
         
-        $realCategory = Category::whereNotNull('id')->get();
-
+        $realCategory = Category::whereNotNull('id');
+        // dd('hello');
+        // dd($realCategory);
         $productDetails = ProductDetail::where('user_id', $user_id)
         ->whereNull('explore_pro_type')
         ->orderBy('created_at','DESC')->paginate(50);
@@ -41,7 +42,7 @@ class ProductController extends Controller
     {
         $productDetails = ProductDetail::all();
         
-        $realCategory = Category::whereNotNull('id')->get();
+        $realCategory = Category::whereNotNull('id');
 
         return view('freelancer.freelancer-upload-new',compact('productDetails','realCategory'));
     }
@@ -202,7 +203,7 @@ class ProductController extends Controller
 
     public function productEdit($id)
     {
-        $realCategory = Category::whereNotNull('id')->get();
+        $realCategory = Category::whereNotNull('id');
 
         //  FETCH PRODUCT DETAILS BY ID
         $productDetails = ProductDetail::find($id);
@@ -284,7 +285,7 @@ class ProductController extends Controller
 
     public function amazonProductEdit($id)
     {
-        $realCategory = Category::whereNotNull('id')->get();
+        $realCategory = Category::whereNotNull('id');
 
         //  FETCH PRODUCT DETAILS BY ID
         $productDetails = ProductDetail::find($id);
@@ -365,7 +366,7 @@ class ProductController extends Controller
 
     public function aliProductEdit($id)
     {
-        $realCategory = Category::whereNotNull('id')->get();
+        $realCategory = Category::whereNotNull('id');
 
         //  FETCH PRODUCT DETAILS BY ID
         $productDetails = ProductDetail::find($id);
@@ -446,7 +447,7 @@ class ProductController extends Controller
     
     public function shopifyProductEdit($id)
     {
-        $realCategory = Category::whereNotNull('id')->get();
+        $realCategory = Category::whereNotNull('id');
 
         //  FETCH PRODUCT DETAILS BY ID
         $productDetails = ShopifyProduct::find($id);
@@ -466,7 +467,7 @@ class ProductController extends Controller
 
     public function productUpdate(Request $request)
     {
-        $realCategory = Category::whereNotNull('id')->get();
+        $realCategory = Category::whereNotNull('id');
         
         $videoName = $request->session()->pull('video', 'default');
         

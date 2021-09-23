@@ -22,7 +22,7 @@ class ExploreController extends Controller
     {
         $user_id = auth()->id();
 
-        $realCategory = Category::whereNotNull('id')->get();
+        $realCategory = Category::whereNotNull('id');
 
         $productDetails = ProductDetail::where('user_id', $user_id)
                                             ->where('explore_pro_type', 'LIKE','%ali_express%')
@@ -38,14 +38,12 @@ class ExploreController extends Controller
     }
     public function uploadAliPage()
     {
-        $realCategory = Category::whereNotNull('id')->get();
-
-        return view('freelancer.add-new-ali-ex',compact('realCategory'));
+        return view('freelancer.add-new-ali-ex');
     }
 
     public function uploadAli(Request $request)
     {
-        $realCategory = Category::whereNotNull('id')->get();
+        $realCategory = Category::whereNotNull('id');
 
         $category = $request->category;
 
@@ -96,7 +94,7 @@ class ExploreController extends Controller
     {
         $user_id = auth()->id();
 
-        $realCategory = Category::whereNotNull('id')->get();
+        $realCategory = Category::whereNotNull('id');
 
         $productDetails = ProductDetail::where('user_id', $user_id)
                                             ->where('explore_pro_type', 'LIKE' ,'%amazon%')
@@ -108,7 +106,7 @@ class ExploreController extends Controller
     
     public function uploadAmazonPage()
     {
-        $realCategory = Category::whereNotNull('id')->get();
+        $realCategory = Category::whereNotNull('id');
 
         $productDetails = ProductDetail::all();
 
@@ -117,7 +115,7 @@ class ExploreController extends Controller
 
     public function uploadAmazon(Request $request)
     {
-        $realCategory = Category::whereNotNull('id')->get();
+        $realCategory = Category::whereNotNull('id');
 
         $category = $request->category;
 
@@ -166,7 +164,7 @@ class ExploreController extends Controller
     {
         $user_id = auth()->id();
 
-        $realCategory = Category::whereNotNull('id')->get();
+        $realCategory = Category::whereNotNull('id');
 
         $productDetails = ShopifyProduct::where('user_id', $user_id)
                                             ->orderBy('created_at','DESC')
@@ -179,7 +177,7 @@ class ExploreController extends Controller
     {
         $productDetails = ShopifyProduct::all();
 
-        $realCategory = Category::whereNotNull('id')->get();
+        $realCategory = Category::whereNotNull('id');
 
         return view('freelancer.add-new-shopify',compact('productDetails','realCategory'));
     }
