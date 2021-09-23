@@ -79,9 +79,10 @@
                                                 <span class="pr-md-4 pl-md-4">Choose Your Duration</span>
                                             </div>
                                         </div>
+                                        <form id="myForm">
                                         <div class="row mt-2">
                                             <div class="col-sm-12 col-md-6">
-                                                <div class="plan--payment_system">
+                                                <div class="plan--payment_system" id="yearly">
 
                                                     <div class="free_month_badge text-center">
                                                         <div class="inner" style="margin-top: 12px;">Best Choice</div>
@@ -89,9 +90,9 @@
 
                                                     <div class="custom-control custom-radio">
                                                         <input type="radio"
-                                                            class="custom-control-input payment-radio d-none" value="price_1JPqopCzBVgP4kKNdvtju0GZ" name="plan" id="subscription-plan">
+                                                            class="custom-control-input payment-radio d-none" value="price_1If8VPEgl2c23Bzjq8LUvao7" name="plan" id="yearly_plan">
                                                         <label class="custom-control-label" for="subscription-plan">
-                                                            <p><span class="from-yr">{{$plans['price_1JPqopCzBVgP4kKNdvtju0GZ']}}</span>
+                                                            <p><span class="from-yr">{{$plans['price_1If8VPEgl2c23Bzjq8LUvao7']}}</span>
                                                                 <span class="pricing-num">$420.00 USD<span class="pr-per">/year</span> </span>
                                                             </p>
                                                             <p><span class="pricing-num">To Pay Today: $420.00 </span></p>
@@ -104,12 +105,12 @@
                                                 </div>
                                             </div>
                                             <div class="col-sm-12 m-b-10 col-md-6">
-                                                <div class="plan--payment_system sm-pading-point">
+                                                <div class="plan--payment_system sm-pading-point" id="monthly">
                                                     <div class="custom-control custom-radio">
-                                                        <input type="radio" name="plan" id="subscription-plan" value="price_1JPqeZCzBVgP4kKNPA6XL5mX"
+                                                        <input type="radio" name="plan" id="monthly_plan" value="price_1If8QdEgl2c23BzjE4HCoJc3"
                                                             class="custom-control-input payment-radio d-none">
                                                         <label class="custom-control-label" for="radioYearly">
-                                                            <p><span class="from-yr">{{$plans['price_1JPqeZCzBVgP4kKNPA6XL5mX']}}</span>
+                                                            <p><span class="from-yr">{{$plans['price_1If8QdEgl2c23BzjE4HCoJc3']}}</span>
                                                                 <span class="pricing-num">$35.00 USD<span class="pr-per">/month</span> </span>
                                                             </p>
                                                             <p><span class="pricing-num">To Pay Today: $35.00 </span></p>
@@ -124,6 +125,7 @@
 
 
                                         </div>
+                                    </form>
 
                                         <div class="row px-3 login_from_mt">
                                             <div class="d-none d-md-block"
@@ -132,6 +134,8 @@
                                             </div>
                                             <div class="col-sm-12 login_from_activate_trial text-center">
                                                 <span>Choose Payment Method</span>
+                                                
+                                                <input type="hidden" name="plan_id" id="plan_id">
                                             </div>
                                         </div>
                                         <div class="row method-choose-section">
@@ -269,6 +273,19 @@
 @endsection
 
 @section('js')
+<script>
+            $("#monthly").click(function (){
+                var plan_id = 'price_1If8QdEgl2c23BzjE4HCoJc3';
+                $('input[name=plan_id]').val(plan_id);
+            });
+
+            $("#yearly").click(function (){
+                var plan_id = 'price_1If8VPEgl2c23Bzjq8LUvao7';
+                $('input[name=plan_id]').val(plan_id);
+            });
+
+
+</script>
     <script>
         window.addEventListener('load', function() {
             const stripe = Stripe('{{env('STRIPE_KEY')}}');
@@ -279,8 +296,11 @@
             const cardButton = document.getElementById('card-button');
             const clientSecret = cardButton.dataset.secret;
             
-            const plan = document.getElementById('subscription-plan').value;
+            // const plan = $('input[name=plan]:checked', '#myForm').val();
+            
+            
             cardButton.addEventListener('click', async (e) => {
+                var plan = $("#plan_id").val();
                 const { setupIntent, error } = await stripe.handleCardSetup(
                     clientSecret, cardElement, {
                         payment_method_data: {
@@ -294,7 +314,7 @@
                 } else {
                     // The card has been verified successfully...
                     console.log('handling success', setupIntent.payment_method);
-                     axios.post('http://127.0.0.1:8000/subscribe',{
+                     axios.post('https://ebutify.com/subscribe',{
                         payment_method: setupIntent.payment_method,
                         plan : plan
                     }).then((data)=>{

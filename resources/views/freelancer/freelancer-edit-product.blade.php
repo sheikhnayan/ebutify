@@ -1,8 +1,7 @@
-<?php if(Auth::user()->user_type == "admin"){ ?>
-  @extends('super_admin.layout.super-admin')
-<?php }elseif (Auth::user()->user_type == "freelancer") { ?>
-  @extends('layouts.freelancer-layout')
-<?php } ?>
+
+
+@extends('layouts.freelancer-layout')
+
 @section('content')
 
   <!-- Content Wrapper. Contains page content -->
@@ -412,8 +411,8 @@
                     <div class="col-12">
                       <div class="row  mr-4">
                           <div class="col-12 text-description pl-4 pr-5 pb-4 ml-3">
-                            <h4>Description</h4>
-                            <textarea id="editor" name="desc">{{$productDetails->description}}</textarea>
+                            <h4>Description</h4>              
+                            <textarea id="editor" name="desc">{!! $productDetails->description !!}</textarea>
                           </div>
                           <div class="col-12 pl-4 pr-5 pb-4">
                             <button type="submit" class="btn btn-primary float-right">Submit Product</button>
