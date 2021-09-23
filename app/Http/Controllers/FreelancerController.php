@@ -53,6 +53,7 @@ class FreelancerController extends Controller
 
                     $plan = DB::table('subscriptions')->where('user_id', Auth::user()->id)->latest()->first();
 
+
                     // dd($plan);
 
                     if($plan->stripe_plan == 'price_1If8QdEgl2c23BzjE4HCoJc3'){
