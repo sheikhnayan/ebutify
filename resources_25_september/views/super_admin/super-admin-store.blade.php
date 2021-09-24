@@ -6,13 +6,6 @@
     <!-- Main content -->
     <section id="main-content" class="content">
       <div class="container-fluid">
-        @if (\Session::has('message'))
-            <div class="alert alert-success">
-                <ul>
-                    <li>{!! \Session::get('message') !!}</li>
-                </ul>
-            </div>
-        @endif
         <div class="row">
             <div class="col-md-12">
 <!--                 <form class="row mb-3 mt-1">
@@ -48,15 +41,14 @@
               <thead>
                 <tr>
                   <th>ID</th>
-                  <th>Image</th>
-                  <th width="50">Product Name</th>
+                  <th>Product Image</th>
+                  <th>Product Names</th>
                   <th>Price</th>
-
-                  <th>Order</th>
-                  <th>Total Revinue</th>
+                  <th>Monthly Traffic</th>
+                  <th>Ads Spend</th>
                   <th>Date</th>
                   <th>Uploader Name</th>
-                  <th width="100" colspan="2">Action</th>
+                  <th width="100">Action</th>
                 </tr>
               </thead>
               @if ($trendingProducts->count() == 0)
@@ -68,17 +60,15 @@
               <tbody>
                 <tr>
                   <td>{{$productDetail->id}}</td>
-                  @foreach ($productDetail->productImage as $productImage)
-                  <td><img class="tbl-img" src="{{$productImage->image_link_1}}"></td>
-                  @endforeach
-                  <td>{{$productDetail->product_name}}</td>
+                  <td><img class="tbl-img" src="{{$productDetail->image_link}}"></td>
+                  <td>{{$productDetail->product_name}},<br>{{$productDetail->product_name2}},<br>{{$productDetail->product_name3}},<br>{{$productDetail->product_name4}}</td>
                   <td>${{$productDetail->price}}</td>
-                  <td>{{$productDetail->total_order}}</td>
-                  <td>{{$productDetail->total_revenue}}</td>
+                  <td>{{$productDetail->monthly_traffic}}</td>
+                  <td>${{$productDetail->ad_spend}}</td>
                   <td>{{$productDetail->created_at}}</td>
                   <td>{{$productDetail->uploader_name}}</td>
                   <td>
-                    <a href="{{ route ('sup-product-edit', ['id' => $productDetail->id]) }}" class="btn btn-primary">Edit</a>
+                    <a href="{{ route ('shopify-edit', ['id' => $productDetail->id]) }}" class="btn btn-primary">Edit</a>
                   </td>
                   <td>
                     <a href="{{ route ('product-delete-explo', ['id' => $productDetail->id]) }}" onclick="return confirm('Are you sure to delete?');" class="btn btn-danger">Delete</a>

@@ -1,4 +1,4 @@
-@extends('super_admin.layout.super-admin')
+@extends('layouts.freelancer-layout')
 @section('content')
 
   <!-- Content Wrapper. Contains page content -->
@@ -23,19 +23,12 @@
                         {{ session('status') }}
                     </div>
                 @endif
-                <form action="{{ route('productUpdate') }}" method="POST" enctype="multipart/form-data">
-                @csrf
-                <input type="hidden" id="id" name="id" value="{{$id}}">
-
-                <input type="hidden" id="productImagesId" name="productImagesId" value="{{$productImages->id}}">
-
-                <input type="hidden" id="productLinksId" name="productLinksId" value="{{$productLinks->id}}">
-                
-                <input type="hidden" id="uploadername" name="uploadername" value="{{Auth::user()->name}}">
-
+                  <form action="{{ route('uploadProduct') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                  <input type="hidden" id="uploadername" name="uploadername" value="{{Auth::user()->name}}">
                 <div class="row add-new-product-form-main shadow bg-white m-4">
                     <div class="col-12 add-new-product-form-header shadow p-3">
-                      <h3>Update Product</h3>
+                      <h3>Add New Product</h3>
                     </div>
                     <div class="col-12">
                       <div class="row pt-3 pl-3">
@@ -45,7 +38,7 @@
 
                                 <div class="form-group">
                                   <label for="inputProduct">Product Name</label>
-                                  <input type="text" class="form-control" name="pname" id="inputProduct" value="{{$productDetails->product_name}}" >
+                                  <input type="text" class="form-control" name="pname" id="inputProduct" value="{{old('pname')}}" required="">
                                 </div>
 
                             </div>
@@ -56,15 +49,15 @@
                                       <div class="form-row">
                                         <div class="form-group col-md-4">
                                           <label for="inputPrice">Price</label>
-                                          <input type="number" class="form-control" name="price" id="inputPrice" step=".01" value="{{$productDetails->price}}" >
+                                          <input type="number" class="form-control" name="price" step=".01" id="inputPrice" value="{{old('price')}}" required="">
                                         </div>
                                         <div class="form-group col-md-4">
                                           <label for="inputCost">Cost</label>
-                                          <input type="number" class="form-control" id="inputCost" name="cost" step=".01" value="{{$productDetails->cost}}" >
+                                          <input type="number" class="form-control" id="inputCost" name="cost" step=".01" value="{{old('cost')}}" required="">
                                         </div>
                                         <div class="form-group col-md-4">
                                           <label for="inputProfit">Profit</label>
-                                          <input type="number" class="form-control" id="inputProfit" name="profit" step=".01" value="{{$productDetails->profit}}" >
+                                          <input type="number" class="form-control" id="inputProfit" name="profit" step=".01" value="{{old('profit')}}" required="">
                                         </div>
                                       </div>
 
@@ -74,15 +67,15 @@
                                       <div class="form-row">
                                         <div class="form-group col-md-4">
                                           <label for="inputTotalOrder">Total Order</label>
-                                          <input type="number" class="form-control" id="inputTotalOrder" name="torder" step=".01" value="{{$productDetails->total_order}}" >
+                                          <input type="number" class="form-control" id="inputTotalOrder" name="torder" step=".01" value="{{old('torder')}}" required="">
                                         </div>
                                         <div class="form-group col-md-4">
                                           <label for="inputTotalRevinue">Total Revinue</label>
-                                          <input type="number" class="form-control" id="inputTotalRevinue" name="trevinue" step=".01" value="{{$productDetails->total_revenue}}" >
+                                          <input type="number" class="form-control" id="inputTotalRevinue" name="trevinue" step=".01" value="{{old('trevinue')}}" required="">
                                         </div>
                                         <div class="form-group col-md-4">
                                           <label for="inputAlexaRank">Alexa Rank</label>
-                                          <input type="number" class="form-control" id="inputAlexaRank" name="alexarank" step=".01" value="{{$productDetails->alexa_rank}}" >
+                                          <input type="number" class="form-control" id="inputAlexaRank" name="alexarank" step=".01" value="{{old('alexarank')}}" required="">
                                         </div>
                                       </div>
 
@@ -93,16 +86,10 @@
 
                                 <div class="form-group">
                                   <label for="inputOpportunity">Opportunity level</label>
-                                  <select class="custom-select" multiple="multiple"  size="3"  name="opportunity[]" id="opportunity">
-                                    <option value="facebook_ads" @if ($containsF == true)
-                                            selected="selected"
-                                        @endif>Facebook ads</option>
-                                    <option value="trending_product" @if ($containsT == true)
-                                            selected="selected"
-                                        @endif>Trending product</option>
-                                    <option value="untapped_product" @if ($containsU == true)
-                                            selected="selected"
-                                        @endif>Untapped product</option>
+                                  <select class="custom-select" multiple="multiple" required="" size="3"  name="opportunity[]" id="opportunity">
+                                    <option value="facebook_ads">Facebook ads</option>
+                                    <option value="trending_product">Trending product</option>
+                                    <option value="untapped_product">Untapped product</option>
                                   </select>
                                 </div>
 
@@ -115,15 +102,15 @@
                                 <div class="form-row">
                                   <div class="form-group col-md-4">
                                     <label for="inputAliExpressLink">AliExpress link</label>
-                                    <input type="text" class="form-control" id="inputAliExpressLink" name="aliexpress" value="{{$productLinks->aliexpress}}">
+                                    <input type="url" class="form-control" id="inputAliExpressLink" name="aliexpress" value="{{old('aliexpress')}}">
                                   </div>
                                   <div class="form-group col-md-4">
                                     <label for="inputFacebookAdsLink">Facebook ads link</label>
-                                    <input type="text" class="form-control" id="inputFacebookAdsLink" name="fbadd" value="{{$productLinks->facebook_ad}}">
+                                    <input type="url" class="form-control" id="inputFacebookAdsLink" name="fbadd" value="{{old('fbadd')}}">
                                   </div>
                                   <div class="form-group col-md-4">
                                     <label for="inputGoogleTrendsLink">Google trends link</label>
-                                    <input type="text" class="form-control" id="inputGoogleTrendsLink" name="google" value="{{$productLinks->google_trend}}">
+                                    <input type="url" class="form-control" id="inputGoogleTrendsLink" name="google" value="{{old('google')}}">
                                   </div>
                                 </div>
 
@@ -134,19 +121,19 @@
 
                                         <div class="form-row">
                                           <div class="form-group col-12">
-                                            <input type="text" class="form-control" id="inputAliExpressImageLink" name="img1" value="{{$productImages->image_link_1}}">
+                                            <input type="url" class="form-control" id="inputAliExpressImageLink" name="img1" value="{{old('img1')}}" required="">
                                           </div>
                                           <div class="form-group col-12">
-                                            <input type="text" class="form-control" id="inputAliExpressImageLink" name="img2" value="{{$productImages->image_link_2}}">
+                                            <input type="url" class="form-control" id="inputAliExpressImageLink" name="img2" value="{{old('img2')}}" required="">
                                           </div>
                                           <div class="form-group col-12">
-                                            <input type="text" class="form-control" id="inputAliExpressImageLink" name="img3" value="{{$productImages->image_link_3}}">
+                                            <input type="url" class="form-control" id="inputAliExpressImageLink" name="img3" value="{{old('img3')}}" required="">
                                           </div>
                                           <div class="form-group col-12">
-                                            <input type="text" class="form-control" id="inputAliExpressImageLink" name="img4" value="{{$productImages->image_link_4}}">
+                                            <input type="url" class="form-control" id="inputAliExpressImageLink" name="img4" value="{{old('img4')}}" required="">
                                           </div>
                                           <div class="form-group col-12">
-                                            <input type="text" class="form-control" id="inputAliExpressImageLink" name="img5" value="{{$productImages->image_link_5}}">
+                                            <input type="url" class="form-control" id="inputAliExpressImageLink" name="img5" value="{{old('img5')}}" required="">
                                           </div>
                                         </div>
 
@@ -158,19 +145,19 @@
 
                                       <div class="form-row">
                                         <div class="form-group col-12">
-                                          <input type="text" class="form-control" id="inputAliExpressImageLink" name="competitor1" value="{{$productLinks->competitor_link_1}}">
+                                          <input type="url" class="form-control" id="inputAliExpressImageLink" name="competitor1" value="{{old('competitor1')}}" required="">
                                         </div>
                                         <div class="form-group col-12">
-                                          <input type="text" class="form-control" id="inputAliExpressImageLink" name="competitor2" value="{{$productLinks->competitor_link_2}}">
+                                          <input type="url" class="form-control" id="inputAliExpressImageLink" name="competitor2" value="{{old('competitor2')}}">
                                         </div>
                                         <div class="form-group col-12">
-                                          <input type="text" class="form-control" id="inputAliExpressImageLink" name="competitor3" value="{{$productLinks->competitor_link_3}}">
+                                          <input type="url" class="form-control" id="inputAliExpressImageLink" name="competitor3" value="{{old('competitor3')}}">
                                         </div>
                                         <div class="form-group col-12">
-                                          <input type="text" class="form-control" id="inputAliExpressImageLink" name="competitor4" value="{{$productLinks->competitor_link_4}}">
+                                          <input type="url" class="form-control" id="inputAliExpressImageLink" name="competitor4" value="{{old('competitor4')}}">
                                         </div>
                                         <div class="form-group col-12">
-                                          <input type="text" class="form-control" id="inputAliExpressImageLink" name="competitor5" value="{{$productLinks->competitor_link_5}}">
+                                          <input type="url" class="form-control" id="inputAliExpressImageLink" name="competitor5" value="{{old('competitor5')}}">
                                         </div>
                                       </div>
 
@@ -179,58 +166,39 @@
                                 <div class="col-md-4">
                                 <div class="link-box my-1">
                                     <h4 class="text-center">Upload Gif Image</h4>
-
                                       <div class="form-row">
                                         <div class="form-group col-12">
-                                          <img class="form-group" src="{{'https://ebutify.com/storage/app/public/'.$productImages->gif_1}}" style="width: 80px;" alt="No GIF Yet">
-                                          <input class="form-group filepond" id="profile-select1" accept=".png, .jpg, .jpeg, .gif" type="file" name="gif1" style="display:none; width: 70%; overflow: hidden;">
+                                          <!-- <input id="profile-input1" type="text" class="form-control" style="width: 70%; display: initial;"> -->
+                                          <input id="profile-select1" type="file" name="gif1" class="filepond" style="display:none; width: 70%; overflow: hidden;">
+                                          <!-- <button type="button" onclick="profileSelect1()" class="btn btn-outline-none btn-transparent" style="padding: 0; overflow: hidden;"><img src="assets/img/Group-315.png" style="width: 35px;"></button> -->
                                         </div>
                                         <div class="form-group col-12">
-                                          <img class="form-group" src="{{asset('storage/app/public/'.$productImages->gif_2)}}" style="width: 80px;" alt="No GIF Yet">
-                                          
-                                          <input class="form-group filepond" id="profile-select2" accept=".png, .jpg, .jpeg, .gif" type="file" name="gif2" style="display:none; width: 70%; overflow: hidden;">
-                                          
+                                          <!-- <input id="profile-input2" type="text" class="form-control" style="width: 70%; display: initial;"> -->
+                                          <input id="profile-select2" type="file" name="gif2" class="filepond" style="display:none; width: 70%; overflow: hidden;">
+                                          <!-- <button type="button" onclick="profileSelect2()" class="btn btn-outline-none btn-transparent" style="padding: 0; overflow: hidden;"><img src="assets/img/Group-315.png" style="width: 35px;"></button> -->
                                         </div>
                                         <div class="form-group col-12">
-                                          <img class="form-group" src="{{asset('storage/app/public/'.$productImages->gif_3)}}" style="width: 80px;" alt="No GIF Yet">
-                                          
-                                          <input class="form-group filepond" id="profile-select3" accept=".png, .jpg, .jpeg, .gif" type="file" name="gif3"  style="display:none; width: 70%; overflow: hidden;">
+                                          <!-- <input id="profile-input3" type="text" class="form-control" style="width: 70%; display: initial;"> -->
+                                          <input id="profile-select3" type="file" name="gif3" class="filepond" style="display:none; width: 70%; overflow: hidden;">
+                                          <!-- <button type="button" onclick="profileSelect3()" class="btn btn-outline-none btn-transparent" style="padding: 0; overflow: hidden;"><img src="assets/img/Group-315.png" style="width: 35px;"></button> -->
+                                        </div>
+                                        <div class="col-12 upload-gif-note">
+                                          <span>Click Image icon and upload your product gif images</span>
                                         </div>
                                       </div>
-
                                 </div>
                                 </div>
                                 <div class="col-md-4">
                                   <div class="link-box my-1">
                                     <h4 class="text-center pb-2">Select Customer Age</h4>
                                     <div class="input-group mb-2">
-                                    <select class="custom-select" multiple="multiple" id="inputAgeSelect" size="6" name="age[]" >
-                                      <option  @if ($containsUnder18 == true)
-                                  selected="selected"
-                              @endif>Under 18</option>
-                                      <option @if ($containsUnder1824 == true)
-                                  selected="selected"
-                              @endif>18-24</option>
-                                      <option
-                                      @if ($containsUnder2534 == true)
-                                  selected="selected"
-                              @endif>25-34</option>
-                                      <option
-                                      @if ($containsUnder3444 == true)
-                                  selected="selected"
-                              @endif>34-44</option>
-                                      <option
-                                      @if ($containsUnder4554 == true)
-                                  selected="selected"
-                              @endif>45-54</option>
-                                      <option
-                                      @if ($containsUnder5564 == true)
-                                  selected="selected"
-                              @endif>55-64</option>
-                                      <option
-                                      @if ($containsUnder65 == true)
-                                  selected="selected"
-                              @endif>65+</option>
+                                    <select class="custom-select" multiple="multiple" id="inputAgeSelect" size="6" name="age[]" required="">
+                                      <option>18-24</option>
+                                      <option>25-34</option>
+                                      <option>34-44</option>
+                                      <option>45-54</option>
+                                      <option>55-64</option>
+                                      <option>65+</option>
                                     </select>
                                     </div>
                                   </div>
@@ -239,19 +207,11 @@
                                   <div class="link-box my-1">
                                     <h4 class="text-center pb-2">Select Gender</h4>
                                     <div class="input-group mb-2">
-                                      <select class="custom-select" multiple="multiple" id="inputSelectGender" size="6" name="gender[]" >
-                                       <option @if ($containsMen == true)
-                                        selected="selected"
-                                    @endif>Men</option>
-                                            <option @if ($containsWomen == true)
-                                        selected="selected"
-                                    @endif>Women</option>
-                                            <option @if ($containsBaby == true)
-                                        selected="selected"
-                                    @endif>Baby</option>
-                                            <option @if ($containsUnisex == true)
-                                        selected="selected"
-                                    @endif>Unisex</option>
+                                      <select class="custom-select" multiple="multiple" id="inputSelectGender" size="6" name="gender[]" required="">
+                                        <option>Men</option>
+                                        <option>Women</option>
+                                        <option>Baby</option>
+                                        <option>Unisex</option>
                                       </select>
                                     </div>
                                   </div>
@@ -260,61 +220,30 @@
                                   <div class="link-box my-1">
                                     <h4 class="text-center">Select Category</h4>
                                     <div class="input-group mb-3">
-                                      <select class="custom-select" multiple id="inputSelectCategory" size="6" name="category[]" >
-                                        <option @if ($containsWf == true)
-                                        selected="selected"
-                                    @endif>Women's Fashion</option>
-                                        <option @if ($containsMFA == true)
-                                        selected="selected"
-                                    @endif>Man's Fashion</option>
-                                        <option @if ($containsGIM == true)
-                                        selected="selected"
-                                    @endif>Garden Improvement</option>
-                                        <option @if ($containsELE == true)
-                                        selected="selected"
-                                    @endif>Electronics</option>
-                                        <option @if ($containsCUC == true)
-                                        selected="selected"
-                                    @endif>Computer Accessories</option>
-                                        <option @if ($containsKH == true)
-                                        selected="selected"
-                                    @endif>Kitchen & household</option>
-                                        <option @if ($containsJW == true)
-                                        selected="selected"
-                                    @endif>Jewellery</option>
-                                        <option @if ($containsBAC == true)
-                                        selected="selected"
-                                    @endif>Bike Accessories</option>
-                                        <option @if ($containsMAC == true)
-                                        selected="selected"
-                                    @endif>Mobile Accessories</option>
-                                        <option @if ($containsBS == true)
-                                        selected="selected"
-                                    @endif>Bag's & Shoes</option>
-                                        <option @if ($containsOD == true)
-                                        selected="selected"
-                                    @endif>Outdoor</option>
-                                        <option @if ($containsBH == true)
-                                        selected="selected"
-                                    @endif>Beauty Hair</option>
-                                        <option @if ($containsHB == true)
-                                        selected="selected"
-                                    @endif>Health & Beauty</option>
-                                        <option @if ($containsBK == true)
-                                        selected="selected"
-                                    @endif>Baby & Kids</option>
-                                        <option @if ($containsFIT == true)
-                                        selected="selected"
-                                    @endif>Fitness</option>
-                                        <option @if ($containsCA == true)
-                                        selected="selected"
-                                    @endif>Car Accessories</option>
-                                        <option @if ($containsHG == true)
-                                        selected="selected"
-                                    @endif>Home & Garden</option>
-                                        <option @if ($containsPA == true)
-                                        selected="selected"
-                                    @endif>Pet Accessories</option>
+                                      <select class="custom-select" multiple id="inputSelectCategory" size="6" name="category[]" required="">
+                                        <!-- <option>Women's Fashion</option>
+                                        <option>Man's Fashion</option>
+                                        <option>Health & Beauty</option>
+                                        <option>Home Improvement</option>
+                                        <option>Garden Improvement</option>
+                                        <option>Pet Accessories</option>
+                                        <option>Electronics</option>
+                                        <option>Computer Accessories</option>
+                                        <option>Baby & Kids</option>
+                                        <option>Kitchen & household</option>
+                                        <option>Jewellery</option>
+                                        <option>Car Accessories</option>
+                                        <option>Bike Accessories</option>
+                                        <option>Mobile Accessories</option>
+                                        <option>Fitness</option>
+                                        <option>Bag's & Shoes</option>
+                                        <option>Outdoor</option>
+                                        <option>Beauty Hair</option> -->
+                                        @foreach($realCategory as $key => $realcat)
+                                <option 
+                                  value="{{$key}}">{{$realcat->category}}
+                                </option>
+                                @endforeach
                                       </select>
                                     </div>
                                   </div>
@@ -322,41 +251,36 @@
                               </div>
                             </div>
                             <div class="col-lg-5">
-
                                 <div class="form-row ml-2">
                                   <div class="form-group col-md-6">
                                     <label for="inputYoutubeLink">Youtube link</label>
-                                    <input type="text" class="form-control" id="inputYoutubeLink" name="youtube" value="{{$productLinks->youtube}}" >
+                                    <input type="url" class="form-control" id="inputYoutubeLink" name="youtube" value="{{old('youtube')}}" required="">
                                   </div>
                                   <div class="form-group col-md-6">
                                     <label for="inputShopifyWebsiteLink">Shopify website link</label>
-                                    <input type="text" class="form-control" id="inputShopifyWebsiteLink" name="shopify" value="{{$productLinks->shopify}}" >
+                                    <input type="url" class="form-control" id="inputShopifyWebsiteLink" name="shopify" value="{{old('shopify')}}">
                                   </div>
                                 </div>
                                 <div class="form-row ml-2">
                                   <div class="form-group col-md-6">
                                     <label for="inputAmazonLink">Amazon link</label>
-                                    <input type="text" class="form-control" id="inputAmazonLink" name="amazon" value="{{$productLinks->amazon}}">
+                                    <input type="url" class="form-control" id="inputAmazonLink" name="amazon" value="{{old('amazon')}}">
                                   </div>
                                   <div class="form-group col-md-6">
                                     <label for="inputeBabyLink">eBay link</label>
-                                    <input type="text" class="form-control" id="inputeBabyLink" name="ebay" value="{{$productLinks->ebay}}">
+                                    <input type="url" class="form-control" id="inputeBabyLink" name="ebay" value="{{old('ebay')}}">
                                   </div>
                                 </div>
                                 <div class="form-row ml-2">
                                   <div class="form-group col-md-6">
                                     <label for="inputAliVideoLink">Ali Video link</label>
-                                    <input type="text" class="form-control" id="inputAliVideoLink" name="video" value="{{$productImages->video_link}}">
+                                    <input type="url" class="form-control" id="inputAliVideoLink" name="video" value="{{old('video')}}">
                                   </div>
                                   <div class="form-group col-md-6">
                                     <label for="inputProtectionProduct">Protection Product</label>
-                                    <select class="custom-select" size="2"  name="status" id="inputProtectionProduct" >
-                                      <option @if ($containsAv == true)
-                                    selected="selected"
-                                @endif>Available</option>
-                                      <option @if ($containsUnav == true)
-                                    selected="selected"
-                                @endif>Unavailable</option>
+                                    <select class="custom-select" size="2" required="" name="status" id="inputProtectionProduct" required="">
+                                      <option>Available</option>
+                                      <option>Unavailable</option>
                                     </select>
                                   </div>
                                 </div>
@@ -364,7 +288,7 @@
                                 <div class="select2-box my-2">
                                   <h4 class="pl-2">Input Selling Niches Coma</h4>
                                   <div class="col-12 input-group">
-                                    <input type="text" class="input-tags form-control" name="tag" id="tag" value="{{$productDetails->tag}}">
+                                    <input type="text" class="input-tags form-control" name="tag" id="tag" value="{{old('tag')}}">
                                   </div>
                                 </div>
                               </div>
@@ -372,19 +296,15 @@
                                 <div class="select2-box my-2">
                                   <h4 class="pl-2">Input Selling Country using Coma</h4>
                                   <div class="col-12 input-group">
-                                    <input type="text" class="input-tags form-control" name="country" id="country"  value="{{$productDetails->country}}">
+                                    <input type="text" class="input-tags form-control" name="country[]" id="country" required="">
                                   </div>
                                 </div>
                               </div>
-                              <div class="col-md-6">
+                              <div class="col-6">
                                   <label for="inputProtectionProduct">Product Type</label>
-                                  <select class="custom-select" size="2"  name="type" id="inputProtectionProduct" >
-                                    <option @if ($containsSa == true)
-                                selected="selected"
-                            @endif>Saturated</option>
-                                    <option @if ($containsUn == true)
-                                selected="selected"
-                            @endif>Unsaturated</option>
+                                  <select class="custom-select" size="2" required="" name="type" id="inputProtectionProduct" required="">
+                                    <option value="1">Saturated</option>
+                                    <option value="2">Unsaturated</option>
                                   </select>
                               </div>
                               <div class="col-12">
@@ -393,7 +313,7 @@
                               </div>
                               <div class="col-12">
                                   <label for="inputProtectionProduct">Facebook Content</label>
-                                  <textarea class="form-control" name="content" id="example1">{{$productDetails->content}}</textarea>
+                                  <textarea class="form-control" name="content" id="example1"></textarea>
                               </div>
                             </div>
                           </div>
@@ -404,15 +324,13 @@
                       <div class="row  mr-4">
                           <div class="col-12 text-description pl-4 pr-5 pb-4 ml-3">
                             <h4>Description</h4>
-                            <textarea id="editor" name="desc">{{$productDetails->description}}</textarea>
+                            <textarea id="editor" name="desc"></textarea>
                           </div>
                           <div class="col-12 pl-4 pr-5 pb-4">
                             <button type="submit" class="btn btn-primary float-right">Submit Product</button>
                           </div>
-                          
                       </div>
                     </div>
-
                 </div>
                   </form>
               </div>
@@ -499,12 +417,12 @@
           url: '/fileUpload',
           headers: {
             'X-CSRF-TOKEN': '{{ csrf_token() }}'
+
           }
         }
       });
     })
     
-
 
 </script>
 @endsection

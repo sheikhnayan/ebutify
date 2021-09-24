@@ -1,4 +1,4 @@
-@extends('super_admin.layout.super-admin')
+@extends('layouts.freelancer-layout')
 @section('content')
 
   <!-- Content Wrapper. Contains page content -->
@@ -9,23 +9,6 @@
         <div class="container-fluid">
             <div class="row">
               <div class=" col-12">
-                @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-                @endif
-                @if (session('status'))
-                    <div class="alert alert-success">
-                        {{ session('status') }}
-                    </div>
-                @endif
-                  <form action="{{ route('uploadProduct') }}" method="POST" enctype="multipart/form-data">
-                    @csrf
-                  <input type="hidden" id="uploadername" name="uploadername" value="{{Auth::user()->name}}">
                 <div class="row add-new-product-form-main shadow bg-white m-4">
                     <div class="col-12 add-new-product-form-header shadow p-3">
                       <h3>Add New Product</h3>
@@ -35,171 +18,170 @@
                         <div class="col-12 add-new-product-form-content pl-4 pr-5 pb-4">
                           <div class="row">
                             <div class="col-lg-2">
-
+                              <form>
                                 <div class="form-group">
                                   <label for="inputProduct">Product Name</label>
-                                  <input type="text" class="form-control" name="pname" id="inputProduct" value="{{old('pname')}}" required="">
-                                </div>
-
+                                  <input type="text" class="form-control" id="inputProduct">
+                              </div>
+                              </form>
                             </div>
                             <div class="col-lg-8">
                                 <div class="row">
                                   <div class="col-md-5">
-
+                                    <form>
                                       <div class="form-row">
                                         <div class="form-group col-md-4">
                                           <label for="inputPrice">Price</label>
-                                          <input type="number" class="form-control" name="price" step=".01" id="inputPrice" step=".01" value="{{old('price')}}" required="">
+                                          <input type="text" class="form-control" id="inputPrice">
                                         </div>
                                         <div class="form-group col-md-4">
                                           <label for="inputCost">Cost</label>
-                                          <input type="number" class="form-control" id="inputCost" name="cost" step=".01" value="{{old('cost')}}" required="">
+                                          <input type="text" class="form-control" id="inputCost">
                                         </div>
                                         <div class="form-group col-md-4">
                                           <label for="inputProfit">Profit</label>
-                                          <input type="number" class="form-control" id="inputProfit" name="profit" step=".01" value="{{old('profit')}}" required="">
+                                          <input type="text" class="form-control" id="inputProfit">
                                         </div>
                                       </div>
-
+                                    </form>
                                   </div>
                                   <div class="col-md-7">
-
+                                    <form>
                                       <div class="form-row">
                                         <div class="form-group col-md-4">
                                           <label for="inputTotalOrder">Total Order</label>
-                                          <input type="number" class="form-control" id="inputTotalOrder" name="torder" step=".01" value="{{old('torder')}}" required="">
+                                          <input type="text" class="form-control" id="inputTotalOrder">
                                         </div>
                                         <div class="form-group col-md-4">
                                           <label for="inputTotalRevinue">Total Revinue</label>
-                                          <input type="number" class="form-control" id="inputTotalRevinue" name="trevinue" step=".01" value="{{old('trevinue')}}" required="">
+                                          <input type="text" class="form-control" id="inputTotalRevinue">
                                         </div>
                                         <div class="form-group col-md-4">
                                           <label for="inputAlexaRank">Alexa Rank</label>
-                                          <input type="number" class="form-control" id="inputAlexaRank" name="alexarank" step=".01" value="{{old('alexarank')}}" required="">
+                                          <input type="text" class="form-control" id="inputAlexaRank">
                                         </div>
                                       </div>
-
+                                    </form>
                                   </div>
                                 </div>
                             </div>
                             <div class="col-lg-2">
-
+                              <form>
                                 <div class="form-group">
                                   <label for="inputOpportunity">Opportunity level</label>
-                                  <select class="custom-select" multiple="multiple" required="" size="3"  name="opportunity[]" id="opportunity">
-                                    <option value="facebook_ads">Facebook ads</option>
-                                    <option value="trending_product">Trending product</option>
-                                    <option value="untapped_product">Untapped product</option>
-                                  </select>
-                                </div>
-
+                                  <input type="text" class="form-control" id="inputOpportunity">
+                              </div>
+                              </form>
                             </div>
                           </div>
 
                           <div class="row">
                             <div class="col-lg-7">
-
+                              <form>
                                 <div class="form-row">
                                   <div class="form-group col-md-4">
                                     <label for="inputAliExpressLink">AliExpress link</label>
-                                    <input type="url" class="form-control" id="inputAliExpressLink" name="aliexpress" value="{{old('aliexpress')}}">
+                                    <input type="text" class="form-control" id="inputAliExpressLink">
                                   </div>
                                   <div class="form-group col-md-4">
                                     <label for="inputFacebookAdsLink">Facebook ads link</label>
-                                    <input type="url" class="form-control" id="inputFacebookAdsLink" name="fbadd" value="{{old('fbadd')}}">
+                                    <input type="text" class="form-control" id="inputFacebookAdsLink">
                                   </div>
                                   <div class="form-group col-md-4">
                                     <label for="inputGoogleTrendsLink">Google trends link</label>
-                                    <input type="url" class="form-control" id="inputGoogleTrendsLink" name="google" value="{{old('google')}}">
+                                    <input type="text" class="form-control" id="inputGoogleTrendsLink">
                                   </div>
                                 </div>
-
+                              </form>
                               <div class="row">
                                 <div class="col-md-4">
                                     <div class="link-box my-1">
                                       <h4 class="text-center">AliExpress Image link</h4>
-
+                                      <form>
                                         <div class="form-row">
                                           <div class="form-group col-12">
-                                            <input type="url" class="form-control" id="inputAliExpressImageLink" name="img1" value="{{old('img1')}}" required="">
+                                            <input type="text" class="form-control" id="inputAliExpressImageLink">
                                           </div>
                                           <div class="form-group col-12">
-                                            <input type="url" class="form-control" id="inputAliExpressImageLink" name="img2" value="{{old('img2')}}" required="">
+                                            <input type="text" class="form-control" id="inputAliExpressImageLink">
                                           </div>
                                           <div class="form-group col-12">
-                                            <input type="url" class="form-control" id="inputAliExpressImageLink" name="img3" value="{{old('img3')}}" required="">
+                                            <input type="text" class="form-control" id="inputAliExpressImageLink">
                                           </div>
                                           <div class="form-group col-12">
-                                            <input type="url" class="form-control" id="inputAliExpressImageLink" name="img4" value="{{old('img4')}}" required="">
+                                            <input type="text" class="form-control" id="inputAliExpressImageLink">
                                           </div>
                                           <div class="form-group col-12">
-                                            <input type="url" class="form-control" id="inputAliExpressImageLink" name="img5" value="{{old('img5')}}" required="">
+                                            <input type="text" class="form-control" id="inputAliExpressImageLink">
                                           </div>
                                         </div>
-
+                                      </form>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                   <div class="link-box my-1">
                                     <h4 class="text-center">Competitor link</h4>
-
+                                    <form>
                                       <div class="form-row">
                                         <div class="form-group col-12">
-                                          <input type="url" class="form-control" id="inputAliExpressImageLink" name="competitor1" value="{{old('competitor1')}}" required="">
+                                          <input type="text" class="form-control" id="inputAliExpressImageLink">
                                         </div>
                                         <div class="form-group col-12">
-                                          <input type="url" class="form-control" id="inputAliExpressImageLink" name="competitor2" value="{{old('competitor2')}}">
+                                          <input type="text" class="form-control" id="inputAliExpressImageLink">
                                         </div>
                                         <div class="form-group col-12">
-                                          <input type="url" class="form-control" id="inputAliExpressImageLink" name="competitor3" value="{{old('competitor3')}}">
+                                          <input type="text" class="form-control" id="inputAliExpressImageLink">
                                         </div>
                                         <div class="form-group col-12">
-                                          <input type="url" class="form-control" id="inputAliExpressImageLink" name="competitor4" value="{{old('competitor4')}}">
+                                          <input type="text" class="form-control" id="inputAliExpressImageLink">
                                         </div>
                                         <div class="form-group col-12">
-                                          <input type="url" class="form-control" id="inputAliExpressImageLink" name="competitor5" value="{{old('competitor5')}}">
+                                          <input type="text" class="form-control" id="inputAliExpressImageLink">
                                         </div>
                                       </div>
-
+                                    </form>
                                   </div>
                                 </div>
                                 <div class="col-md-4">
                                 <div class="link-box my-1">
                                     <h4 class="text-center">Upload Gif Image</h4>
+                                    <form>
                                       <div class="form-row">
                                         <div class="form-group col-12">
-                                          <!-- <input id="profile-input1" type="text" class="form-control" style="width: 70%; display: initial;"> -->
-                                          <input id="profile-select1" type="file" name="gif1" class="filepond" style="display:none; width: 70%; overflow: hidden;">
-                                          <!-- <button type="button" onclick="profileSelect1()" class="btn btn-outline-none btn-transparent" style="padding: 0; overflow: hidden;"><img src="assets/img/Group-315.png" style="width: 35px;"></button> -->
+                                          <input id="profile-input1" type="text" class="form-control" style="width: 70%; display: initial;">
+                                          <input id="profile-select1" accept=".png, .jpg, .jpeg, .gif" type="file" name="profile1" style="display:none; width: 70%; overflow: hidden;">
+                                          <button type="button" onclick="profileSelect1()" class="btn btn-outline-none btn-transparent" style="padding: 0; overflow: hidden;"><img src="assets/img/Group-315.png" style="width: 35px;"></button>
                                         </div>
                                         <div class="form-group col-12">
-                                          <!-- <input id="profile-input2" type="text" class="form-control" style="width: 70%; display: initial;"> -->
-                                          <input id="profile-select2" type="file" name="gif2" class="filepond" style="display:none; width: 70%; overflow: hidden;">
-                                          <!-- <button type="button" onclick="profileSelect2()" class="btn btn-outline-none btn-transparent" style="padding: 0; overflow: hidden;"><img src="assets/img/Group-315.png" style="width: 35px;"></button> -->
+                                          <input id="profile-input2" type="text" class="form-control" style="width: 70%; display: initial;">
+                                          <input id="profile-select2" accept=".png, .jpg, .jpeg, .gif" type="file" name="profile2" style="display:none; width: 70%; overflow: hidden;">
+                                          <button type="button" onclick="profileSelect2()" class="btn btn-outline-none btn-transparent" style="padding: 0; overflow: hidden;"><img src="assets/img/Group-315.png" style="width: 35px;"></button>
                                         </div>
                                         <div class="form-group col-12">
-                                          <!-- <input id="profile-input3" type="text" class="form-control" style="width: 70%; display: initial;"> -->
-                                          <input id="profile-select3" type="file" name="gif3" class="filepond" style="display:none; width: 70%; overflow: hidden;">
-                                          <!-- <button type="button" onclick="profileSelect3()" class="btn btn-outline-none btn-transparent" style="padding: 0; overflow: hidden;"><img src="assets/img/Group-315.png" style="width: 35px;"></button> -->
+                                          <input id="profile-input3" type="text" class="form-control" style="width: 70%; display: initial;">
+                                          <input id="profile-select3" accept=".png, .jpg, .jpeg, .gif" type="file" name="profile3" style="display:none; width: 70%; overflow: hidden;">
+                                          <button type="button" onclick="profileSelect3()" class="btn btn-outline-none btn-transparent" style="padding: 0; overflow: hidden;"><img src="assets/img/Group-315.png" style="width: 35px;"></button>
                                         </div>
                                         <div class="col-12 upload-gif-note">
                                           <span>Click Image icon and upload your product gif images</span>
                                         </div>
+                                        
                                       </div>
+                                    </form>
                                 </div>
                                 </div>
                                 <div class="col-md-4">
                                   <div class="link-box my-1">
                                     <h4 class="text-center pb-2">Select Customer Age</h4>
                                     <div class="input-group mb-2">
-                                    <select class="custom-select" multiple="multiple" id="inputAgeSelect" size="6" name="age[]" required="">
-                                      <option>18-24</option>
-                                      <option>25-34</option>
-                                      <option>34-44</option>
-                                      <option>45-54</option>
-                                      <option>55-64</option>
-                                      <option>65+</option>
-                                    </select>
+                                      <select class="custom-select" multiple="multiple" id="inputAgeSelect" size="6">
+                                        <option>18-24</option>
+                                        <option>25-34</option>
+                                        <option>34-44</option>
+                                        <option>45-54</option>
+                                        <option>55-64</option>
+                                        <option>65+</option>
+                                      </select>
                                     </div>
                                   </div>
                                 </div>
@@ -207,7 +189,7 @@
                                   <div class="link-box my-1">
                                     <h4 class="text-center pb-2">Select Gender</h4>
                                     <div class="input-group mb-2">
-                                      <select class="custom-select" multiple="multiple" id="inputSelectGender" size="6" name="gender[]" required="">
+                                      <select class="custom-select" multiple="multiple" id="inputSelectGender" size="4">
                                         <option>Men</option>
                                         <option>Women</option>
                                         <option>Baby</option>
@@ -220,29 +202,12 @@
                                   <div class="link-box my-1">
                                     <h4 class="text-center">Select Category</h4>
                                     <div class="input-group mb-3">
-                                      <select class="custom-select" multiple id="inputSelectCategory" size="6" name="category[]" required="">
-                                        @foreach($realCategory as $key => $realcat)
-                                        <option 
-                                                value="{{$key}}">{{$realcat->category}}</option>
-                                        @endforeach
-                                        <!-- <option>Women's Fashion</option>
-                                        <option>Man's Fashion</option>
-                                        <option>Health & Beauty</option>
-                                        <option>Home Improvement</option>
-                                        <option>Garden Improvement</option>
-                                        <option>Pet Accessories</option>
-                                        <option>Electronics</option>
-                                        <option>Computer Accessories</option>
-                                        <option>Baby & Kids</option>
-                                        <option>Kitchen & household</option>
-                                        <option>Jewellery</option>
-                                        <option>Car Accessories</option>
-                                        <option>Bike Accessories</option>
-                                        <option>Mobile Accessories</option>
-                                        <option>Fitness</option>
-                                        <option>Bag's & Shoes</option>
-                                        <option>Outdoor</option>
-                                        <option>Beauty Hair</option> -->
+                                      <select class="custom-select" multiple id="inputSelectCategory" size="6">
+                                      @foreach($realCategory as $key => $realcat)
+                                      <option 
+                                        value="{{$key}}">{{$realcat->category}}
+                                      </option>
+                                      @endforeach
                                       </select>
                                     </div>
                                   </div>
@@ -250,44 +215,49 @@
                               </div>
                             </div>
                             <div class="col-lg-5">
+                              <form>
                                 <div class="form-row ml-2">
                                   <div class="form-group col-md-6">
                                     <label for="inputYoutubeLink">Youtube link</label>
-                                    <input type="url" class="form-control" id="inputYoutubeLink" name="youtube" value="{{old('youtube')}}" required="">
+                                    <input type="text" class="form-control" id="inputYoutubeLink">
                                   </div>
                                   <div class="form-group col-md-6">
                                     <label for="inputShopifyWebsiteLink">Shopify website link</label>
-                                    <input type="url" class="form-control" id="inputShopifyWebsiteLink" name="shopify" value="{{old('shopify')}}">
+                                    <input type="text" class="form-control" id="inputShopifyWebsiteLink">
                                   </div>
                                 </div>
                                 <div class="form-row ml-2">
                                   <div class="form-group col-md-6">
                                     <label for="inputAmazonLink">Amazon link</label>
-                                    <input type="url" class="form-control" id="inputAmazonLink" name="amazon" value="{{old('amazon')}}">
+                                    <input type="text" class="form-control" id="inputAmazonLink">
                                   </div>
                                   <div class="form-group col-md-6">
-                                    <label for="inputeBabyLink">eBay link</label>
-                                    <input type="url" class="form-control" id="inputeBabyLink" name="ebay" value="{{old('ebay')}}">
+                                    <label for="inputeBabyLink">eBaby link</label>
+                                    <input type="text" class="form-control" id="inputeBabyLink">
                                   </div>
                                 </div>
                                 <div class="form-row ml-2">
                                   <div class="form-group col-md-6">
                                     <label for="inputAliVideoLink">Ali Video link</label>
-                                    <input type="url" class="form-control" id="inputAliVideoLink" name="video" value="{{old('video')}}">
+                                    <input type="text" class="form-control" id="inputAliVideoLink">
                                   </div>
                                   <div class="form-group col-md-6">
                                     <label for="inputProtectionProduct">Protection Product</label>
-                                    <select class="custom-select" size="2" required="" name="status" id="inputProtectionProduct" required="">
-                                      <option>Available</option>
-                                      <option>Unavailable</option>
-                                    </select>
+                                    <input type="text" class="form-control" id="inputProtectionProduct">
                                   </div>
                                 </div>
+                              </form>
                               <div class="col-12">
-                                <div class="select2-box my-2">
+                                <div class="select2-box my-5">
                                   <h4 class="pl-2">Input Selling Niches Coma</h4>
                                   <div class="col-12 input-group">
-                                    <input type="text" class="input-tags form-control" name="tag" id="tag" value="{{old('tag')}}">
+                                    <select class="input-seling-niches" name="group1" multiple="multiple">
+                                      <option>Man's Fashion</option>
+                                      <option>Baby & Kids</option>
+                                      <option>Baby</option>
+                                      <option>Health</option>
+                                      <option>Fitness</option>
+                                    </select>
                                   </div>
                                 </div>
                               </div>
@@ -295,24 +265,9 @@
                                 <div class="select2-box my-2">
                                   <h4 class="pl-2">Input Selling Country using Coma</h4>
                                   <div class="col-12 input-group">
-                                    <input type="text" class="input-tags form-control" name="country[]" id="country" required="">
+                                    <input type="text" class="input-tags form-control">
                                   </div>
                                 </div>
-                              </div>
-                              <div class="col-6">
-                                  <label for="inputProtectionProduct">Product Type</label>
-                                  <select class="custom-select" size="2" required="" name="type" id="inputProtectionProduct" required="">
-                                    <option value="1">Saturated</option>
-                                    <option value="2">Unsaturated</option>
-                                  </select>
-                              </div>
-                              <div class="col-12">
-                                <label for="inputProtectionProduct">Product Video</label>
-                                <input id="videoSelect" type="file" class="filepond" name="videoSelect" style="display:none; width: 70%; overflow: hidden;">
-                              </div>
-                              <div class="col-12">
-                                  <label for="inputProtectionProduct">Facebook Content</label>
-                                  <textarea class="form-control" name="content" id="example1"></textarea>
                               </div>
                             </div>
                           </div>
@@ -323,15 +278,16 @@
                       <div class="row  mr-4">
                           <div class="col-12 text-description pl-4 pr-5 pb-4 ml-3">
                             <h4>Description</h4>
-                            <textarea id="editor" name="desc"></textarea>
+                            <textarea id="editor"></textarea>
                           </div>
                           <div class="col-12 pl-4 pr-5 pb-4">
-                            <button type="submit" class="btn btn-primary float-right">Submit Product</button>
+                            <button type="button" class="btn btn-primary float-right">Submit Product</button>
                           </div>
+                          
                       </div>
                     </div>
+
                 </div>
-                  </form>
               </div>
             </div>
         </div>
@@ -398,30 +354,6 @@
       });
   });
 
-
-    // Get a reference to the file input element
-    // const inputElement = document.querySelector('input[id="videoSelect"]');
-
-    // get a collection of elements with class filepond
-    const inputElements = document.querySelectorAll('input.filepond');
-
-    // loop over input elements
-    Array.from(inputElements).forEach(inputElement => {
-    
-    // Create a FilePond instance
-    const pond = FilePond.create(inputElement);
-
-      FilePond.setOptions({
-        server: {
-          url: '/fileUpload',
-          headers: {
-            'X-CSRF-TOKEN': '{{ csrf_token() }}'
-
-          }
-        }
-      });
-    })
-    
 
 </script>
 @endsection

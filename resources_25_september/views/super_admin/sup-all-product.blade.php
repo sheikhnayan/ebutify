@@ -51,7 +51,8 @@
                   <th>Image</th>
                   <th width="50">Product Name</th>
                   <th>Price</th>
-
+                  <th>Cost</th>
+                  <th>Profit</th>
                   <th>Order</th>
                   <th>Total Revinue</th>
                   <th>Date</th>
@@ -73,6 +74,8 @@
                   @endforeach
                   <td>{{$productDetail->product_name}}</td>
                   <td>${{$productDetail->price}}</td>
+                  <td>${{$productDetail->cost}}</td>
+                  <td>${{$productDetail->profit}}</td>
                   <td>{{$productDetail->total_order}}</td>
                   <td>{{$productDetail->total_revenue}}</td>
                   <td>{{$productDetail->created_at}}</td>
@@ -81,7 +84,7 @@
                     <a href="{{ route ('sup-product-edit', ['id' => $productDetail->id]) }}" class="btn btn-primary">Edit</a>
                   </td>
                   <td>
-                    <a href="{{ route ('product-delete-explo', ['id' => $productDetail->id]) }}" onclick="return confirm('Are you sure to delete?');" class="btn btn-danger">Delete</a>
+                    <a href="{{ route ('product-delete', ['id' => $productDetail->id]) }}" onclick="return confirm('Are you sure to delete?');" class="btn btn-danger">Delete</a>
                   </td>
                 </tr>
               </tbody>

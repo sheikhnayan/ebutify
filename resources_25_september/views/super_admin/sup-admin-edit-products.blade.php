@@ -56,7 +56,7 @@
                                       <div class="form-row">
                                         <div class="form-group col-md-4">
                                           <label for="inputPrice">Price</label>
-                                          <input type="number" class="form-control" name="price" id="inputPrice" step=".01" value="{{$productDetails->price}}" >
+                                          <input type="number" class="form-control" name="price" id="inputPrice" value="{{$productDetails->price}}" >
                                         </div>
                                         <div class="form-group col-md-4">
                                           <label for="inputCost">Cost</label>

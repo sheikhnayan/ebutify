@@ -1,4 +1,7 @@
-@extends('super_admin.layout.super-admin')
+
+
+@extends('layouts.freelancer-layout')
+
 @section('content')
 
   <!-- Content Wrapper. Contains page content -->
@@ -56,7 +59,7 @@
                                       <div class="form-row">
                                         <div class="form-group col-md-4">
                                           <label for="inputPrice">Price</label>
-                                          <input type="number" class="form-control" name="price" id="inputPrice" step=".01" value="{{$productDetails->price}}" >
+                                          <input type="number" class="form-control" name="price" id="inputPrice" value="{{$productDetails->price}}" >
                                         </div>
                                         <div class="form-group col-md-4">
                                           <label for="inputCost">Cost</label>
@@ -261,7 +264,12 @@
                                     <h4 class="text-center">Select Category</h4>
                                     <div class="input-group mb-3">
                                       <select class="custom-select" multiple id="inputSelectCategory" size="6" name="category[]" >
-                                        <option @if ($containsWf == true)
+                                        @foreach($realCategory as $key => $realcat)
+                                <option 
+                                  value="{{$key}}">{{$realcat->category}}
+                                </option>
+                                @endforeach
+                                        <!-- <option @if ($containsWf == true)
                                         selected="selected"
                                     @endif>Women's Fashion</option>
                                         <option @if ($containsMFA == true)
@@ -314,7 +322,7 @@
                                     @endif>Home & Garden</option>
                                         <option @if ($containsPA == true)
                                         selected="selected"
-                                    @endif>Pet Accessories</option>
+                                    @endif>Pet Accessories</option> -->
                                       </select>
                                     </div>
                                   </div>
@@ -403,8 +411,8 @@
                     <div class="col-12">
                       <div class="row  mr-4">
                           <div class="col-12 text-description pl-4 pr-5 pb-4 ml-3">
-                            <h4>Description</h4>
-                            <textarea id="editor" name="desc">{{$productDetails->description}}</textarea>
+                            <h4>Description</h4>              
+                            <textarea id="editor" name="desc">{!! $productDetails->description !!}</textarea>
                           </div>
                           <div class="col-12 pl-4 pr-5 pb-4">
                             <button type="submit" class="btn btn-primary float-right">Submit Product</button>
