@@ -22,6 +22,7 @@ class FreelancerController extends Controller
 
     public function dashboard()
     {   
+        $realCategory = Category::whereNotNull('id');
 
         //  IF USER'S REGISTERED
         if(Auth::check()){
@@ -31,8 +32,6 @@ class FreelancerController extends Controller
                 $user_id = auth()->id();
                 //  IF USER'S NOT SUBSCRIBED
                 if(!Auth::user()->subscribed('main')){
-
-                    // dd('hello');
 
                     //  FETCH AVAILABLE PLANS
                     $availablePlans = [ 'price_1If8QdEgl2c23BzjE4HCoJc3' => 'Monthly',
@@ -46,7 +45,7 @@ class FreelancerController extends Controller
                         'intent' => Auth::user()->createSetupIntent(),
                         'plans' => $availablePlans,
                     ];
-                    // dd($data);
+                    dd('hello');
                     //  VIEW PAYMENT PAGE WITH DATA
                     return view('payment')->with($data);
             
@@ -54,72 +53,59 @@ class FreelancerController extends Controller
 
                     $plan = DB::table('subscriptions')->where('user_id', Auth::user()->id)->latest()->first();
 
-                    dd($plan);
 
-                    if($plan->stripe_plan == 'price_1JPqeZCzBVgP4kKNPA6XL5mX'){
+                    // dd($plan);
+
+                    if($plan->stripe_plan == 'price_1If8QdEgl2c23BzjE4HCoJc3'){
 
                         $enddate = Carbon::parse($plan->created_at)->addMonth()->format('d.m.Y');
-                        // dd($enddate.'monthly');
 
                     }elseif($plan->stripe_plan == 'price_1If8VPEgl2c23Bzjq8LUvao7'){
 
                         $enddate = Carbon::parse($plan->created_at)->addYear()->format('d.m.Y');
-                        // dd($enddate.' yearly');
 
                     }
                     if($enddate >= Carbon::now()){
-                        // dd('here');
+                        // dd('hello');
                         //  SHOW DASHBOARD IF SUBSCRIBED
-                        $invoices = Auth()->user()->invoices();
-                        // dd($subscriptions);
+                    $invoices = Auth()->user()->invoices();
+                    // dd($subscriptions);
 
-                        $subscriptions = Auth()->user()->subscription('main')->stripe_plan;
-                        // dd($subscriptions);
+                    $subscriptions = Auth()->user()->subscription('main')->stripe_plan;
+                    // dd($subscriptions);
 
-                        $subscriptionItem = Auth()->user()->subscription('main')->items->first();
-                        // dd($subscriptionItem);
-                        // Retrieve the Stripe price and quantity for a specific item...
-                        $cardName = Auth()->user()->card_brand;
-                        $cardLastFour = Auth()->user()->card_last_four;
+                    $subscriptionItem = Auth()->user()->subscription('main')->items->first();
+                    // dd($subscriptionItem);
+                    // Retrieve the Stripe price and quantity for a specific item...
+                    $cardName = Auth()->user()->card_brand;
+                    $cardLastFour = Auth()->user()->card_last_four;
 
-                        $user = Auth()->user()->created_at;
-                        $stripePrice = $subscriptionItem->stripe;
-                        $quantity = $subscriptionItem->quantity;
+                    $user = Auth()->user()->created_at;
+                    $stripePrice = $subscriptionItem->stripe;
+                    $quantity = $subscriptionItem->quantity;
 
-                        // dd($payment->amount(), 'Price = '.$stripePrice, 'Quantity = '.$quantity, 'Card Name = '.$cardName, 'Subsription Plan Id = '.$subscriptions, 'Card Last Four ='.$cardLastFour);
+                    // dd($payment->amount(), 'Price = '.$stripePrice, 'Quantity = '.$quantity, 'Card Name = '.$cardName, 'Subsription Plan Id = '.$subscriptions, 'Card Last Four ='.$cardLastFour);
 
-                        // dd('Price = '.$stripePrice, 'Quantity = '.$quantity, 'Card Name = '.$cardName, 'Subsription Plan Id = '.$subscriptions, 'Card Last Four ='.$cardLastFour);
+                    // dd('Price = '.$stripePrice, 'Quantity = '.$quantity, 'Card Name = '.$cardName, 'Subsription Plan Id = '.$subscriptions, 'Card Last Four ='.$cardLastFour);
 
-                        // dd($payment->amount(), 'Price = '.$stripePrice, 'Quantity = '.$quantity, 'Card Name = '.$cardName, 'Subsription Plan Id = '.$subscriptions, 'Card Last Four ='.$cardLastFour);
-                        // dd('Price = '.$stripePrice, 'Quantity = '.$quantity, 'Card Name = '.$cardName, 'Subsription Plan Id = '.$subscriptions, 'Card Last Four ='.$cardLastFour);
-                        // dd(Auth::user()->status);
+                    // dd($payment->amount(), 'Price = '.$stripePrice, 'Quantity = '.$quantity, 'Card Name = '.$cardName, 'Subsription Plan Id = '.$subscriptions, 'Card Last Four ='.$cardLastFour);
+                    // dd('Price = '.$stripePrice, 'Quantity = '.$quantity, 'Card Name = '.$cardName, 'Subsription Plan Id = '.$subscriptions, 'Card Last Four ='.$cardLastFour);
 
 
-                        if(Auth::user()->subscribed('main')) {
-                            //
-                        // dd(Auth::user()->status);
+                    if (Auth::user()->subscribed('main')) {
+                        //
+                        // dd('fuck');
 
-                            // echo "Hello Fucker";
-                            // $subscriptions = Subscription()->active()->get();
-                            // exit();
-                        // }
-                        // dd(Auth::user()->status);
+                        // $subscriptions = Subscription()->active()->get();
+                    if(Auth::user()->status == 1){
+                        $products = ProductDetail::all();
+                        $data = QuickStart::all();
 
-                        // return view('user.customer-dashboard',compact('products','data','realCategory'));
-                        // dd($subscriptions);
-                        
+                    return view('user.customer-dashboard',compact('products','data','realCategory'));
 
-                            if(Auth::user()->status == 1){
-                                $products = ProductDetail::all();
-                                $data = QuickStart::all();
-                                $realCategory = Category::whereNotNull('id');
-                                // dd(Auth::user()->status);
-
-                                return view('user.customer-dashboard',compact('products','data','realCategory'));
-                            }else{
-                                return redirect('/logout');
-                            }
-                        }
+                    }else{
+                        return redirect('/logout');
+                    }
                     }else{
                         //  FETCH AVAILABLE PLANS
                     $availablePlans = [ 'price_1If8QdEgl2c23BzjE4HCoJc3' => 'Monthly',
@@ -135,16 +121,17 @@ class FreelancerController extends Controller
                     ];
                     
                     //  VIEW PAYMENT PAGE WITH DATA
-                    // dd($data);
                     return view('payment')->with($data);
                     }
+                    }
+                    // dd($subscriptions);
 
                     
                 }
 
 
             }elseif (Auth::user()->user_type == "freelancer") {
-                if(Auth::user()->status == 1)
+                if(Auth::user()->status ==1)
                 {
                     $user_id = auth()->id();
                     $products = ProductDetail::where('user_id', $user_id)->get();

@@ -49,7 +49,7 @@
                                       <div class="form-row">
                                         <div class="form-group col-md-4">
                                           <label for="inputPrice">Price</label>
-                                          <input type="number" class="form-control" name="price" step=".01" id="inputPrice" value="{{old('price')}}" required="">
+                                          <input type="number" class="form-control" name="price" step=".01" id="inputPrice" step=".01" value="{{old('price')}}" required="">
                                         </div>
                                         <div class="form-group col-md-4">
                                           <label for="inputCost">Cost</label>
@@ -221,7 +221,11 @@
                                     <h4 class="text-center">Select Category</h4>
                                     <div class="input-group mb-3">
                                       <select class="custom-select" multiple id="inputSelectCategory" size="6" name="category[]" required="">
-                                        <option>Women's Fashion</option>
+                                        @foreach($realCategory as $key => $realcat)
+                                        <option 
+                                                value="{{$key}}">{{$realcat->category}}</option>
+                                        @endforeach
+                                        <!-- <option>Women's Fashion</option>
                                         <option>Man's Fashion</option>
                                         <option>Health & Beauty</option>
                                         <option>Home Improvement</option>
@@ -238,7 +242,7 @@
                                         <option>Fitness</option>
                                         <option>Bag's & Shoes</option>
                                         <option>Outdoor</option>
-                                        <option>Beauty Hair</option>
+                                        <option>Beauty Hair</option> -->
                                       </select>
                                     </div>
                                   </div>

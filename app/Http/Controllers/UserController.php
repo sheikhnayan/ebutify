@@ -74,7 +74,7 @@ class UserController extends Controller
 
 	public function allProduct(Request $request)
 	{
-    $realCategory = Category::whereNotNull('id');
+    $realCategory = Category::whereNotNull('id')->get();
 
 		if(Auth::check()){
 			$sortSelected = 0;
@@ -323,7 +323,7 @@ class UserController extends Controller
 
 	public function allProductDetails($product_id)
 	{
-    $realCategory = Category::whereNotNull('id');
+    $realCategory = Category::whereNotNull('id')->get();
 
 		if(Auth::check()){
 
@@ -358,7 +358,7 @@ class UserController extends Controller
 
   public function trendingProducts(Request $request)
 	{
-		$realCategory = Category::whereNotNull('id');
+		$realCategory = Category::whereNotNull('id')->get();
 
 	 	if(Auth::check()){
 
@@ -601,7 +601,7 @@ class UserController extends Controller
 
 	public function trendingProductDetails($product_id)
 	{
-		$realCategory = Category::whereNotNull('id');
+		$realCategory = Category::whereNotNull('id')->get();
 
 		if(Auth::check()){
 
@@ -637,8 +637,9 @@ class UserController extends Controller
 
 	public function fbAdProducts(Request $request)
 	{
-		$realCategory = Category::whereNotNull('id');
-
+		$realCategory = Category::whereNotNull('id')->get();
+		// dd('hello');
+		// dd($realCategory);
 		if(Auth::check()){
 			$sortSelected = 0;
             $filterSelected = 0;
@@ -852,7 +853,7 @@ class UserController extends Controller
 								if (!empty($files)) {
 								  foreach ($files as $link) {
 								    $split1 = explode(".com",$link);
-								    $webLinks .= '<a href="'.$link.'" target="_blank"><p><img src="https://ebutify.com/assets/img/web-icon.png" style="width: 20px; margin-top: -6px;" alt="">  '. $split1[0].'com...  </p></a>';
+								    $webLinks .= '<a target="_blank" href="'.$link.'" target="_blank"><p><img src="https://ebutify.com/assets/img/web-icon.png" style="width: 20px; margin-top: -6px;" alt="">  '. $split1[0].'com...  </p></a>';
 								  }
 								  
 								}
@@ -991,11 +992,11 @@ class UserController extends Controller
                               </div>
                            </div>
                            <div class="row mx-4 px-2 mb-2 rounded justify-content-between icon-btn">
-                              <a href="'.$result->productLink[0]->facebook_ad.'" class="fb-ads-card-footer"><img src="https://ebutify.com/assets/img/fb-2.png" style="width: 20px; margin: 0 5px 2px 5px;" alt=""></a>
-                              <a href="'.$result->productLink[0]->aliexpress.'" class="fb-ads-card-footer"><img src="https://ebutify.com/assets/img/ali.png" style="width: 20px; margin: 0 5px 2px 5px;" alt=""></a>
-                              <a href="'.$result->productLink[0]->amazon.'" class="fb-ads-card-footer"><img src="https://ebutify.com/assets/img/amz.png" style="width: 20px; margin: 0 5px 2px 5px;" alt=""></a>
-                              <a href="'.$result->productLink[0]->competitor_link_1.'" class="fb-ads-card-footer"><img src="https://ebutify.com/assets/img/shp.png" style="width: 20px; margin: 0 5px 2px 5px;" alt=""></a>
-                              <a href="'.$result->productLink[0]->youtube.'" class="fb-ads-card-footer"><i class="fab fa-youtube" style="color: #FF0000; font-size: 26px;margin: 0 5px;"></i></a>
+                              <a target="_blank" href="'.$result->productLink[0]->facebook_ad.'" class="fb-ads-card-footer"><img src="https://ebutify.com/assets/img/fb-2.png" style="width: 20px; margin: 0 5px 2px 5px;" alt=""></a>
+                              <a target="_blank" href="'.$result->productLink[0]->aliexpress.'" class="fb-ads-card-footer"><img src="https://ebutify.com/assets/img/ali.png" style="width: 20px; margin: 0 5px 2px 5px;" alt=""></a>
+                              <a target="_blank" href="'.$result->productLink[0]->amazon.'" class="fb-ads-card-footer"><img src="https://ebutify.com/assets/img/amz.png" style="width: 20px; margin: 0 5px 2px 5px;" alt=""></a>
+                              <a target="_blank" href="'.$result->productLink[0]->competitor_link_1.'" class="fb-ads-card-footer"><img src="https://ebutify.com/assets/img/shp.png" style="width: 20px; margin: 0 5px 2px 5px;" alt=""></a>
+                              <a target="_blank" href="'.$result->productLink[0]->youtube.'" class="fb-ads-card-footer"><i class="fab fa-youtube" style="color: #FF0000; font-size: 26px;margin: 0 5px;"></i></a>
                            </div>
                            <div class="modal fade" id="modal_demo'.$result->id.'" tabindex="-1" role="dialog" aria-labelledby="modal_demo'.$result->id.'" aria-hidden="true">
                               <div class="modal-dialog" role="document" style="max-width:80%; margin: auto;">
@@ -1125,12 +1126,12 @@ class UserController extends Controller
                                              <div class="row mx-2">
                                                 <div class="col-12 shadow bg-white border-rounded mb-4">
                                                    <ul class="list-group list-group-flush py-3 list-unstyled prm-list">
-                                                      <li><a class="list-group-item rounded my-1" href="'.$result->productLink[0]->competitor_link_1.'" role="tab"><i class="fas fa-store-alt"></i> Visit Competitor Store</a></li>
-                                                      <li><a class="list-group-item rounded my-1" href="'.$result->productLink[0]->aliexpress.'" role="tab"><img src="https://ebutify.com/assets/img/ali.png" style="width: 12px; margin-bottom: 2px;" alt=""> Visit AliExpress Source</a></li>
-                                                      <li><a class="list-group-item rounded my-1" href="'.$result->productLink[0]->amazon.'" role="tab"><i class="fab fa-amazon"></i> View Product On Amazon</a></li>
-                                                      <li><a class="list-group-item rounded my-1" href="'.$result->productLink[0]->ebay.'" role="tab"><i class="fab fa-ebay"></i> View Product On eBay</a></li>
-                                                      <li><a class="list-group-item rounded my-1" href="'.$result->productLink[0]->facebook_ad.'" role="tab"><i class="fab fa-facebook"></i> View Facebook Ads</a></li>
-                                                      <li><a class="list-group-item rounded my-1" href="'.$result->productLink[0]->youtube.'" role="tab"><i class="fab fa-youtube"></i> View YouTube Review</a></li>
+                                                      <li><a class="list-group-item rounded my-1" target="_blank" href="'.$result->productLink[0]->competitor_link_1.'" role="tab"><i class="fas fa-store-alt"></i> Visit Competitor Store</a></li>
+                                                      <li><a class="list-group-item rounded my-1" target="_blank" href="'.$result->productLink[0]->aliexpress.'" role="tab"><img src="https://ebutify.com/assets/img/ali.png" style="width: 12px; margin-bottom: 2px;" alt=""> Visit AliExpress Source</a></li>
+                                                      <li><a class="list-group-item rounded my-1" target="_blank" href="'.$result->productLink[0]->amazon.'" role="tab"><i class="fab fa-amazon"></i> View Product On Amazon</a></li>
+                                                      <li><a class="list-group-item rounded my-1" target="_blank" href="'.$result->productLink[0]->ebay.'" role="tab"><i class="fab fa-ebay"></i> View Product On eBay</a></li>
+                                                      <li><a class="list-group-item rounded my-1" target="_blank" href="'.$result->productLink[0]->facebook_ad.'" role="tab"><i class="fab fa-facebook"></i> View Facebook Ads</a></li>
+                                                      <li><a class="list-group-item rounded my-1" target="_blank" href="'.$result->productLink[0]->youtube.'" role="tab"><i class="fab fa-youtube"></i> View YouTube Review</a></li>
                                                    </ul>
                                                    <div class="slider2">
                                                       <div>
@@ -1270,7 +1271,7 @@ class UserController extends Controller
 
 	public function fbAdProductsDetails($product_id)
 	{
-    $realCategory = Category::whereNotNull('id');
+    $realCategory = Category::whereNotNull('id')->get();
 
 		if(Auth::check()){
 
@@ -1297,7 +1298,7 @@ class UserController extends Controller
 
 	public function untappedProducts(Request $request)
 	{
-    $realCategory = Category::whereNotNull('id');
+    $realCategory = Category::whereNotNull('id')->get();
 
 		if(Auth::check()){
 			$sortSelected = 0;
@@ -1515,7 +1516,7 @@ class UserController extends Controller
 								if (!empty($files)) {
 								  foreach ($files as $link) {
 								    $split1 = explode(".com",$link);
-								    $webLinks .= '<a href="'.$link.'" target="_blank"><p><img src="https://ebutify.com/assets/img/web-icon.png" style="width: 20px; margin-top: -6px;" alt="">  '. $split1[0].'com... </p></a>';
+								    $webLinks .= '<a target="_blank" href="'.$link.'" target="_blank"><p><img src="https://ebutify.com/assets/img/web-icon.png" style="width: 20px; margin-top: -6px;" alt="">  '. $split1[0].'com... </p></a>';
 								  }
 								}
 
@@ -1649,11 +1650,11 @@ class UserController extends Controller
                               </div>
                            </div>
                            <div class="row mx-4 px-2 mb-2 rounded justify-content-between icon-btn">
-                              <a href="'.$result->productLink[0]->facebook_ad.'" class="fb-ads-card-footer"><img src="https://ebutify.com/assets/img/fb-2.png" style="width: 20px; margin: 0 5px 2px 5px;" alt=""></a>
-                              <a href="'.$result->productLink[0]->aliexpress.'" class="fb-ads-card-footer"><img src="https://ebutify.com/assets/img/ali.png" style="width: 20px; margin: 0 5px 2px 5px;" alt=""></a>
-                              <a href="'.$result->productLink[0]->amazon.'" class="fb-ads-card-footer"><img src="https://ebutify.com/assets/img/amz.png" style="width: 20px; margin: 0 5px 2px 5px;" alt=""></a>
-                              <a href="'.$result->productLink[0]->competitor_link_1.'" class="fb-ads-card-footer"><img src="https://ebutify.com/assets/img/shp.png" style="width: 20px; margin: 0 5px 2px 5px;" alt=""></a>
-                              <a href="'.$result->productLink[0]->youtube.'" class="fb-ads-card-footer"><i class="fab fa-youtube" style="color: #FF0000; font-size: 26px;margin: 0 5px;"></i></a>
+                              <a target="_blank" href="'.$result->productLink[0]->facebook_ad.'" class="fb-ads-card-footer"><img src="https://ebutify.com/assets/img/fb-2.png" style="width: 20px; margin: 0 5px 2px 5px;" alt=""></a>
+                              <a target="_blank" href="'.$result->productLink[0]->aliexpress.'" class="fb-ads-card-footer"><img src="https://ebutify.com/assets/img/ali.png" style="width: 20px; margin: 0 5px 2px 5px;" alt=""></a>
+                              <a target="_blank" href="'.$result->productLink[0]->amazon.'" class="fb-ads-card-footer"><img src="https://ebutify.com/assets/img/amz.png" style="width: 20px; margin: 0 5px 2px 5px;" alt=""></a>
+                              <a target="_blank" href="'.$result->productLink[0]->competitor_link_1.'" class="fb-ads-card-footer"><img src="https://ebutify.com/assets/img/shp.png" style="width: 20px; margin: 0 5px 2px 5px;" alt=""></a>
+                              <a target="_blank" href="'.$result->productLink[0]->youtube.'" class="fb-ads-card-footer"><i class="fab fa-youtube" style="color: #FF0000; font-size: 26px;margin: 0 5px;"></i></a>
                            </div>
                            <div class="modal fade" id="modal_demo'.$product_id.'" tabindex="-1" role="dialog" aria-labelledby="modal_demo'.$product_id.'" aria-hidden="true">
                               <div class="modal-dialog" role="document" style="max-width:80%; margin: auto;">
@@ -1781,12 +1782,12 @@ class UserController extends Controller
                                              <div class="row mx-2">
                                                 <div class="col-12 shadow bg-white border-rounded mb-4">
                                                    <ul class="list-group list-group-flush py-3 list-unstyled prm-list">
-                                                      <li><a class="list-group-item rounded my-1" href="'.$result->productLink[0]->competitor_link_1.'" role="tab"><i class="fas fa-store-alt"></i> Visit Competitor Store</a></li>
-                                                      <li><a class="list-group-item rounded my-1" href="'.$result->productLink[0]->aliexpress.'" role="tab"><img src="https://ebutify.com/assets/img/ali.png" style="width: 12px; margin-bottom: 2px;" alt=""> Visit AliExpress Source</a></li>
-                                                      <li><a class="list-group-item rounded my-1" href="'.$result->productLink[0]->amazon.'" role="tab"><i class="fab fa-amazon"></i> View Product On Amazon</a></li>
-                                                      <li><a class="list-group-item rounded my-1" href="'.$result->productLink[0]->ebay.'" role="tab"><i class="fab fa-ebay"></i> View Product On eBay</a></li>
-                                                      <li><a class="list-group-item rounded my-1" href="'.$result->productLink[0]->facebook_ad.'" role="tab"><i class="fab fa-facebook"></i> View Facebook Ads</a></li>
-                                                      <li><a class="list-group-item rounded my-1" href="'.$result->productLink[0]->youtube.'" role="tab"><i class="fab fa-youtube"></i> View YouTube Review</a></li>
+                                                      <li><a class="list-group-item rounded my-1" target="_blank" href="'.$result->productLink[0]->competitor_link_1.'" role="tab"><i class="fas fa-store-alt"></i> Visit Competitor Store</a></li>
+                                                      <li><a class="list-group-item rounded my-1" target="_blank" href="'.$result->productLink[0]->aliexpress.'" role="tab"><img src="https://ebutify.com/assets/img/ali.png" style="width: 12px; margin-bottom: 2px;" alt=""> Visit AliExpress Source</a></li>
+                                                      <li><a class="list-group-item rounded my-1" target="_blank" href="'.$result->productLink[0]->amazon.'" role="tab"><i class="fab fa-amazon"></i> View Product On Amazon</a></li>
+                                                      <li><a class="list-group-item rounded my-1" target="_blank" href="'.$result->productLink[0]->ebay.'" role="tab"><i class="fab fa-ebay"></i> View Product On eBay</a></li>
+                                                      <li><a class="list-group-item rounded my-1" target="_blank" href="'.$result->productLink[0]->facebook_ad.'" role="tab"><i class="fab fa-facebook"></i> View Facebook Ads</a></li>
+                                                      <li><a class="list-group-item rounded my-1" target="_blank" href="'.$result->productLink[0]->youtube.'" role="tab"><i class="fab fa-youtube"></i> View YouTube Review</a></li>
                                                    </ul>
                                                    <div class="slider2">
                                                       <div>
@@ -1877,7 +1878,7 @@ class UserController extends Controller
                                        <div class="row">
                                           <div class="col-12 modal-footer px-0 mt-2">
                                              <button type="button" class="btn btn-modal-cancel" data-dismiss="modal">Cancel</button>
-                                             <a href="'.$linkToDetailsPage.'" type="button" class="btn btn-modal-product">View Product</a>
+                                             <a target="_blank" href="'.$linkToDetailsPage.'" type="button" class="btn btn-modal-product">View Product</a>
                                           </div>
                                        </div>
                                     </div>
@@ -1930,7 +1931,7 @@ class UserController extends Controller
 
 	public function untappedProductsDetails($product_id)
 	{
-    $realCategory = Category::whereNotNull('id');
+    $realCategory = Category::whereNotNull('id')->get();
 
 		if(Auth::check()){
 
