@@ -30,7 +30,7 @@
         <!-- /.row -->
 
         <div class="row collaps-body p-3 m-2">
-          <div class="accordion" id="accordionFAQ">
+          <div class="accordion" id="accordionFAQ" style="min-width:100%;">
             @foreach ($data as $item)
             <div class="card shadow">
               <div class="card-header" id="FAQOne">

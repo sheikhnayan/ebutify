@@ -38,7 +38,7 @@
                                     <form class="form-horizontal">
                                         <div class="form-group ">
                                             <div class="col-12 my-2">
-                                                <input class="form-control" type="text" required="" placeholder="Username (no special characters)" name="Name">
+                                                <input class="form-control" type="text" required="" placeholder="Enter Full Name" name="Name">
                                             </div>
                                         </div>
                                 
