@@ -27,7 +27,9 @@ class FileUploadController extends Controller
             $fileName->video_name = $videoFileName;
             $fileName->save();
 
-            return $fileName->video_name;
+
+
+            // return $fileName->video_name;
 
 
             $request->session()->put('video', $fileName->video_name);
