@@ -45,14 +45,13 @@ class FreelancerController extends Controller
                         'intent' => Auth::user()->createSetupIntent(),
                         'plans' => $availablePlans,
                     ];
-                    dd('hello');
+                    // dd('hello');
                     //  VIEW PAYMENT PAGE WITH DATA
                     return view('payment')->with($data);
             
                 }else{
 
                     $plan = DB::table('subscriptions')->where('user_id', Auth::user()->id)->latest()->first();
-
 
                     // dd($plan);
 
