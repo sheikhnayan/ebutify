@@ -493,13 +493,13 @@ class SuperAdminController extends Controller
     // SHOVON WORKING HERE
     public function AllProduct(Request $request)
     {
-        $realCategory = Category::whereNotNull('id');
+        $realCategory = Category::whereNotNull('id')->get();
 
         if($request->search) {
-            $trendingProducts = ProductDetail::where('product_name', 'LIKE', '%'.$request->search.'%')->whereNull('explore_pro_type')->paginate(50);
+            $trendingProducts = ProductDetail::where('product_name', 'LIKE', '%'.$request->search.'%')->whereNull('explore_pro_type')->orderBy('created_at','DESC')->paginate(50);
         }
         if (empty($trendingProducts)) {
-            $trendingProducts = ProductDetail::whereNull('explore_pro_type')->paginate(50);
+            $trendingProducts = ProductDetail::whereNull('explore_pro_type')->orderBy('created_at','DESC')->paginate(50);
         }
   
         foreach ($trendingProducts as $trendingproduct) {
@@ -520,9 +520,18 @@ class SuperAdminController extends Controller
 
     }
 
+    public function UploadAliProduct(Request $request)
+    {
+        $realCategory = Category::whereNotNull('id')->get();
+
+        $productDetails = ProductDetail::all();
+
+        return view('super_admin.super-admin-add-ali-products',compact('productDetails','realCategory'));
+    }
+
     public function UploadProduct(Request $request)
     {
-        $realCategory = Category::whereNotNull('id');
+        $realCategory = Category::whereNotNull('id')->get();
 
         $productDetails = ProductDetail::all();
 
@@ -531,7 +540,7 @@ class SuperAdminController extends Controller
 
     public function DeleteProduct($id)
     {
-        $realCategory = Category::whereNotNull('id');
+        $realCategory = Category::whereNotNull('id')->get();
 
         ProductDetail::where('id', $id)->delete();
         $trendingProducts = ProductDetail::whereNull('explore_pro_type')->paginate(50);
@@ -550,37 +559,119 @@ class SuperAdminController extends Controller
 
     public function ExploreProduct(Request $request)
     {
-        $realCategory = Category::whereNotNull('id');
+        $realCategory = Category::whereNotNull('id')->get();
 
         if($request->search) {
             // dd($request->search);
-            $trendingProducts = ProductDetail::where('explore_pro_type', 'LIKE','%ali_express%')->where('product_name', 'LIKE', '%'.$request->search.'%')->paginate(50);
+            $trendingProducts = ProductDetail::where('explore_pro_type', 'LIKE','%ali_express%')->where('product_name', 'LIKE', '%'.$request->search.'%')->orderBy('created_at','DESC')->paginate(50);
         }
         if (empty($trendingProducts)) {
-            $trendingProducts = ProductDetail::where('explore_pro_type', 'LIKE','%ali_express%')->paginate(50);
+            $trendingProducts = ProductDetail::where('explore_pro_type', 'LIKE','%ali_express%')->orderBy('created_at','DESC')->paginate(50);
         }
         return view('super_admin.super-admin-explore',compact('trendingProducts','realCategory'));
     }
 
     public function AmazonProduct(Request $request)
     {
-        $realCategory = Category::whereNotNull('id');
+        $realCategory = Category::whereNotNull('id')->get();
 
         if($request->search) {
             // dd($request->search);
-            $trendingProducts = ProductDetail::where('explore_pro_type', 'LIKE','%amazon%')->where('product_name', 'LIKE', '%'.$request->search.'%')->paginate(50);
+            $trendingProducts = ProductDetail::where('explore_pro_type', 'LIKE','%amazon%')->where('product_name', 'LIKE', '%'.$request->search.'%')->orderBy('created_at','DESC')->paginate(50);
         }
         if (empty($trendingProducts)) {
             $trendingProducts = ProductDetail::where('explore_pro_type', 'LIKE','%amazon%')
                                             ->orderBy('created_at','DESC')
                                             ->paginate(50);
         }
-        return view('super_admin.super-admin-explore',compact('trendingProducts','realCategory'));
+        return view('super_admin.super-admin-explore-amazon',compact('trendingProducts','realCategory'));
     }
+
+    public function amazonProductEdit($id)
+    {
+        $realCategory = Category::whereNotNull('id')->get();
+
+        //  FETCH PRODUCT DETAILS BY ID
+        $productDetails = ProductDetail::find($id);
+        
+        $productImages = ProductImage::firstWhere('product_detail_id', $id);
+         
+        $productLinks = ProductLink::firstWhere('product_detail_id', $id);
+        
+
+
+        //  FETCH SELECTED OPPORTUNITY DATA
+        $opportunitys = $productDetails->opportunity_level;
+
+        $containsT = Str::contains($opportunitys, 'trending_product');
+        $containsF = Str::contains($opportunitys, 'facebook_ads');
+        $containsU = Str::contains($opportunitys, 'untapped_product');
+
+
+        //  FETCH SELECTED GENDER DATA
+        $gender = $productDetails->gender;
+        
+        $containsMen = Str::contains($gender, 'Men');
+        $containsWomen = Str::contains($gender, 'Women');
+        $containsBaby = Str::contains($gender, 'Baby');
+        $containsUnisex = Str::contains($gender, 'Unisex');
+
+
+        //  FETCH SELECTED AGE DATA
+        $customerAge = $productDetails->age;
+
+        $containsUnder18   = Str::contains($customerAge, 'Under 18');
+        $containsUnder1824 = Str::contains($customerAge, '18-24');
+        $containsUnder2534 = Str::contains($customerAge, '25-34');
+        $containsUnder3444 = Str::contains($customerAge, '34-44');
+        $containsUnder4554 = Str::contains($customerAge, '45-54');
+        $containsUnder5564 = Str::contains($customerAge, '55-64');
+        $containsUnder65   = Str::contains($customerAge, '65+');
+
+        //  FETCH SELECTED CATEGORY DATA
+        $category = $productDetails->category;
+
+        $containsBAC = Str::contains($category, 'Bike Accessories');
+        $containsMAC = Str::contains($category, 'Mobile Accessories');
+        $containsBS = Str::contains($category, 'Bag\'s & Shoes');
+        $containsOD = Str::contains($category, 'Outdoor');
+        $containsBH = Str::contains($category, 'Beauty Hair');
+
+        $containsJW = Str::contains($category, 'Jewellery');
+        $containsKH = Str::contains($category, 'Kitchen & household');
+        $containsCUC = Str::contains($category, 'Computer Accessories');
+        $containsELE = Str::contains($category, 'Electronics');
+        $containsGIM = Str::contains($category, 'Garden Improvement');
+        $containsMFA = Str::contains($category, 'Man\'s Fashion');
+
+        $containsWf = Str::contains($category, ' Women\'s Fashion');
+        $containsHB = Str::contains($category, 'Health & Beauty');
+        $containsBK = Str::contains($category, 'Baby & Kids');
+        $containsFIT = Str::contains($category, 'Fitness');
+        $containsCA = Str::contains($category, 'Car Accessories');
+        $containsHG = Str::contains($category, 'Home & Gerden');
+        $containsPA = Str::contains($category, 'Pet Accessories');
+
+        //  FETCH SELECTED TYPE DATA
+        $productType = $productDetails->product_type_id;
+
+        $containsSa = Str::contains($productType, 1);
+        $containsUn = Str::contains($productType, 2);
+
+
+        //  FETCH SELECTED STATUS
+        $productStatus = $productDetails->status;
+        
+        $containsAv = Str::contains($productStatus, 'Available');
+        $containsUnav = Str::contains($productStatus, 'Unavailable');
+
+        return view('super_admin.super-amazon-edit-product', compact('id', 'productDetails', 'productLinks', 'productImages','containsT','containsF','containsU','containsUnder18','containsUnder1824','containsUnder2534','containsUnder3444','containsUnder4554','containsUnder5564','containsUnder65','containsMen','containsWomen','containsBaby','containsUnisex','containsSa','containsUn','containsAv','containsUnav','containsHB','containsBK','containsFIT','containsCA','containsHG','containsPA','containsBAC','containsMAC','containsBS','containsOD','containsBH','containsJW','containsKH','containsCUC','containsELE','containsGIM','containsMFA','containsWf','realCategory'));
+    }
+
 
     public function exploreShopifyProduct()
     {
-        $realCategory = Category::whereNotNull('id');
+        $realCategory = Category::whereNotNull('id')->get();
 
         $trendingProducts = ShopifyProduct::whereNotNull('shopify_link')
                                             ->orderBy('created_at','DESC')
@@ -591,7 +682,7 @@ class SuperAdminController extends Controller
 
     public function shopifyEdit($id)
     {
-        $realCategory = Category::whereNotNull('id');
+        $realCategory = Category::whereNotNull('id')->get();
 
         //  FETCH PRODUCT DETAILS BY ID
         $productDetails = ShopifyProduct::find($id);
@@ -778,6 +869,85 @@ class SuperAdminController extends Controller
     {
         return view('admin.add-new-freelancer');
     }
+
+    public function SupEditAli($id)
+    {
+        //  FETCH PRODUCT DETAILS BY ID
+        $productDetails = ProductDetail::find($id);
+        
+        $productImages = ProductImage::firstWhere('product_detail_id', $id);
+         
+        $productLinks = ProductLink::firstWhere('product_detail_id', $id);
+        
+        $realCategory = Category::whereNotNull('id')->get();
+
+        //  FETCH SELECTED OPPORTUNITY DATA
+        $opportunitys = $productDetails->opportunity_level;
+
+        $containsT = Str::contains($opportunitys, 'trending_product');
+        $containsF = Str::contains($opportunitys, 'facebook_ads');
+        $containsU = Str::contains($opportunitys, 'untapped_product');
+
+
+        //  FETCH SELECTED GENDER DATA
+        $gender = $productDetails->gender;
+        
+        $containsMen = Str::contains($gender, 'Men');
+        $containsWomen = Str::contains($gender, 'Women');
+        $containsBaby = Str::contains($gender, 'Baby');
+        $containsUnisex = Str::contains($gender, 'Unisex');
+
+
+        //  FETCH SELECTED AGE DATA
+        $customerAge = $productDetails->age;
+
+        $containsUnder18   = Str::contains($customerAge, 'Under 18');
+        $containsUnder1824 = Str::contains($customerAge, '18-24');
+        $containsUnder2534 = Str::contains($customerAge, '25-34');
+        $containsUnder3444 = Str::contains($customerAge, '34-44');
+        $containsUnder4554 = Str::contains($customerAge, '45-54');
+        $containsUnder5564 = Str::contains($customerAge, '55-64');
+        $containsUnder65   = Str::contains($customerAge, '65+');
+
+        //  FETCH SELECTED CATEGORY DATA
+        $category = $productDetails->category;
+
+        $containsBAC = Str::contains($category, 'Bike Accessories');
+        $containsMAC = Str::contains($category, 'Mobile Accessories');
+        $containsBS = Str::contains($category, 'Bag\'s & Shoes');
+        $containsOD = Str::contains($category, 'Outdoor');
+        $containsBH = Str::contains($category, 'Beauty Hair');
+
+        $containsJW = Str::contains($category, 'Jewellery');
+        $containsKH = Str::contains($category, 'Kitchen & household');
+        $containsCUC = Str::contains($category, 'Computer Accessories');
+        $containsELE = Str::contains($category, 'Electronics');
+        $containsGIM = Str::contains($category, 'Garden Improvement');
+        $containsMFA = Str::contains($category, 'Man\'s Fashion');
+
+        $containsWf = Str::contains($category, ' Women\'s Fashion');
+        $containsHB = Str::contains($category, 'Health & Beauty');
+        $containsBK = Str::contains($category, 'Baby & Kids');
+        $containsFIT = Str::contains($category, 'Fitness');
+        $containsCA = Str::contains($category, 'Car Accessories');
+        $containsHG = Str::contains($category, 'Home & Gerden');
+        $containsPA = Str::contains($category, 'Pet Accessories');
+
+        //  FETCH SELECTED TYPE DATA
+        $productType = $productDetails->product_type_id;
+
+        $containsSa = Str::contains($productType, 1);
+        $containsUn = Str::contains($productType, 2);
+
+
+        //  FETCH SELECTED STATUS
+        $productStatus = $productDetails->status;
+        
+        $containsAv = Str::contains($productStatus, 'Available');
+        $containsUnav = Str::contains($productStatus, 'Unavailable');
+
+        return view('super_admin.super-admin-ali-edit', compact('id', 'realCategory', 'productDetails', 'productLinks', 'productImages','containsT','containsF','containsU','containsUnder18','containsUnder1824','containsUnder2534','containsUnder3444','containsUnder4554','containsUnder5564','containsUnder65','containsMen','containsWomen','containsBaby','containsUnisex','containsSa','containsUn','containsAv','containsUnav','containsHB','containsBK','containsFIT','containsCA','containsHG','containsPA','containsBAC','containsMAC','containsBS','containsOD','containsBH','containsJW','containsKH','containsCUC','containsELE','containsGIM','containsMFA','containsWf'));
+    }  
 
     public function SupEditAll($id)
     {

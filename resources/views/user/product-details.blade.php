@@ -12,6 +12,7 @@
 
     <!-- Main content -->
 <?php $mob = 0; ?>
+<?php $j = 1; ?>
 @foreach($trendingProducts as $trendingProduct)
 <?php $mob++; ?>
 <section class="content">
@@ -38,48 +39,53 @@
         </div>
         <div class="modal-body veiw-detail-modal pt-1">
           <div class="row pt-2">
-  @foreach ($trendingProduct->productImage as $productImage)
-            <div class="col-lg-4">
-              <div class="row mx-1 mb-4">
-                <div class="col-12">
-                  <div class="slickslider">
-                  <div>
-                      <div class="product-video-container embed-responsive embed-responsive-16by9">
-                          <!-- <i class="fas fa-play-circle video-icon-play" style=""></i>
-                          <i class="fas fa-pause-circle video-icon-pause" style="display: none;"></i> -->
-                          <video id="video-control" controls>
-                            <source src="{{$productImage->video_link}}" type="video/mp4">
-                         </video>
-                      </div>
-                  </div>
-                  <div>
-                    <img src="{{$productImage->image_link_1}}" class="img-fluid" style='height: 100%; width: 100%; object-fit: contain' alt="">
-                  </div>
-                  <div>
-                    <img src="{{$productImage->image_link_2}}" class="img-fluid" style='height: 100%; width: 100%; object-fit: contain' alt="">
-                  </div>
-                  <div>
-                    <img src="{{$productImage->image_link_3}}" class="img-fluid" style='height: 100%; width: 100%; object-fit: contain' alt="">
-                  </div>
-                  <div>
-                    <img src="{{$productImage->image_link_4}}" class="img-fluid" style='height: 100%; width: 100%; object-fit: contain' alt="">
-                  </div>
-                  <div>
-                    <img src="{{$productImage->image_link_5}}" class="img-fluid" style='height: 100%; width: 100%; object-fit: contain' alt="">
-                  </div>
-                </div>
-                <div class="slider-nav mt-1">
-                    <img src="{{$productImage->video_link}}" alt="">
-                    <img src="{{$productImage->image_link_1}}" alt="">
-                    <img src="{{$productImage->image_link_2}}" alt="">
-                    <img src="{{$productImage->image_link_3}}" alt="">
-                    <img src="{{$productImage->image_link_4}}" alt="">
-                    <img src="{{$productImage->image_link_5}}" alt="">
-                </div>
-                </div>
-              </div>
-            </div>
-  @endforeach
+
+  <div id="carouselExampleIndicators{{$j}}" class="carousel slide" data-ride="carousel">
+                                                  <ol class="carousel-indicators">
+                                                    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                                                    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                                                    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                                                    <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+                                                    <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+                                                    <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
+                                                  </ol>
+                                                   <div class="carousel-inner">
+                                                      @foreach ($trendingProduct->productImage as $productImage)
+                                                    <div class="carousel-item active">
+                                                      <!-- <iframe class="carousel-video d-block w-100" onclick="this.paused ? this.play() : this.pause();" src="{{$productImage->video_link}}"></iframe> -->
+                                                      <video class="carousel-video d-block w-100" onclick="this.paused ? this.play() : this.pause();" src="{{$productImage->video_link}}" alt="First slide" >
+                                                     <div class="carousel-video carousel-caption d-none d-md-block">
+                                                       <h5>...</h5>
+                                                       <p>...</p>
+                                                     </div>
+
+                                                    </div>
+                                                    <div class="carousel-item">
+                                                      <img class="d-block w-100" src="{{$productImage->image_link_1}}" alt="Second slide">
+                                                    </div>
+                                                    <div class="carousel-item">
+                                                      <img class="d-block w-100" src="{{$productImage->image_link_2}}" alt="Third slide">
+                                                    </div>
+                                                    <div class="carousel-item">
+                                                      <img class="d-block w-100" src="{{$productImage->image_link_3}}" alt="Fourth slide">
+                                                    </div>
+                                                    <div class="carousel-item">
+                                                      <img class="d-block w-100" src="{{$productImage->image_link_4}}" alt="Fifth slide">
+                                                    </div>
+                                                    <div class="carousel-item">
+                                                      <img class="d-block w-100" src="{{$productImage->image_link_5}}" alt="Sixth slide">
+                                                    </div>
+                                                      @endforeach
+                                                   </div>
+                                                  <a class="carousel-control-prev" href="#carouselExampleIndicators{{$j}}" role="button" data-slide="prev">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Previous</span>
+                                                  </a>
+                                                  <a class="carousel-control-next" href="#carouselExampleIndicators{{$j}}" role="button" data-slide="next">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                    <span class="sr-only">Next</span>
+                                                  </a>
+                                                </div>
             <div class="col-lg-8">
               <div class="row mx-1">
                 <div class="col-12">
@@ -155,7 +161,7 @@
                                                                       <?php if (!empty($links)) {
                                                                         foreach ($links as $link) {
                                                                           $split1 = explode("com",$link);
-                                                                          ?><a href="{{$link}}" target="_blank"><p><img src="{{asset('assets/img/web-icon.png')}}" style="width: 20px; margin-top: -6px;" alt="">  {{$split1[0]}}com...</p></a><?php
+                                                                          ?><a target="_blank" href="{{$link}}" target="_blank"><p><img src="{{asset('assets/img/web-icon.png')}}" style="width: 20px; margin-top: -6px;" alt="">  {{$split1[0]}}com...</p></a><?php
                                                                         }
                                                                       } ?>
                                                                   </div>
@@ -194,12 +200,12 @@
 
                                                 <div class="col-12 shadow bg-white border-rounded mb-4">
                                                    <ul class="list-group list-group-flush py-3 list-unstyled prm-list">
-                                                      <li><a class="list-group-item rounded my-1" href="{{$productLink->competitor_link_1}}" role="tab"><i class="fas fa-store-alt"></i> Visit Competitor Store</a></li>
-                                                      <li><a class="list-group-item rounded my-1" href="{{$productLink->aliexpress}}" role="tab"><img src="{{asset('assets/img/ali.png')}}" style="width: 12px; margin-bottom: 2px;" alt=""> Visit AliExpress Source</a></li>
-                                                      <li><a class="list-group-item rounded my-1" href="{{$productLink->amazon}}" role="tab"><i class="fab fa-amazon"></i> View Product On Amazon</a></li>
-                                                      <li><a class="list-group-item rounded my-1" href="{{$productLink->ebay}}" role="tab"><i class="fab fa-ebay"></i> View Product On eBay</a></li>
-                                                      <li><a class="list-group-item rounded my-1" href="{{$productLink->facebook_ad}}" role="tab"><i class="fab fa-facebook"></i> View Facebook Ads</a></li>
-                                                      <li><a class="list-group-item rounded my-1" href="{{$productLink->youtube}}" role="tab"><i class="fab fa-youtube"></i> View YouTube Review</a></li>
+                                                      <li><a class="list-group-item rounded my-1" target="_blank" href="{{$productLink->competitor_link_1}}" role="tab"><i class="fas fa-store-alt"></i> Visit Competitor Store</a></li>
+                                                      <li><a class="list-group-item rounded my-1" target="_blank" href="{{$productLink->aliexpress}}" role="tab"><img src="{{asset('assets/img/ali.png')}}" style="width: 12px; margin-bottom: 2px;" alt=""> Visit AliExpress Source</a></li>
+                                                      <li><a class="list-group-item rounded my-1" target="_blank" href="{{$productLink->amazon}}" role="tab"><i class="fab fa-amazon"></i> View Product On Amazon</a></li>
+                                                      <li><a class="list-group-item rounded my-1" target="_blank" href="{{$productLink->ebay}}" role="tab"><i class="fab fa-ebay"></i> View Product On eBay</a></li>
+                                                      <li><a class="list-group-item rounded my-1" target="_blank" href="{{$productLink->facebook_ad}}" role="tab"><i class="fab fa-facebook"></i> View Facebook Ads</a></li>
+                                                      <li><a class="list-group-item rounded my-1" target="_blank" href="{{$productLink->youtube}}" role="tab"><i class="fab fa-youtube"></i> View YouTube Review</a></li>
                                                    </ul>
                                                    <div class="slider2">
                                                       @foreach ($trendingProduct->productImage as $productImage)
@@ -243,7 +249,7 @@
                                                    <div class="mb-2 float-right">
                                                       <p class="d-inline-block" style="font-size: 13px;">Download Gif Images</p>
                                                       <button class="btn-download" value="download">
-                                                      <a href="{{route('downloadGIF',[$gifs])}}">Download</a></button>
+                                                      <a target="_blank" href="{{route('downloadGIF',[$gifs])}}">Download</a></button>
                                                    </div>
                                                    @endif
                                                 </div>
@@ -284,7 +290,7 @@
                               @if(!empty($video))
                               <div class="mb-2 float-right">
                                  <button class="btn btn-dark" value="download">
-                                 <a href="{{route('downloadVid',[$video])}}">Download</a></button>
+                                 <a target="_blank" href="{{route('downloadVid',[$video])}}">Download</a></button>
                               </div>
                               @endif
                             </div>
@@ -348,6 +354,7 @@
       </div>
 </section>
         <!-- /.row -->
+        <?php $j++; ?>
 @endforeach
 @endsection
 

@@ -288,7 +288,7 @@ class UserController extends Controller
                   </div>
                 </div>
                 <div class="row mx-4 px-2 mb-2 justify-content-center rounded icon-btn">
-                  <a href="/all-product-details/'.$result->id.'" type="button" class="btn fb-ads-card-btn">View Product Details</a>
+                  <a target="_blank" href="/all-product-details/'.$result->id.'" type="button" class="btn fb-ads-card-btn">View Product Details</a>
                 </div>
               </div>
 				</div>';
@@ -567,7 +567,7 @@ class UserController extends Controller
                   </div>
                 </div>
                 <div class="row mx-4 px-2 mb-2 justify-content-center rounded icon-btn">
-                  <a href="/product-details/'.$result->id.'" type="button" class="btn fb-ads-card-btn">View Product Details</a>
+                  <a target="_blank" href="/product-details/'.$result->id.'" type="button" class="btn fb-ads-card-btn">View Product Details</a>
                 </div>
               </div>
 </div>';
@@ -853,7 +853,7 @@ class UserController extends Controller
 								if (!empty($files)) {
 								  foreach ($files as $link) {
 								    $split1 = explode(".com",$link);
-								    $webLinks .= '<a target="_blank" href="'.$link.'" target="_blank"><p><img src="https://ebutify.com/assets/img/web-icon.png" style="width: 20px; margin-top: -6px;" alt="">  '. $split1[0].'com...  </p></a>';
+								    $webLinks .= '<a target="_blank" href="'.$link.'" target="_blank" target="_blank"><p><img src="https://ebutify.com/assets/img/web-icon.png" style="width: 20px; margin-top: -6px;" alt="">  '. $split1[0].'com...  </p></a>';
 								  }
 								  
 								}
@@ -924,7 +924,7 @@ class UserController extends Controller
                 $downloadButton =  '<div class="mb-2 float-right">
                     <p class="d-inline-block" style="font-size: 13px;">Download Gif Images</p>
                     <button class="btn-download" value="download">
-                    <a href="https://ebutify.com/downloadGIF/'.$gifs.'">Download</a></button>
+                    <a target="_blank" href="https://ebutify.com/downloadGIF/'.$gifs.'">Download</a></button>
                  </div>';
 								}else{
 									$downloadButton = "";
@@ -992,11 +992,11 @@ class UserController extends Controller
                               </div>
                            </div>
                            <div class="row mx-4 px-2 mb-2 rounded justify-content-between icon-btn">
-                              <a target="_blank" href="'.$result->productLink[0]->facebook_ad.'" class="fb-ads-card-footer"><img src="https://ebutify.com/assets/img/fb-2.png" style="width: 20px; margin: 0 5px 2px 5px;" alt=""></a>
-                              <a target="_blank" href="'.$result->productLink[0]->aliexpress.'" class="fb-ads-card-footer"><img src="https://ebutify.com/assets/img/ali.png" style="width: 20px; margin: 0 5px 2px 5px;" alt=""></a>
-                              <a target="_blank" href="'.$result->productLink[0]->amazon.'" class="fb-ads-card-footer"><img src="https://ebutify.com/assets/img/amz.png" style="width: 20px; margin: 0 5px 2px 5px;" alt=""></a>
-                              <a target="_blank" href="'.$result->productLink[0]->competitor_link_1.'" class="fb-ads-card-footer"><img src="https://ebutify.com/assets/img/shp.png" style="width: 20px; margin: 0 5px 2px 5px;" alt=""></a>
-                              <a target="_blank" href="'.$result->productLink[0]->youtube.'" class="fb-ads-card-footer"><i class="fab fa-youtube" style="color: #FF0000; font-size: 26px;margin: 0 5px;"></i></a>
+                              <a target="_blank" target="_blank" href="'.$result->productLink[0]->facebook_ad.'" class="fb-ads-card-footer"><img src="https://ebutify.com/assets/img/fb-2.png" style="width: 20px; margin: 0 5px 2px 5px;" alt=""></a>
+                              <a target="_blank" target="_blank" href="'.$result->productLink[0]->aliexpress.'" class="fb-ads-card-footer"><img src="https://ebutify.com/assets/img/ali.png" style="width: 20px; margin: 0 5px 2px 5px;" alt=""></a>
+                              <a target="_blank" target="_blank" href="'.$result->productLink[0]->amazon.'" class="fb-ads-card-footer"><img src="https://ebutify.com/assets/img/amz.png" style="width: 20px; margin: 0 5px 2px 5px;" alt=""></a>
+                              <a target="_blank" target="_blank" href="'.$result->productLink[0]->competitor_link_1.'" class="fb-ads-card-footer"><img src="https://ebutify.com/assets/img/shp.png" style="width: 20px; margin: 0 5px 2px 5px;" alt=""></a>
+                              <a target="_blank" target="_blank" href="'.$result->productLink[0]->youtube.'" class="fb-ads-card-footer"><i class="fab fa-youtube" style="color: #FF0000; font-size: 26px;margin: 0 5px;"></i></a>
                            </div>
                            <div class="modal fade" id="modal_demo'.$result->id.'" tabindex="-1" role="dialog" aria-labelledby="modal_demo'.$result->id.'" aria-hidden="true">
                               <div class="modal-dialog" role="document" style="max-width:80%; margin: auto;">
@@ -1126,12 +1126,12 @@ class UserController extends Controller
                                              <div class="row mx-2">
                                                 <div class="col-12 shadow bg-white border-rounded mb-4">
                                                    <ul class="list-group list-group-flush py-3 list-unstyled prm-list">
-                                                      <li><a class="list-group-item rounded my-1" target="_blank" href="'.$result->productLink[0]->competitor_link_1.'" role="tab"><i class="fas fa-store-alt"></i> Visit Competitor Store</a></li>
-                                                      <li><a class="list-group-item rounded my-1" target="_blank" href="'.$result->productLink[0]->aliexpress.'" role="tab"><img src="https://ebutify.com/assets/img/ali.png" style="width: 12px; margin-bottom: 2px;" alt=""> Visit AliExpress Source</a></li>
-                                                      <li><a class="list-group-item rounded my-1" target="_blank" href="'.$result->productLink[0]->amazon.'" role="tab"><i class="fab fa-amazon"></i> View Product On Amazon</a></li>
-                                                      <li><a class="list-group-item rounded my-1" target="_blank" href="'.$result->productLink[0]->ebay.'" role="tab"><i class="fab fa-ebay"></i> View Product On eBay</a></li>
-                                                      <li><a class="list-group-item rounded my-1" target="_blank" href="'.$result->productLink[0]->facebook_ad.'" role="tab"><i class="fab fa-facebook"></i> View Facebook Ads</a></li>
-                                                      <li><a class="list-group-item rounded my-1" target="_blank" href="'.$result->productLink[0]->youtube.'" role="tab"><i class="fab fa-youtube"></i> View YouTube Review</a></li>
+                                                      <li><a class="list-group-item rounded my-1" target="_blank" target="_blank" href="'.$result->productLink[0]->competitor_link_1.'" role="tab"><i class="fas fa-store-alt"></i> Visit Competitor Store</a></li>
+                                                      <li><a class="list-group-item rounded my-1" target="_blank" target="_blank" href="'.$result->productLink[0]->aliexpress.'" role="tab"><img src="https://ebutify.com/assets/img/ali.png" style="width: 12px; margin-bottom: 2px;" alt=""> Visit AliExpress Source</a></li>
+                                                      <li><a class="list-group-item rounded my-1" target="_blank" target="_blank" href="'.$result->productLink[0]->amazon.'" role="tab"><i class="fab fa-amazon"></i> View Product On Amazon</a></li>
+                                                      <li><a class="list-group-item rounded my-1" target="_blank" target="_blank" href="'.$result->productLink[0]->ebay.'" role="tab"><i class="fab fa-ebay"></i> View Product On eBay</a></li>
+                                                      <li><a class="list-group-item rounded my-1" target="_blank" target="_blank" href="'.$result->productLink[0]->facebook_ad.'" role="tab"><i class="fab fa-facebook"></i> View Facebook Ads</a></li>
+                                                      <li><a class="list-group-item rounded my-1" target="_blank" target="_blank" href="'.$result->productLink[0]->youtube.'" role="tab"><i class="fab fa-youtube"></i> View YouTube Review</a></li>
                                                    </ul>
                                                    <div class="slider2">
                                                       <div>
@@ -1176,7 +1176,7 @@ class UserController extends Controller
                           <div class="col-md-6">
                             <div class="far-video-hedear">
                               <h3>Facebook video ads</h3>
-                              <button type="button" class="btn far-download-btn"><a class="btn far-download-btn"href="https://ebutify.com/downloadVid/'.$result->video_name.'">Download</a></button>
+                              <button type="button" class="btn far-download-btn"><a class="btn far-download-btn" target="_blank" href="https://ebutify.com/downloadVid/'.$result->video_name.'">Download</a></button>
                             </div>
                             <div class="product-video-container embed-responsive embed-responsive-16by9">
                               
@@ -1222,7 +1222,7 @@ class UserController extends Controller
                                        <div class="row">
                                           <div class="col-12 modal-footer px-0 mt-2">
                                              <button type="button" class="btn btn-modal-cancel" data-dismiss="modal">Cancel</button>
-                                             <a href="https://ebutify.com/product-details/'.$product_id.'" type="button" class="btn btn-modal-product">View Product</a>
+                                             <a target="_blank" href="https://ebutify.com/product-details/'.$product_id.'" type="button" class="btn btn-modal-product">View Product</a>
                                           </div>
                                        </div>
                                     </div>
@@ -1516,7 +1516,7 @@ class UserController extends Controller
 								if (!empty($files)) {
 								  foreach ($files as $link) {
 								    $split1 = explode(".com",$link);
-								    $webLinks .= '<a target="_blank" href="'.$link.'" target="_blank"><p><img src="https://ebutify.com/assets/img/web-icon.png" style="width: 20px; margin-top: -6px;" alt="">  '. $split1[0].'com... </p></a>';
+								    $webLinks .= '<a target="_blank" target="_blank" href="'.$link.'" target="_blank" target="_blank"><p><img src="https://ebutify.com/assets/img/web-icon.png" style="width: 20px; margin-top: -6px;" alt="">  '. $split1[0].'com... </p></a>';
 								  }
 								}
 
@@ -1582,7 +1582,7 @@ class UserController extends Controller
 								$downloadButton =  '<div class="mb-2 float-right">
                     <p class="d-inline-block" style="font-size: 13px;">Download Gif Images</p>
                     <button class="btn-download" value="download">
-                    <a href="https://ebutify.com/downloadGIF/'.$gifs.'">Download</a></button>
+                    <a target="_blank" href="https://ebutify.com/downloadGIF/'.$gifs.'">Download</a></button>
                  </div>';
 								}else{
 									$downloadButton = "";
@@ -1650,11 +1650,11 @@ class UserController extends Controller
                               </div>
                            </div>
                            <div class="row mx-4 px-2 mb-2 rounded justify-content-between icon-btn">
-                              <a target="_blank" href="'.$result->productLink[0]->facebook_ad.'" class="fb-ads-card-footer"><img src="https://ebutify.com/assets/img/fb-2.png" style="width: 20px; margin: 0 5px 2px 5px;" alt=""></a>
-                              <a target="_blank" href="'.$result->productLink[0]->aliexpress.'" class="fb-ads-card-footer"><img src="https://ebutify.com/assets/img/ali.png" style="width: 20px; margin: 0 5px 2px 5px;" alt=""></a>
-                              <a target="_blank" href="'.$result->productLink[0]->amazon.'" class="fb-ads-card-footer"><img src="https://ebutify.com/assets/img/amz.png" style="width: 20px; margin: 0 5px 2px 5px;" alt=""></a>
-                              <a target="_blank" href="'.$result->productLink[0]->competitor_link_1.'" class="fb-ads-card-footer"><img src="https://ebutify.com/assets/img/shp.png" style="width: 20px; margin: 0 5px 2px 5px;" alt=""></a>
-                              <a target="_blank" href="'.$result->productLink[0]->youtube.'" class="fb-ads-card-footer"><i class="fab fa-youtube" style="color: #FF0000; font-size: 26px;margin: 0 5px;"></i></a>
+                              <a target="_blank" target="_blank" href="'.$result->productLink[0]->facebook_ad.'" class="fb-ads-card-footer"><img src="https://ebutify.com/assets/img/fb-2.png" style="width: 20px; margin: 0 5px 2px 5px;" alt=""></a>
+                              <a target="_blank" target="_blank" href="'.$result->productLink[0]->aliexpress.'" class="fb-ads-card-footer"><img src="https://ebutify.com/assets/img/ali.png" style="width: 20px; margin: 0 5px 2px 5px;" alt=""></a>
+                              <a target="_blank" target="_blank" href="'.$result->productLink[0]->amazon.'" class="fb-ads-card-footer"><img src="https://ebutify.com/assets/img/amz.png" style="width: 20px; margin: 0 5px 2px 5px;" alt=""></a>
+                              <a target="_blank" target="_blank" href="'.$result->productLink[0]->competitor_link_1.'" class="fb-ads-card-footer"><img src="https://ebutify.com/assets/img/shp.png" style="width: 20px; margin: 0 5px 2px 5px;" alt=""></a>
+                              <a target="_blank" target="_blank" href="'.$result->productLink[0]->youtube.'" class="fb-ads-card-footer"><i class="fab fa-youtube" style="color: #FF0000; font-size: 26px;margin: 0 5px;"></i></a>
                            </div>
                            <div class="modal fade" id="modal_demo'.$product_id.'" tabindex="-1" role="dialog" aria-labelledby="modal_demo'.$product_id.'" aria-hidden="true">
                               <div class="modal-dialog" role="document" style="max-width:80%; margin: auto;">
@@ -1782,12 +1782,12 @@ class UserController extends Controller
                                              <div class="row mx-2">
                                                 <div class="col-12 shadow bg-white border-rounded mb-4">
                                                    <ul class="list-group list-group-flush py-3 list-unstyled prm-list">
-                                                      <li><a class="list-group-item rounded my-1" target="_blank" href="'.$result->productLink[0]->competitor_link_1.'" role="tab"><i class="fas fa-store-alt"></i> Visit Competitor Store</a></li>
-                                                      <li><a class="list-group-item rounded my-1" target="_blank" href="'.$result->productLink[0]->aliexpress.'" role="tab"><img src="https://ebutify.com/assets/img/ali.png" style="width: 12px; margin-bottom: 2px;" alt=""> Visit AliExpress Source</a></li>
-                                                      <li><a class="list-group-item rounded my-1" target="_blank" href="'.$result->productLink[0]->amazon.'" role="tab"><i class="fab fa-amazon"></i> View Product On Amazon</a></li>
-                                                      <li><a class="list-group-item rounded my-1" target="_blank" href="'.$result->productLink[0]->ebay.'" role="tab"><i class="fab fa-ebay"></i> View Product On eBay</a></li>
-                                                      <li><a class="list-group-item rounded my-1" target="_blank" href="'.$result->productLink[0]->facebook_ad.'" role="tab"><i class="fab fa-facebook"></i> View Facebook Ads</a></li>
-                                                      <li><a class="list-group-item rounded my-1" target="_blank" href="'.$result->productLink[0]->youtube.'" role="tab"><i class="fab fa-youtube"></i> View YouTube Review</a></li>
+                                                      <li><a class="list-group-item rounded my-1" target="_blank" target="_blank" href="'.$result->productLink[0]->competitor_link_1.'" role="tab"><i class="fas fa-store-alt"></i> Visit Competitor Store</a></li>
+                                                      <li><a class="list-group-item rounded my-1" target="_blank" target="_blank" href="'.$result->productLink[0]->aliexpress.'" role="tab"><img src="https://ebutify.com/assets/img/ali.png" style="width: 12px; margin-bottom: 2px;" alt=""> Visit AliExpress Source</a></li>
+                                                      <li><a class="list-group-item rounded my-1" target="_blank" target="_blank" href="'.$result->productLink[0]->amazon.'" role="tab"><i class="fab fa-amazon"></i> View Product On Amazon</a></li>
+                                                      <li><a class="list-group-item rounded my-1" target="_blank" target="_blank" href="'.$result->productLink[0]->ebay.'" role="tab"><i class="fab fa-ebay"></i> View Product On eBay</a></li>
+                                                      <li><a class="list-group-item rounded my-1" target="_blank" target="_blank" href="'.$result->productLink[0]->facebook_ad.'" role="tab"><i class="fab fa-facebook"></i> View Facebook Ads</a></li>
+                                                      <li><a class="list-group-item rounded my-1" target="_blank" target="_blank" href="'.$result->productLink[0]->youtube.'" role="tab"><i class="fab fa-youtube"></i> View YouTube Review</a></li>
                                                    </ul>
                                                    <div class="slider2">
                                                       <div>
@@ -1832,7 +1832,7 @@ class UserController extends Controller
                           <div class="col-md-6">
                             <div class="far-video-hedear">
                               <h3>Facebook video ads</h3>
-                              <button type="button" class="btn far-download-btn"><a class="btn far-download-btn"href="https://ebutify.com/downloadVid/'.$result->video_name.'">Download</a></button>
+                              <button type="button" class="btn far-download-btn"><a class="btn far-download-btn target="_blank""href="https://ebutify.com/downloadVid/'.$result->video_name.'">Download</a></button>
                             </div>
                             <div class="product-video-container embed-responsive embed-responsive-16by9">
                               
@@ -1878,7 +1878,7 @@ class UserController extends Controller
                                        <div class="row">
                                           <div class="col-12 modal-footer px-0 mt-2">
                                              <button type="button" class="btn btn-modal-cancel" data-dismiss="modal">Cancel</button>
-                                             <a target="_blank" href="'.$linkToDetailsPage.'" type="button" class="btn btn-modal-product">View Product</a>
+                                             <a target="_blank" target="_blank" href="'.$linkToDetailsPage.'" type="button" class="btn btn-modal-product">View Product</a>
                                           </div>
                                        </div>
                                     </div>

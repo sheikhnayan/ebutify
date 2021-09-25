@@ -387,6 +387,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/super/all-products', [Sup
 //  SUPER ADMIN UPLOAD PRODUCTS
 Route::middleware(['auth:sanctum', 'verified'])->get('super/upload-page', [SuperAdminController::class, 'UploadProduct'])->name('super/upload-page');
 
+Route::middleware(['auth:sanctum', 'verified'])->get('super/upload-ali-page', [SuperAdminController::class, 'UploadAliProduct'])->name('super/upload-ali-page');
+
 //  SUPER ADMIN DELETE PRODUCTS
 Route::middleware(['auth:sanctum', 'verified'])->get('product-delete/{id}', [SuperAdminController::class, 'DeleteProductExplo'])->name('product-delete');
 
@@ -395,6 +397,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/super/exlore-products', [
 
 //  SUPER ADMIN EXPLORE AMAZON PRODUCTS
 Route::middleware(['auth:sanctum', 'verified'])->get('/super/amazon-products', [SuperAdminController::class, 'AmazonProduct'])->name('super/amazon-products');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/super/amazon-edit-products/{id}', [SuperAdminController::class, 'amazonProductEdit'])->name('super/amazon-edit-products');
 
 //  SUPER ADMIN STORE PRODUCTS
 Route::middleware(['auth:sanctum', 'verified'])->get('/super/store-products', [SuperAdminController::class, 'exploreShopifyProduct'])->name('super/store-products');
@@ -429,7 +433,7 @@ Route::middleware(['auth:sanctum', 'verified'])->post('/super/add-new-freelancer
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/sup-product-edit/{id}', [SuperAdminController::class, 'SupEditAll'])->name('sup-product-edit');
 
-
+Route::middleware(['auth:sanctum', 'verified'])->get('/super-admin-ali-edit/{id}', [SuperAdminController::class, 'SupEditAli'])->name('super-admin-ali-edit');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/sup-product-edit/{id}', [SuperAdminController::class, 'SupEditAll'])->name('sup-product-edit');
 

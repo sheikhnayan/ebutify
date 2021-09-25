@@ -34,7 +34,7 @@
                            <button class="btn btn-fb-ads-input" type="submit" id="#">Search</button>
                         </div>
                         <div class="col-12 col-sm-auto pl-sm-0">
-                          <a href="{{ route ('super/upload-page') }}" class="btn my-2 my-sm-0 btn-primary">Add New Product</a>
+                          <a href="{{ route ('super/upload-ali-page') }}" class="btn my-2 my-sm-0 btn-primary">Add New Product</a>
                         </div>
                      </div>
                   </div>
@@ -78,7 +78,7 @@
                   <td>{{$productDetail->created_at}}</td>
                   <td>{{$productDetail->uploader_name}}</td>
                   <td>
-                    <a href="{{ route ('sup-product-edit', ['id' => $productDetail->id]) }}" class="btn btn-primary">Edit</a>
+                    <a href="{{ route ('super-admin-ali-edit', ['id' => $productDetail->id]) }}" class="btn btn-primary">Edit</a>
                   </td>
                   <td>
                     <a href="{{ route ('product-delete-explo', ['id' => $productDetail->id]) }}" onclick="return confirm('Are you sure to delete?');" class="btn btn-danger">Delete</a>
