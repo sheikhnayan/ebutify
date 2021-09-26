@@ -9,6 +9,7 @@
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="author" content="eButify">
     <meta name="google-site-verification" content="d9IRp33pr75pL73aVc0a6FDTx17zY-JvQpPB2J1hsug" />
+    @yield('header')
     @php
         $data = DB::table('logos')->where('id','1')->first();
         $favicon = $data->favicon;

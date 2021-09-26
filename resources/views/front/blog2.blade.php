@@ -1,4 +1,11 @@
 @extends('front.layout.main')
+@section('header')
+        <meta property="og:title" content="{{$data->heading}}" />
+        <meta property="og:description" content="{{ $data->body != null ? $data->heading : strip_tags($data->body) }}" />
+        <meta property="og:image" content="{{ asset('storage/'.$data->image) }}" />
+        <meta name="keywords" content="{{ $tags }}">
+        <meta name="description" content="{{ $data->category_name }}">
+@endsection
 @section('content')
     <main>
         <section class="eb-blog-page-bg">
