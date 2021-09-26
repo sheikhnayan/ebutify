@@ -528,6 +528,14 @@ class SuperAdminController extends Controller
 
         return view('super_admin.super-admin-add-ali-products',compact('productDetails','realCategory'));
     }
+    public function UploadAmazonProduct(Request $request)
+    {
+        $realCategory = Category::whereNotNull('id')->get();
+
+        $productDetails = ProductDetail::all();
+
+        return view('super_admin.super-admin-add-amazon-products',compact('productDetails','realCategory'));
+    }
 
     public function UploadProduct(Request $request)
     {

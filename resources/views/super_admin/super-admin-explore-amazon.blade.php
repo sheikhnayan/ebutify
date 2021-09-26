@@ -34,7 +34,7 @@
                            <button class="btn btn-fb-ads-input" type="submit" id="#">Search</button>
                         </div>
                         <div class="col-12 col-sm-auto pl-sm-0">
-                          <a href="{{ route ('super/upload-ali-page') }}" class="btn my-2 my-sm-0 btn-primary">Add New Product</a>
+                          <a href="{{ route ('super/upload-amazon-page') }}" class="btn my-2 my-sm-0 btn-primary">Add New Product</a>
                         </div>
                      </div>
                   </div>

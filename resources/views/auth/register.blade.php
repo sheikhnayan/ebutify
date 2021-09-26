@@ -39,7 +39,7 @@
             @csrf
             <input type="hidden" id="type" name="type" value="user">
             <div>
-                <x-jet-input id="name" class="form-control" type="text" placeholder="Username (no special characters)" name="name" :value="old('name')" required autofocus autocomplete="name" />
+                <x-jet-input id="name" class="form-control" type="text" placeholder="Username (Full Name)" name="name" :value="old('name')" required autofocus autocomplete="name" />
 
             </div>
 

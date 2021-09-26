@@ -49,11 +49,11 @@
                                                     <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
                                                     <li data-target="#carouselExampleIndicators" data-slide-to="5"></li>
                                                   </ol>
-                                                   <div class="carousel-inner">
+                                                   <div class="carousel-inner" style="max-width:326px;max-height:326px;">
                                                       @foreach ($trendingProduct->productImage as $productImage)
                                                     <div class="carousel-item active">
                                                       <!-- <iframe class="carousel-video d-block w-100" onclick="this.paused ? this.play() : this.pause();" src="{{$productImage->video_link}}"></iframe> -->
-                                                      <video class="carousel-video d-block w-100" onclick="this.paused ? this.play() : this.pause();" src="{{$productImage->video_link}}" alt="First slide" >
+                                                      <video class="carousel-video d-block w-100 img-fluid" onclick="this.paused ? this.play() : this.pause();" src="{{$productImage->video_link}}" alt="First slide" >
                                                      <div class="carousel-video carousel-caption d-none d-md-block">
                                                        <h5>...</h5>
                                                        <p>...</p>
@@ -61,19 +61,19 @@
 
                                                     </div>
                                                     <div class="carousel-item">
-                                                      <img class="d-block w-100" src="{{$productImage->image_link_1}}" alt="Second slide">
+                                                      <img class="d-block w-100 img-fluid" src="{{$productImage->image_link_1}}" alt="Second slide">
                                                     </div>
                                                     <div class="carousel-item">
-                                                      <img class="d-block w-100" src="{{$productImage->image_link_2}}" alt="Third slide">
+                                                      <img class="d-block w-100 img-fluid" src="{{$productImage->image_link_2}}" alt="Third slide">
                                                     </div>
                                                     <div class="carousel-item">
-                                                      <img class="d-block w-100" src="{{$productImage->image_link_3}}" alt="Fourth slide">
+                                                      <img class="d-block w-100 img-fluid" src="{{$productImage->image_link_3}}" alt="Fourth slide">
                                                     </div>
                                                     <div class="carousel-item">
-                                                      <img class="d-block w-100" src="{{$productImage->image_link_4}}" alt="Fifth slide">
+                                                      <img class="d-block w-100 img-fluid" src="{{$productImage->image_link_4}}" alt="Fifth slide">
                                                     </div>
                                                     <div class="carousel-item">
-                                                      <img class="d-block w-100" src="{{$productImage->image_link_5}}" alt="Sixth slide">
+                                                      <img class="d-block w-100 img-fluid" src="{{$productImage->image_link_5}}" alt="Sixth slide">
                                                     </div>
                                                       @endforeach
                                                    </div>
@@ -210,19 +210,19 @@
                                                    <div class="slider2">
                                                       @foreach ($trendingProduct->productImage as $productImage)
                                                       <div>
-                                                         <img src="{{asset('storage/'.$productImage->gif_1)}}" class="img-fluid" alt="">
+                                                         <img src="{{asset('storage/app/public/'.$productImage->gif_1)}}" class="img-fluid" alt="">
                                                       </div>
                                                       <div>
-                                                         <img src="{{asset('storage/'.$productImage->gif_2)}}" class="img-fluid" alt="">
+                                                         <img src="{{asset('storage/app/public/'.$productImage->gif_2)}}" class="img-fluid" alt="">
                                                       </div>
                                                       <div>
-                                                         <img src="{{asset('storage/'.$productImage->gif_3)}}" class="img-fluid" alt="">
+                                                         <img src="{{asset('storage/app/public/'.$productImage->gif_3)}}" class="img-fluid" alt="">
                                                       </div>
                                                    </div>
                                                    <div class="slider-nav2 my-2 justify-content-between">
-                                                      <img src="{{asset('storage/'.$productImage->gif_1)}}" class="img-fluid" alt="gif">
-                                                      <img src="{{asset('storage/'.$productImage->gif_2)}}" class="img-fluid" alt="gif">
-                                                      <img src="{{asset('storage/'.$productImage->gif_3)}}" class="img-fluid" alt="gif">
+                                                      <img src="{{asset('storage/app/public/'.$productImage->gif_1)}}" class="img-fluid" alt="gif">
+                                                      <img src="{{asset('storage/app/public/'.$productImage->gif_2)}}" class="img-fluid" alt="gif">
+                                                      <img src="{{asset('storage/app/public/'.$productImage->gif_3)}}" class="img-fluid" alt="gif">
                                                    </div>
                                                    @endforeach
                                                    @php

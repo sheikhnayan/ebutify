@@ -389,6 +389,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('super/upload-page', [Super
 
 Route::middleware(['auth:sanctum', 'verified'])->get('super/upload-ali-page', [SuperAdminController::class, 'UploadAliProduct'])->name('super/upload-ali-page');
 
+Route::middleware(['auth:sanctum', 'verified'])->get('super/upload-ali-page', [SuperAdminController::class, 'UploadAmazonProduct'])->name('super/upload-amazon-page');
+
 //  SUPER ADMIN DELETE PRODUCTS
 Route::middleware(['auth:sanctum', 'verified'])->get('product-delete/{id}', [SuperAdminController::class, 'DeleteProductExplo'])->name('product-delete');
 
