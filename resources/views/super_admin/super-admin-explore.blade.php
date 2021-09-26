@@ -26,7 +26,7 @@
                         <button class="btn my-2 my-sm-0 btn-primary" type="submit">Add New Product</button>
                     </div>
                 </form> -->
-                <form class="col-12" method="get" action="{{ route('super/all-products') }}">
+                <form class="col-12" method="get" action="{{ route('super/exlore-products') }}">
                   <div class="col-12">
                      <div class="input-group my-3">
                         <input type="text" class="form-control fb-ads-input" placeholder="Type Product name or neach" name="search">
