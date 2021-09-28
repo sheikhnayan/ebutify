@@ -155,7 +155,7 @@ class FrontendControllerController extends Controller
             'message' => $request->msg
         ];
         
-        Mail::to('nman0171@gmail.com')->send(new ContactMail($details));
+        Mail::to('support@ebutify.com')->send(new ContactMail($details));
 
         return back()->with('message_sent','Your message has been sent successfully!');
     }
