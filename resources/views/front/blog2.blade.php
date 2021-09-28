@@ -3,10 +3,7 @@
         <meta property="og:title" content="{{$data->heading}}" />
         <meta property="og:description" content="{{ $data->body != null ? $data->heading : strip_tags($data->body) }}" />
         <meta property="og:image" content="{{ asset('storage/'.$data->image) }}" />
-
-        <meta name="keywords" content="{{ $tags }}">
-
-        <meta name="description" content="{{ $data->category_name }}">
+        <meta property="og:url" content="{{env('APP_URL')}}/{{ Request::path() }}">
 @endsection
 @section('content')
     <main>

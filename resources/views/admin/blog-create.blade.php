@@ -46,7 +46,11 @@
                             <label for="">Blog Category</label><br>
                             <select class="form-control" name="category_id">
                               @foreach ($category as $item)
-                              <option {{ $data->category_id ?? '' == $item->id ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->category_name }}</option>
+                              @if (isset($data))
+                                <option {{ $data->category_id  == $item->id ? 'selected' : '' }} value="{{ $item->id }}">{{ $item->category_name }}</option>
+                              @else
+                                <option value="{{ $item->id }}">{{ $item->category_name }}</option>
+                              @endif
                               @endforeach
                             </select> <br><br>
 
