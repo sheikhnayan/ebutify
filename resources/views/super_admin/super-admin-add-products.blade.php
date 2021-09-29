@@ -223,7 +223,7 @@
                                       <select class="custom-select" multiple id="inputSelectCategory" size="6" name="category[]" required="">
                                         @foreach($realCategory as $key => $realcat)
                                         <option 
-                                                value="{{$key}}">{{$realcat->category}}</option>
+                                                value="{{$realcat->category}}">{{$realcat->category}}</option>
                                         @endforeach
                                         <!-- <option>Women's Fashion</option>
                                         <option>Man's Fashion</option>
