@@ -959,6 +959,7 @@ class SuperAdminController extends Controller
 
     public function SupEditAll($id)
     {
+        $realCategory = Category::whereNotNull('id')->get();
         //  FETCH PRODUCT DETAILS BY ID
         $productDetails = ProductDetail::find($id);
         
@@ -1033,7 +1034,7 @@ class SuperAdminController extends Controller
         $containsAv = Str::contains($productStatus, 'Available');
         $containsUnav = Str::contains($productStatus, 'Unavailable');
 
-        return view('super_admin.sup-admin-edit-products', compact('id', 'productDetails', 'productLinks', 'productImages','containsT','containsF','containsU','containsUnder18','containsUnder1824','containsUnder2534','containsUnder3444','containsUnder4554','containsUnder5564','containsUnder65','containsMen','containsWomen','containsBaby','containsUnisex','containsSa','containsUn','containsAv','containsUnav','containsHB','containsBK','containsFIT','containsCA','containsHG','containsPA','containsBAC','containsMAC','containsBS','containsOD','containsBH','containsJW','containsKH','containsCUC','containsELE','containsGIM','containsMFA','containsWf'));
+        return view('super_admin.sup-admin-edit-products', compact('id', 'productDetails', 'productLinks', 'productImages','containsT','containsF','containsU','containsUnder18','containsUnder1824','containsUnder2534','containsUnder3444','containsUnder4554','containsUnder5564','containsUnder65','containsMen','containsWomen','containsBaby','containsUnisex','containsSa','containsUn','containsAv','containsUnav','containsHB','containsBK','containsFIT','containsCA','containsHG','containsPA','containsBAC','containsMAC','containsBS','containsOD','containsBH','containsJW','containsKH','containsCUC','containsELE','containsGIM','containsMFA','containsWf','realCategory'));
     }  
     
     public function AddNewFreelancerForReal(Request $request)

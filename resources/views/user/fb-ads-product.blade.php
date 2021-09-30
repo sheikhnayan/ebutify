@@ -38,7 +38,7 @@
                            <option value="">All Categories</option>
                             @foreach($realCategory as $key => $realcat)
                             <option 
-                                    value="{{$key}}">{{$realcat->category}}</option>
+                                    value="{{$realcat->category}}">{{$realcat->category}}</option>
                             @endforeach
                            <!-- <option @if ($categorySelected == 1)
                                             selected="selected"
@@ -97,17 +97,23 @@
                         </select>
                      </div>
                      <div class="col-sm-12 col-md-6 col-lg-3 my-1">
-                        <select class="form-control select2 filter-item" name="niche">
-                           <option>All Niches</option>
-                           <option>Health & Beauty</option>
-                           <option>Home & Garden</option>
-                           <option>Pet Accessories</option>
-                           <option>Electronics</option>
-                           <option>Baby & Kids</option>
-                           <option>Kitchen & household</option>
-                           <option>Outdoor</option>
+                        <form class="form-control select2 filter-item" method="get" action="{{ route('fb-ad-products') }}">
+                           <input type="text" class="form-control filter-item" placeholder="Type Product name or niche" name="niche">
+                           <div class="input-group-append float-right">
+                              <button class="btn btn-fb-ads-input" type="submit" id="#">Search</button>
+                           </div>
                         </select>
                      </div>
+<!--                      <form class="col-sm-12 col-md-6 col-lg-3 my-1" method="get" action="{{ route('fb-ad-products') }}">
+                        <div class="col-12">
+                           <div class="input-group col-md-6 col-lg-3 my-1">
+                              <input type="text" class="form-control filter-item" placeholder="Type Product name or niche" name="search">
+                              <div class="input-group-append">
+                                 <button class="btn btn-fb-ads-input" type="submit" id="#">Search</button>
+                              </div>
+                           </div>
+                        </div>
+                     </form> -->
                      <div class="col-sm-12 col-md-6 col-lg-3 my-1">
                         <select class="form-control select2-no-search filter-item" name="filter" style="width: 100%;">
                            <option>Filter Products</option>

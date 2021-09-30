@@ -100,7 +100,7 @@
                                   <option>Beauty Hair</option> -->
                                   @foreach($realCategory as $key => $realcat)
                                   <option 
-                                      value="{{$key}}">{{$realcat->category}}</option>
+                                      value="{{$realcat->category}}">{{$realcat->category}}</option>
                                   @endforeach
                                 </select>
                               </div>

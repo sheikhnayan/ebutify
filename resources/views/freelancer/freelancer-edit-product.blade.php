@@ -266,7 +266,7 @@
                                       <select class="custom-select" multiple id="inputSelectCategory" size="6" name="category[]" >
                                         @foreach($realCategory as $key => $realcat)
                                 <option 
-                                  value="{{$key}}">{{$realcat->category}}
+                                  value="{{$realcat->category}}">{{$realcat->category}}
                                 </option>
                                 @endforeach
                                         <!-- <option @if ($containsWf == true)
