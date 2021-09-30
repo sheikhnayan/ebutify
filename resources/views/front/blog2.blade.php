@@ -1,7 +1,7 @@
 @extends('front.layout.main')
 @section('header')
         <meta property="og:title" content="{{$data->heading}}" />
-        <meta property="og:description" content="{{ $data->body != null ? $data->heading : strip_tags($data->body) }}" />
+        <meta property="og:description" content="{{ strip_tags($data->body) != null ? strip_tags($data->body) : strip_tags($data->body) }}" />
         <meta property="og:image" content="{{ asset('storage/'.$data->image) }}" />
         <meta property="og:url" content="{{env('APP_URL')}}/{{ Request::path() }}">
 @endsection

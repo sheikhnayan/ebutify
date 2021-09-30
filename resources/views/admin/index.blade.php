@@ -83,11 +83,11 @@
                 <span class="info-box-text">New Users</span>
                 <span class="info-box-number">
                   @php
-                      $now = \Carbon\Carbon::now()->toDateTimeString(); 
-                      $today_customer = DB::table('users')->where('created_at',$now)->get();
+                      $now = \Carbon\Carbon::now()->month;
+                      $today_customer = DB::table('users')->whereMonth('created_at',$now)->get();
                       $total_today_customers = $today_customer->count();
                   @endphp
-                  {{ $total_today_customers }}
+                  {{ $total_today_customers }} 
                 </span>
               </div>
               <!-- /.info-box-content -->

@@ -15,7 +15,7 @@ class ContactController extends Controller
             'message' => $request->message
         ];
         
-        Mail::to('ebutify@gmail.com')->send(new ContactMail($details));
+        Mail::to('support@ebutify.com')->send(new ContactMail($details));
 
         return back()->with('message_sent','Your message has been sent successfully!');
     }

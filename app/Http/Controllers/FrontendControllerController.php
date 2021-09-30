@@ -124,14 +124,12 @@ class FrontendControllerController extends Controller
 
     public function author($id)
     {
+       
         $fix = str_replace('-',' ',$id);
 
-        $user = user::where('name',$fix)->first();
-        
-        $data = Blog::where('created_by', $user->id)
-            ->join('users','users.id','blogs.created_by')
-            ->select('blogs.*','users.name')
-            ->paginate(12);
+        $user = User::where('name',$fix)->latest()->first();
+  
+        $data = Blog::where('created_by', $user->id)->paginate(12);
 
         $popular = Blog::where('created_by', $user->id)->where('popular', 'false')->get();
 

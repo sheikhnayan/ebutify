@@ -29,7 +29,7 @@
                                                         <span class="author">
                                                             <a href="#">
                                                                 {{-- <img src="{{asset('images/reza.jpg')}}" height="36" width="36"> --}}
-                                                                <span class="author-name"> <a href="/author/{{ str_replace(' ','-', $item->name) }}">{{ $item->name }}</a></span>
+                                                                <span class="author-name"> <a href="/author/{{ str_replace(' ','-', $user->name) }}">{{ $user->name }}</a></span>
                                                                 <span class="post-date"> {{ date('F j,Y', strtotime($item->created_at)) }}</span>
                                                             </a>
                                                         </span>

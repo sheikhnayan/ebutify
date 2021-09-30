@@ -38,7 +38,7 @@
               <div class="tab-content">
                 <div class="tab-pane fade show active" id="email" role="tabpanel">
                   <div class="row p-2 plan-header mt-3">
-                    <h5>Hey hmreza, What would you like to talk about?</h5>
+                    <h5>Hey {{ Auth::user()->name }}, What would you like to talk about?</h5>
                   </div>
                   @if(Session::has('message_sent'))
                   <div class="alert alert-success" role="alert">
