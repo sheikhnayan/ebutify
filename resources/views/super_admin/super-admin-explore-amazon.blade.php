@@ -51,9 +51,6 @@
                   <th>Image</th>
                   <th width="50">Product Name</th>
                   <th>Price</th>
-
-                  <th>Order</th>
-                  <th>Total Revinue</th>
                   <th>Date</th>
                   <th>Uploader Name</th>
                   <th width="100" colspan="2">Action</th>
@@ -73,8 +70,6 @@
                   @endforeach
                   <td>{{$productDetail->product_name}}</td>
                   <td>${{$productDetail->price}}</td>
-                  <td>{{$productDetail->total_order}}</td>
-                  <td>{{$productDetail->total_revenue}}</td>
                   <td>{{$productDetail->created_at}}</td>
                   <td>{{$productDetail->uploader_name}}</td>
                   <td>

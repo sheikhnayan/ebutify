@@ -608,6 +608,7 @@ class ProductController extends Controller
         $productDetails->explore_star_rating = $request->input('star_rating');
         $productDetails->explore_pro_type = "amazon";
         $productDetails->category = $category;
+        $productDetails->status = 'Available';
         $productDetails->product_type_id = $request->input('type');
         $productDetails->user_id  = auth()->id();
         $productDetails->uploader_name = $request->input('uploadername');
@@ -654,6 +655,7 @@ class ProductController extends Controller
         $productDetails->explore_star_rating = $request->input('star_rating');
         $productDetails->explore_pro_type = "ali_express";
         $productDetails->category = $category;
+        $productDetails->status = 'Available';
         $productDetails->product_type_id = $request->input('type');
         $productDetails->user_id  = auth()->id();
         $productDetails->uploader_name = $request->input('uploadername');

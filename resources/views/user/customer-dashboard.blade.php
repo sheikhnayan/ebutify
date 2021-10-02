@@ -23,7 +23,7 @@
                 <span class="info-box-text cpr-1">Available Products</span>
                 <span class="info-box-number  cpr-2">
                   @php
-                    $prods = DB::table('product_details')->where('status','Available')->get();
+                    $prods = DB::table('product_details')->get();
                     $prod_count = $prods->count();
                   @endphp
                   {{ $prod_count + 10000 }}

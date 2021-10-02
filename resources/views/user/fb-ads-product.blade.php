@@ -158,6 +158,8 @@
    <div class="card-deck">
                      
    <?php $j = 1; ?>
+   <?php $o = 1; ?>
+
    @if ($trendingProducts->count() == 0)
    <div class="justify-content-center" >
 
@@ -466,24 +468,43 @@
                                                       <li><a class="list-group-item rounded my-1" target="_blank" href="{{$productLink->facebook_ad}}" role="tab"><i class="fab fa-facebook"></i> View Facebook Ads</a></li>
                                                       <li><a class="list-group-item rounded my-1" target="_blank" href="{{$productLink->youtube}}" role="tab"><i class="fab fa-youtube"></i> View YouTube Review</a></li>
                                                    </ul>
-                                                   <div class="slider2">
-                                                      @foreach ($trendingProduct->productImage as $productImage)
-                                                      <div>
-                                                         <img src="{{asset('storage/'.$productImage->gif_1)}}" class="img-fluid" alt="">
-                                                      </div>
-                                                      <div>
-                                                         <img src="{{asset('storage/'.$productImage->gif_2)}}" class="img-fluid" alt="">
-                                                      </div>
-                                                      <div>
-                                                         <img src="{{asset('storage/'.$productImage->gif_3)}}" class="img-fluid" alt="">
-                                                      </div>
-                                                   </div>
-                                                   <div class="slider-nav2 my-2 justify-content-between">
-                                                      <img src="{{asset('storage/'.$productImage->gif_1)}}" class="img-fluid" alt="gif">
-                                                      <img src="{{asset('storage/'.$productImage->gif_2)}}" class="img-fluid" alt="gif">
-                                                      <img src="{{asset('storage/'.$productImage->gif_3)}}" class="img-fluid" alt="gif">
-                                                   </div>
-                                                   @endforeach
+
+
+
+<div id="carouselExampleIndicators1{{$o}}" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators1" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators1" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators1" data-slide-to="2"></li>
+  </ol>
+  @foreach ($trendingProduct->productImage as $productImage)
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img class="d-block w-100" src="{{asset('storage/'.$productImage->gif_1)}}" alt="First slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="{{asset('storage/'.$productImage->gif_2)}}" alt="Second slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="{{asset('storage/'.$productImage->gif_3)}}" alt="Third slide">
+    </div>
+  </div>
+  @endforeach
+  <a class="carousel-control-prev" href="#carouselExampleIndicators1{{$o}}" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators1{{$o}}" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+
+
+
+                                                
+
                                                    @php
                                                    $gifs = '';
                                                      if (!empty($productImage->gif_1)){
@@ -620,6 +641,7 @@
                         </div>
    </div>
    <?php $j++; ?>
+   <?php $o++; ?>
    @endforeach
             <!-- LOAD MORE DATA SHOW -->
  

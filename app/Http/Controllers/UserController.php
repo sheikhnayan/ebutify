@@ -87,8 +87,11 @@ class UserController extends Controller
     	$niche = '';
     }
           
-		if(!empty($request->category)){
+		if($request->category){
+			$category = $request->category;
 			// dd($request->category);
+		}else{
+			$category = '';
 		}
 
 		//-- HANDLE SORTING
@@ -201,13 +204,13 @@ class UserController extends Controller
 				// dd($trendingProducts);
 			break;
 			case 2:
-				$trendingProducts = ProductDetail::where('price', '>=' , '30')->whereNull('explore_pro_type')->orderBy($orderColumn,'DESC')->paginate(3);
+				$trendingProducts = ProductDetail::where('price', '>=' , '30')->whereNull('explore_pro_type')->where('category', 'LIKE' ,'%'.$category.'%')->where('tag', 'LIKE' ,'%'.$niche.'%')->orderBy($orderColumn,'DESC')->paginate(3);
 			break;
 			case 3:
-				$trendingProducts = ProductDetail::where('profit', '>=' , '15')->whereNull('explore_pro_type')->orderBy($orderColumn,'DESC')->paginate(3);
+				$trendingProducts = ProductDetail::where('profit', '>=' , '15')->whereNull('explore_pro_type')->where('category', 'LIKE' ,'%'.$category.'%')->where('tag', 'LIKE' ,'%'.$niche.'%')->orderBy($orderColumn,'DESC')->paginate(3);
 			break;
 			case 4:
-				$trendingProducts = ProductDetail::where('cost', '<=' , '20')->whereNull('explore_pro_type')->orderBy($orderColumn,'DESC')->paginate(3);
+				$trendingProducts = ProductDetail::where('cost', '<=' , '20')->whereNull('explore_pro_type')->where('category', 'LIKE' ,'%'.$category.'%')->where('tag', 'LIKE' ,'%'.$niche.'%')->orderBy($orderColumn,'DESC')->paginate(3);
 			break;
 			default:
 				$filterBy = 'product_name';
@@ -377,114 +380,61 @@ class UserController extends Controller
     }
 
 	 		$sortSelected = 0;
-            $filterSelected = 0;
-            $categorySelected = 0;
-		//-- HANDLE SORTING
-      	if($request->sort) {
-      		$sortSelected = $request->sort;
-            $filterSelected = $request->filter;
-            $categorySelected = $request->category;
-          switch($request->sort){
-			case 1:
-				$orderColumn = 'profit';
-			break;
-			case 2:
-				$orderColumn = 'total_order';
-			break;
-			case 3:
-				$orderColumn = 'created_at';
-			break;
-			case 4:
-				$orderColumn = 'total_order';
-			break;
-			case 5:
-				$orderColumn = 'total_order';
-			break;
-			default:
-				$orderColumn = 'product_name';
-			break;        
- 			}
- 			
-      	}else{
-      		$orderColumn = 'created_at';
-      	}
+      $filterSelected = 0;
+      $categorySelected = 0;
 
-      	//-- HANDLE CATEGORY
-      	if($request->category) {
-      		$sortSelected = $request->sort;
-            $filterSelected = $request->filter;
-            $categorySelected = $request->category;
-   //  switch($request->category){
-			// case 1:
-			// 	$category = 'Women\'s Fashion';
-			// break;
-			// case 2:
-			// 	$category = 'Man\'s Fashion';
-			// break;
-			// case 3:
-			// 	$category = 'Health & Beauty';
-			// break;
-			// case 4:
-			// 	$category = 'Home Improvement';
-			// break;
-			// case 5:
-			// 	$category = 'Garden Improvement';
-			// break;
-			// case 6:
-			// 	$category = 'Pet Accessories';
-			// break;
-			// case 7:
-			// 	$category = 'Electronics';
-			// break;
-			// case 8:
-			// 	$category = 'Computer Accessories';
-			// break;
-			// case 9:
-			// 	$category = 'Baby & Kids';
-			// break;
-			// case 10:
-			// 	$category = 'Kitchen & household';
-			// break;
-			// case 11:
-			// 	$category = 'Jewellery';
-			// break;
-			// case 12:
-			// 	$category = 'Car Accessories';
-			// break;
-			// case 13:
-			// 	$category = 'Bike Accessories';
-			// break;
-			// case 14:
-			// 	$category = 'Mobile Accessories';
-			// break;
-			// case 15:
-			// 	$category = 'Fitness';
-			// break;
-			// case 16:
-			// 	$category = 'Bag\'s & Shoes';
-			// break;
-			// case 17:
-			// 	$category = 'Outdoor';
-			// break;
-			// case 18:
-			// 	$category = 'Beauty Hair';
-			// break;
-			// default:
-			// 	$category = '';
-			// break;        
- 		// }
-            $category = $request->category;
+		//-- HANDLE SORTING
+  	if($request->sort) {
+    		$sortSelected = $request->sort;
+        $filterSelected = $request->filter;
+        $categorySelected = $request->category;
+    
+    	switch($request->sort){
+				case 1:
+					$orderColumn = 'profit';
+				break;
+				case 2:
+					$orderColumn = 'total_order';
+				break;
+				case 3:
+					$orderColumn = 'created_at';
+				break;
+				case 4:
+					$orderColumn = 'total_order';
+				break;
+				case 5:
+					$orderColumn = 'total_order';
+				break;
+				default:
+					$orderColumn = 'product_name';
+				break;        
+	 			}
  			
-      	}else{
-      		$category = '';
-      	}
-      
-      	//-- HANDLE FILTER
-      	if($request->filter) {
-      		$sortSelected = $request->sort;
-            $filterSelected = $request->filter;
-            $categorySelected = $request->category;
-          switch($request->filter){
+  	}else{
+  		$orderColumn = 'created_at';
+  	}
+
+  	//-- HANDLE CATEGORY
+  	if($request->category){
+  		
+  		$sortSelected = $request->sort;
+      $filterSelected = $request->filter;
+      $categorySelected = $request->category;
+
+      $category = $request->category;
+ 			
+  	}else{
+
+  		$category = '';
+
+  	}
+
+  	//-- HANDLE FILTER
+  	if($request->filter) {
+  		$sortSelected = $request->sort;
+      $filterSelected = $request->filter;
+      $categorySelected = $request->category;
+      switch($request->filter){
 			case 1:
 				$trendingProducts = ProductDetail::where('opportunity_level', 'LIKE' ,'%trending_product%')->whereNull('explore_pro_type')->where('price', '<=' ,'30')->where('category', 'LIKE' ,'%'.$category.'%')->where('tag', 'LIKE' ,'%'.$niche.'%')->orderBy($orderColumn,'DESC')->paginate(3);
 				// dd($trendingProducts);
@@ -1161,22 +1111,42 @@ class UserController extends Controller
                                                       <li><a class="list-group-item rounded my-1" target="_blank" target="_blank" href="'.$result->productLink[0]->facebook_ad.'" role="tab"><i class="fab fa-facebook"></i> View Facebook Ads</a></li>
                                                       <li><a class="list-group-item rounded my-1" target="_blank" target="_blank" href="'.$result->productLink[0]->youtube.'" role="tab"><i class="fab fa-youtube"></i> View YouTube Review</a></li>
                                                    </ul>
-                                                   <div class="slider2">
-                                                      <div>
-                                                         <img src="https://ebutify.com/storage/'.$result->productImage[0]->gif_1.'" class="img-fluid" alt="">
-                                                      </div>
-                                                      <div>
-                                                         <img src="https://ebutify.com/storage/'.$result->productImage[0]->gif_2.'" class="img-fluid" alt="">
-                                                      </div>
-                                                      <div>
-                                                         <img src="https://ebutify.com/storage/'.$result->productImage[0]->gif_3.'" class="img-fluid" alt="">
-                                                      </div>
-                                                   </div>
-                                                   <div class="slider-nav2 my-2 justify-content-between">
-                                                      <img src="https://ebutify.com/storage/'.$result->productImage[0]->gif_1.'" class="img-fluid" alt="">
-                                                      <img src="https://ebutify.com/storage/'.$result->productImage[0]->gif_2.'" class="img-fluid" alt="">
-                                                      <img src="https://ebutify.com/storage/'.$result->productImage[0]->gif_3.'" class="img-fluid" alt="">
-                                                   </div>
+                                                   
+
+
+<div id="carouselExampleIndicators2'.$result->id.'" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators2" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators2" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators2" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img class="d-block w-100" src="https://ebutify.com/storage/'.$result->productImage[0]->gif_1.'" alt="First slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="https://ebutify.com/storage/'.$result->productImage[0]->gif_2.'" alt="Second slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="https://ebutify.com/storage/'.$result->productImage[0]->gif_3.'" alt="Third slide">
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleIndicators2'.$result->id.'" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleIndicators2'.$result->id.'" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+
+
+
+
+
+
                                                    '.$downloadButton.'
                                                 </div>
                                                 
@@ -1825,22 +1795,41 @@ class UserController extends Controller
                                                       <li><a class="list-group-item rounded my-1" target="_blank" target="_blank" href="'.$result->productLink[0]->facebook_ad.'" role="tab"><i class="fab fa-facebook"></i> View Facebook Ads</a></li>
                                                       <li><a class="list-group-item rounded my-1" target="_blank" target="_blank" href="'.$result->productLink[0]->youtube.'" role="tab"><i class="fab fa-youtube"></i> View YouTube Review</a></li>
                                                    </ul>
-                                                   <div class="slider2">
-                                                      <div>
-                                                         <img src="https://ebutify.com/storage/'.$result->productImage[0]->gif_1.'" class="img-fluid" alt="">
-                                                      </div>
-                                                      <div>
-                                                         <img src="https://ebutify.com/storage/'.$result->productImage[0]->gif_2.'" class="img-fluid" alt="">
-                                                      </div>
-                                                      <div>
-                                                         <img src="https://ebutify.com/storage/'.$result->productImage[0]->gif_3.'" class="img-fluid" alt="">
-                                                      </div>
-                                                   </div>
-                                                   <div class="slider-nav2 my-2 justify-content-between">
-                                                      <img src="https://ebutify.com/storage/'.$result->productImage[0]->gif_1.'" class="img-fluid" alt="gif 1">
-                                                      <img src="https://ebutify.com/storage/'.$result->productImage[0]->gif_2.'" class="img-fluid" alt="">
-                                                      <img src="https://ebutify.com/storage/'.$result->productImage[0]->gif_3.'" class="img-fluid" alt="">
-                                                   </div>
+
+
+<div id="'.$result->id.'carouselExampleIndicators2" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <li data-target="#carouselExampleIndicators2" data-slide-to="0" class="active"></li>
+    <li data-target="#carouselExampleIndicators2" data-slide-to="1"></li>
+    <li data-target="#carouselExampleIndicators2" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img class="d-block w-100" src="https://ebutify.com/storage/'.$result->productImage[0]->gif_1.'" alt="First slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="https://ebutify.com/storage/'.$result->productImage[0]->gif_2.'" alt="Second slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="https://ebutify.com/storage/'.$result->productImage[0]->gif_3.'" alt="Third slide">
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#'.$result->id.'carouselExampleIndicators2" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#'.$result->id.'carouselExampleIndicators2" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+
+
+
+
+
+
                                                    '.$downloadButton.'
                                                 </div>
                                                 
