@@ -1,2 +1,2 @@
-{{$plans['price_1If8QdEgl2c23BzjE4HCoJc3']}}
-{{$plans['price_1If8VPEgl2c23Bzjq8LUvao7']}}
+{{$plans['price_1JPqeZCzBVgP4kKNPA6XL5mX']}}
+{{$plans['price_1JPqopCzBVgP4kKNdvtju0GZ']}}

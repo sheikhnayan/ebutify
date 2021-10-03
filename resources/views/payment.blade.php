@@ -90,9 +90,9 @@
 
                                                     <div class="custom-control custom-radio">
                                                         <input type="radio"
-                                                            class="custom-control-input payment-radio d-none" value="price_1If8VPEgl2c23Bzjq8LUvao7" name="plan" id="yearly_plan">
+                                                            class="custom-control-input payment-radio d-none" value="price_1JPqopCzBVgP4kKNdvtju0GZ" name="plan" id="yearly_plan">
                                                         <label class="custom-control-label" for="subscription-plan">
-                                                            <p><span class="from-yr">{{$plans['price_1If8VPEgl2c23Bzjq8LUvao7']}}</span>
+                                                            <p><span class="from-yr">{{$plans['price_1JPqopCzBVgP4kKNdvtju0GZ']}}</span>
                                                                 <span class="pricing-num">$420.00 USD<span class="pr-per">/year</span> </span>
                                                             </p>
                                                             <p><span class="pricing-num">To Pay Today: $420.00 </span></p>
@@ -107,10 +107,10 @@
                                             <div class="col-sm-12 m-b-10 col-md-6">
                                                 <div class="plan--payment_system sm-pading-point" id="monthly">
                                                     <div class="custom-control custom-radio">
-                                                        <input type="radio" name="plan" id="monthly_plan" value="price_1If8QdEgl2c23BzjE4HCoJc3"
+                                                        <input type="radio" name="plan" id="monthly_plan" value="price_1JPqeZCzBVgP4kKNPA6XL5mX"
                                                             class="custom-control-input payment-radio d-none">
                                                         <label class="custom-control-label" for="radioYearly">
-                                                            <p><span class="from-yr">{{$plans['price_1If8QdEgl2c23BzjE4HCoJc3']}}</span>
+                                                            <p><span class="from-yr">{{$plans['price_1JPqeZCzBVgP4kKNPA6XL5mX']}}</span>
                                                                 <span class="pricing-num">$35.00 USD<span class="pr-per">/month</span> </span>
                                                             </p>
                                                             <p><span class="pricing-num">To Pay Today: $35.00 </span></p>
@@ -275,12 +275,12 @@
 @section('js')
 <script>
             $("#monthly").click(function (){
-                var plan_id = 'price_1If8QdEgl2c23BzjE4HCoJc3';
+                var plan_id = 'price_1JPqeZCzBVgP4kKNPA6XL5mX';
                 $('input[name=plan_id]').val(plan_id);
             });
 
             $("#yearly").click(function (){
-                var plan_id = 'price_1If8VPEgl2c23Bzjq8LUvao7';
+                var plan_id = 'price_1JPqopCzBVgP4kKNdvtju0GZ';
                 $('input[name=plan_id]').val(plan_id);
             });
 

@@ -34,8 +34,8 @@ class FreelancerController extends Controller
                 if(!Auth::user()->subscribed('main')){
 
                     //  FETCH AVAILABLE PLANS
-                    $availablePlans = [ 'price_1If8QdEgl2c23BzjE4HCoJc3' => 'Monthly',
-                    'price_1If8VPEgl2c23Bzjq8LUvao7' => 'Yearly',
+                    $availablePlans = [ 'price_1JPqeZCzBVgP4kKNPA6XL5mX' => 'Monthly',
+                    'price_1JPqopCzBVgP4kKNdvtju0GZ' => 'Yearly',
                     
                     ];
 
@@ -55,11 +55,11 @@ class FreelancerController extends Controller
 
                     // dd($plan);
 
-                    if($plan->stripe_plan == 'price_1If8QdEgl2c23BzjE4HCoJc3'){
+                    if($plan->stripe_plan == 'price_1JPqeZCzBVgP4kKNPA6XL5mX'){
 
                         $enddate = Carbon::parse($plan->created_at)->addMonth()->format('d.m.Y');
 
-                    }elseif($plan->stripe_plan == 'price_1If8VPEgl2c23Bzjq8LUvao7'){
+                    }elseif($plan->stripe_plan == 'price_1JPqopCzBVgP4kKNdvtju0GZ'){
 
                         $enddate = Carbon::parse($plan->created_at)->addYear()->format('d.m.Y');
 
@@ -107,8 +107,8 @@ class FreelancerController extends Controller
                     }
                     }else{
                         //  FETCH AVAILABLE PLANS
-                    $availablePlans = [ 'price_1If8QdEgl2c23BzjE4HCoJc3' => 'Monthly',
-                    'price_1If8VPEgl2c23Bzjq8LUvao7' => 'Yearly',
+                    $availablePlans = [ 'price_1JPqeZCzBVgP4kKNPA6XL5mX' => 'Monthly',
+                    'price_1JPqopCzBVgP4kKNdvtju0GZ' => 'Yearly',
                     
                     ];
 
