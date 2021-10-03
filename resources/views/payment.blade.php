@@ -89,8 +89,9 @@
                                                     </div>
 
                                                     <div class="custom-control custom-radio">
-                                                        <input type="radio"
-                                                            class="custom-control-input payment-radio d-none" value="price_1JPqopCzBVgP4kKNdvtju0GZ" name="plan" id="yearly_plan">
+                                                        <!-- checked doesn't work! -->
+                                                        <input checked type="radio"
+                                                            class="custom-control-input payment-radio d-none" value="price_1JPqopCzBVgP4kKNdvtju0GZ" name="plan" id="yearly_plan" >
                                                         <label class="custom-control-label" for="subscription-plan">
                                                             <p><span class="from-yr">{{$plans['price_1JPqopCzBVgP4kKNdvtju0GZ']}}</span>
                                                                 <span class="pricing-num">$420.00 USD<span class="pr-per">/year</span> </span>
@@ -121,6 +122,11 @@
                                                         </label>
                                                     </div>
                                                 </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1"><br>Coupon</label>
+                                                <input type="text" class="form-control" id="exampleInputEmail1" name="coupon" aria-describedby="emailHelp" placeholder="Enter Coupon Code">
                                             </div>
 
 
@@ -159,7 +165,7 @@
                                         </div>
 
 
-                                        <div class="row paypal-trial-btn" style="display: block">
+                                        <div class="row paypal-trial-btn" style="display:none">
                                             <div class="form-group text-center holder-button">
                                                 <div class="col-sm-12">
                                                     <button class="btn free-trial-start-btn" type="submit" name="subsignup">
@@ -177,7 +183,7 @@
                                             <div class="card_payment_from">
                                                 <div class="mb-3">
                                                     <label for="card-holder-name" class="form-label" style="font-size: 16px;">Card Holder Name</label>
-                                                    <input placeholder="Card Holder" class="form-control" id="card-holder-name" type="text">
+                                                    <input placeholder="Card Holder" class="form-control" id="card-holder-name" type="text" required="">
                                                     <label for="card-element" class="form-label" style="font-size: 16px;">Card Number</label>
                                                     <!-- Stripe Elements Placeholder -->
                                                     <div id="card-element"></div>
