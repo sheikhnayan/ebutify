@@ -166,7 +166,7 @@ class FreelancerController extends Controller
 
         $planId = $request->plan;
 
-        Auth()->user()->newSubscription('main', $planId)->create($paymentMethod);
+        Auth()->user()->newSubscription('main', $planId)->withCoupon($request->coupon)->create($paymentMethod);
 
         return response([
             'success_url'=> redirect()->intended('/dashboard')->getTargetUrl(),
