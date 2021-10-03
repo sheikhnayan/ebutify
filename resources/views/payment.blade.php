@@ -96,11 +96,11 @@
                                                             <p><span class="from-yr">{{$plans['price_1JPqopCzBVgP4kKNdvtju0GZ']}}</span>
                                                                 <span class="pricing-num">$420.00 USD<span class="pr-per">/year</span> </span>
                                                             </p>
-                                                            <p><span class="pricing-num">To Pay Today: $420.00 </span></p>
-                                                            <!-- <div class="plan-duration">
-                                                                <strike>$588.00</strike> <span class="text-pink">Save 50%</span>
-                                                                <p style="color: #cccccc; font-size: 16px;">Billed annually for $288.00</p>
-                                                            </div> -->
+                                                            <p><span class="pricing-num">To Pay Today: $300.00 </span></p>
+                                                            <div class="plan-duration">
+                                                                <strike>$300.00</strike> <span class="text-pink">Save 70%</span>
+                                                                <p style="color: #cccccc; font-size: 16px;">Billed annually for $90.00</p>
+                                                            </div>
                                                         </label>
                                                     </div>
                                                 </div>
@@ -112,12 +112,12 @@
                                                             class="custom-control-input payment-radio d-none">
                                                         <label class="custom-control-label" for="radioYearly">
                                                             <p><span class="from-yr">{{$plans['price_1JPqeZCzBVgP4kKNPA6XL5mX']}}</span>
-                                                                <span class="pricing-num">$35.00 USD<span class="pr-per">/month</span> </span>
+                                                                <span class="pricing-num">$25.00 USD<span class="pr-per">/month</span> </span>
                                                             </p>
-                                                            <p><span class="pricing-num">To Pay Today: $35.00 </span></p>
+                                                            <p><span class="pricing-num">To Pay Today: $25.00 </span></p>
                                                             <div class="plan-duration">
-                                                                <!-- <strike>$29.00</strike> <span class="text-pink">Save 40%</span>
-                                                                <p style="color: #cccccc; font-size: 16px;">Billed monthly for $29.00</p> -->
+                                                                <strike>$29.00</strike> <span class="text-pink">Save 96%</span>
+                                                                <p style="color: #cccccc; font-size: 16px;">Billed monthly for $7.5</p>
                                                             </div>
                                                         </label>
                                                     </div>
