@@ -82,7 +82,7 @@
                                         <form id="myForm">
                                         <div class="row mt-2">
                                             <div class="col-sm-12 col-md-6">
-                                                <div class="plan--payment_system" id="yearly">
+                                                <div class="plan--payment_system selected-plan" id="yearly">
 
                                                     <div class="free_month_badge text-center">
                                                         <div class="inner" style="margin-top: 12px;">Best Choice</div>
