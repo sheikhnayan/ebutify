@@ -64,7 +64,8 @@ class FreelancerController extends Controller
                         $enddate = Carbon::parse($plan->created_at)->addYear()->format('d.m.Y');
 
                     }
-                    if($enddate >= Carbon::now()){
+                    if($enddate <= Carbon::now()){
+                        
                         // dd('hello');
                         //  SHOW DASHBOARD IF SUBSCRIBED
                     $invoices = Auth()->user()->invoices();
@@ -98,8 +99,9 @@ class FreelancerController extends Controller
                         // $subscriptions = Subscription()->active()->get();
                     if(Auth::user()->status == 1){
                         $products = ProductDetail::all();
+                        
                         $data = QuickStart::all();
-
+                        // dd('hello')
                     return view('user.customer-dashboard',compact('products','data','realCategory'));
 
                     }else{

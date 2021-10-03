@@ -76,6 +76,7 @@ class ExploreController extends Controller
         $productDetails->user_id  = auth()->id();
         $productDetails->uploader_name = $request->input('uploadername');
         $productDetails->total_revenue = $request->input('t_sales');
+        $productDetails->status = 'Available';
         $productDetails->save();
 
         $productLinks = new ProductLink;
@@ -145,6 +146,7 @@ class ExploreController extends Controller
         $productDetails->category = $category;
         $productDetails->product_type_id = $request->input('type');
         $productDetails->user_id  = auth()->id();
+        $productDetails->status = 'Available';
         $productDetails->uploader_name = $request->input('uploadername');
         $productDetails->save();
 
