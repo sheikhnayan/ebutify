@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Mail\ContactMail;
 use Mail;
+use Auth;
 
 class ContactController extends Controller
 {
     public function contact(Request $request)
     {
         $details = [
+            'name' => Auth::user()->name,
+            'email' => Auth::user()->email,
             'subject' => $request->subject,
             'message' => $request->message
         ];
