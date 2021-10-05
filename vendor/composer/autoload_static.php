@@ -649,7 +649,6 @@ class ComposerStaticInit495d48bf7755b140d851d0f7ac052e0c
         'App\\Models\\Country' => __DIR__ . '/../..' . '/app/Models/Country.php',
         'App\\Models\\FAQ' => __DIR__ . '/../..' . '/app/Models/FAQ.php',
         'App\\Models\\FileName' => __DIR__ . '/../..' . '/app/Models/FileName.php',
-        'App\\Models\\FrontendController' => __DIR__ . '/../..' . '/app/Models/FrontendController.php',
         'App\\Models\\Gender' => __DIR__ . '/../..' . '/app/Models/Gender.php',
         'App\\Models\\GifName' => __DIR__ . '/../..' . '/app/Models/GifName.php',
         'App\\Models\\GifName2' => __DIR__ . '/../..' . '/app/Models/GifName2.php',

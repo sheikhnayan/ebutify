@@ -2,6 +2,7 @@
 
 @section('head')
     <script src="https://js.stripe.com/v3/"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     <style>
         .StripeElement {
@@ -126,7 +127,7 @@
 
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1"><br>Coupon</label>
-                                                <input type="text" class="form-control" id="exampleInputEmail1" name="coupon" aria-describedby="emailHelp" placeholder="Enter Coupon Code">
+                                                <input type="text" class="form-control" id="coupon" name="coupon" aria-describedby="coupon" placeholder="Enter Coupon Code">
                                             </div>
 
 
@@ -306,6 +307,7 @@
             
             
             cardButton.addEventListener('click', async (e) => {
+                var coupon = $("#coupon").val();
                 var plan = $("#plan_id").val();
                 const { setupIntent, error } = await stripe.handleCardSetup(
                     clientSecret, cardElement, {
@@ -322,7 +324,8 @@
                     console.log('handling success', setupIntent.payment_method);
                      axios.post('https://ebutify.com/subscribe',{
                         payment_method: setupIntent.payment_method,
-                        plan : plan
+                        plan : plan,
+                        coupon : coupon
                     }).then((data)=>{
                         location.replace(data.data.success_url)
                     });

@@ -46,7 +46,6 @@ return array(
     'App\\Models\\Country' => $baseDir . '/app/Models/Country.php',
     'App\\Models\\FAQ' => $baseDir . '/app/Models/FAQ.php',
     'App\\Models\\FileName' => $baseDir . '/app/Models/FileName.php',
-    'App\\Models\\FrontendController' => $baseDir . '/app/Models/FrontendController.php',
     'App\\Models\\Gender' => $baseDir . '/app/Models/Gender.php',
     'App\\Models\\GifName' => $baseDir . '/app/Models/GifName.php',
     'App\\Models\\GifName2' => $baseDir . '/app/Models/GifName2.php',
