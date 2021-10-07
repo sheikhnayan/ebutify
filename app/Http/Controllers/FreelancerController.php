@@ -8,7 +8,7 @@ use App\Models\User;
 use App\Models\ProductDetail;
 use App\Models\QuickStart;
 use Stripe\Subscription;
-use App\Models\Category;
+use App\Models\StripeProduct;
 use DB;
 use Carbon\Carbon;
 
@@ -22,7 +22,7 @@ class FreelancerController extends Controller
 
     public function dashboard()
     {   
-        $realCategory = Category::whereNotNull('id');
+        $realCategory = StripeProduct::whereNotNull('id')->get();
 
         //  IF USER'S REGISTERED
         if(Auth::check()){
@@ -39,15 +39,19 @@ class FreelancerController extends Controller
                     
                     ];
 
-
+                    $product = StripeProduct::whereNotNull('id')->get();
+                    // dd($product);
                     //  FETCH SUBSCRIPTION REQUIRED DATA
                     $data = [
                         'intent' => Auth::user()->createSetupIntent(),
                         'plans' => $availablePlans,
+                        'product' => $product,
                     ];
                     // dd('hello');
                     //  VIEW PAYMENT PAGE WITH DATA
+                    // with('persons', $persons)->with('ms', $ms);
                     return view('payment')->with($data);
+                    // return view('payment',compact('data','product'));
             
                 }else{
 

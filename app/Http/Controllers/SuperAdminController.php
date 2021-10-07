@@ -32,6 +32,8 @@ use App\Models\FileName;
 use App\Models\GifName;
 use App\Models\GifName2;
 use App\Models\GifName3;
+use App\Models\StripeProduct;
+
 
 
 use Validator;
@@ -1096,5 +1098,58 @@ class SuperAdminController extends Controller
         return back();
     }
 
+    public function subscription(Request $request)
+    {
+        $data = StripeProduct::all();
+        return view('super_admin.subcription-plan-details', compact('data'));
+    }
 
+    public function CreateProduct($value='')
+    {
+
+        $data = StripeProduct::all();
+
+        return view('super_admin.create-product', compact('data'));
+    }
+
+    public function CreateProductForReal(Request $request)
+    {
+        $add = new StripeProduct;
+        $add->product_name = $request->product_name;
+        $add->product_code = $request->product_code;
+        $add->monthly_pricing = $request->monthly_pricing;
+        $add->to_pay_today = $request->to_pay_today;
+        $add->original_amount = $request->original_amount;
+        $add->discount_amount = $request->discount_amount;
+        $add->saved_percentage = $request->saved_percentage;
+        $add->billed_for = $request->billed_for;
+        $add->save();
+    }
+
+    public function EditProduct($id)
+    {
+        $data = StripeProduct::where('id',$id)->get();
+        // dd($data);
+
+        return view('super_admin.edit-product', compact('data'));
+    }
+
+    public function EditProductForReal(Request $request)
+    {
+        $data = StripeProduct::where('id',$request->id)->get();
+
+        // dd($request->all());
+        $productDetails = StripeProduct::find($request->id);
+        $productDetails->product_name = $request->product_name;
+        $productDetails->product_code = $request->product_code;
+        $productDetails->monthly_pricing = $request->monthly_pricing;
+        $productDetails->to_pay_today = $request->to_pay_today;
+        $productDetails->original_amount = $request->original_amount;
+        $productDetails->discount_amount = $request->discount_amount;
+        $productDetails->saved_percentage = $request->saved_percentage;
+        $productDetails->billed_for = $request->billed_for;
+        $productDetails->save();
+
+        return back()->with('status', 'Product Updated Successfully!');
+    }
 }

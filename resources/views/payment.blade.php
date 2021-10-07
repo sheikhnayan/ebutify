@@ -2,6 +2,7 @@
 
 @section('head')
     <script src="https://js.stripe.com/v3/"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
     <style>
         .StripeElement {
@@ -91,16 +92,16 @@
                                                     <div class="custom-control custom-radio">
                                                         <!-- checked doesn't work! -->
                                                         <input checked type="radio"
-                                                            class="custom-control-input payment-radio d-none" value="price_1JPqopCzBVgP4kKNdvtju0GZ" name="plan" id="yearly_plan" >
+                                                            class="custom-control-input payment-radio d-none" value="{{$product[0]->product_code}}" name="plan" id="yearly_plan" >
                                                         <label class="custom-control-label" for="subscription-plan">
-                                                            <p><span class="from-yr">{{$plans['price_1JPqopCzBVgP4kKNdvtju0GZ']}}</span>
-                                                                <span class="pricing-num">$420.00 USD<span class="pr-per">/year</span> </span>
+                                                            <p><span class="from-yr">{{$product[0]->product_name}}</span>
+                                                                <span class="pricing-num">${{$product[0]->monthly_pricing}} USD<span class="pr-per">/month</span> </span>
                                                             </p>
-                                                            <p><span class="pricing-num">To Pay Today: $420.00 </span></p>
-                                                            <!-- <div class="plan-duration">
-                                                                <strike>$588.00</strike> <span class="text-pink">Save 50%</span>
-                                                                <p style="color: #cccccc; font-size: 16px;">Billed annually for $288.00</p>
-                                                            </div> -->
+                                                            <p><span class="pricing-num">To Pay Today: ${{$product[0]->to_pay_today}}</span></p>
+                                                            <div class="plan-duration">
+                                                                <strike>${{$product[0]->original_amount}}</strike> <span class="text-pink">Save {{$product[0]->saved_percentage}}%</span>
+                                                                <p style="color: #cccccc; font-size: 16px;">Billed annually for ${{$product[0]->to_pay_today}}</p>
+                                                            </div>
                                                         </label>
                                                     </div>
                                                 </div>
@@ -108,16 +109,16 @@
                                             <div class="col-sm-12 m-b-10 col-md-6">
                                                 <div class="plan--payment_system sm-pading-point" id="monthly">
                                                     <div class="custom-control custom-radio">
-                                                        <input type="radio" name="plan" id="monthly_plan" value="price_1JPqeZCzBVgP4kKNPA6XL5mX"
+                                                        <input type="radio" name="plan" id="monthly_plan" value="{{$product[0]->product_code}}"
                                                             class="custom-control-input payment-radio d-none">
                                                         <label class="custom-control-label" for="radioYearly">
-                                                            <p><span class="from-yr">{{$plans['price_1JPqeZCzBVgP4kKNPA6XL5mX']}}</span>
-                                                                <span class="pricing-num">$35.00 USD<span class="pr-per">/month</span> </span>
+                                                            <p><span class="from-yr">{{$product[1]->product_name}}</span>
+                                                                <span class="pricing-num">${{$product[1]->monthly_pricing}} USD<span class="pr-per">/month</span> </span>
                                                             </p>
-                                                            <p><span class="pricing-num">To Pay Today: $35.00 </span></p>
+                                                            <p><span class="pricing-num">To Pay Today: ${{$product[1]->to_pay_today}} </span></p>
                                                             <div class="plan-duration">
-                                                                <!-- <strike>$29.00</strike> <span class="text-pink">Save 40%</span>
-                                                                <p style="color: #cccccc; font-size: 16px;">Billed monthly for $29.00</p> -->
+                                                                <strike>${{$product[0]->original_amount}}</strike> <span class="text-pink">Save {{$product[1]->saved_percentage}}%</span>
+                                                                <p style="color: #cccccc; font-size: 16px;">Billed monthly for ${{$product[1]->to_pay_today}}</p>
                                                             </div>
                                                         </label>
                                                     </div>
@@ -126,7 +127,7 @@
 
                                             <div class="form-group">
                                                 <label for="exampleInputEmail1"><br>Coupon</label>
-                                                <input type="text" class="form-control" id="exampleInputEmail1" name="coupon" aria-describedby="emailHelp" placeholder="Enter Coupon Code">
+                                                <input type="text" class="form-control" id="coupon" name="coupon" aria-describedby="coupon" placeholder="Enter Coupon Code">
                                             </div>
 
 
@@ -281,12 +282,14 @@
 @section('js')
 <script>
             $("#monthly").click(function (){
-                var plan_id = 'price_1JPqeZCzBVgP4kKNPA6XL5mX';
+                var plan_id = '{{$product[0]->product_code}}';
                 $('input[name=plan_id]').val(plan_id);
             });
+                    
+
 
             $("#yearly").click(function (){
-                var plan_id = 'price_1JPqopCzBVgP4kKNdvtju0GZ';
+                var plan_id = '{{$product[0]->product_code}}';
                 $('input[name=plan_id]').val(plan_id);
             });
 
@@ -306,6 +309,7 @@
             
             
             cardButton.addEventListener('click', async (e) => {
+                var coupon = $("#coupon").val();
                 var plan = $("#plan_id").val();
                 const { setupIntent, error } = await stripe.handleCardSetup(
                     clientSecret, cardElement, {
@@ -320,9 +324,11 @@
                 } else {
                     // The card has been verified successfully...
                     console.log('handling success', setupIntent.payment_method);
+
                      axios.post('https://ebutify.com/subscribe',{
                         payment_method: setupIntent.payment_method,
-                        plan : plan
+                        plan : plan,
+                        coupon : coupon
                     }).then((data)=>{
                         location.replace(data.data.success_url)
                     });
