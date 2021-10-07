@@ -314,6 +314,18 @@ Route::get('/sign-up_1', function(){
 
 Route::get('/super', [SuperAdminController::class, 'index']);
 
+Route::get('/super/subscription',[SuperAdminController::class, 'subscription']);
+
+Route::get('/super/subcription_product/create',[SuperAdminController::class, 'CreateProduct']);
+
+Route::post('/super/create/subsription',[SuperAdminController::class, 'CreateProductForReal']);
+
+Route::get('super/subsciption/edit/{id}',[SuperAdminController::class, 'EditProduct']);
+
+Route::post('super/edit/subsription',[SuperAdminController::class, 'EditProductForReal']);
+
+
+Route::post('/super/create/subsription',[SuperAdminController::class, 'CreateProductForReal']);
 
 Route::get('/super/customer', [SuperAdminController::class, 'customer']);
 Route::get('/super/customer/edit/{id}', [SuperAdminController::class, 'customer_edit']);

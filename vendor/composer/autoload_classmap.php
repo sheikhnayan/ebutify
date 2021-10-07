@@ -62,6 +62,7 @@ return array(
     'App\\Models\\RefundPolicy' => $baseDir . '/app/Models/RefundPolicy.php',
     'App\\Models\\Review' => $baseDir . '/app/Models/Review.php',
     'App\\Models\\ShopifyProduct' => $baseDir . '/app/Models/ShopifyProduct.php',
+    'App\\Models\\StripeProduct' => $baseDir . '/app/Models/StripeProduct.php',
     'App\\Models\\TermsAndCondition' => $baseDir . '/app/Models/TermsAndCondition.php',
     'App\\Models\\Tutorial' => $baseDir . '/app/Models/Tutorial.php',
     'App\\Models\\User' => $baseDir . '/app/Models/User.php',

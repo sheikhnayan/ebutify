@@ -27,4 +27,9 @@ class SubscriptionController extends Controller
         }
         return Redirect::back()->withErrors(['msg', 'The Message']);
     }
+
+    public function subscription(Request $request)
+    {
+        
+    }
 }

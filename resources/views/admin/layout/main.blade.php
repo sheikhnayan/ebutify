@@ -305,6 +305,11 @@ href="{{ asset('storage/'.$favicon ?? '') }}">
                   <p>Return Policy</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="/super/subscription" class="nav-link">
+                  <p>Subcription Plans</p>
+                </a>
+              </li>
             </ul>
           </li>
           <li class="nav-item">
