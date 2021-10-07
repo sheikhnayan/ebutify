@@ -421,6 +421,13 @@ class SuperAdminController extends Controller
         return view('admin.category-create',compact('data'));
     }
 
+    public function category_delete($id){
+
+        $data = BlogCategory::where('id', $id)->delete();
+
+        return back();
+    }
+
     public function category_update(Request $request,$id){
 
         $update = BlogCategory::where('id', $id)->update([

@@ -52,6 +52,7 @@
                   <td> {{ $item->category_name }}</td>
                   <td>
                     <a href="/super/blog/category/edit/{{ $item->id }}" class="btn btn-primary">Edit</a>
+                    <a href="/super/blog/category/delete/{{ $item->id }}" class="btn btn-danger">Delete</a>
                   </td>
                 </tr>
                 @endforeach

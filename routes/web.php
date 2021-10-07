@@ -368,6 +368,7 @@ Route::get('/super/blog/category/create', [SuperAdminController::class, 'categor
 Route::post('/super/blog/category', [SuperAdminController::class, 'category_store']);
 Route::get('/super/blog/category', [SuperAdminController::class, 'category_index']);
 Route::get('/super/blog/category/edit/{id}', [SuperAdminController::class, 'category_edit']);
+Route::get('/super/blog/category/delete/{id}', [SuperAdminController::class, 'category_delete']);
 Route::post('/super/blog/category/update/{id}', [SuperAdminController::class, 'category_update']);
 
 
