@@ -100,7 +100,7 @@
                                                             <p><span class="pricing-num">To Pay Today: ${{$product[0]->to_pay_today}}</span></p>
                                                             <div class="plan-duration">
                                                                 <strike>${{$product[0]->original_amount}}</strike> <span class="text-pink">Save {{$product[0]->saved_percentage}}%</span>
-                                                                <p style="color: #cccccc; font-size: 16px;">Billed annually for ${{$product[0]->to_pay_today}}</p>
+                                                                <p style="color: #cccccc; font-size: 16px;">Billed Monthly for ${{$product[0]->to_pay_today}}</p>
                                                             </div>
                                                         </label>
                                                     </div>
@@ -113,12 +113,12 @@
                                                             class="custom-control-input payment-radio d-none">
                                                         <label class="custom-control-label" for="radioYearly">
                                                             <p><span class="from-yr">{{$product[1]->product_name}}</span>
-                                                                <span class="pricing-num">${{$product[1]->monthly_pricing}} USD<span class="pr-per">/month</span> </span>
+                                                                <span class="pricing-num">${{$product[1]->monthly_pricing}} USD<span class="pr-per">/year</span> </span>
                                                             </p>
                                                             <p><span class="pricing-num">To Pay Today: ${{$product[1]->to_pay_today}} </span></p>
                                                             <div class="plan-duration">
                                                                 <strike>${{$product[0]->original_amount}}</strike> <span class="text-pink">Save {{$product[1]->saved_percentage}}%</span>
-                                                                <p style="color: #cccccc; font-size: 16px;">Billed monthly for ${{$product[1]->to_pay_today}}</p>
+                                                                <p style="color: #cccccc; font-size: 16px;">Billed Monthly for ${{$product[1]->to_pay_today}}</p>
                                                             </div>
                                                         </label>
                                                     </div>
