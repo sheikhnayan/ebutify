@@ -30,12 +30,31 @@
         @endif
 
         <form class="login" method="POST" action="{{ route('login') }}">
+            @if (session('status'))
+            <div class="alert alert-success" role="alert">
+                {{ session('status') }}
+            </div>
+        @endif
+        @if ($errors->has('email'))
+            <span class="invalid-feedback">
+                <strong>{{ $errors->first('email') }}</strong>
+            </span>
+        @endif
+
             @csrf
             <div class="mb-3">
                 <h2>Login to Your <span>Account</span></h2>
                 <div class="mb-4 font-medium text-sm text-green-600"  style="background:red;color:#fff; border-radius:10px; text-align:center;">
                     {{ session('error') }}
                 </div>
+                @if($errors->any())
+                    @foreach ($errors->all() as $error)
+                    <div class="alert alert-danger" role="alert">
+                        <strong>{{ $error }}</strong>
+                    </div>
+                       
+                    @endforeach
+                @endif
                 <x-jet-label class="form-label" for="email" value="{{ __('Email') }}" />
                 <x-jet-input class="form-control" id="email" type="email" name="email" :value="old('email')" required autofocus />
             </div>

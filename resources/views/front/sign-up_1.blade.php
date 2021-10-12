@@ -36,6 +36,16 @@
                                 </div>
                                 <div class="p-20">
                                     <form class="form-horizontal">
+                                        @if (session('status'))
+                                                    <div class="alert alert-success" role="alert">
+                                                        {{ session('status') }}
+                                                    </div>
+                                                @endif
+                                                @if ($errors->has('email'))
+                                            <span class="invalid-feedback">
+                                                <strong>{{ $errors->first('email') }}</strong>
+                                            </span>
+                                        @endif
                                         <div class="form-group ">
                                             <div class="col-12 my-2">
                                                 <input class="form-control" type="text" required="" placeholder="Enter Full Name" name="Name">

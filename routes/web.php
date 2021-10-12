@@ -17,6 +17,9 @@ use App\Http\Controllers\UserServiceController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\FrontendControllerController;
 use App\Http\Controllers\SubscriptionController;
+use App\Http\Middleware\FreelancerRoleEnsure;
+use App\Http\Middleware\UserRoleEnsure;
+
 
 
 
@@ -40,214 +43,222 @@ Route::get('/', function () {
 
 // })
 
-//  USER DASHBOARD VIEW
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
-
-//  FREELANCER DASHBOARD VIEW
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [FreelancerController::class, 'dashboard'])->name('freelancer-dashboard');
-
-//  LOGOUT
-Route::get('/logout', [FreelancerController::class, 'logoutFreelancer'])->name('logout');
-
-//  WORK REPORT VIEW
-Route::middleware(['auth:sanctum', 'verified'])->get('/work-report', [FreelancerController::class, 'workReportFreelancer'])->name('work-report');
-
-//  MESSAGE VIEW
-Route::middleware(['auth:sanctum', 'verified'])->get('/message', [FreelancerController::class, 'message'])->name('message');
-
-//  PROFILE USER
-Route::middleware(['auth:sanctum', 'verified'])->get('/userprofile', [UserController::class, 'profile'])->name('myprofile');
-
-//  USER PROFILE UPDATE
-Route::middleware(['auth:sanctum', 'verified'])->post('/user-profile-update',[UserController::class, 'profileupdate']);
-
-//  USER PASSWORD CHANGE
-Route::middleware(['auth:sanctum', 'verified'])->post('/user-password-cahnge',[UserController::class, 'passwordchange']);
-
-//  PROFILE FREELANCER
-Route::middleware(['auth:sanctum', 'verified'])->get('/freelancer-profile', [UserController::class, 'freelancerProfile'])->name('freelancer-profile');
 
 
-//  SUBSRIBE FOR USER
-Route::post('/subscribe', [FreelancerController::class,'subscribe'])->name('subscribe');
+    //  USER DASHBOARD VIEW
+    Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 
-//  USER DOWNLOAD GIF
-Route::get('/downloadGIF/{gifs}', [UserController::class, 'downloadGIF'])->name('downloadGIF');
+    //  FREELANCER DASHBOARD VIEW
+    Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [FreelancerController::class, 'dashboard'])->name('freelancer-dashboard');
 
-// Route::get('/downloadGIF/{gifs}', [UserController::class, 'downloadGIF'])->name('downloadGIF');
+Route::middleware([UserRoleEnsure::class])->group(function () {
 
-//  USER BILLING PORTAL
-Route::get('/billing-portal', function (Request $request) {
-    return $request->user()->redirectToBillingPortal('billing')->name('billing-portal');
+    //  LOGOUT
+    Route::get('/logout', [FreelancerController::class, 'logoutFreelancer'])->name('logout');
+
+    //  WORK REPORT VIEW
+    Route::middleware(['auth:sanctum', 'verified'])->get('/work-report', [FreelancerController::class, 'workReportFreelancer'])->name('work-report');
+
+    //  MESSAGE VIEW
+    Route::middleware(['auth:sanctum', 'verified'])->get('/message', [FreelancerController::class, 'message'])->name('message');
+
+    //  PROFILE USER
+    Route::middleware(['auth:sanctum', 'verified'])->get('/userprofile', [UserController::class, 'profile'])->name('myprofile');
+
+    //  USER PROFILE UPDATE
+    Route::middleware(['auth:sanctum', 'verified'])->post('/user-profile-update',[UserController::class, 'profileupdate']);
+
+    //  USER PASSWORD CHANGE
+    Route::middleware(['auth:sanctum', 'verified'])->post('/user-password-cahnge',[UserController::class, 'passwordchange']);
+
+    //  PROFILE FREELANCER
+    Route::middleware(['auth:sanctum', 'verified'])->get('/freelancer-profile', [UserController::class, 'freelancerProfile'])->name('freelancer-profile');
+
+
+    //  SUBSRIBE FOR USER
+    Route::post('/subscribe', [FreelancerController::class,'subscribe'])->name('subscribe');
+
+    //  USER DOWNLOAD GIF
+    Route::get('/downloadGIF/{gifs}', [UserController::class, 'downloadGIF'])->name('downloadGIF');
+
+    // Route::get('/downloadGIF/{gifs}', [UserController::class, 'downloadGIF'])->name('downloadGIF');
+
+    //  USER BILLING PORTAL
+    Route::get('/billing-portal', function (Request $request) {
+        return $request->user()->redirectToBillingPortal('billing')->name('billing-portal');
+    });
+
+    //  USER VIEW TRENDING PRODUCTS
+    Route::middleware(['auth:sanctum', 'verified'])->get('/trending-products', [UserController::class, 'trendingProducts'])->name('trending-products');
+
+    //  USER TRENDING PRODUCT DETAILS
+    Route::middleware(['auth:sanctum', 'verified'])->get('/product-details/{product_id}', [UserController::class, 'trendingProductDetails'])->name('product-details');
+
+    //  USER VIEW FB AD PRODUCTS
+    Route::middleware(['auth:sanctum', 'verified'])->get('/fb-ad-products', [UserController::class, 'fbAdProducts'])->name('fb-ad-products');
+
+    //  USER VIEW ALL PRODUCTS
+    Route::middleware(['auth:sanctum', 'verified'])->get('/all-product', [UserController::class, 'allProduct'])->name('all-product');
+
+    //  USER ALL PRODUCT DETAILS
+    Route::middleware(['auth:sanctum', 'verified'])->get('/all-product-details/{product_id}', [UserController::class, 'allProductDetails'])->name('all-product-details');
+
+    //  USER VIEW UNTAPPED PRODUCTS
+    Route::middleware(['auth:sanctum', 'verified'])->get('/untapped-product', [UserController::class, 'untappedProducts'])->name('untapped-product');
+
+    //  USER VIEW ALI EXPRESS PRODUCTS
+    Route::middleware(['auth:sanctum', 'verified'])->get('/ali-product', [UserExploreController::class, 'exploreAli'])->name('ali-product');
+
+    //  USER VIEW AMAZON PRODUCTS
+    Route::middleware(['auth:sanctum', 'verified'])->get('/amz-product', [UserExploreController::class, 'exploreAmz'])->name('amz-product');
+
+    //  USER VIEW STORE PRODUCTS
+    Route::middleware(['auth:sanctum', 'verified'])->get('/store-product', [UserExploreController::class, 'exploreStore'])->name('store-product');
+
+    //  USER VIEW TUTORIAL
+    Route::middleware(['auth:sanctum', 'verified'])->get('/tutorial', [UserController::class, 'viewTutorial'])->name('tutorial');
+
+    //  USER VIEW FAQ
+    Route::middleware(['auth:sanctum', 'verified'])->get('/FAQ', [UserController::class, 'viewFAQ'])->name('FAQ');
+
+    //  USER VIEW CONTACT US
+    Route::middleware(['auth:sanctum', 'verified'])->get('/contact-us-user', [UserController::class, 'viewContactUs'])->name('contact-us');
+
+    //  USER SEND EMAIL
+    Route::middleware(['auth:sanctum', 'verified'])->post('/send-email', [ContactController::class, 'contact'])->name('send-email');
+
+    //  USER SEARCH
+    Route::middleware(['auth:sanctum', 'verified'])->post('/search-all-product', [UserController::class, 'allProduct'])->name('search');
+
+    //  USER SUBSCIPTION PAGE
+    Route::middleware(['auth:sanctum', 'verified'])->get('/subscriptions-billing', [UserController::class, 'SubscriptionsBilling'])->name('subscriptions-billing');
+
+    Route::middleware(['auth:sanctum', 'verified'])->get('/cancel-subscription', [SubscriptionController::class, 'CancelSubscription'])->name('cancel-subscription');
+
+
+
+
+
+
+    //  # USER SERVICES START #
+
+    //  USER SERVICE DASHBOARD
+    Route::middleware(['auth:sanctum', 'verified'])->get('/service-dashboard', [UserServiceController::class, 'serviceDashboard'])->name('service-dashboard');
+
+    //  USER EBUTIFY SERVICES
+    Route::middleware(['auth:sanctum', 'verified'])->get('/ebutify-services', [UserServiceController::class, 'ebutifyServices'])->name('ebutify-services');
+
+    //  USER VIEW SER
+    Route::middleware(['auth:sanctum', 'verified'])->get('/view-services', [UserServiceController::class, 'viewServices'])->name('view-services');
+
+    //  USER ALL PROJECTS
+    Route::middleware(['auth:sanctum', 'verified'])->get('/all-projects', [UserServiceController::class, 'allProjects'])->name('all-projects');
+
+    //  USER PROJECT DETAILS
+    Route::middleware(['auth:sanctum', 'verified'])->get('/project-details', [UserServiceController::class, 'allProjectsDetails'])->name('project-details');
+
+    //  USER PLACE ORDER
+    Route::middleware(['auth:sanctum', 'verified'])->get('/place-order', [OrderController::class, 'placeOrder'])->name('place-order');
+
+    //  USER PLACE CUSTOM ORDER
+    Route::middleware(['auth:sanctum', 'verified'])->get('/place-custom-order', [OrderController::class, 'placeCustomOrder'])->name('place-custom-order');
+
+    //  USER PLACE ORDER PART TWO
+    Route::middleware(['auth:sanctum', 'verified'])->get('/place-order-%2', [OrderController::class, 'placeCustomOrderStep2'])->name('/place-order-%2');
+
+    //  USER DOWNLOAD VIDEO
+    Route::middleware(['auth:sanctum', 'verified'])->get('/downloadVid/{video}', [UserController::class, 'downloadVid'])->name('downloadVid');
 });
 
-//  USER VIEW TRENDING PRODUCTS
-Route::middleware(['auth:sanctum', 'verified'])->get('/trending-products', [UserController::class, 'trendingProducts'])->name('trending-products');
-
-//  USER TRENDING PRODUCT DETAILS
-Route::middleware(['auth:sanctum', 'verified'])->get('/product-details/{product_id}', [UserController::class, 'trendingProductDetails'])->name('product-details');
-
-//  USER VIEW FB AD PRODUCTS
-Route::middleware(['auth:sanctum', 'verified'])->get('/fb-ad-products', [UserController::class, 'fbAdProducts'])->name('fb-ad-products');
-
-//  USER VIEW ALL PRODUCTS
-Route::middleware(['auth:sanctum', 'verified'])->get('/all-product', [UserController::class, 'allProduct'])->name('all-product');
-
-//  USER ALL PRODUCT DETAILS
-Route::middleware(['auth:sanctum', 'verified'])->get('/all-product-details/{product_id}', [UserController::class, 'allProductDetails'])->name('all-product-details');
-
-//  USER VIEW UNTAPPED PRODUCTS
-Route::middleware(['auth:sanctum', 'verified'])->get('/untapped-product', [UserController::class, 'untappedProducts'])->name('untapped-product');
-
-//  USER VIEW ALI EXPRESS PRODUCTS
-Route::middleware(['auth:sanctum', 'verified'])->get('/ali-product', [UserExploreController::class, 'exploreAli'])->name('ali-product');
-
-//  USER VIEW AMAZON PRODUCTS
-Route::middleware(['auth:sanctum', 'verified'])->get('/amz-product', [UserExploreController::class, 'exploreAmz'])->name('amz-product');
-
-//  USER VIEW STORE PRODUCTS
-Route::middleware(['auth:sanctum', 'verified'])->get('/store-product', [UserExploreController::class, 'exploreStore'])->name('store-product');
-
-//  USER VIEW TUTORIAL
-Route::middleware(['auth:sanctum', 'verified'])->get('/tutorial', [UserController::class, 'viewTutorial'])->name('tutorial');
-
-//  USER VIEW FAQ
-Route::middleware(['auth:sanctum', 'verified'])->get('/FAQ', [UserController::class, 'viewFAQ'])->name('FAQ');
-
-//  USER VIEW CONTACT US
-Route::middleware(['auth:sanctum', 'verified'])->get('/contact-us-user', [UserController::class, 'viewContactUs'])->name('contact-us');
-
-//  USER SEND EMAIL
-Route::middleware(['auth:sanctum', 'verified'])->post('/send-email', [ContactController::class, 'contact'])->name('send-email');
-
-//  USER SEARCH
-Route::middleware(['auth:sanctum', 'verified'])->post('/search-all-product', [UserController::class, 'allProduct'])->name('search');
-
-//  USER SUBSCIPTION PAGE
-Route::middleware(['auth:sanctum', 'verified'])->get('/subscriptions-billing', [UserController::class, 'SubscriptionsBilling'])->name('subscriptions-billing');
-
-Route::middleware(['auth:sanctum', 'verified'])->get('/cancel-subscription', [SubscriptionController::class, 'CancelSubscription'])->name('cancel-subscription');
 
 
 
 
+Route::middleware([FreelancerRoleEnsure::class])->group(function () {
 
 
-//  # USER SERVICES START #
+    //  FREELANCER PROFILE
+    Route::middleware(['auth:sanctum', 'verified'])->get('/profile', [FreelancerController::class, 'profile'])->name('profile');
 
-//  USER SERVICE DASHBOARD
-Route::middleware(['auth:sanctum', 'verified'])->get('/service-dashboard', [UserServiceController::class, 'serviceDashboard'])->name('service-dashboard');
+    //  FREELANCER UPDATE PROFILE
+    Route::middleware(['auth:sanctum', 'verified'])->get('/update-profile', [FreelancerController::class, 'updateProfile'])->name('update-profile');
 
-//  USER EBUTIFY SERVICES
-Route::middleware(['auth:sanctum', 'verified'])->get('/ebutify-services', [UserServiceController::class, 'ebutifyServices'])->name('ebutify-services');
+    //  FREELANCER UPDATE PASSWORD
+    Route::middleware(['auth:sanctum', 'verified'])->post('/update-password', [FreelancerController::class, 'updatePassword'])->name('update-password');
 
-//  USER VIEW SER
-Route::middleware(['auth:sanctum', 'verified'])->get('/view-services', [UserServiceController::class, 'viewServices'])->name('view-services');
+    //  FREELANCER PRODUCT RESEARCH
+    Route::middleware(['auth:sanctum', 'verified'])->get('/product-research', [ProductController::class, 'productResearch'])->name('product-research');
 
-//  USER ALL PROJECTS
-Route::middleware(['auth:sanctum', 'verified'])->get('/all-projects', [UserServiceController::class, 'allProjects'])->name('all-projects');
+    //  FREELANCER VIEW PRODUCT-UPLOAD-PAGE
+    Route::middleware(['auth:sanctum', 'verified'])->get('/uploadPage', [ProductController::class, 'uploadPage'])->name('uploadPage');
 
-//  USER PROJECT DETAILS
-Route::middleware(['auth:sanctum', 'verified'])->get('/project-details', [UserServiceController::class, 'allProjectsDetails'])->name('project-details');
+    //  FREELANCER UPLOAD PRODUCT
+    Route::post('/uploadProduct', [ProductController::class, 'uploadProduct'])->name('uploadProduct');
 
-//  USER PLACE ORDER
-Route::middleware(['auth:sanctum', 'verified'])->get('/place-order', [OrderController::class, 'placeOrder'])->name('place-order');
+    Route::post('/fileUpload', [FileUploadController::class, 'upload']);
 
-//  USER PLACE CUSTOM ORDER
-Route::middleware(['auth:sanctum', 'verified'])->get('/place-custom-order', [OrderController::class, 'placeCustomOrder'])->name('place-custom-order');
+    // FREELANCER EDIT PRODUCT
+    Route::middleware(['auth:sanctum', 'verified'])->get('/product-edit/{id}', [ProductController::class, 'productEdit'])->name('product-edit');
 
-//  USER PLACE ORDER PART TWO
-Route::middleware(['auth:sanctum', 'verified'])->get('/place-order-%2', [OrderController::class, 'placeCustomOrderStep2'])->name('/place-order-%2');
+    //  FREELANCER UPDATE PRODUCT
+    Route::post('/product-update', [ProductController::class, 'productUpdate'])->name('productUpdate');
 
-//  USER DOWNLOAD VIDEO
-Route::middleware(['auth:sanctum', 'verified'])->get('/downloadVid/{video}', [UserController::class, 'downloadVid'])->name('downloadVid');
+    // FREELANCER VIEW AMAZON EDIT PRODUCT
+    Route::middleware(['auth:sanctum', 'verified'])->get('/amazon-product-edit/{id}', [ProductController::class, 'amazonProductEdit'])->name('amazon-product-edit');
 
+    //  FREELANCER AMAZON UPDATE PRODUCT
+    Route::post('/amazon-product-update', [ProductController::class, 'amazonProductUpdate'])->name('amazon-product-update');
 
+    // FREELANCER VIEW ALI EDIT PRODUCT
+    Route::middleware(['auth:sanctum', 'verified'])->get('/ali-product-edit/{id}', [ProductController::class, 'aliProductEdit'])->name('ali-product-edit');
 
+    //  FREELANCER ALI UPDATE PRODUCT
+    Route::post('/ali-product-update', [ProductController::class, 'aliProductUpdate'])->name('ali-product-update');
 
+    // FREELANCER VIEW SHOPIFY EDIT PRODUCT
+    Route::middleware(['auth:sanctum', 'verified'])->get('/shopify-product-edit/{id}', [ProductController::class, 'shopifyProductEdit'])->name('shopify-product-edit');
 
+    //  FREELANCER SHOPIFY UPDATE PRODUCT
+    Route::post('/shopify-product-update', [ProductController::class, 'shopifyProductUpdate'])->name('shopify-product-update');
 
-//  FREELANCER PROFILE
-Route::middleware(['auth:sanctum', 'verified'])->get('/profile', [FreelancerController::class, 'profile'])->name('profile');
+    //  FREELANCER VIEW ALI EXPRESS PRODUCTS
+    Route::middleware(['auth:sanctum', 'verified'])->get('/ali-express-products', [ExploreController::class, 'exploreAliProduct'])->name('ali-express-products');
 
-//  FREELANCER UPDATE PROFILE
-Route::middleware(['auth:sanctum', 'verified'])->get('/update-profile', [FreelancerController::class, 'updateProfile'])->name('update-profile');
+    //  FREELANCER VIEW UPLOAD ALI EXPRESS PRODUCTS PAGE
+    Route::middleware(['auth:sanctum', 'verified'])->get('/add-new-ali', [ExploreController::class, 'uploadAliPage'])->name('add-new-ali');
 
-//  FREELANCER UPDATE PASSWORD
-Route::middleware(['auth:sanctum', 'verified'])->post('/update-password', [FreelancerController::class, 'updatePassword'])->name('update-password');
+    //  FREELANCER UPLOAD ALI EXPRESS PRODUCTS
+    Route::post('/upload-ali', [ExploreController::class, 'uploadAli'])->name('upload-ali');
 
-//  FREELANCER PRODUCT RESEARCH
-Route::middleware(['auth:sanctum', 'verified'])->get('/product-research', [ProductController::class, 'productResearch'])->name('product-research');
+    //  FREELANCER VIEW AMAZON PRODUCTS
+    Route::middleware(['auth:sanctum', 'verified'])->get('/amazon-products', [ExploreController::class, 'exploreAmazonProduct'])->name('amazon-products');
 
-//  FREELANCER VIEW PRODUCT-UPLOAD-PAGE
-Route::middleware(['auth:sanctum', 'verified'])->get('/uploadPage', [ProductController::class, 'uploadPage'])->name('uploadPage');
+    //  FREELANCER VIEW UPLOAD AMAZON PRODUCTS PAGE
+    Route::middleware(['auth:sanctum', 'verified'])->get('/add-new-amz', [ExploreController::class, 'uploadAmazonPage'])->name('add-new-amz');
 
-//  FREELANCER UPLOAD PRODUCT
-Route::post('/uploadProduct', [ProductController::class, 'uploadProduct'])->name('uploadProduct');
+    //  FREELANCER UPLOAD AMAZON PRODUCTS
+    Route::post('/upload-amazon', [ExploreController::class, 'uploadAmazon'])->name('upload-amazon');
 
-Route::post('/fileUpload', [FileUploadController::class, 'upload']);
+    //  FREELANCER VIEW SHOPIFY PRODUCTS
+    Route::middleware(['auth:sanctum', 'verified'])->get('/shopify-products', [ExploreController::class, 'exploreShopifyProduct'])->name('shopify-products');
 
-// FREELANCER EDIT PRODUCT
-Route::middleware(['auth:sanctum', 'verified'])->get('/product-edit/{id}', [ProductController::class, 'productEdit'])->name('product-edit');
+    //  FREELANCER VIEW UPLOAD SHOPIFY PRODUCTS
+    Route::middleware(['auth:sanctum', 'verified'])->get('/add-new-shopify', [ExploreController::class, 'uploadShopifyPage'])->name('add-new-shopify');
 
-//  FREELANCER UPDATE PRODUCT
-Route::post('/product-update', [ProductController::class, 'productUpdate'])->name('productUpdate');
+    //  FREELANCER UPLOAD SHOPIFY PRODUCTS
+    Route::post('/upload-shopify', [ExploreController::class, 'uploadShopify'])->name('upload-shopify');
 
-// FREELANCER VIEW AMAZON EDIT PRODUCT
-Route::middleware(['auth:sanctum', 'verified'])->get('/amazon-product-edit/{id}', [ProductController::class, 'amazonProductEdit'])->name('amazon-product-edit');
+    //  FREELANCER UPLOAD SHOPIFY PRODUCTS
+    Route::get('/freelancer-project', function () {
+        return view('freelancer.freelancer-project');
+    });
 
-//  FREELANCER AMAZON UPDATE PRODUCT
-Route::post('/amazon-product-update', [ProductController::class, 'amazonProductUpdate'])->name('amazon-product-update');
-
-// FREELANCER VIEW ALI EDIT PRODUCT
-Route::middleware(['auth:sanctum', 'verified'])->get('/ali-product-edit/{id}', [ProductController::class, 'aliProductEdit'])->name('ali-product-edit');
-
-//  FREELANCER ALI UPDATE PRODUCT
-Route::post('/ali-product-update', [ProductController::class, 'aliProductUpdate'])->name('ali-product-update');
-
-// FREELANCER VIEW SHOPIFY EDIT PRODUCT
-Route::middleware(['auth:sanctum', 'verified'])->get('/shopify-product-edit/{id}', [ProductController::class, 'shopifyProductEdit'])->name('shopify-product-edit');
-
-//  FREELANCER SHOPIFY UPDATE PRODUCT
-Route::post('/shopify-product-update', [ProductController::class, 'shopifyProductUpdate'])->name('shopify-product-update');
-
-//  FREELANCER VIEW ALI EXPRESS PRODUCTS
-Route::middleware(['auth:sanctum', 'verified'])->get('/ali-express-products', [ExploreController::class, 'exploreAliProduct'])->name('ali-express-products');
-
-//  FREELANCER VIEW UPLOAD ALI EXPRESS PRODUCTS PAGE
-Route::middleware(['auth:sanctum', 'verified'])->get('/add-new-ali', [ExploreController::class, 'uploadAliPage'])->name('add-new-ali');
-
-//  FREELANCER UPLOAD ALI EXPRESS PRODUCTS
-Route::post('/upload-ali', [ExploreController::class, 'uploadAli'])->name('upload-ali');
-
-//  FREELANCER VIEW AMAZON PRODUCTS
-Route::middleware(['auth:sanctum', 'verified'])->get('/amazon-products', [ExploreController::class, 'exploreAmazonProduct'])->name('amazon-products');
-
-//  FREELANCER VIEW UPLOAD AMAZON PRODUCTS PAGE
-Route::middleware(['auth:sanctum', 'verified'])->get('/add-new-amz', [ExploreController::class, 'uploadAmazonPage'])->name('add-new-amz');
-
-//  FREELANCER UPLOAD AMAZON PRODUCTS
-Route::post('/upload-amazon', [ExploreController::class, 'uploadAmazon'])->name('upload-amazon');
-
-//  FREELANCER VIEW SHOPIFY PRODUCTS
-Route::middleware(['auth:sanctum', 'verified'])->get('/shopify-products', [ExploreController::class, 'exploreShopifyProduct'])->name('shopify-products');
-
-//  FREELANCER VIEW UPLOAD SHOPIFY PRODUCTS
-Route::middleware(['auth:sanctum', 'verified'])->get('/add-new-shopify', [ExploreController::class, 'uploadShopifyPage'])->name('add-new-shopify');
-
-//  FREELANCER UPLOAD SHOPIFY PRODUCTS
-Route::post('/upload-shopify', [ExploreController::class, 'uploadShopify'])->name('upload-shopify');
-
-//  FREELANCER UPLOAD SHOPIFY PRODUCTS
-Route::get('/freelancer-project', function () {
-    return view('freelancer.freelancer-project');
-});
-
-//  FREELANCER UPLOAD SHOPIFY PRODUCTS
-Route::get('/freelancer-project-detail', function () {
-    return view('freelancer.freelancer-project-detail');
+    //  FREELANCER UPLOAD SHOPIFY PRODUCTS
+    Route::get('/freelancer-project-detail', function () {
+        return view('freelancer.freelancer-project-detail');
+    });
 });
 
 

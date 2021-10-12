@@ -57,6 +57,7 @@
                             </div>
                         </div>
                         <div class="sign_up_main_content">
+                            
                             <div class="row">
                                 <div class="col-lg-4 col-sm-12 sign_up_faq mx-auto mt-3 text-muted p-3 order-3 order-lg-1 order-sm-3">
                                     <h6>Why do you need my PayPal or Credit Card info?</h6>
