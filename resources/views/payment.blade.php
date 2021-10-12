@@ -126,9 +126,49 @@
                                                 </div>
                                             </div>
 
+
+                                            <div class="col-sm-12 m-b-10 col-md-6">
+                                                <!-- The text field -->
+                                                <input class="form-control" type="text" value="monthlyplan" id="myInput" placeholder="coupon">
+
+                                                <!-- The button used to copy the text -->
+                                                <button class="btn btn-secondary btn-sm active form-control" style="float: right;" onclick="myFunction22222()">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
+                                                      <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+                                                      <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+                                                    </svg>
+                                                    <small>Copy Monthly Coupon</small> 
+
+                                                </button>
+
+                                                <!-- <div class="form-group">
+                                                    <label for="exampleInputEmail1"><br>Coupon</label>
+                                                    <input type="text" class="form-control" id="coupon" name="coupon" aria-describedby="coupon" placeholder="Enter Coupon Code">
+                                                </div> -->
+                                            </div>
+                                            <div class="col-sm-12 m-b-10 col-md-6">
+                                                
+                                                <!-- The text field -->
+                                                <input class="form-control" type="text" value="yearlyplan" id="myInput2" placeholder="coupon">
+
+                                                <!-- The button used to copy the text -->
+                                                <button class="btn btn-secondary btn-sm active form-control" style="float: right;" onclick="myFunction22222()">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
+                                                      <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+                                                      <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+                                                    </svg>
+                                                    <small>Copy Yearly Coupon</small> 
+
+                                                </button>
+
+                                                <!-- <div class="form-group">
+                                                    <label for="exampleInputEmail1"><br>Coupon</label>
+                                                    <input type="text" class="form-control" id="coupon" name="coupon" aria-describedby="coupon" placeholder="Enter Coupon Code">
+                                                </div> -->
+                                            </div>
                                             <div class="form-group">
-                                                <label for="exampleInputEmail1"><br>Coupon</label>
-                                                <input type="text" class="form-control" id="coupon" name="coupon" aria-describedby="coupon" placeholder="Enter Coupon Code">
+                                                    <label for="exampleInputEmail1"><br>Coupon</label>
+                                                    <input type="text" class="form-control" id="coupon" name="coupon" aria-describedby="coupon" placeholder="Enter Coupon Code">
                                             </div>
 
 
@@ -336,5 +376,32 @@
                 }
             });
         })
+
+        function myFunction11111() {
+          /* Get the text field */
+          var copyText = document.getElementById("myInput");
+
+          /* Select the text field */
+          copyText.select();
+          copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+           /* Copy the text inside the text field */
+          navigator.clipboard.writeText(copyText.value);
+
+        }
+
+        function myFunction22222() {
+          /* Get the text field */
+          var copyText = document.getElementById("myInput2");
+
+          /* Select the text field */
+          copyText.select();
+          copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+           /* Copy the text inside the text field */
+          navigator.clipboard.writeText(copyText.value);
+
+        }
+
     </script>
 @endsection
