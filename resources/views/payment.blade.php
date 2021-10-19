@@ -84,7 +84,7 @@
                                         <form id="myForm">
                                         <div class="row mt-2">
                                             <div class="col-sm-12 col-md-6">
-                                                <div class="plan--payment_system selected-plan" id="yearly">
+                                                <div class="plan--payment_system selected-plan" id="monthly">
 
                                                     <div class="free_month_badge text-center">
                                                         <div class="inner" style="margin-top: 12px;">Best Choice</div>
@@ -93,8 +93,9 @@
                                                     <div class="custom-control custom-radio">
                                                         <!-- checked doesn't work! -->
                                                         <input checked type="radio"
-                                                            class="custom-control-input payment-radio d-none" value="{{$product[0]->product_code}}" name="plan" id="yearly_plan" >
-                                                        <label class="custom-control-label" for="subscription-plan">
+                                                            class="custom-control-input payment-radio d-none" value="{{$product[0]->product_code}}" name="plan" id="monthly" >
+
+                                                        <label class="custom-control-label" for="subscription-plan" onclick="showDiv(); ik('{{$product[0]->coupon_id}}'); ">
                                                             <p><span class="from-yr">{{$product[0]->product_name}}</span>
                                                                 <span class="pricing-num">${{$product[0]->monthly_pricing}} USD<span class="pr-per">/month</span> </span>
                                                             </p>
@@ -108,17 +109,17 @@
                                                 </div>
                                             </div>
                                             <div class="col-sm-12 m-b-10 col-md-6">
-                                                <div class="plan--payment_system sm-pading-point" id="monthly">
+                                                <div class="plan--payment_system sm-pading-point" id="yearly">
                                                     <div class="custom-control custom-radio">
-                                                        <input type="radio" name="plan" id="monthly_plan" value="{{$product[0]->product_code}}"
+                                                        <input type="radio" name="plan" id="yearly" value="{{$product[1]->product_code}}"
                                                             class="custom-control-input payment-radio d-none">
-                                                        <label class="custom-control-label" for="radioYearly">
+                                                        <label class="custom-control-label" for="radioYearly" onclick="showDiv2(); ik1('{{$product[1]->coupon_id}}'); ">
                                                             <p><span class="from-yr">{{$product[1]->product_name}}</span>
                                                                 <span class="pricing-num">${{$product[1]->monthly_pricing}} USD<span class="pr-per">/year</span> </span>
                                                             </p>
                                                             <p><span class="pricing-num">To Pay Today: ${{$product[1]->to_pay_today}} </span></p>
                                                             <div class="plan-duration">
-                                                                <strike>${{$product[0]->original_amount}}</strike> <span class="text-pink">Save {{$product[1]->saved_percentage}}%</span>
+                                                                <strike>${{$product[1]->original_amount}}</strike> <span class="text-pink">Save {{$product[1]->saved_percentage}}%</span>
                                                                 <p style="color: #cccccc; font-size: 16px;">Billed Monthly for ${{$product[1]->to_pay_today}}</p>
                                                             </div>
                                                         </label>
@@ -126,47 +127,29 @@
                                                 </div>
                                             </div>
 
-
                                             <div class="col-sm-12 m-b-10 col-md-6">
-                                                <!-- The text field -->
-                                                <input class="form-control" type="text" value="monthlyplan" id="myInput" placeholder="coupon">
-
-                                                <!-- The button used to copy the text -->
-                                                <button class="btn btn-secondary btn-sm active form-control" style="float: right;" onclick="myFunction22222()">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
-                                                      <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
-                                                      <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
-                                                    </svg>
-                                                    <small>Copy Monthly Coupon</small> 
-
-                                                </button>
-
-                                                <!-- <div class="form-group">
-                                                    <label for="exampleInputEmail1"><br>Coupon</label>
-                                                    <input type="text" class="form-control" id="coupon" name="coupon" aria-describedby="coupon" placeholder="Enter Coupon Code">
-                                                </div> -->
+                                                <br>
+                                                <div class="plan--payment_system sm-pading-point" id="trial">
+                                                    <div class="custom-control custom-radio">
+                                                        <input type="radio" name="plan" id="trial" value="{{$product[2]->product_code}}"
+                                                            class="custom-control-input payment-radio d-none">
+                                                        <label class="custom-control-label" for="radioYearly" onclick="ik2('{{$product[2]->coupon_id}}'); heyyaaa();">
+                                                            <p><span class="from-yr">{{$product[2]->product_name}}</span>
+                                                                <span class="pricing-num">${{$product[2]->monthly_pricing}} USD<span class="pr-per">One Time Only</span> </span>
+                                                            </p>
+                                                            <p><span class="pricing-num">To Pay Today: ${{$product[2]->to_pay_today}} </span></p>
+                                                            <div class="plan-duration">
+                                                                <!-- <strike>${{$product[2]->original_amount}}</strike> <span class="text-pink">Save {{$product[2]->saved_percentage}}%</span> -->
+                                                                <p style="color: #cccccc; font-size: 16px;">Billed ${{$product[2]->to_pay_today}} For Two Days Trial</p>
+                                                            </div>
+                                                        </label>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="col-sm-12 m-b-10 col-md-6">
-                                                
-                                                <!-- The text field -->
-                                                <input class="form-control" type="text" value="yearlyplan" id="myInput2" placeholder="coupon">
 
-                                                <!-- The button used to copy the text -->
-                                                <button class="btn btn-secondary btn-sm active form-control" style="float: right;" onclick="myFunction22222()">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
-                                                      <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
-                                                      <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
-                                                    </svg>
-                                                    <small>Copy Yearly Coupon</small> 
 
-                                                </button>
-
-                                                <!-- <div class="form-group">
-                                                    <label for="exampleInputEmail1"><br>Coupon</label>
-                                                    <input type="text" class="form-control" id="coupon" name="coupon" aria-describedby="coupon" placeholder="Enter Coupon Code">
-                                                </div> -->
-                                            </div>
-                                            <div class="form-group">
+                                            
+                                            <div class="form-group" id="myDIV">
                                                     <label for="exampleInputEmail1"><br>Coupon</label>
                                                     <input type="text" class="form-control" id="coupon" name="coupon" aria-describedby="coupon" placeholder="Enter Coupon Code">
                                             </div>
@@ -257,8 +240,8 @@
 
                                         <div class="form-group text-center">
                                             <div class="col-12 sign_up-footer_policy">
-                                                <p style="padding-left: 40px; padding-right: 40px; margin: 5px 0 20px 0;"><img
-                                                        src="images/trust-paypal.png" class="img-fluid"></p>
+                                                <p style="padding-left: 40px; padding-right: 40px; margin: 5px 0 20px 0;"><!-- <img
+                                                        src="images/trust-paypal.png" class="img-fluid"> --></p>
                                                 <p>By Clicking Complete Account Button or The Paypal Button You are agreeing
                                                     to eButify's
                                                     <a href="/terms-and-conditions">Terms and Conditions</a>
@@ -330,10 +313,14 @@
 
 
             $("#yearly").click(function (){
-                var plan_id = '{{$product[0]->product_code}}';
+                var plan_id = '{{$product[1]->product_code}}';
                 $('input[name=plan_id]').val(plan_id);
             });
 
+            $("#trial").click(function (){
+                var plan_id = '{{$product[2]->product_code}}';
+                $('input[name=plan_id]').val(plan_id);
+            });
 
 </script>
     <script>
@@ -377,6 +364,36 @@
             });
         })
 
+        function myFunction() {
+          /* Get the text field */
+          var copyText = document.getElementById("myInput");
+
+          /* Select the text field */
+          copyText.select();
+          copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+           /* Copy the text inside the text field */
+          navigator.clipboard.writeText(copyText.value);
+
+          /* Alert the copied text */
+          alert("Copied the text: " + copyText.value);
+        }
+
+        function myFunction222222222() {
+          /* Get the text field */
+          var copyText = document.getElementById("myInput2");
+
+          /* Select the text field */
+          copyText.select();
+          copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+           /* Copy the text inside the text field */
+          navigator.clipboard.writeText(copyText.value);
+
+          /* Alert the copied text */
+          alert("Copied the text: " + copyText.value);
+        }
+
         function myFunction11111() {
           /* Get the text field */
           var copyText = document.getElementById("myInput");
@@ -401,6 +418,51 @@
            /* Copy the text inside the text field */
           navigator.clipboard.writeText(copyText.value);
 
+        }
+
+        // function ik(val){
+        //    result = document.getElementById('coupon');
+        //    result.value = result.value? parseInt(result.value) + parseInt(val) : parseInt(val);  
+        // }
+        function ik(val){
+            document.getElementById("coupon").value = val;
+        }
+        function ik1(val){
+            document.getElementById("coupon").value = val;
+        }
+        function ik2(val){
+            document.getElementById("coupon").value = val;
+        }
+        // $(function () {
+        //   $("plan").on("click", function () {
+        //     $("#coupon").val($(this).val());
+        //   });
+        // });
+
+        function heyyaaa() {
+          var x = document.getElementById("myDIV");
+          if (x.style.display === "block") {
+            x.style.display = "none";
+          } else {
+            x.style.display = "none";
+          }
+        }
+
+        function showDiv() {
+          var x = document.getElementById("myDIV");
+          if (x.style.display === "none") {
+            x.style.display = "block";
+          } else {
+            x.style.display = "block";
+          }
+        }
+        function showDiv2() {
+          var x = document.getElementById("myDIV");
+          if (x.style.display === "none") {
+            x.style.display = "block";
+          } else {
+            x.style.display = "block";
+          }
         }
 
     </script>

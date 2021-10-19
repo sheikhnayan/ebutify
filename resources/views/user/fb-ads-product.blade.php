@@ -301,7 +301,7 @@
                                                    </div>
                                                 </div>
                                                 @endforeach -->
-                                                <div id="carouselExampleIndicators{{$j}}" class="carousel slide" data-ride="carousel">
+                                                <div id="carouselExampleIndicators{{$j}}" class="carousel slide" data-interval="false" data-ride="carousel">
                                                   <ol class="carousel-indicators">
                                                     <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
                                                     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
@@ -314,11 +314,26 @@
                                                       @foreach ($trendingProduct->productImage as $productImage)
                                                     <div class="carousel-item active">
                                                       <!-- <iframe class="carousel-video d-block w-100" onclick="this.paused ? this.play() : this.pause();" src="{{$productImage->video_link}}"></iframe> -->
-                                                      <video class="carousel-video d-block w-100" onclick="this.paused ? this.play() : this.pause();" src="{{$productImage->video_link}}" alt="First slide" >
-                                                     <div class="carousel-video carousel-caption d-none d-md-block">
-                                                       <h5>...</h5>
-                                                       <p>...</p>
-                                                     </div>
+
+
+                                                      <div id="video-controls" class="controls" data-state="hidden">
+                                                         <button id="playpause" type="button" data-state="play">Play/Pause</button>
+<!--                                                          <div class="progress">
+                                                            <progress id="progress" value="0" min="0">
+                                                               <span id="progress-bar"></span>
+                                                            </progress>
+                                                         </div>
+                                                         <button id="mute" type="button" data-state="mute">Mute/Unmute</button>
+                                                         <button id="volinc" type="button" data-state="volup">Vol+</button>
+                                                         <button id="voldec" type="button" data-state="voldown">Vol-</button>
+                                                         <button id="fs" type="button" data-state="go-fullscreen">Fullscreen</button> -->
+                                                      </div>
+
+
+                                                      <video class="carousel-video d-block w-100" src="{{$productImage->video_link}}" alt="First slide" >
+                                                         
+      
+
 
                                                     </div>
                                                     <div class="carousel-item">
@@ -677,6 +692,8 @@
 <script type="text/javascript">
    $('.carousel').carousel()
 
+   interval: false,
+
    function hidePlayButton(){
       console.log('hello');
    }
@@ -737,6 +754,10 @@ initiateSlick('yes');
                 console.log('Server error occured');
             });
     }
+
+// Display the user defined video controls
+videoControls.setAttribute('data-state', 'visible');
+
 
 </script>
 @endsection

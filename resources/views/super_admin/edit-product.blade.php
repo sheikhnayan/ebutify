@@ -80,6 +80,11 @@
                             <input type="number" step="0.01" value="{{ $data[0]->billed_for ?? ''}}" required="" class="form-control" name="billed_for" id="" placeholder="Enter Billed For"> <br>
 
                             <br>
+
+                            <label for="">Coupon ID</label>
+                            <input type="text" class="form-control" value="{{ $data[0]->coupon_id ?? ''}}" name="coupon_id" id="" placeholder="Enter Billed For"> <br>
+
+                            <br>
                             <button type="submit" class="btn btn-success">Add </button>
 
                           </form>

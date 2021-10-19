@@ -53,10 +53,11 @@ Route::get('/', function () {
     //  FREELANCER DASHBOARD VIEW
     Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [FreelancerController::class, 'dashboard'])->name('freelancer-dashboard');
 
-Route::middleware([UserRoleEnsure::class])->group(function () {
-
     //  LOGOUT
     Route::get('/logout', [FreelancerController::class, 'logoutFreelancer'])->name('logout');
+    
+Route::middleware([UserRoleEnsure::class])->group(function () {
+
 
     //  WORK REPORT VIEW
     Route::middleware(['auth:sanctum', 'verified'])->get('/work-report', [FreelancerController::class, 'workReportFreelancer'])->name('work-report');

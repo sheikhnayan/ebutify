@@ -93,7 +93,13 @@
                     <span class="mb-2 align-item-center justify-content-center">
                         <span class="mr-2 d-none d-sm-inline"></span>
                         <span class="">
-                            <span class="download-number d-block font-weight-bold">500+</span>
+                            <span class="download-number d-block font-weight-bold">
+                                @php
+                                    $prods = DB::table('users')->get();
+                                    $prod_count = $prods->count();
+                                @endphp
+                                {{ $prod_count + 500 }}
+                            </span>
                             <span class="small d-block mb-2">Satisfied Clients</span>
                         </span>
                         <div class="btn btn-primary btn-sm btn-block download-cta" style="width: 100%;">

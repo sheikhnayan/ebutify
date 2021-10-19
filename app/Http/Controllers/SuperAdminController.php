@@ -1123,7 +1123,10 @@ class SuperAdminController extends Controller
         $add->discount_amount = $request->discount_amount;
         $add->saved_percentage = $request->saved_percentage;
         $add->billed_for = $request->billed_for;
+        $add->coupon_id = $request->coupon_id;
         $add->save();
+
+        return back();
     }
 
     public function EditProduct($id)
@@ -1147,6 +1150,7 @@ class SuperAdminController extends Controller
         $productDetails->original_amount = $request->original_amount;
         $productDetails->discount_amount = $request->discount_amount;
         $productDetails->saved_percentage = $request->saved_percentage;
+        $productDetails->coupon_id = $request->coupon_id;
         $productDetails->billed_for = $request->billed_for;
         $productDetails->save();
 

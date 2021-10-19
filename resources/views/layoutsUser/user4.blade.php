@@ -13,7 +13,6 @@
       <!-- Select2 -->
       <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
       <!-- Slick Slider -->
-      <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
       <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
       <!-- My style -->
       <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
@@ -21,7 +20,7 @@
         $data = DB::table('logos')->where('id','1')->first();
         $favicon = $data->favicon;
         $logo = $data->url;
-    @endphp
+      @endphp
     <link rel="icon" 
       type="image/png" 
       href="{{ asset('storage/'.$favicon ?? '') }}">
@@ -52,6 +51,45 @@
     top: 50%;
 }
       </style>
+      <style type="text/css">
+.wrapper111 {
+    position: relative;
+    display: inline-block;
+}
+
+.blurEffect {
+    -webkit-filter: blur(7px);
+    -o-filter: blur(7px);
+    -moz-filter: blur(7px);
+    -ms-filter: blur(7px);
+    filter: blur(7px);
+}
+
+.content1111 {
+    position: absolute;
+    display: inline-block;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
+    color: #FFF;
+    width: 100%;
+    text-align: center;
+    z-index: 999;
+}
+
+.play {
+    font-size: 50px;
+    cursor: pointer;
+    border: 1px solid #FFF;
+    display: inline-block;
+    text-align: center;
+    padding: 5px 25px;
+}
+
+.play:hover {
+    color: red;
+}
+</style>
       <script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="870bb0db-1c1d-4fcc-bda0-d87cb20d073f";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
    </head>
    <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">

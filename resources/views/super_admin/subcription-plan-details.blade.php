@@ -48,6 +48,7 @@
                   <th>Discount Amount</th>
                   <th>Saved Percentage</th>
                   <th>Billed For</th>
+                  <th>Coupon ID</th>
                   <th width="100">Action</th>
                 </tr>
               </thead>
@@ -64,6 +65,7 @@
                   <td> {{ $item->discount_amount }}</td>
                   <td> {{ $item->saved_percentage }}</td>
                   <td> {{ $item->billed_for }}</td>
+                  <td> {{ $item->coupon_id }}</td>
                   <td>
                     <a href="/super/subsciption/edit/{{ $item->id }}" class="btn btn-primary">Edit</a>
                   </td>
