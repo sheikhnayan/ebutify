@@ -158,4 +158,10 @@ class FrontendControllerController extends Controller
         return back()->with('message_sent','Your message has been sent successfully!');
     }
 
+    public function pricing(Req $request)
+    {
+        
+
+        return view('front.pricing');
+    }
 }

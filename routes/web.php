@@ -271,9 +271,12 @@ Route::middleware([FreelancerRoleEnsure::class])->group(function () {
 
 Route::get('/', [FrontendControllerController::class,'index']);
 
-Route::get('/pricing', function(){
-    return view('front.pricing');
-});
+// Route::get('/pricing', function(){
+//     return view('front.pricing');
+// });
+
+Route::post('/pricing', [FrontendControllerController::class, 'pricing'])->name('pricing');
+
 Route::get('/privacy-policy', function(){
     $data = PrivacyAndPolicy::where('id',1)->first();
     return view('front.privacy-policy',compact('data'));

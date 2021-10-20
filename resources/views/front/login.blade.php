@@ -54,7 +54,7 @@
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" value="" id="Check-reCaptcha">
                                                 <label class="form-check-label" for="Check-reCaptcha">
-                                                    Remenber me
+                                                    Remember me
                                                 </label>
                                             </div>
                                         </div>
